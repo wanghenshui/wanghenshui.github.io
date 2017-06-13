@@ -93,15 +93,16 @@
 
 
 
-<meta name="description" content="一个简单的博客，争取每周都记录一点东西（已经打脸好几次了。。）">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王很水">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="######本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文 Chapter 1: Understand Why Bugs Exist/理解为什么有bug在软件开发迭代中为啥老是有bug悄悄溜进来？花费时间来理解为什么bug存在是写出bug-free代码的第一步。第二步则是采取行动制定策略去减少问题/检测问题。更重要的是要让整个团队明白这些新的策略。 笔者的一个好朋友工作在一个特">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Writing Bug Free C code chapter 1 Understand Why Bugs Exist">
+<meta property="og:url" content="http://yoursite.com/2017/06/14/Writing-Bug-Free-C-code-chapter-1-Understand-Why-Bugs-Exist/index.html">
 <meta property="og:site_name" content="王很水">
-<meta property="og:description" content="一个简单的博客，争取每周都记录一点东西（已经打脸好几次了。。）">
+<meta property="og:description" content="######本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文 Chapter 1: Understand Why Bugs Exist/理解为什么有bug在软件开发迭代中为啥老是有bug悄悄溜进来？花费时间来理解为什么bug存在是写出bug-free代码的第一步。第二步则是采取行动制定策略去减少问题/检测问题。更重要的是要让整个团队明白这些新的策略。 笔者的一个好朋友工作在一个特">
+<meta property="og:updated_time" content="2017-06-13T10:27:50.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王很水">
-<meta name="twitter:description" content="一个简单的博客，争取每周都记录一点东西（已经打脸好几次了。。）">
+<meta name="twitter:title" content="Writing Bug Free C code chapter 1 Understand Why Bugs Exist">
+<meta name="twitter:description" content="######本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文 Chapter 1: Understand Why Bugs Exist/理解为什么有bug在软件开发迭代中为啥老是有bug悄悄溜进来？花费时间来理解为什么bug存在是写出bug-free代码的第一步。第二步则是采取行动制定策略去减少问题/检测问题。更重要的是要让整个团队明白这些新的策略。 笔者的一个好朋友工作在一个特">
 
 
 
@@ -129,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/14/Writing-Bug-Free-C-code-chapter-1-Understand-Why-Bugs-Exist/"/>
 
 
 
 
 
-  <title>王很水</title>
+  <title>Writing Bug Free C code chapter 1 Understand Why Bugs Exist | 王很水</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -161,9 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,9 +265,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -294,9 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/14/Writing-Bug-Free-C-code-chapter-1-Understand-Why-Bugs-Exist/" itemprop="url">Writing Bug Free C code chapter 1 Understand Why Bugs Exist</a></h1>
+          <h1 class="post-title" itemprop="name headline">Writing Bug Free C code chapter 1 Understand Why Bugs Exist</h1>
         
 
         <div class="post-meta">
@@ -343,9 +340,7 @@
       
 
       
-        
-          
-            <p>######本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文</p>
+        <p>######本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文</p>
 <h2 id="Chapter-1-Understand-Why-Bugs-Exist-理解为什么有bug"><a href="#Chapter-1-Understand-Why-Bugs-Exist-理解为什么有bug" class="headerlink" title="Chapter 1: Understand Why Bugs Exist/理解为什么有bug"></a>Chapter 1: Understand Why Bugs Exist/理解为什么有bug</h2><p>在软件开发迭代中为啥老是有bug悄悄溜进来？花费时间来理解为什么bug存在是写出bug-free代码的第一步。第二步则是采取行动制定策略去减少问题/检测问题。更重要的是要让整个团队明白这些新的策略。</p>
 <p>笔者的一个好朋友工作在一个特别的公司，会对他写的代码和模块使用运行时参数校验（run-time parameter validation）。这是一个好主意，但这种强制的做法可能会使其他程序员不太情愿。有一天朋友修改了一点旧代码，然后他加上了参数校验。他测试了他的代码然后就传到代码库了，几周之后这个代码调用老代码（一年前的）就会显示参数错误了。但是有些程序员想把这个参数校验去掉。他们认为有错误日志打印，不可能是老代码有问题，肯定是新加的参数校验错了。</p>
 <p>这就是个极端的例子，但也足够说明在一个编程项目中必须让团队中每个人理解这种策略施行。</p>
@@ -399,140 +394,43 @@
 <li>Finally, make sure that you use the Windows debug kernel all the time. It contains extra error checking that can automatically detect certain types of bugs that go undetected in the retail release of Windows</li>
 </ol>
 
-          
-        
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
       
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王很水">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img3.doubanio.com/icon/ul61740133-22.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="王很水">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T07:57:29Z">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得有帮助，可以请咱吃苹果</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wp.png" alt="王很水 WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
       
       
+    </div>
+  </div>
 
+
+      
+    </div>
+
+    <div>
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
@@ -540,21 +438,38 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -562,6 +477,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -581,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://img3.doubanio.com/icon/ul61740133-22.jpg"
@@ -655,6 +583,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-Understand-Why-Bugs-Exist-理解为什么有bug"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1: Understand Why Bugs Exist/理解为什么有bug</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -768,10 +712,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
