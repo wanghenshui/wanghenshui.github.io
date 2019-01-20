@@ -17,12 +17,13 @@ recent_num: 20
 #twitter: null
 douban: jieyaren
 github: wanghenshui
+zhihu: wanghenshui
 #instagram: null
 #linkedin: null
 
 # avatar and Favicon
-#avatar: http://imgs.yansu.org/site-avatar.png
-#favicon: http://imgs.yansu.org/site-favicon.ico
+avatar: https://avatars0.githubusercontent.com/u/8872493?s=460&v=4
+favicon: https://avatars0.githubusercontent.com/u/8872493?s=460&v=4
 
 # disqus config
 disqus:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:代码审核：关于信号
+title:code review on signal
 category: translation
 keywords: signal,linux,vm,code
 ---

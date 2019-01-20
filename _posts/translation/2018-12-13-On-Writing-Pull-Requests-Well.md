@@ -1,6 +1,6 @@
 ---
 layout: post
-title:写好Pull Requests(PR)
+title:On Writing Pull Requests(PR)
 category: translation
 keywords: pull request, git
 ---
