@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Writing_Bug_Free_C_Code_Chapter_2_Know_Your_Environment
+title: Writing Bug Free C Code Chapter 2 Know Your Environment
 category: translation
 keywords: c,bug
 ---

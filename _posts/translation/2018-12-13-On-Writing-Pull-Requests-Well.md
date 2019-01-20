@@ -2,7 +2,7 @@
 layout: post
 title:On Writing Pull Requests(PR)
 category: translation
-keywords: pull request, git
+keywords: mr,pr,git
 ---
 
 
