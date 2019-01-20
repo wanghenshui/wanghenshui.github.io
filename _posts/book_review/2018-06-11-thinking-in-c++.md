@@ -7,4 +7,4 @@ keywords: c++
 
 ## c++编程思想 读书笔记
 
-![](../../assets/img/thinking-in-c++.svg)
+![](https://github.com/wanghenshui/wanghenshui.github.io/blob/master/assets/img/thinking-in-c%2B%2B.svg)
