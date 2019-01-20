@@ -1,6 +1,6 @@
 ---
 layout: post
-title:On Writing Pull Requests(PR)
+title: On Writing Pull Requests
 category: translation
 keywords: mr,pr,git
 ---
