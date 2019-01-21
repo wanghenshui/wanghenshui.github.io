@@ -22,16 +22,25 @@ https://wanghenshui.github.io
 
 
 
-联系方式
-
 @telegram: wanghenshui 
+
 @steam: 王很水 https://steamcommunity.com/id/wanghenshui/
+
 @微信&&电话&&QQ(base64): MTg4NDQxODk1MzM=
+
 @email: wanghenshui@qq.com
+
 @github: https://github.com/wanghenshui/
+
 @知乎专栏(看缘分更新): https://zhuanlan.zhihu.com/jieyaren
+
+@豆瓣: https://www.douban.com/people/61740133/
+
 @读书笔记: https://www.douban.com/people/jieyaren/reviews
+
 另外，这里也有一些读书翻译的记录
+
 https://wanghenshui.github.io
+
 https://github.com/wanghenshui/book_review
-@博客园(基本不用): http://www.cnblogs.com/jieyaren/ 
+
