@@ -5,7 +5,7 @@ category: 技术
 tags: c++,mongodb,design pattern
 ---
 
-## MongoDB中的装饰器模式
+
 
 实现在util/Decorable.h中 本质是[CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)的一个使用
 

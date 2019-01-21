@@ -1,15 +1,13 @@
 ---
 layout: post
-title: code review on signal
-category: translation
+title: 代码审核：关于信号
+category: 翻译
 keywords: signal,linux,vm,code
 ---
 
 
 
-## [代码审核：关于信号](http://delyan.me/code-review-signals/)
-
-//翻译的十分糟糕，就当做自己的阅读笔记了 原文点击标题
+//翻译的十分糟糕，就当做自己的阅读笔记了[原文点击](http://delyan.me/code-review-signals/)
 
 
 

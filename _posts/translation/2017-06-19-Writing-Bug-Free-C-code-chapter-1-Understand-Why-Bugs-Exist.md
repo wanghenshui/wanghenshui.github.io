@@ -1,15 +1,11 @@
 ---
 layout: post
 title: Writing Bug Free C code chapter 1 Understand Why Bugs Exist
-category: translation
+category: 翻译
 keywords: c,bug
 ---
 
 
-
-# Writing Bug Free C code chapter 1 Understand Why Bugs Exist
-
-​                                                                                                       发表于                                               2017-06-13                                                                                                                                                                                        
 
 \######本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文
 

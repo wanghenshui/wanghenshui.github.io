@@ -1,15 +1,11 @@
 ---
 layout: post
 title: Writing Bug Free C Code Chapter 2 Know Your Environment
-category: translation
+category: 翻译
 keywords: c,bug
 ---
 
-
-
-# Writing Bug Free C Code Chapter 2 Know Your Environment
-
-​                                                                                                                                                                                                                                                                                        
+​                                                                                                                                                                                                                                                                                       
 
 \##### 这已经不是翻译了，这就是笔记了。
 

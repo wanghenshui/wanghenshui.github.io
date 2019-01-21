@@ -1,17 +1,11 @@
 ---
 layout: post
 title: advanced_metaprogramming_in_classic_c++_part1_prerequisites_chapter1_templates
-category: translation
+category: 翻译
 keywords: c++,template,c++98,TMP
 ---
 
 
-
-# advanced_metaprogramming_in_classic_c++_part1_prerequisites_chapter1_templates
-
-​                                                                                                       发表于                                               2017-06-20                                                                                                                                                                                        
-
-\##典型c++高级元编程
 
 ### 第一部分 预备知识 #include 
 
@@ -249,12 +243,12 @@ waring: potential divide by 0;
   ```
 
     };
-
+    
     SomeClass::PRODUCT > s1;
 
 - 某些宏 **LINE**
     SomeClass<__line__> s1;
-  //备注，一般没人这么用，通常用来自动生成枚举/实现断言
+    //备注，一般没人这么用，通常用来自动生成枚举/实现断言
 
 模板形参可以依赖其他形参
 

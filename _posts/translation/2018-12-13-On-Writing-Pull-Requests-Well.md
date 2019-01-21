@@ -1,15 +1,11 @@
 ---
 layout: post
-title: On Writing Pull Requests
-category: translation
+title: 写好Pull Requests(PR)
+category: 翻译
 keywords: mr,pr,git
 ---
 
 
-
-
-
-## 写好Pull Requests(PR)
 
 [原文链接](http://satran.in/2018/12/10/On_Writing_Pull_Requests_Well.html) 
 
