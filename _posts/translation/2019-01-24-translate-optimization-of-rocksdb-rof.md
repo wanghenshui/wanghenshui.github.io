@@ -5,7 +5,7 @@ category: 翻译
 keywords: Databases, Benchmark, Redis, Rocksdb, Key-Value Store, SSD,NVMe
 ---
 
-> 原文 Optimization of RocksDB for Redis on Flash http://kereno.com/rocksdb-rof.pdf
+> [原文 Optimization of RocksDB for Redis on Flash]( http://kereno.com/rocksdb-rof.pdf)
 > 作者Keren Ouaknine, Oran Agra, Zvika GuzCCS
 > Concepts Information systems → Key-value stores; Database performance evaluation;
 > Keywords: Databases, Benchmark, Redis, Rocksdb, Key-Value Store, SSD,NVMe
@@ -24,7 +24,7 @@ RocksDB是一个热门的KV存储引擎，针对高速存储设备做了优化�
 
 ## 1. 介绍
 
-RocksDB是一个持久化KV存储特定面向告诉存储，主要是SSD而设计[1]。从LevelDB[2]分支出来，RocksDB提供了更好的性能[3]，被设计成高度灵活来方便嵌入高层应用的一个存储引擎，事实上，许多大规模产品史勇RocksDBLAI管理存储，~~Leveraging~~借助它的高性能来~~mitigate~~缓和日益增长的存储系统的压力[4]
+RocksDB是一个持久化KV存储特定面向告诉存储，主要是SSD而设计[1]。从LevelDB[2]分支出来，RocksDB提供了更好的性能[3]，被设计成高度灵活来方便嵌入高层应用的一个存储引擎，事实上，许多大规模产品使用RocksDB来管理存储，~~Leveraging~~借助它的高性能来~~mitigate~~缓和日益增长的存储系统的压力[4]
 
 不幸的是RocksDB的灵活性和高性能也有代价：调优RocksDB是一个复杂的任务牵扯到上百个参数且有~~varying~~不同程度的内部依赖，此外，“然而最近的改动使RocksDB变得越好，比起levelDB它配置就越困难”；表现差的场景太多是错误的配置造成的。[5]
 
@@ -65,7 +65,7 @@ Redis[8]是一个热门的开源内存KV村春提供了高级键值抽象，Redi
 Redis支持高可用和持久化，高可用通过主从节点同步复制来实现，故障转移（failover），当主程序挂了，子程序能相应的接管过来。持久化可以通过以下两种方法配置
 
 1. 实时快照文件（RDB）
-2. 使用log稳健（AOF）
+2. 使用log文件（AOF）
 
 要注意这三种机制（AOF重写，RDB快照，复制）都依赖于fork进程来处理一个时间点上的快照，（与此同时主程序继续处理客户端命令）
 
