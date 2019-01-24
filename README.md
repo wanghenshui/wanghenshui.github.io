@@ -2,7 +2,9 @@
 
 All credit to [suyan](https://github.com/suyan/suyan.github.io)
 
-https://wanghenshui.github.io
+点击网址访问 https://wanghenshui.github.io
+
+或者直接点开post文件夹
 
 ## 关于我
 

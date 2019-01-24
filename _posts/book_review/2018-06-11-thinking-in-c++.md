@@ -7,4 +7,9 @@ keywords: c++
 
 ## 
 
-![思想导图](../../assets/img/thinking-in-c++.png)
+![思想导图](https://wanghenshui.github.io/assets/img/thinking-in-c++.png )
+
+
+
+
+
