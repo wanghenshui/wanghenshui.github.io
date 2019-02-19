@@ -1,6 +1,11 @@
 ---
 layout: default
 ---
+
+<!--//添加评论系统-->
+<link rel="stylesheet" href="https://github.com/wanghenshui/wanghenshui.github.io/blob/master/css/gitalk.css">
+    <script src="https://github.com/wanghenshui/wanghenshui.github.io/blob/master/js/gitalk.min.js"></script>
+	
 <article class="post container">
   <div class="post-meta">
     <span class="post-meta-span date">{{ page.date | date:"%Y %B %d" }}</span>
@@ -21,6 +26,11 @@ layout: default
   </div>
 </div>
 
+<section class="post-footer-item comment">
+	<div id="disqus_thread"></div> //如果你的主题自带disqus，请省略该行，直接把下面这一行的内容添加进去。
+	<div id="gitalk_container"></div>
+</section>
+
 {% if site.disqus.shortname %}
 <div class="comment container">
   <div id="disqus_thread">
@@ -28,13 +38,25 @@ layout: default
 </div>
 {% endif %}
 
-<!--//添加评论系统-->
-<link rel="stylesheet" href="../../../../css/gitalk.css">
-    <script src="../../../../js/gitalk.min.js"></script>
-	
+
 <!--   gitalk       -->
 {% if site.gitalk %}
 <div class="comment">
 	{% include comments.html %}
 </div>
 {% endif %}
+
+  
+<script>
+var gitalk = new Gitalk({
+	  clientID: 94d9311f1e1291cb3b09
+	  clientSecret: 81c5c651f0d2e760b4542f737a99d496893b46dd
+	  repo: wanghenshui.github.io
+	  owner: wanghenshui
+	  admin: wanghenshui
+	  distractionFreeMode: false
+})
+gitalk.render('gitalk_container')
+</script>
+
+

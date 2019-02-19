@@ -49,10 +49,15 @@ gems:
   - jekyll-seo-tag
   - jekyll-feed
 
-gitalk:
-    enable: true
-    owner: wanghenshui
-    repo: wanghenshui.github.io
-    clientID: 94d9311f1e1291cb3b09
-    clientSecret:     81c5c651f0d2e760b4542f737a99d496893b46dd
-    admin: wanghenshui
+
+comments: true
+
+comments:
+  gitalk: true
+  gitalk_clientID: 94d9311f1e1291cb3b09
+  gitalk_Secret: 81c5c651f0d2e760b4542f737a99d496893b46dd
+  gitalk_repo: wanghenshui.github.io
+  gitalk_owner: wanghenshui
+  gitalk_admin: wanghenshui
+  distractionFreeMode: false
+  
