@@ -27,3 +27,14 @@ layout: default
   </div>
 </div>
 {% endif %}
+
+<!--//添加评论系统-->
+<link rel="stylesheet" href="../../../../css/gitalk.css">
+    <script src="../../../../js/gitalk.min.js"></script>
+	
+<!--   gitalk       -->
+{% if site.gitalk %}
+<div class="comment">
+	{% include comments.html %}
+</div>
+{% endif %}
