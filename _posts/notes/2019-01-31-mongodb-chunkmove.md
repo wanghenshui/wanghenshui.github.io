@@ -6,9 +6,14 @@ tags: mongodb
 ---
 
 有几个参考链接可以学习下
-[同时添加多个shard](https://stackoverflow.com/questions/49420465/mongodb-sharding-adding-multiple-shards-at-the-same-time/49434444#49434444)
-[mongodb调试慢的迁移](https://stackoverflow.com/questions/40494330/how-i-can-debug-mongodb-slow-chunk-migration)
-[迁移13天...](https://dba.stackexchange.com/questions/81545/mongodb-shard-chunk-migration-500gb-takes-13-days-is-this-slow-or-normal)
+
+
+
+> [同时添加多个shard](https://stackoverflow.com/questions/49420465/mongodb-sharding-adding-multiple-shards-at-the-same-time/49434444#49434444)
+> [mongodb调试慢的迁移](https://stackoverflow.com/questions/40494330/how-i-can-debug-mongodb-slow-chunk-migration)
+> [迁移13天...](https://dba.stackexchange.com/questions/81545/mongodb-shard-chunk-migration-500gb-takes-13-days-is-this-slow-or-normal)
+
+
 
 第三个链接，提供了一个check list
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redis release note 与 redis命令cheatsheet
-category: redis
+category: 技术
 tags: redis
 ---
 
@@ -93,185 +93,217 @@ tags: redis
 
 ## redis cheatsheet
 
-| 命令族 | 命令 | 版本 | 复杂度 | 可选 | 返回值 |
-| :------------------ | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 字符串string | SET | 1.0 | O1 | 2.6.12后增加EX PX NX XX | 2.6.12永远回复ok，之后如果有NX XX导致的失败，NULL Bulk Reply |
-| | SETNX | 1.0 | O(1) | | 1/0 |
-| | SETEX | 2.0 | O(1) | set +expire 院子 | ok |
-| | PSETEX | 2.6 | O(1) | s时间单位毫秒 | ok |
-| | GET | 1.0 | O(1) | | value/nil/特定的错误字符串 |
-| | GETSET | 1.0 | O(1) | | value/nil/特定的错误字符串 |
-| | STRLEN | 2.2 | O(1) | | 不存在返回0 |
-| | APPEND | 2.0 | 平摊O(1) | | 返回长度 |
-| | SETRANGE | 2.2 | 如果本身字符串短。平摊O(1)，否则为O(len(value)) | 如果字符串长会阻塞（？不是inplace？） | 返回长度 |
-| | GETRANGE | 2.4 | O(N)N为返回字符串的长度 | 2.0以前是SUBSTR | 子串 |
-| | INCR | 1.0 | O(1) | | 返回+1之后的值字符串，如果不是数字，会报错(error) ERR value is not an integer or out of range |
-| | INCRBY | 1.0 | O(1) | 负数也可以。 | 返回增量之后的值字符串 |
-| | INCRBYFLOAT | 2.6 | O(1) | | 返回增量之后的值字符串 |
-| | DECR | 1.0 | O(1) | | 返回-1之后的值字符串 |
-| | DECRBY | 1.0 | O(1) | | 返回减法操作之后的值字符串 |
-| | MSET | 1.0.1 | O(N) N为键个数 | multiple set，原子性 | |
-| | MSETNX | 1.0.1 | O(N) N为键个数 | 都不存在则进行操作，否则都不操作。 | |
-| | MGET | 1.0.0 | O(N) N为键个数 | | 如果有不存在的键，返回nil |
-| 位图 （归属string） | SETBIT | 2.2 | O(1) | `offset` 参数必须大于或等于 `0` ，小于 2^32 (bit 映射被限制在 512 MB 之内) | 该位原来的值 |
-| | GETBIT | 2.2 | O(1) | | |
-| | BITCOUNT | 2.6 | O(N) | | |
-| | BITPOS | 2.8.7 | O(N) | | |
-| | BITOP | 2.6 | O(N) | | |
-| | BITFIELD | 3.2 | O(1) | ？这个命令的需求？ | |
-| 哈希表 | HSET | 2.0 | O(1) | | 新的值返回1 覆盖了返回0 |
-| | HSETNX | 2.0 | O(1) | | 设置成功返回1，已经存在放弃执行返回0 |
-| | HGET | 2.0 | O(1) | | 不存在返回nil |
-| | HEXISTS | 2.0 | O(1) | | 字段存在返回1不存在返回0 |
-| | HDEL | 2.0 | O(N) N为删除的字段个数 | 2.4之前只能一个字段一个字段的删除，如果要求原子需要MULTI+EXEC，后续版本支持多字段删除 | 被成功移除的字段数量 (<=N) |
-| | HLEN | 2.0 | O(1) | | 返回字段数量，不存在返回0 |
-| | HSTRLEN | 3.2 | O(1) | 类似STRLEN，操作哈希表的字段 | 返回字段关联的值的字符串长度 |
-| | HINCRBY | 2.0 | O(1) | 类似INCRBY，操作哈希表的字段 | |
-| | HINCRBYFLOAT | 2.6 | O(1) | 类似INCRBYFLOAT | |
-| | HMSET | 2.0 | O(N) N为filed-value数量 | 类似MSET 能不能用在集群？ | OK |
-| | HMGET | 2.0 | O(N) | 类似MGET 能不能用在集群？ | 不存在的字段返回nil |
-| | HKEYS | 2.0 | O(N)N为哈希表大小？ | | 返回所有字段的一个表(list or set)不存在返回空表 |
-| | HVALS | 2.0 | O(N) | | 返回所有字段对应的值的表 |
-| | HGETALL | 2.0 | O(N) | | 返回字段和值的表，奇数字段偶数值 |
-| | HSCAN | 2.0 | O(N)？ | 类似SCAN | |
-| 列表 | LPUSH | 1.0 | O(1) | 2.4以前只接受单个值，之后接受多个值。 | 返回列表长度 |
-| | LPUSHX | 2.2 | O(1) | key不存在什么也不做 | 返回长度，不存在返回0 |
-| | RPUSH | 1.0 | O(1) | 2.4以前只接受单个值 | |
-| | RPUSHX | 2.2 | O(1) | | |
-| | LPOP | 1.0 | O(1) | | 不存在返回nil |
-| | RPOP | 1.0 | O(1) | | 不存在返回nil |
-| | RPOPLPUSH | 1.2 | O(1) | 原子的，原地址右边弹出目的地址左边插入。如果源地址目的地址相同就是旋转列表，可以实现循环列表 | 返回弹出元素，不存在就是nil |
-| | LREM | 1.0 | O(N) | LREM key count value 移除与value相等的count个值，0表示所有，负数从右向左正数从左向右 | 被移除的数量。 |
-| | LLEN | 1.0 | O(1) | | 返回列表长度 |
-| | LINDEX | 1.0 | O(N) N为遍历到index经过的数量 | 为啥不叫LGET，怕使用者漏了index参数吗？参数和GET系命令不一致做个区分？ | 返回下表为index的值，不存在返回nil |
-| | LINSERT | 2.2 | O(N) N 为寻找目标值经过的值 | | 返回成功后列表的长度。如果没找到目标值pivot，返回-1，不存在或空列表返回0 |
-| | LSET | 1.0 | O(N) N为遍历到index处的元素个数 | | OK |
-| | LRANGE | 1.0 | O(S+N) S为start偏移量，N为区间stop-start | LRANGE的区间是全闭区间，包含最后一个元素，注意stop取值范围。不过超出下表范围不会引起命令错误。可以使用负数下表，和python用法一致 | 返回一个列表 |
-| | LTRIM | 1.0 | O(N) N为被移除元素的数量 | 和LRANGE类似，要注意下标 | OK |
-| | BLPOP | 2.0 | O(1) | LPOP阻塞版本，timeout0表示不超时 阻塞命令和事务组合没有意义，因为会阻塞整个服务器，其他客户端无法PUSH，会退化成LPOP | |
-| | BRPOP | 2.0 | O(1) | | |
-| | BRPOPLPUSH | 2.2 | O(1) | 实现安全队列 | |
-| 集合 | SADD | 1.0 | O(N) N是元素个数 | 2.4版本之前只能一个一个添加 | 返回总数 |
-| | SISMEMBER | 1.0 | O(1) | | 1/0 |
-| | SPOP | 1.0 | O(1) | 随机返回一个值并移除， | 值或nil |
-| | SRANDMEMBER | 1.0 | O(N) N为返回值的个数 | 2.6开始支持count 类似SPOP但是不移除 | 值 nil/数组 |
-| | SREM | 1.0 | O(N) N为移除的元素个数 | 2.4以前只支持单个移除 | 移除成功的数量 |
-| | SMOVE | 1.0 | O(1) | 原子的，移除src添加dst | 移除成功1，其他0或者错误 |
-| | SCARD | 1.0 | O(1) | cardinalty基数 | 不存在返回0 |
-| | SMEMBERS | 1.0 | O(N) N为集合基数 | | 不存在返回空集合 |
-| | SSCAN | | | SCAN | |
-| | SINTER | 1.0 | O(NxM) N是集合最小基数，M是集合个数 | 交集 | |
-| | SINTERSTORE | 1.0 | O(N*M) | 同上，返回并保存结果 | |
-| | SUION | 1.0 | O(N) N是所有给定元素之和 | 并集 | |
-| | SUIONSTORE | 1.0 | O(N) | 同上，返回并保存结果 | |
-| | SDIFF | 1.0 | O(N) | 差集 | |
-| | SDIFFSTORE | 1.0 | O(N) | | |
-| 有序集合 | ZADD | 1.2 | O(M*logN) N 是基数M是添加新成员个数 | 2.4之前只能一个一个加 | 成员数量 |
-| | ZSCORE | 1.2 | O(1) | HGET和LINDEX api风格 | |
-| | ZINCRBY | 1.2 | O(logN) | HINCRBY | |
-| | ZCARD | 1.2 | O(1) | SCARD | |
-| | ZCOUNT | 2.0 | O(logN) | ZRANGEBYSCORE拼的 | 返回score在所给范围内的个数 |
-| | ZRANGE | 1.2 | O(logN+M) M结果集基数 N有序集基数 | 从小到大排序 | |
-| | ZREVRANGE | 1.2 | O(logN+M) M结果集基数 N有序集基数 | 和上面相反 | |
-| | ZRANGEBYSCORE | 1.05 | O(logN+M) M结果集基数 N有序集基数 | 按照score过滤 | |
-| | ZREVRANGEBYSCORE | 1.05 | O(logN+M) M结果集基数 N有序集基数 | | |
-| | ZRANK | 2.0 | O(logN) | | 返回排名，从0开始，从小到大，0最小 |
-| | ZREVRANK | 2.0 | O(logN) | | 从大到小 0最大 |
-| | ZREM | 1.2 | O(logN*M) N基数M被移除的个数 | 2.4之前只能删除一个 | 个数 |
-| | ZREMRANGEBYRANK | 2.0 | O(logN+M) N基数 M被移除数量 | | 被移除的数量 |
-| | ZREMRANGEBYSCORE | 1.2 | O(logN+M) N基数 M被移除数量 | | 被移除的数量 |
-| | ZRANGEBYLEX | 2.8.9 | O(logN+M) N基数 M返回元素数量 | 分值相同 字典序 | |
-| | ZLEXCOUNT | 2.8.9 | O(logN) N为元素个数 | 类似ZCOUNT，前提是分值相同，不然没意义 | 数量 |
-| | ZREMRANGEBYLEX | 2.8.9 | O(logN+M) N基数 M被移除数量 | 分值相同 | 被移除数量 |
-| | ZSCAN | | | SCAN | |
-| | ZUNIONSTORE | 2.0 | 时间复杂度: O(N)+O(M log(M))， `N` 为给定有序集基数的总和， `M` 为结果集的基数。 | | 结果集基数 |
-| | ZINTERSTORE | 2.0 | O(N*K)+O(M*log(M))， `N` 为给定 `key` 中基数最小的有序集， `K` 为给定有序集的数量， `M` 为结果集的基数。 | 交集 | 结果集基数 |
-| | ZPOPMAX | 5.0 | O(log(N)*M) M最大值个数 | | |
-| | ZPOPMIN | 5.0 | O(log(N)*M) | | |
-| | BZPOPMAX | 5.0 | O(log(N)) | | |
-| | BZPOPMIN | 5.0 | O(log(N)) | | |
-| hyperloglog | PFADD | 2.8.9 | O(1) | | 变化返回1不变0 |
-| | PFCOUNT | 2.8.9 | O(1)，多个keyO(N) | | 个数 |
-| | PFMERGE | 2.8.9 | O(N) | | OK |
-| GEO | GEOADD | 3.2 | O(logN) | | |
-| | GEOPOS | 3.2 | O(logN) | GET | |
-| | GEODIST | 3.2 | O(logN) | | 返回距离，节点不存在就返回nil |
-| | GEORADIUS | 3.2 | O(N+logM)N元素个数M被返回的个数 | 范围内所有元素 | |
-| | GEORADIUSBYMEMBER | 3.2 | O(N+logM) | | |
-| | GEOHASH | 3.2 | O(logN) | | 字段的hash |
-| stream | XADD | 5.0 | O(1) | | |
-| | XACK | 5.0 | O(1) | | |
-| | XCLAIM | 5.0 | O(log N) | | |
-| | XDEL | 5.0 | O(1) | | |
-| | XGROUP | 5.0 | O(1) | | |
-| | XINFO | 5.0 | O(N) | | |
-| | XLEN | 5.0 | O(1) | | |
-| | XPENDING | 5.0 | O(N) 可以退化为O(1) | | |
-| | XRANGE | 5.0 | O(N) | | |
-| | XREAD | 5.0 | O(N) 可以退化为O(1) | | |
-| | XREADGROUP | 5.0 | O(M) 可以退化为O(1) | | |
-| | XREVRANGE | 5.0 | O(N) 可以退化为O(1) | | |
-| | XTRIM | 5.0 | O(N) | | |
-| 数据库keys | EXISTS | 1.0 | O(1) | | |
-| | TYPE | 1.0 | O(1) | | 类型 |
-| | RENAME | 1.0 | O(1) | rocksdb不能in-place改key，seek出来，复制value，写旧key删除，写新key。pika为什么不支持？ | OK |
-| | RENAMENX | 1.0 | O(1) | 新key不存在才改 | 1成功 |
-| | MOVE | 1.0 | O(1) | redis支持多库，redis多库数据导入pika？ | 1成功0失败 |
-| | DEL | 1.0 | O(N) N为key个数 | | |
-| | RANDOMKEY | 1.0 | O(1) | 怎么实现的O1？pika O(N) | |
-| | DBSIZE | 1.0 | O(1) | | 所有key数量 |
-| | KEYS | 1.0 | O(N) | N大会阻塞redis | |
-| | SCAN | 2.8 | O(1)迭代，O(N)完整迭代 | keys替代品 | |
-| | SORT | 1.0 | O(N+MlogM) | 返回结果不是in-place，可以STORE保存 | |
-| | FLUSHDB | 1.0 | O(1) | drop db | OK |
-| | FLUSHALL | 1.0 | O(1) | drop all db | OK |
-| | SELECT | 1.0 | O(1) | 切换数据库 | OK |
-| | SWAPDB | 4.0 | O(1) | 交换数据库 | OK |
-| | EXPIRE | 1.0 | O(1) | 单位秒 随机的过期时间防止雪崩 | 1成功0失败 |
-| | EXPIREAT | 1.2 | O(1) | 时间戳 | |
-| | TTL | 1.0 | O(1) | | 不存在返回-2过期返回-1其余返回时间 |
-| | PERSIST | 2.2 | O(1) | 去除失效时间 | 1成功 |
-| | PEXPIRE | 2.6 | O(1) | 毫秒为单位 | 1成功 |
-| | PEXPIREAT | 2.6 | O(1) | 同expireat | |
-| | PTTL | 2.6 | O(1) | 同ttl，2.8以前 失败或不存在都返，回-1后来用-2区分不存在 | |
-| 事务 | MULTI | 1.2 | O(1) | 事务块开始 | OK |
-| | EXEC | 1.2 | 事务块内执行的命令复杂度和 | 执行事务块 | 被打断返回nil |
-| | DISCARD | 2.2 | O(1) | 放弃事务块内命令 | OK |
-| | WATCH | 2.2 | O(1) | 乐观锁 | OK |
-| | UNWATCH | 2.2 | O(1) | 当EXEC DISCARD没执行的时候取消WATCH | OK |
-| LUA脚本 | EVAL | 2.6 | O(1) 找到脚本。其余复杂度取决于脚本本身 | 推荐纯函数，有全局变量会报错 | |
-| | EVALSHA | 2.6 | 根据脚本的复杂度而定 | 缓存过的脚本。可能不存在 | |
-| | SCRIPT LOAD | 2.6 | O(N) N为脚本长度 | 添加到脚本缓存 | |
-| | SCRIPT EXISTS | 2.6 | O(N) N为判断的sha个数 | | 0 1 |
-| | SCRIPT FLUSH | 2.6 | O(N) N为缓存中脚本个数 | | OK |
-| | SCRIPT KILL | 2.6 | O(1) | 如果脚本中没有写，能杀掉，否则无效，只能shutdown nosave | |
-| 持久化 | SAVE | 1.0 | O(N) N为key个数 | 保存当前快照到rdb，阻塞，保存数据的最后手段 | OK |
-| | BGSAVE | 1.0 | O(N) | fork执行复制。，lastsave查看bgsave执行成功 | 反馈信息 |
-| | BGREWRITEAOF | 1.0 | O(N) N为追加到AOF文件中的数据数量 | AOF redis自己会重写，该命令是手动重写 | 反馈信息 |
-| | LASTSAVE | 1.0 | O(1) | | 时间戳 |
-| 发布和订阅 | PUBLISH | 2.0 | O(M+N) channel订阅者数量+模式订阅客户端数量 | | 收到消息的个数 |
-| | SUBSCRIBE | 2.0 | O(N) N是channel个数 | | |
-| | PSUBSCRIBE | 2.0 | O(N) N是模式的个数 | 通配符模式。满足该通配符字符串的channel | |
-| | UNSUBSCRIBE | 2.0 | O(N) N是channel个数 | 不指定则退订所有 | |
-| | PUNSUBSCRIBE | 2.0 | O(N) N是channel个数 | | |
-| | PUBSUB CHANNELS<br/>PUBSUB NUMSUB<br/>PUBSUB NUMPAT | 2.8 | O(N) N是频道个数 | 统计信息，活跃频道，频道关注数 频道模式个数 | |
-| 复制 | SLAVEOF | 1.0 | O(1) | SLAVEOF NO ONE升主 | OK |
-| | ROLE | 2.8.12 | O(1) | | |
-| 客户端与服务器 | AUTH | 1.0 | O(1) | | |
-| | QUIT | 1.0 | O(1) | | |
-| | INFO | 1.0 | O(1) | | |
-| | SHUTDOWN | 1.0 | O(1) | SAVE QUIT有可能丢失数据 该命令屏蔽了后续的写动作？ | |
-| | TIME | 2.6 | O(1) | | 时间戳 |
-| | CLIENT GETNAME CLIENT KILL CLIENT LIST SETNAME  PAUSE  REPLY ID | 2.6.9<br/>2.4 | O(1)<br/>O(N<br/>O(N))<br/>O(1) | | |
-| 配置 | CONFIG SET CONFIG GET CONFIG RESETSTAT CONFIG REWRITE | 2.0...2.8 | O(1)O(N)O(1)O(N) | | |
-| 调试 | PING | 1.0 | O(1) | | pong |
-| | ECHO | 1.0 | O(1) | | |
-| | OBJECT | 2.2.3 | O(1) | 查引用次数，编码格式，空闲状态 | |
-| | SLOWLOG | 2.2.12 | O(1) | | |
-| | MONITOR | 1.0 | O(N) | 监视命令 | |
-| | DEBUG OBJECT<br/>DEBUG SEGFAULT | 1.0 | O(1) | 调试命令，查对象信息，模拟segfault | |
-| 内部命令 | MIGRATE | 2.6 | O(N) | dump key + restore | |
-| | DUMP | 2.6 | O(1)查找O(N*size)序列化 | | |
-| | RESTORE | 2.6 | O(1)查找O(N*size)反序列化，有序集合还要再乘logN，插入排序的代价 | | |
-| | SYNC | 1.0 | O(N) | | |
-| | PSYNC | 2.8 | NA | | |
+| 命令 | 版本 | 复杂度 | 可选 | 返回值 |
+| ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| SET | 1.0 | O1 | 2.6.12后增加EX PX NX XX | 2.6.12永远回复ok，之后如果有NX XX导致的失败，NULL Bulk Reply |
+| SETNX | 1.0 | O(1) | | 1/0 |
+| SETEX | 2.0 | O(1) | set +expire 院子 | ok |
+| PSETEX | 2.6 | O(1) | s时间单位毫秒 | ok |
+| GET | 1.0 | O(1) | | value/nil/特定的错误字符串 |
+| GETSET | 1.0 | O(1) | | value/nil/特定的错误字符串 |
+| STRLEN | 2.2 | O(1) | | 不存在返回0 |
+| APPEND | 2.0 | 平摊O(1) | | 返回长度 |
+| SETRANGE | 2.2 | 如果本身字符串短。平摊O(1)，否则为O(len(value)) | 如果字符串长会阻塞（？不是inplace？） | 返回长度 |
+| GETRANGE | 2.4 | O(N)N为返回字符串的长度 | 2.0以前是SUBSTR | 子串 |
+| INCR | 1.0 | O(1) | | 返回+1之后的值字符串，如果不是数字，会报错(error) ERR value is not an integer or out of range |
+| INCRBY | 1.0 | O(1) | 负数也可以。 | 返回增量之后的值字符串 |
+| INCRBYFLOAT | 2.6 | O(1) | | 返回增量之后的值字符串 |
+| DECR | 1.0 | O(1) | | 返回-1之后的值字符串 |
+| DECRBY | 1.0 | O(1) | | 返回减法操作之后的值字符串 |
+| MSET | 1.0.1 | O(N) N为键个数 | multiple set，原子性 | |
+| MSETNX | 1.0.1 | O(N) N为键个数 | 都不存在则进行操作，否则都不操作。 | |
+| MGET | 1.0.0 | O(N) N为键个数 | | 如果有不存在的键，返回nil |
+| SETBIT | 2.2 | O(1) | `offset` 参数必须大于或等于 `0` ，小于 2^32 (bit 映射被限制在 512 MB 之内) | 该位原来的值 |
+| GETBIT | 2.2 | O(1) | | |
+| BITCOUNT | 2.6 | O(N) | | |
+| BITPOS | 2.8.7 | O(N) | | |
+| BITOP | 2.6 | O(N) | | |
+| BITFIELD | 3.2 | O(1) | ？这个命令的需求？ | |
+| HSET | 2.0 | O(1) | | 新的值返回1 覆盖了返回0 |
+| HSETNX | 2.0 | O(1) | | 设置成功返回1，已经存在放弃执行返回0 |
+| HGET | 2.0 | O(1) | | 不存在返回nil |
+| HEXISTS | 2.0 | O(1) | | 字段存在返回1不存在返回0 |
+| HDEL | 2.0 | O(N) N为删除的字段个数 | 2.4之前只能一个字段一个字段的删除，如果要求原子需要MULTI+EXEC，后续版本支持多字段删除 | 被成功移除的字段数量 (<=N) |
+| HLEN | 2.0 | O(1) | | 返回字段数量，不存在返回0 |
+| HSTRLEN | 3.2 | O(1) | 类似STRLEN，操作哈希表的字段 | 返回字段关联的值的字符串长度 |
+| HINCRBY | 2.0 | O(1) | 类似INCRBY，操作哈希表的字段 | |
+| HINCRBYFLOAT | 2.6 | O(1) | 类似INCRBYFLOAT | |
+| HMSET | 2.0 | O(N) N为filed-value数量 | 类似MSET 能不能用在集群？ | OK |
+| HMGET | 2.0 | O(N) | 类似MGET 能不能用在集群？ | 不存在的字段返回nil |
+| HKEYS | 2.0 | O(N)N为哈希表大小？ | | 返回所有字段的一个表(list or set)不存在返回空表 |
+| HVALS | 2.0 | O(N) | | 返回所有字段对应的值的表 |
+| HGETALL | 2.0 | O(N) | | 返回字段和值的表，奇数字段偶数值 |
+| HSCAN | 2.0 | O(N)？ | 类似SCAN | |
+| LPUSH | 1.0 | O(1) | 2.4以前只接受单个值，之后接受多个值。 | 返回列表长度 |
+| LPUSHX | 2.2 | O(1) | key不存在什么也不做 | 返回长度，不存在返回0 |
+| RPUSH | 1.0 | O(1) | 2.4以前只接受单个值 | |
+| RPUSHX | 2.2 | O(1) | | |
+| LPOP | 1.0 | O(1) | | 不存在返回nil |
+| RPOP | 1.0 | O(1) | | 不存在返回nil |
+| RPOPLPUSH | 1.2 | O(1) | 原子的，原地址右边弹出目的地址左边插入。如果源地址目的地址相同就是旋转列表，可以实现循环列表 | 返回弹出元素，不存在就是nil |
+| LREM | 1.0 | O(N) | LREM key count value 移除与value相等的count个值，0表示所有，负数从右向左正数从左向右 | 被移除的数量。 |
+| LLEN | 1.0 | O(1) | | 返回列表长度 |
+| LINDEX | 1.0 | O(N) N为遍历到index经过的数量 | 为啥不叫LGET，怕使用者漏了index参数吗？参数和GET系命令不一致做个区分？ | 返回下表为index的值，不存在返回nil |
+| LINSERT | 2.2 | O(N) N 为寻找目标值经过的值 | | 返回成功后列表的长度。如果没找到目标值pivot，返回-1，不存在或空列表返回0 |
+| LSET | 1.0 | O(N) N为遍历到index处的元素个数 | | OK |
+| LRANGE | 1.0 | O(S+N) S为start偏移量，N为区间stop-start | LRANGE的区间是全闭区间，包含最后一个元素，注意stop取值范围。不过超出下表范围不会引起命令错误。可以使用负数下表，和python用法一致 | 返回一个列表 |
+| LTRIM | 1.0 | O(N) N为被移除元素的数量 | 和LRANGE类似，要注意下标 | OK |
+| BLPOP | 2.0 | O(1) | LPOP阻塞版本，timeout0表示不超时 阻塞命令和事务组合没有意义，因为会阻塞整个服务器，其他客户端无法PUSH，会退化成LPOP | |
+| BRPOP | 2.0 | O(1) | | |
+| BRPOPLPUSH | 2.2 | O(1) | 实现安全队列 | |
+| SADD | 1.0 | O(N) N是元素个数 | 2.4版本之前只能一个一个添加 | 返回总数 |
+| SISMEMBER | 1.0 | O(1) | | 1/0 |
+| SPOP | 1.0 | O(1) | 随机返回一个值并移除， | 值或nil |
+| SRANDMEMBER | 1.0 | O(N) N为返回值的个数 | 2.6开始支持count 类似SPOP但是不移除 | 值 nil/数组 |
+| SREM | 1.0 | O(N) N为移除的元素个数 | 2.4以前只支持单个移除 | 移除成功的数量 |
+| SMOVE | 1.0 | O(1) | 原子的，移除src添加dst | 移除成功1，其他0或者错误 |
+| SCARD | 1.0 | O(1) | cardinalty基数 | 不存在返回0 |
+| SMEMBERS | 1.0 | O(N) N为集合基数 | | 不存在返回空集合 |
+| SSCAN | | | SCAN | |
+| SINTER | 1.0 | O(NxM) N是集合最小基数，M是集合个数 | 交集 | |
+| SINTERSTORE | 1.0 | O(N*M) | 同上，返回并保存结果 | |
+| SUION | 1.0 | O(N) N是所有给定元素之和 | 并集 | |
+| SUIONSTORE | 1.0 | O(N) | 同上，返回并保存结果 | |
+| SDIFF | 1.0 | O(N) | 差集 | |
+| SDIFFSTORE | 1.0 | O(N) | | |
+| ZADD | 1.2 | O(M*logN) N 是基数M是添加新成员个数 | 2.4之前只能一个一个加 | 成员数量 |
+| ZSCORE | 1.2 | O(1) | HGET和LINDEX api风格 | |
+| ZINCRBY | 1.2 | O(logN) | HINCRBY | |
+| ZCARD | 1.2 | O(1) | SCARD | |
+| ZCOUNT | 2.0 | O(logN) | ZRANGEBYSCORE拼的 | 返回score在所给范围内的个数 |
+| ZRANGE | 1.2 | O(logN+M) M结果集基数 N有序集基数 | 从小到大排序 | |
+| ZREVRANGE | 1.2 | O(logN+M) M结果集基数 N有序集基数 | 和上面相反 | |
+| ZRANGEBYSCORE | 1.05 | O(logN+M) M结果集基数 N有序集基数 | 按照score过滤 | |
+| ZREVRANGEBYSCORE | 1.05 | O(logN+M) M结果集基数 N有序集基数 | | |
+| ZRANK | 2.0 | O(logN) | | 返回排名，从0开始，从小到大，0最小 |
+| ZREVRANK | 2.0 | O(logN) | | 从大到小 0最大 |
+| ZREM | 1.2 | O(logN*M) N基数M被移除的个数 | 2.4之前只能删除一个 | 个数 |
+| ZREMRANGEBYRANK | 2.0 | O(logN+M) N基数 M被移除数量 | | 被移除的数量 |
+| ZREMRANGEBYSCORE | 1.2 | O(logN+M) N基数 M被移除数量 | | 被移除的数量 |
+| ZRANGEBYLEX | 2.8.9 | O(logN+M) N基数 M返回元素数量 | 分值相同 字典序 | |
+| ZLEXCOUNT | 2.8.9 | O(logN) N为元素个数 | 类似ZCOUNT，前提是分值相同，不然没意义 | 数量 |
+| ZREMRANGEBYLEX | 2.8.9 | O(logN+M) N基数 M被移除数量 | 分值相同 | 被移除数量 |
+| ZSCAN | | | SCAN | |
+| ZUNIONSTORE | 2.0 | 时间复杂度: O(N)+O(M log(M))， `N` 为给定有序集基数的总和， `M` 为结果集的基数。 | | 结果集基数 |
+| ZINTERSTORE | 2.0 | O(N*K)+O(M*log(M))， `N` 为给定 `key` 中基数最小的有序集， `K` 为给定有序集的数量， `M` 为结果集的基数。 | 交集 | 结果集基数 |
+| ZPOPMAX | 5.0 | O(log(N)*M) M最大值个数 | | |
+| ZPOPMIN | 5.0 | O(log(N)*M) | | |
+| BZPOPMAX | 5.0 | O(log(N)) | | |
+| BZPOPMIN | 5.0 | O(log(N)) | | |
+| PFADD | 2.8.9 | O(1) | | 变化返回1不变0 |
+| PFCOUNT | 2.8.9 | O(1)，多个keyO(N) | | 个数 |
+| PFMERGE | 2.8.9 | O(N) | | OK |
+| GEOADD | 3.2 | O(logN) | | |
+| GEOPOS | 3.2 | O(logN) | GET | |
+| GEODIST | 3.2 | O(logN) | | 返回距离，节点不存在就返回nil |
+| GEORADIUS | 3.2 | O(N+logM)N元素个数M被返回的个数 | 范围内所有元素 | |
+| GEORADIUSBYMEMBER | 3.2 | O(N+logM) | | |
+| GEOHASH | 3.2 | O(logN) | | 字段的hash |
+| XADD | 5.0 | O(1) | | |
+| XACK | 5.0 | O(1) | | |
+| XCLAIM | 5.0 | O(log N) | | |
+| XDEL | 5.0 | O(1) | | |
+| XGROUP | 5.0 | O(1) | | |
+| XINFO | 5.0 | O(N) | | |
+| XLEN | 5.0 | O(1) | | |
+| XPENDING | 5.0 | O(N) 可以退化为O(1) | | |
+| XRANGE | 5.0 | O(N) | | |
+| XREAD | 5.0 | O(N) 可以退化为O(1) | | |
+| XREADGROUP | 5.0 | O(M) 可以退化为O(1) | | |
+| XREVRANGE | 5.0 | O(N) 可以退化为O(1) | | |
+| XTRIM | 5.0 | O(N) | | |
+| EXISTS | 1.0 | O(1) | | |
+| TYPE | 1.0 | O(1) | | 类型 |
+| RENAME | 1.0 | O(1) | rocksdb不能in-place改key，seek出来，复制value，写旧key删除，写新key。pika为什么不支持？ | OK |
+| RENAMENX | 1.0 | O(1) | 新key不存在才改 | 1成功 |
+| MOVE | 1.0 | O(1) | redis支持多库，redis多库数据导入pika？ | 1成功0失败 |
+| DEL | 1.0 | O(N) N为key个数 | | |
+| RANDOMKEY | 1.0 | O(1) | 怎么实现的O1？pika O(N) | |
+| DBSIZE | 1.0 | O(1) | | 所有key数量 |
+| KEYS | 1.0 | O(N) | N大会阻塞redis | |
+| SCAN | 2.8 | O(1)迭代，O(N)完整迭代 | keys替代品 | |
+| SORT | 1.0 | O(N+MlogM) | 返回结果不是in-place，可以STORE保存 | |
+| FLUSHDB | 1.0 | O(1) | drop db | OK |
+| FLUSHALL | 1.0 | O(1) | drop all db | OK |
+| SELECT | 1.0 | O(1) | 切换数据库 | OK |
+| SWAPDB | 4.0 | O(1) | 交换数据库 | OK |
+| EXPIRE | 1.0 | O(1) | 单位秒 随机的过期时间防止雪崩 | 1成功0失败 |
+| EXPIREAT | 1.2 | O(1) | 时间戳 | |
+| TTL | 1.0 | O(1) | | 不存在返回-2过期返回-1其余返回时间 |
+| PERSIST | 2.2 | O(1) | 去除失效时间 | 1成功 |
+| PEXPIRE | 2.6 | O(1) | 毫秒为单位 | 1成功 |
+| PEXPIREAT | 2.6 | O(1) | 同expireat | |
+| PTTL | 2.6 | O(1) | 同ttl，2.8以前 失败或不存在都返，回-1后来用-2区分不存在 | |
+| MULTI | 1.2 | O(1) | 事务块开始 | OK |
+| EXEC | 1.2 | 事务块内执行的命令复杂度和 | 执行事务块 | 被打断返回nil |
+| DISCARD | 2.2 | O(1) | 放弃事务块内命令 | OK |
+| WATCH | 2.2 | O(1) | 乐观锁 | OK |
+| UNWATCH | 2.2 | O(1) | 当EXEC DISCARD没执行的时候取消WATCH | OK |
+| EVAL | 2.6 | O(1) 找到脚本。其余复杂度取决于脚本本身 | 推荐纯函数，有全局变量会报错 | |
+| EVALSHA | 2.6 | 根据脚本的复杂度而定 | 缓存过的脚本。可能不存在 | |
+| SCRIPT LOAD | 2.6 | O(N) N为脚本长度 | 添加到脚本缓存 | |
+| SCRIPT EXISTS | 2.6 | O(N) N为判断的sha个数 | | 0 1 |
+| SCRIPT FLUSH | 2.6 | O(N) N为缓存中脚本个数 | | OK |
+| SCRIPT KILL | 2.6 | O(1) | 如果脚本中没有写，能杀掉，否则无效，只能shutdown nosave | |
+| SAVE | 1.0 | O(N) N为key个数 | 保存当前快照到rdb，阻塞，保存数据的最后手段 | OK |
+| BGSAVE | 1.0 | O(N) | fork执行复制。，lastsave查看bgsave执行成功 | 反馈信息 |
+| BGREWRITEAOF | 1.0 | O(N) N为追加到AOF文件中的数据数量 | AOF redis自己会重写，该命令是手动重写 | 反馈信息 |
+| LASTSAVE | 1.0 | O(1) | | 时间戳 |
+| PUBLISH | 2.0 | O(M+N) channel订阅者数量+模式订阅客户端数量 | | 收到消息的个数 |
+| SUBSCRIBE | 2.0 | O(N) N是channel个数 | | |
+| PSUBSCRIBE | 2.0 | O(N) N是模式的个数 | 通配符模式。满足该通配符字符串的channel | |
+| UNSUBSCRIBE | 2.0 | O(N) N是channel个数 | 不指定则退订所有 | |
+| PUNSUBSCRIBE | 2.0 | O(N) N是channel个数 | | |
+| PUBSUB CHANNELS<br/>PUBSUB NUMSUB<br/>PUBSUB NUMPAT | 2.8 | O(N) N是频道个数 | 统计信息，活跃频道，频道关注数 频道模式个数 | |
+| SLAVEOF | 1.0 | O(1) | SLAVEOF NO ONE升主 | OK |
+| ROLE | 2.8.12 | O(1) | | |
+| AUTH | 1.0 | O(1) | | |
+| QUIT | 1.0 | O(1) | | |
+| INFO | 1.0 | O(1) | | |
+| SHUTDOWN | 1.0 | O(1) | SAVE QUIT有可能丢失数据 该命令屏蔽了后续的写动作？ | |
+| TIME | 2.6 | O(1) | | 时间戳 |
+| CLIENT GETNAME CLIENT KILL CLIENT LIST SETNAME  PAUSE  REPLY ID | 2.6.9<br/>2.4 | O(1)<br/>O(N<br/>O(N))<br/>O(1) | | |
+| CONFIG SET CONFIG GET CONFIG RESETSTAT CONFIG REWRITE | 2.0...2.8 | O(1)O(N)O(1)O(N) | | |
+| PING | 1.0 | O(1) | | pong |
+| ECHO | 1.0 | O(1) | | |
+| OBJECT | 2.2.3 | O(1) | 查引用次数，编码格式，空闲状态 | |
+| SLOWLOG | 2.2.12 | O(1) | | |
+| MONITOR | 1.0 | O(N) | 监视命令 | |
+| DEBUG OBJECT<br/>DEBUG SEGFAULT | 1.0 | O(1) | 调试命令，查对象信息，模拟segfault | |
+| MIGRATE | 2.6 | O(N) | dump key + restore | |
+| DUMP | 2.6 | O(1)查找O(N*size)序列化 | | |
+| RESTORE | 2.6 | O(1)查找O(N*size)反序列化，有序集合还要再乘logN，插入排序的代价 | | |
+| SYNC | 1.0 | O(N) | | |
+| PSYNC | 2.8 | NA | | |
+
+
+
+
+
+| Strings     | List | Set  | Sorted Set | hash | stream |
+| ----------- | ---- | ---- | ---------- | ---- | ------ |
+| APPEND      |      |      |            |      |        |
+| BITCOUNT    |      |      |            |      |        |
+| BITFIELD    |      |      |            |      |        |
+| BITOP       |      |      |            |      |        |
+| BITPOS      |      |      |            |      |        |
+| DECR        |      |      |            |      |        |
+| DECRBY      |      |      |            |      |        |
+| GET         |      |      |            |      |        |
+| GETBIT      |      |      |            |      |        |
+| GETRANGE    |      |      |            |      |        |
+| GETSET      |      |      |            |      |        |
+| INCR        |      |      |            |      |        |
+| INCRBY      |      |      |            |      |        |
+| INCRBYFLOAT |      |      |            |      |        |
+| MGET        |      |      |            |      |        |
+| MSET        |      |      |            |      |        |
+| MSETNX      |      |      |            |      |        |
+| PSETEX      |      |      |            |      |        |
+| SET         |      |      |            |      |        |
+| SETBIT      |      |      |            |      |        |
+| SETEX       |      |      |            |      |        |
+| SETNX       |      |      |            |      |        |
+| SETRANGE    |      |      |            |      |        |
+| STRLEN      |      |      |            |      |        |
+
