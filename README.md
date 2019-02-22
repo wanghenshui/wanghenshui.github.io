@@ -8,7 +8,7 @@ All credit to [suyan](https://github.com/suyan/suyan.github.io)
 ## 关于我
 一个c++程序员，目前研究c++NoSQL数据库内核方向，[简历](https://github.com/wanghenshui/resume/blob/master/wqw.pdf)
 
-想研究分布式服务端，分布式数据库~~，高并发服务端，网络编程，编译器等等~~
+想研究分布式服务端，分布式数据库 ~~，高并发服务端，网络编程，编译器等等~~ 
 非计算机科班出身，还是要不断练习啊。
 
 一切争吵无非读书太少。引自大神tk@tombkeeper
