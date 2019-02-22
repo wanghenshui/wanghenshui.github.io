@@ -9,9 +9,9 @@ tags: mongodb
 
 
 
-> [同时添加多个shard](https://stackoverflow.com/questions/49420465/mongodb-sharding-adding-multiple-shards-at-the-same-time/49434444#49434444)
-> [mongodb调试慢的迁移](https://stackoverflow.com/questions/40494330/how-i-can-debug-mongodb-slow-chunk-migration)
-> [迁移13天...](https://dba.stackexchange.com/questions/81545/mongodb-shard-chunk-migration-500gb-takes-13-days-is-this-slow-or-normal)
+- [同时添加多个shard](https://stackoverflow.com/questions/49420465/mongodb-sharding-adding-multiple-shards-at-the-same-time/49434444#49434444)
+- [mongodb调试慢的迁移](https://stackoverflow.com/questions/40494330/how-i-can-debug-mongodb-slow-chunk-migration)
+- [迁移13天...](https://dba.stackexchange.com/questions/81545/mongodb-shard-chunk-migration-500gb-takes-13-days-is-this-slow-or-normal)
 
 
 
