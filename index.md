@@ -7,15 +7,7 @@ layout: post
 
 常用的网站导航
 
-[Compiler Explorer](https://godbolt.org/)
-
-[c++ Insights](https://cppinsights.io/)
-
-[Wandbox](https://wandbox.org/)
-
-[Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements)
-
-[cpp ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
+[Compiler Explorer](https://godbolt.org/) [c++ Insights](https://cppinsights.io/) [Wandbox](https://wandbox.org/) [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) [cpp ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
 
 
 
