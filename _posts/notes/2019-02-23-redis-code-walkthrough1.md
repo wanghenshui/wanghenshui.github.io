@@ -1,4 +1,10 @@
-# redis 代码走读 server.c
+---
+layout: post
+title: redis 代码走读 server.c
+category: 技术
+tags: redis
+---
+#redis 代码走读 server.c
 
 [TOC]
 
