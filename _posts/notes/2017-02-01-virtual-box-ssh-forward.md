@@ -19,7 +19,7 @@ service start sshd
 
 设置端口转发
 
-![vmportfoward](../../assets/vmportfoward.png)
+![vmportfoward](https://wanghenshui.github.io/assets/vmportfoward.png)
 
 
 
