@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用ssh访问 virtualbox，端口转发
-category: 技术
+category: tools
 tags: virtualbox, ssh
 ---
 

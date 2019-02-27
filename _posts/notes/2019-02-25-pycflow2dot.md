@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C/C++ 函数调用画图
-category: tool
+category: tools
 tags: cpp
 ---
 

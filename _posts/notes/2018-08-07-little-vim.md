@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vim 小课堂
-category: 技术
+category: tools
 tags: vim
 ---
 
