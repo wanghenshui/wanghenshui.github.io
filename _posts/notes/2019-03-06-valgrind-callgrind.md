@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Valgrind & CallGrind & KCacheGrind
-category: 技术
-tags: tool
+title: Valgrind & CallGrind
+category: tools
+tags: c, python
 ---
 
 
@@ -56,6 +56,10 @@ TypeError: don't know how to disassemble builtin_function_or_method objects
 网上介绍valgrind，都是什么内存检测工具，实际上还可以做[profile](https://baptiste-wicht.com/posts/2011/09/profile-c-application-with-callgrind-kcachegrind.html), 也可以生成调用关系。
 
 
+
+KDE我装了一下午！我曹！各种难装！kde开发太吃苦了吧，搭个环境这么费劲谁还愿意折腾！最后编kcachegrind提示缺少kde4！我放弃。
+
+找到了另一个生成图的解决方案，gprof2dot，不多说了
 
 测试代码
 

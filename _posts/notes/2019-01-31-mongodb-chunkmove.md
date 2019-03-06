@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mongodb move chunk缓慢
-category: 技术
+category: database
 tags: mongodb
 ---
 

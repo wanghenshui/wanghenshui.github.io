@@ -1,8 +1,8 @@
 ---
 layout: post
 title: redis 代码走读 server.c 2
-category: 技术
-tags: redis
+category: database
+tags: redis, c
 ---
 # redis 代码走读 server.c 2
 

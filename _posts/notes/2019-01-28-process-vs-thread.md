@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 进程线程比较
-category: 技术
-tags: linux
+category: misc
+tags: linux, c
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 如何从c++导出c接口
-category: 技术
-tags: cpp,rocksdb
+category: cpp
+tags: cpp, rocksdb
 ---
 
 # 如何从c++导出c接口

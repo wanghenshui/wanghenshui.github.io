@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 一次 Illegal instructions 问题（围观）定位
-category: 技术
-tags: c++,rocksdb
+category: cpp
+tags: c++, rocksdb
 ---
 
 简单说，一个上层应用，下层是Rocksdb，编译机编好后放到测试机器上，崩溃，   Got signal: 4 (Illegal instruction).，堆栈提示崩在shared_ptr上。

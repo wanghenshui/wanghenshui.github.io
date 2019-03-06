@@ -1,8 +1,8 @@
 ---
 layout: post
 title: LD_PRELOAD为何不能劫持printf
-category: 技术
-keywords: linux,gcc
+category: cpp
+keywords: linux, gcc, c
 ---
 
 
@@ -84,7 +84,7 @@ main:
 如果我们仍希望通过printf调用"Hello World !\n"的话，只需要按照如下方式修改即可。不过这样做就不能在printf调用结束后立即看到打印字符串了，因为puts函数可以立即刷新输出缓冲区。我们仍然使用puts作为例子继续阐述。
 
 ```
-​    .section   .rodata
+    .section   .rodata
 .LC0:
 ​    .string    "hello world!\n"
 ​    ...
