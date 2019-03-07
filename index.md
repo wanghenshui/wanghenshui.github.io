@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Hello
-tagline: World
+tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
@@ -10,7 +10,7 @@ tagline: World
 [Compiler Explorer](https://godbolt.org/) [c++ Insights](https://cppinsights.io/) [Wandbox](https://wandbox.org/) [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) [cpp ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
 
 
-## About me
+About me
 
 补习中的程序员，努力学习c++，python，rust中
 目前研究NoSQL数据库内核方向，门外汉，[简历](https://github.com/wanghenshui/resume/blob/master/wqw.pdf)
