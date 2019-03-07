@@ -4,6 +4,7 @@ title: googletest segmentation fault
 category: 技术
 tags: c++，googletest，gtest
 ---
+{% include JB/setup %}
 
 
 

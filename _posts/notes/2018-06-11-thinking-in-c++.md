@@ -4,6 +4,7 @@ title: c++编程思想 读书笔记
 category: cpp
 keywords: c++
 ---
+{% include JB/setup %}
 
 ## 
 

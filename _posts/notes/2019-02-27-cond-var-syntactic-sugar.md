@@ -4,6 +4,7 @@ title: std::condition_variable::wait 一处细节
 category: cpp
 tags: cpp
 ---
+{% include JB/setup %}
 # std::condition_variable::wait 一处细节
 
 [摘选自这里](https://zh.cppreference.com/w/cpp/thread/condition_variable/wait)

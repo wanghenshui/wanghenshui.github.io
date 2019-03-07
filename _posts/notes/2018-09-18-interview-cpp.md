@@ -4,6 +4,7 @@ title: 之前c++面试被问到过的问题
 category: 技术
 tags: c++
 ---
+{% include JB/setup %}
 
 
 

@@ -4,6 +4,7 @@ title: mongodb move chunk缓慢
 category: database
 tags: mongodb
 ---
+{% include JB/setup %}
 
 有几个参考链接可以学习下
 

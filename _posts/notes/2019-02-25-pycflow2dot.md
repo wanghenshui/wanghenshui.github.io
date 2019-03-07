@@ -4,6 +4,7 @@ title: C/C++ 函数调用画图
 category: tools
 tags: cpp
 ---
+{% include JB/setup %}
 
 
 

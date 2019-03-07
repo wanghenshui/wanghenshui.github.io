@@ -4,6 +4,7 @@ title: 如何从c++导出c接口
 category: cpp
 tags: cpp, rocksdb
 ---
+{% include JB/setup %}
 
 # 如何从c++导出c接口
 
