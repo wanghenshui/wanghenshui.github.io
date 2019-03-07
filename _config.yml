@@ -15,7 +15,8 @@ kramdown:
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : whenshui's blog
+encoding: UTF-8
+title : 王很水的博客
 tagline: Site Tagline
 author :
   name : wanghenshui
