@@ -1,7 +1,7 @@
 #/bin/env python
 
 '''
-![图4](https://wanghenshui.github.io/assets/img/rof-f-4.png)
+![4](https://wanghenshui.github.io/assets/img/rof-f-4.png)
 https://wanghenshui.github.io/assets/xx.[png/jpg]
 ../../assets/vmportfoward.[png/jpg]
 '''
