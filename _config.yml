@@ -16,7 +16,7 @@ kramdown:
 # so be sure to set them if your theme uses them.
 #
 title : 王很水的博客
-#tagline: Site Tagline
+tagline: 
 author :
   name : wanghenshui
   email : wanghenshui@qq.com
