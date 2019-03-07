@@ -1,44 +1,43 @@
 ---
+layout: page
 title: Welcome
-layout: post
+#tagline: Supporting tagline
 ---
+{% include JB/setup %}
 
-
-
-å¸¸ç”¨çš„ç½‘ç«™å¯¼èˆª
+³£ÓÃµÄÍøÕ¾µ¼º½
 
 [Compiler Explorer](https://godbolt.org/) [c++ Insights](https://cppinsights.io/) [Wandbox](https://wandbox.org/) [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) [cpp ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
 
 
+## About me
 
+²¹Ï°ÖĞµÄ³ÌĞòÔ±£¬Å¬Á¦Ñ§Ï°c++£¬python£¬rustÖĞ
+Ä¿Ç°ÑĞ¾¿NoSQLÊı¾İ¿âÄÚºË·½Ïò£¬ÃÅÍâºº£¬[¼òÀú](https://github.com/wanghenshui/resume/blob/master/wqw.pdf)
 
-## å…³äºæˆ‘
+ÏëÑĞ¾¿·Ö²¼Ê½·şÎñ¶Ë£¬·Ö²¼Ê½Êı¾İ¿â ~~£¬¸ß²¢·¢·şÎñ¶Ë£¬ÍøÂç±à³Ì£¬±àÒëÆ÷µÈµÈ~~ 
+·Ç¼ÆËã»ú¿Æ°à³öÉí£¬»¹ÊÇÒª²»¶ÏÁ·Ï°°¡¡£
 
-è¡¥ä¹ ä¸­çš„ç¨‹åºå‘˜ï¼ŒåŠªåŠ›å­¦ä¹ c++ï¼Œpythonï¼Œrustä¸­
+Ò»ÇĞÕù³³ÎŞ·Ç¶ÁÊéÌ«ÉÙ¡£Òı×Ô´óÉñtk@tombkeeper
 
-ç›®å‰ç ”ç©¶NoSQLæ•°æ®åº“å†…æ ¸æ–¹å‘ï¼Œé—¨å¤–æ±‰ï¼Œ[ç®€å†](https://github.com/wanghenshui/resume/blob/master/wqw.pdf)
+> ÎÒ³£½¨ÒéÖ§³ÖÎÒ¹ÛµãµÄÅóÓÑ²»ÒªÔÚÆÀÂÛÀïºÍ·´¶ÔÕß±çÂÛ¡£ÒòÎª°ÑÊ±¼äÓÃÀ´ºÍÖÚÈË·ÖÏíÏë·¨ÊÇ¸üÓĞĞ§µÄÀûÓÃ·½Ê½¡£ÔÚÆÀÂÛÖĞ±çÂÛµ±È»²»ÊÇ²»¿ÉÒÔ£¬Èç¹ûÓĞÈËÔ¸Òâ½«±¦¹óµÄÊ±¼ä»¨ÔÚ·´¶ÔÕßÉíÉÏ£¬²¢ÇÒÊÇÎªÁËÒ»¸ö¿ÉÄÜĞÔ¼«ÆäÃìÃ£µÄÄ¿±ê£¬¼´£ºËµ·ş¶Ô·½£¬ÎÒÈÏÎªÕâÊÇ·Ç³£¿¶¿®µÄ£¬ÎÒ³£³£×ö²»µ½Èç´Ë¿¶¿®¡£
 
-æƒ³ç ”ç©¶åˆ†å¸ƒå¼æœåŠ¡ç«¯ï¼Œåˆ†å¸ƒå¼æ•°æ®åº“ ~~ï¼Œé«˜å¹¶å‘æœåŠ¡ç«¯ï¼Œç½‘ç»œç¼–ç¨‹ï¼Œç¼–è¯‘å™¨ç­‰ç­‰~~ 
-éè®¡ç®—æœºç§‘ç­å‡ºèº«ï¼Œè¿˜æ˜¯è¦ä¸æ–­ç»ƒä¹ å•Šã€‚
-
-ä¸€åˆ‡äº‰åµæ— éè¯»ä¹¦å¤ªå°‘ã€‚å¼•è‡ªå¤§ç¥tk@tombkeeper
-
-> æˆ‘å¸¸å»ºè®®æ”¯æŒæˆ‘è§‚ç‚¹çš„æœ‹å‹ä¸è¦åœ¨è¯„è®ºé‡Œå’Œåå¯¹è€…è¾©è®ºã€‚å› ä¸ºæŠŠæ—¶é—´ç”¨æ¥å’Œä¼—äººåˆ†äº«æƒ³æ³•æ˜¯æ›´æœ‰æ•ˆçš„åˆ©ç”¨æ–¹å¼ã€‚åœ¨è¯„è®ºä¸­è¾©è®ºå½“ç„¶ä¸æ˜¯ä¸å¯ä»¥ï¼Œå¦‚æœæœ‰äººæ„¿æ„å°†å®è´µçš„æ—¶é—´èŠ±åœ¨åå¯¹è€…èº«ä¸Šï¼Œå¹¶ä¸”æ˜¯ä¸ºäº†ä¸€ä¸ªå¯èƒ½æ€§æå…¶æ¸ºèŒ«çš„ç›®æ ‡ï¼Œå³ï¼šè¯´æœå¯¹æ–¹ï¼Œæˆ‘è®¤ä¸ºè¿™æ˜¯éå¸¸æ…·æ…¨çš„ï¼Œæˆ‘å¸¸å¸¸åšä¸åˆ°å¦‚æ­¤æ…·æ…¨ã€‚
-
-@å¾®ä¿¡&&ç”µè¯&&QQ(base64): MTg4NDQxODk1MzM= 
+@Î¢ĞÅ&&µç»°&&QQ(base64): MTg4NDQxODk1MzM= 
 @email: wanghenshui@qq.com
 
 [@telegram](t.me/wanghenshui) 
 [@steam](https://steamcommunity.com/id/wanghenshui/) 
 [@github]( https://github.com/wanghenshui/) 
-[@çŸ¥ä¹ä¸“æ (çœ‹ç¼˜åˆ†æ›´æ–°)](https://zhuanlan.zhihu.com/jieyaren) 
-[@è±†ç“£]( https://www.douban.com/people/61740133/) 
-[@è¯»ä¹¦ç¬”è®°]( https://www.douban.com/people/jieyaren/reviews) 
-[è¯»ä¹¦æ‘˜è¦](https://github.com/wanghenshui/book_review)
+[@Öªºõ×¨À¸(¿´Ôµ·Ö¸üĞÂ)](https://zhuanlan.zhihu.com/jieyaren) 
+[@¶¹°ê]( https://www.douban.com/people/61740133/) 
+[@¶ÁÊé±Ê¼Ç]( https://www.douban.com/people/jieyaren/reviews) 
+[¶ÁÊéÕªÒª](https://github.com/wanghenshui/book_review)
+## Recent Posts
 
+Here's the recent "posts list".
 
-
-
-
-
-
+<ul class="posts">
+  {% for post in site.posts %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
