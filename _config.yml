@@ -1,67 +1,142 @@
-# Site settings
-title: 鐜嬪緢姘寸殑鍗氬
-email: wanghenshui@qq.com
-description: > # this means to ignore newlines until "baseurl:"
-  鐜嬪緢姘寸殑鍗氬
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: https://wanghenshui.github.io # the base hostname & protocol for your site
-rss_url: /pages/feed.xml
-author: wanghenshui
+# This is the default format.
+# For more see: http://jekyllrb.com/docs/permalinks/
+permalink: /:year/:month/:day/:title
 
-# Sidebar filter
-# Choose 'tag' or 'category' as filter in sidebar.
-filter: 'category'
-recent_num: 20
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 
-# Social account
-#twitter: null
-douban: jieyaren
-github: wanghenshui
-zhihu: wanghenshui
-#instagram: null
-#linkedin: null
-
-# avatar and Favicon
-avatar: https://avatars0.githubusercontent.com/u/8872493?s=460&v=4
-favicon: https://avatars0.githubusercontent.com/u/8872493?s=460&v=4
-
-# disqus config
-disqus:
-  shortname: wanghenshui-zh
-
-# google analytics config
-ga:
-  id: UA-54767140-1
-  url: wanghenshui.github.io
-
-# Build settings
-permalink: /:year/:month/:day/:title.html
-markdown: kramdown
+# https://help.github.com/articles/migrating-your-pages-site-from-maruku
+# Markdown settings
 highlighter: rouge
+markdown: kramdown
 kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-mathjax: disabled
-sass:
-  style: compressed
+    input: GFM
+    syntax_highlighter: rouge
 
-# Jekyll Plugin
-# https://help.github.com/articles/adding-jekyll-plugins-to-a-github-pages-site/
-gems:
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-feed
+# Themes are encouraged to use these universal variables
+# so be sure to set them if your theme uses them.
+#
+title : 王很水的博客
+#tagline: Site Tagline
+author :
+  name : wanghenshui
+  email : wanghenshui@qq.com
+  github : wanghenshui
+  twitter : wanghenshui
+  feedburner : feedname
 
+# The production_url is only used when full-domain names are needed
+# such as sitemap.txt
+# Most places will/should use BASE_PATH to make the urls
+#
+# If you have set a CNAME (pages.github.com) set your custom domain here.
+# Else if you are pushing to username.github.io, replace with your username.
+# Finally if you are pushing to a GitHub project page, include the project name at the end.
+#
+production_url : wanghenshui.github.io
 
+# All Jekyll-Bootstrap specific configurations are namespaced into this hash
+#
+JB :
+  version : 0.3.0
 
+  # All links will be namespaced by BASE_PATH if defined.
+  # Links in your website should always be prefixed with {{BASE_PATH}}
+  # however this value will be dynamically changed depending on your deployment situation.
+  #
+  # CNAME (http://yourcustomdomain.com)
+  #   DO NOT SET BASE_PATH
+  #   (urls will be prefixed with "/" and work relatively)
+  #
+  # GitHub Pages (http://username.github.io)
+  #   DO NOT SET BASE_PATH
+  #   (urls will be prefixed with "/" and work relatively)
+  #
+  # GitHub Project Pages (http://username.github.io/project-name)
+  #
+  #   A GitHub Project site exists in the `gh-pages` branch of one of your repositories.
+  #  REQUIRED! Set BASE_PATH to: http://username.github.io/project-name
+  #
+  # CAUTION:
+  #   - When in Localhost, your site will run from root "/" regardless of BASE_PATH
+  #   - Only the following values are falsy: ["", null, false]
+  #   - When setting BASE_PATH it must be a valid url.
+  #     This means always setting the protocol (http|https) or prefixing with "/"
+  BASE_PATH : false
 
-comments:
-  disqus: false
-  gitalk: true
-  gitalk_clientID: 94d9311f1e1291cb3b09
-  gitalk_Secret: 81c5c651f0d2e760b4542f737a99d496893b46dd
-  gitalk_repo: wanghenshui.github.io
-  gitalk_owner: wanghenshui
-  gitalk_admin: wanghenshui
-  distractionFreeMode: false
-  
+  # By default, the asset_path is automatically defined relative to BASE_PATH plus the enabled theme.
+  # ex: [BASE_PATH]/assets/themes/[THEME-NAME]
+  #
+  # Override this by defining an absolute path to assets here.
+  # ex:
+  #   http://s3.amazonaws.com/yoursite/themes/watermelon
+  #   /assets
+  #
+  ASSET_PATH : false
+
+  # These paths are to the main pages Jekyll-Bootstrap ships with.
+  # Some JB helpers refer to these paths; change them here if needed.
+  #
+  archive_path: /archive.html
+  categories_path : /categories.html
+  tags_path : /tags.html
+  atom_path : /atom.xml
+  rss_path : /rss.xml
+
+  # Settings for comments helper
+  # Set 'provider' to the comment provider you want to use.
+  # Set 'provider' to false to turn commenting off globally.
+  #
+  comments :
+    provider : disqus
+    disqus :
+      short_name : jekyllbootstrap
+    livefyre :
+      site_id : 123
+    intensedebate :
+      account : 123abc
+    facebook :
+      appid : 123
+      num_posts: 5
+      width: 580
+      colorscheme: light
+
+  # Settings for analytics helper
+  # Set 'provider' to the analytics provider you want to use.
+  # Set 'provider' to false to turn analytics off globally.
+  #
+  analytics :
+    provider : google
+    google :
+        tracking_id : 'UA-77338766-1'
+    googleUA :
+        tracking_id : 'UA-77338766-1'
+        property_name : 'PROPERTY NAME'
+    getclicky :
+      site_id :
+    mixpanel :
+        token : '_MIXPANEL_TOKEN_'
+    piwik :
+        baseURL : 'myserver.tld/piwik' # Piwik installation address (without protocol)
+        idsite : '1'                   # the id of the site on Piwik
+
+  # Settings for sharing helper.
+  # Sharing is for things like tweet, plusone, like, reddit buttons etc.
+  # Set 'provider' to the sharing provider you want to use.
+  # Set 'provider' to false to turn sharing off globally.
+  #
+  sharing :
+    provider : false
+
+  # Settings for all other include helpers can be defined by creating
+  # a hash with key named for the given helper. ex:
+  #
+  #   pages_list :
+  #     provider : "custom"
+  #
+  # Setting any helper's provider to 'custom' will bypass the helper code
+  # and include your custom code. Your custom file must be defined at:
+  #   ./_includes/custom/[HELPER]
+  # where [HELPER] is the name of the helper you are overriding.
+
+  # Setting for bootswatch-theme
+  bootswatch-theme: cerulean
