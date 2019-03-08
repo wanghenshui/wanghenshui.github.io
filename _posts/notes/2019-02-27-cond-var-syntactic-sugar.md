@@ -1,8 +1,8 @@
 ---
 layout: post
 title: std::condition_variable::wait 一处细节
-category: cpp
-tags: cpp
+category: c++
+tags: [c++]
 ---
 {% include JB/setup %}
 # std::condition_variable::wait 一处细节

@@ -2,7 +2,7 @@
 layout: post
 title: googletest segmentation fault
 category: 技术
-tags: c++，googletest，gtest
+tags: [c++，googletest]
 ---
 {% include JB/setup %}
 

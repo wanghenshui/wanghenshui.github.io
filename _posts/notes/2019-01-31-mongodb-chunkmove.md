@@ -2,7 +2,7 @@
 layout: post
 title: mongodb move chunk缓慢
 category: database
-tags: mongodb
+tags: [mongodb]
 ---
 {% include JB/setup %}
 

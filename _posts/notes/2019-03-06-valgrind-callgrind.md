@@ -2,7 +2,7 @@
 layout: post
 title: Valgrind & CallGrind
 category: tools
-tags: c, python
+tags: [c, python]
 ---
 {% include JB/setup %}
 

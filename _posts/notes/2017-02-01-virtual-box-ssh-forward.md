@@ -2,7 +2,7 @@
 layout: post
 title: 使用ssh访问 virtualbox，端口转发
 category: tools
-tags: virtualbox, ssh
+tags: [virtualbox, ssh]
 ---
 {% include JB/setup %}
 

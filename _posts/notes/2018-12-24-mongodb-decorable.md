@@ -1,8 +1,8 @@
 ---
 layout: post
 title: MongoDB中的装饰器模式
-category: cpp
-tags: c++,mongodb,design pattern
+category: c++
+tags: [c++,mongodb,design pattern]
 ---
 {% include JB/setup %}
 

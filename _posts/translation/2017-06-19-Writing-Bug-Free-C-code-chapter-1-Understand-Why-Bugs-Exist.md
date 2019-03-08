@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Writing Bug Free C code chapter 1 Understand Why Bugs Exist
-category: 翻译
-keywords: c,bug
+category: translation
+keywords: [c,bug]
 ---
 
 

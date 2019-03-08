@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 写好Pull Requests(PR)
-category: 翻译
-keywords: mr,pr,git
+category: translation
+keywords: [mr,pr,git]
 ---
 
 

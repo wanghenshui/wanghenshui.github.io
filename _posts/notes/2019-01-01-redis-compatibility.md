@@ -2,7 +2,7 @@
 layout: post
 title: redis release note 与 redis命令cheatsheet
 category: database
-tags: redis, c
+tags: [redis, c]
 ---
 {% include JB/setup %}
 

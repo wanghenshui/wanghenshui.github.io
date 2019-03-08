@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Mixins for C++ PPT 笔记 && sqlpp11简单走读
-category: cpp
-tags: cpp
+category: c++
+tags: [c++]
 ---
 {% include JB/setup %}
 

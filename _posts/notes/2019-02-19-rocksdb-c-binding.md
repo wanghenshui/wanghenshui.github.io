@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 如何从c++导出c接口
-category: cpp
-tags: cpp, rocksdb
+category: c++
+tags: [c++, rocksdb]
 ---
 {% include JB/setup %}
 

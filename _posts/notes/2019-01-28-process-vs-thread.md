@@ -2,7 +2,7 @@
 layout: post
 title: 进程线程比较
 category: misc
-tags: linux, c
+tags: [linux, c, pthread]
 ---
 {% include JB/setup %}
 

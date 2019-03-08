@@ -2,7 +2,7 @@
 layout: post
 title: redis 代码走读 server.c
 category: database
-tags: redis, c
+tags: [redis, c]
 ---
 {% include JB/setup %}
 #redis 代码走读 server.c

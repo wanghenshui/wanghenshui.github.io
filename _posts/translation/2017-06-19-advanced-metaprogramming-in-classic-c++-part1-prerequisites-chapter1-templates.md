@@ -1,8 +1,8 @@
 ---
 layout: post
 title: advanced_metaprogramming_in_classic_c++_part1_prerequisites_chapter1_templates
-category: 翻译
-keywords: c++,template,c++98,TMP
+category: translation
+keywords: [c++,template,c++98,TMP]
 ---
 
 

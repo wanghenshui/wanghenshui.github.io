@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 一次 Illegal instructions 问题（围观）定位
-category: cpp
-tags: c++, rocksdb
+category: c++
+tags: [c++, rocksdb]
 ---
 {% include JB/setup %}
 

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 针对 Redis on Flash 优化RocksDB
-category: 翻译
-keywords: Databases, Benchmark, Redis, Rocksdb, Key-Value Store, SSD,NVMe
+category: translation
+keywords: [rocksdb,redis]
 ---
 
 > [原文 Optimization of RocksDB for Redis on Flash]( http://kereno.com/rocksdb-rof.pdf)

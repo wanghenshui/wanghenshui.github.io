@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Writing Bug Free C Code Chapter 2 Know Your Environment
-category: 翻译
-keywords: c,bug
+category: translation
+keywords: [c,bug]
 ---
 
 ​                                                                                                                                                                                                                                                                                       

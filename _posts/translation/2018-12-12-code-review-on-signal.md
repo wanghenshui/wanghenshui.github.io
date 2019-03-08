@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 代码审核：关于信号
-category: 翻译
-keywords: signal,linux,vm,code
+category: translation
+keywords: [signal,linux,vm,code]
 ---
 
 

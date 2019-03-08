@@ -2,7 +2,7 @@
 layout: post
 title: vim 小课堂
 category: tools
-tags: vim
+tags: [vim]
 ---
 {% include JB/setup %}
 

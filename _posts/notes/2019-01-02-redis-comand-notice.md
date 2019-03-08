@@ -2,7 +2,7 @@
 layout: post
 title: redis命令使用建议
 category: database
-tags: redis
+tags: [redis]
 ---
 {% include JB/setup %}
 
