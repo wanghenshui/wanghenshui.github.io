@@ -36,8 +36,9 @@ All quarrels are but few readings.
 
 <details>
   <summary>Wechat code</summary>
-  <img src=assets/0-1552008412820.jpg>
+  <img src=https://raw.githubusercontent.com/wanghenshui/wanghenshui.github.io/master/assets/0-1552008412820.jpg>
 </details>
+
 
 @email: wanghenshui@qq.com
 
