@@ -5,6 +5,8 @@ category: tools
 tags: perl
 ```
 
+{% include JB/setup %}
+
 graph-easy
 
 两种装法
@@ -35,11 +37,16 @@ graph-easy文件在bin目录下，拷贝到usr/bin或者使用路径访问都可
 [thread pool add job\n do queuejob asyc]
 ```
 生成图像
+
 +----------------+     +----------------------------+     +---------------------+     +---------------------+
 | hot data limit |     | consumed cold data enqueue |     | pipe event noticed, |     | thread pool add job |
 | data cold out  | --> |      pipe event write      | --> |  read and dequeue   | --> |  do queuejob asyc   |
 +----------------+     +----------------------------+     +---------------------+     +---------------------+
 
+
+
 还算省事儿，有机会读读代码实现。（又挖坑）
 
-[教程]:https://weishu.gitbooks.io/graph-easy-cn
+## 参考
+
+这里有个教程 https://weishu.gitbooks.io/graph-easy-cn

@@ -30,7 +30,8 @@ gcc编译提示siginfo_t找不到
 
 解决方案，交换头文件顺序，或者改成-std=gnu99
 
+## 参考
 
-参考
-[1]: https://stackoverflow.com/questions/48332332/what-does-define-posix-source-mean
-[2]: https://stackoverflow.com/questions/22912674/unknown-type-name-siginfo-t-with-clang-using-posix-c-source-2-why
+https://stackoverflow.com/questions/48332332/what-does-define-posix-source-mean
+
+https://stackoverflow.com/questions/22912674/unknown-type-name-siginfo-t-with-clang-using-posix-c-source-2-why
