@@ -111,13 +111,13 @@ git submodule update
 
 然后才发现tortoisegit有个自动添加换行符的选项，默认打勾。所以基本上涉及到的shell文件都得手动dos2unix
 
-![img](../../assets/v2-2053ae5cd874a5d77bba250206697858_b.png)
+![img](https://wanghenshui.github.io/assets/v2-2053ae5cd874a5d77bba250206697858_b.png)
 
 
 
 我的服务器只有4.8.3，所以编译rocksdb需要c++11 需要修改Makefile（其实是detect脚本没加权限的问题）
 
-![img](../../assets/v2-8d148845e621bc2d5445bcdde12004aa_b.png)
+![img](https://wanghenshui.github.io/assets/v2-8d148845e621bc2d5445bcdde12004aa_b.png)
 
 
 
@@ -152,7 +152,7 @@ ldconfig
 
 还有一种解决方案，```export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib```
 
-![1552045590285](../../assets/1552045590285.png)
+![1552045590285](https://wanghenshui.github.io/assets/1552045590285.png)
 
  总算能运行测试了。
 
@@ -182,4 +182,4 @@ done
 
 附调用图一张。组件太多，确实找不到在哪。
 
-![pika](../../assets/pika.svg)
+![pika](https://wanghenshui.github.io/assets/pika.svg)
