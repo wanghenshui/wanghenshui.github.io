@@ -34,11 +34,7 @@ All quarrels are but few readings.
 
 @wechat&&phone&&QQ(base64): MTg4NDQxODk1MzM= 
 
-<details>
-  <summary>Wechat code</summary>
-  <img src=https://raw.githubusercontent.com/wanghenshui/wanghenshui.github.io/master/assets/0-1552008412820.jpg>
-</details>
-
+![Wechat code](https://raw.githubusercontent.com/wanghenshui/wanghenshui.github.io/master/assets/0-1552008412820.jpg)
 
 @email: wanghenshui@qq.com
 
