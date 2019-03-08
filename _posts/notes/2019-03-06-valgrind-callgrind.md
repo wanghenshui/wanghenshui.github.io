@@ -10,7 +10,7 @@ tags: [c, python]
 
 
 
-TL; DR
+** TL; DR **
 
 valgrind也可以画函数调用图！鹅妹子樱！
 
@@ -40,7 +40,7 @@ dot -Tsvg out.dot -o graph1.svg
 
 
 
-今天知乎上看到一个问题，问pow是怎么实现的，首先想到的是dis看字节码
+今天知乎上看到一个问题，问python pow是怎么实现的，首先想到的是dis看字节码
 
 ```python
 >>> import dis
@@ -58,7 +58,7 @@ TypeError: don't know how to disassemble builtin_function_or_method objects
 
 
 
-KDE我装了一下午！我曹！各种难装！kde开发太吃苦了吧，搭个环境这么费劲谁还愿意折腾！最后编kcachegrind提示缺少kde4！我放弃。
+KDE我装了一下午！我曹！各种难装！kde开发太吃苦了吧，搭个环境这么费劲谁还愿意折腾！最后编kcachegrind提示缺少kde4！KDE4安装各种依赖我放弃。
 
 找到了另一个生成图的解决方案，gprof2dot，不多说了
 

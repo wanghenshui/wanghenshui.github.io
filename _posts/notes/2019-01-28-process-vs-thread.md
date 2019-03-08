@@ -113,7 +113,7 @@ tags: [linux, c, pthread]
 > 论文实验和我用的机器不同，论文描述了使用的环境：单cpu 机器基本配置为:celeron 2.0 GZ, 256M, Linux  9.2,内核 2.4.8。我的环境是：双核 Intel(R) Xeon(R) CPU 5130  @  2.00GHz（做实验时，禁掉了一核），512MG内存，Red Hat Enterprise Linux ES release 4  (Nahant Update 4)，内核2.6.9-42。
 
 进程实验代码（fork.c）：
-
+```c
 1. \#include <stdlib.h>
 2. \#include <stdio.h>
 3. \#include <signal.h>
@@ -151,11 +151,11 @@ tags: [linux, c, pthread]
 35. ​    printf("Okay\n");
 36. ​    return 0;
 37. }
-
+```
 
 
 进程实验代码（thread.c）：
-
+```c
 1. \#include <pthread.h>
 2. \#include <unistd.h>
 3. \#include <stdlib.h>
@@ -195,19 +195,19 @@ tags: [linux, c, pthread]
 37. ​    printf("Okay\n");
 38. ​    return 0;
 39. }
-
+```
 
 
 两段程序做的事情是一样的，都是创建“若干”个进程/线程，每个创建出的进程/线程打印“若干”条“hello linux”字符串到控制台和日志文件，两个“若干”由两个宏 P_NUMBER和COUNT分别定义，程序编译指令如下：
-
+```shell
 > gcc -o fork fork.c
->  gcc -lpthread -o thread thread.c
-
+> gcc -lpthread -o thread thread.c
+```
 实验通过time指令执行两个程序，抄录time输出的挂钟时间（real时间）：
-
+```shell
 > time ./fork
 >  time ./thread
-
+```
 每批次的实验通过改动宏 P_NUMBER和COUNT来调整进程/线程数量和打印次数，每批次测试五轮，得到的结果如下：
 
 **一、重复周丽论文实验步骤**
