@@ -2,7 +2,7 @@
 layout: post
 title: c++编程思想 读书笔记
 category: c++
-keywords: [c++]
+tags: [c++]
 ---
 {% include JB/setup %}
 

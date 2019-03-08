@@ -2,7 +2,7 @@
 layout: post
 title: LD_PRELOAD为何不能劫持printf
 category: c++
-keywords: [linux, gcc, c]
+tags: [linux, gcc, c]
 ---
 {% include JB/setup %}
 
