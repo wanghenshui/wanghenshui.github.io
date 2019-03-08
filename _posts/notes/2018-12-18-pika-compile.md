@@ -1,8 +1,8 @@
 ---
 layout: post
-title: tttttt
-category: ccccc
-tags : [intro, beginner, jekyll, tutorial]
+title: pika编译踩坑
+category: redis
+tags : [c++, redis, rocksdb, glog. callgrind]
 ---
 
 {% include JB/setup %}
