@@ -1,7 +1,7 @@
 ---
 layout: post
 title: pika编译踩坑
-category: redis
+category: database
 tags : [c++, redis, rocksdb, glog. callgrind]
 ---
 
