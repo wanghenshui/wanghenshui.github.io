@@ -24,10 +24,10 @@ tags: [redis, c]
 - make deps   注意有些有文件生成，需要脚本权限(jemalloc说的就是你
 
   ```
-[root@redis]# chmod 777 deps/jemalloc/configure
-[root@redis]# chmod 777 src/mkreleasehdr.sh
-[root@redis]# chmod 777 deps/jemalloc/include/jemalloc/*
-[root@redis]# chmod 777 deps/jemalloc/scripts/*
+chmod 777 deps/jemalloc/configure
+chmod 777 src/mkreleasehdr.sh
+chmod 777 deps/jemalloc/include/jemalloc/*
+chmod 777 deps/jemalloc/scripts/*
   ```
 
 - 子模块编译注意

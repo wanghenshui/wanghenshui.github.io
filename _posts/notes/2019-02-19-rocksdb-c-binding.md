@@ -6,7 +6,7 @@ tags: [c++, rocksdb]
 ---
 {% include JB/setup %}
 
-# 如何从c++导出c接口
+
 
 [TOC]
 
@@ -87,5 +87,89 @@ static bool SaveError(char** errptr, const Status& s) {
 
 char* err = NULL; 传入&err （为啥二级指针？） err本身是个字符串，传字符串地址。
 
+### 编译问题
 
+gcc编译c程序，链接c++的静态库，需要-lstdc++，不然会有连接错误。或者用g++编译，默认带stdc++ runtime
+其实这背后有更恶心的问题，如果你链接一个静态库，这个静态库依赖其他静态库，这里头的依赖关系就很恶心了。
+~~最近看pika，主程序依赖rocksdb和blackwidow，blackwidow也依赖rocksdb，链接都是静态。就很混乱。~~
 
+`一个示例`
+```bash
+[root@host]# tree
+|-- libp.so
+|-- libstaticp.a
+|-- p.cpp
+|-- p.h
+|-- p.o
+|-- p_test.c
+|-- ptest_d
+`-- ptest_s
+```
+
+`p.cpp`
+```cpp
+#include "p.h"
+#include <iostream>
+using namespace std;
+extern "C"{
+void print_int(int a){
+    cout<<a<<endl;
+}
+}
+```
+`p.h`
+```c++
+#ifndef _P_
+#define _P_
+#ifdef __cplusplus 
+extern "C" {
+#endif
+void print_int(int a);
+#ifdef __cplusplus
+}
+#endif
+#endif
+```
+
+`p_test.c`
+```c
+#include "p.h"
+int main(){
+    print_int(111);
+    return 0;
+}
+```
+
+- 需要导入当前目录到环境中，方便ld
+```bash
+export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+```
+- 编译动态库
+```bash
+g++ p.cpp -fPIC -shared -o libp.so
+```
+- 编译静态库
+```bash
+g++ -c p.cpp
+ar cqs libstaticp.a p.o
+```
+- 编译程序
+```bash
+gcc -o ptest_d p_test.c -L. -lp					#ok
+g++ -o ptest_s p_test.c -L. -lstaticp			#ok
+gcc -o ptest_s p_test.c -L. -lstaticp -lstdc++	#ok
+gcc -o ptest_s p_test.c -L. -lstaticp			#not ok
+./libstaticp.a(p.o): In function `print_int':
+p.cpp:(.text+0x11): undefined reference to `std::cout'
+p.cpp:(.text+0x16): undefined reference to `std::ostream::operator<<(int)'
+p.cpp:(.text+0x1b): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)'
+p.cpp:(.text+0x23): undefined reference to `std::ostream::operator<<(std::ostream& (*)(std::ostream&))'
+./libstaticp.a(p.o): In function `__static_initialization_and_destruction_0(int, int)':
+p.cpp:(.text+0x4c): undefined reference to `std::ios_base::Init::Init()'
+p.cpp:(.text+0x5b): undefined reference to `std::ios_base::Init::~Init()'
+collect2: error: ld returned 1 exit status
+```
+### reference
+- 参考这个 写的例子 https://blog.csdn.net/surgewong/article/details/39236707
+- 注意p.h中需要有__cplusplus marco guard, 因为extern "C" 不是c的内容，会报错 https://stackoverflow.com/questions/10307762/error-expected-before-string-constant
+- https://arne-mertz.de/2018/10/calling-cpp-code-from-c-with-extern-c/ 这个链接说了extern "C"在c++中的风格干净的用法，注意，在c中还是用不了。
