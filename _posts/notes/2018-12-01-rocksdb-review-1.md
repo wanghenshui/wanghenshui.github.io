@@ -18,7 +18,7 @@ rocksdb的整体框架和数据模型，leveldb的整体框架，网上文章遍
 
 dbimpl 属性图
 
-![img](https://wanghenshui.github.io/assets/classrocksdb_1_1DBImpl__coll__graph.png)
+![img](https://wipple.devnull.network/research/rippled/api.docs/classrocksdb_1_1DBImpl__coll__graph.png)
 
 
 
@@ -28,7 +28,7 @@ dbimpl 属性图
 
 column family 属性图
 
-![img](https://wanghenshui.github.io/assets/classrocksdb_1_1ColumnFamilyData__coll__graph.png)
+![img](https://wipple.devnull.network/research/rippled/api.docs/classrocksdb_1_1ColumnFamilyData__coll__graph.png)
 
 
 
@@ -36,17 +36,17 @@ column family 属性图
 
 supervision属性图
 
-![img](https://wanghenshui.github.io/assets/structrocksdb_1_1SuperVersion__coll__graph.png)
+![img](https://wipple.devnull.network/research/rippled/api.docs/structrocksdb_1_1SuperVersion__coll__graph.png)
 
 version 属性图
 
-![img](https://wanghenshui.github.io/assets/classrocksdb_1_1Version__coll__graph.png)
+![img](https://wipple.devnull.network/research/rippled/api.docs/classrocksdb_1_1Version__coll__graph.png)
 
 
 
 version set 属性图
 
-![img](https://wanghenshui.github.io/assets/classrocksdb_1_1VersionSet__coll__graph.png)
+![img](https://wipple.devnull.network/research/rippled/api.docs/classrocksdb_1_1VersionSet__coll__graph.png)
 
 ### reference
 
