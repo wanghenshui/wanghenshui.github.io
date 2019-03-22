@@ -2,7 +2,7 @@
 layout: post
 title: need review list
 category: tools
-tags: [virtualbox, ssh]
+tags: [todo]
 ---
 {% include JB/setup %}
 

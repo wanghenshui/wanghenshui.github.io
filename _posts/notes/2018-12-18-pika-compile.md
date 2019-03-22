@@ -2,7 +2,7 @@
 layout: post
 title: pika编译踩坑
 category: database
-tags : [c++, redis, rocksdb, glog. callgrind]
+tags : [c++, redis, rocksdb, glog, callgrind]
 ---
 
 {% include JB/setup %}
