@@ -2,7 +2,7 @@
 layout: post
 title: 基本的Linux内核参数的优化
 category: linux
-tags: linux, tcp
+tags: [linux, tcp]
 ---
 {% include JB/setup %}
 
