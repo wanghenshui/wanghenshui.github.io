@@ -53,3 +53,5 @@ grep就会发现，且INSTALL中也有提示，要是想提高移植性，makefi
 下面这个链接解释了opencv类似的问题
 
 <https://answers.ros.org/question/11873/illegal-instruction-when-using-image_view-with-theora/>
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

@@ -51,7 +51,4 @@ cp cuda/lib64/* /usr/local/cuda/lib64/
 
 然后编译就可以了
 
-
-
-
-
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

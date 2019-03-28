@@ -183,3 +183,5 @@ done
 附调用图一张。组件太多，确实找不到在哪。
 
 ![pika](https://wanghenshui.github.io/assets/pika.svg)
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

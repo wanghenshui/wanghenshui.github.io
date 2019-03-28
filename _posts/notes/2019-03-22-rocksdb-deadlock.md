@@ -103,13 +103,13 @@ Status DBImpl::DelayWrite(uint64_t num_bytes,
 具体版本是4.9之前，使用eventlisener会有死锁的问题。根本原因在于内部没解锁导致的死锁
 
 ```c++
-	+	c->ReleaseCompactionFiles(status);
-    +	*made_progress = true;
-    	NotifyOnCompactionCompleted(
-        	c->column_family_data(), c.get(), status,
-        	compaction_job_stats, job_context->job_id);	        
-    -	c->ReleaseCompactionFiles(status);	
-    -	*made_progress = true;
++	c->ReleaseCompactionFiles(status);
++	*made_progress = true;
+	NotifyOnCompactionCompleted(
+        c->column_family_data(), c.get(), status, 
+        compaction_job_stats, job_context->job_id);        
+-	c->ReleaseCompactionFiles(status);	
+-	*made_progress = true;
 ```
 
 
@@ -118,7 +118,7 @@ Status DBImpl::DelayWrite(uint64_t num_bytes,
 
 **#pr 1884<sup>4</sup> 如果没有bg work 优化sleep时间**
 
-这个改动是优化delaywrite逻辑。当没有bg work的时候，也就是bg_compaction_scheduled_ bg_flush_scheduled_等为0就会sleep一段时间，然后进入wait，加入这段时间write_controller可以工作了，还在sleep就不太应该，改成sleep单位时间，每次重新判断条件。这个改动和deadlock无关。
+这个改动是优化delaywrite逻辑。当没有bg work的时候，也就是bg_compaction_scheduled_ bg_flush_scheduled_等为0就会sleep一段时间，然后进入wait，假如这段时间write_controller可以工作了，还在sleep就不太应该，改成sleep单位时间，每次重新判断条件。这个改动和deadlock无关。
 
 注意，这里测量 write_stall_rate的方法。是个好手段
 
@@ -151,19 +151,21 @@ Status DBImpl::DelayWrite(uint64_t num_bytes,
 
 **#pr 4751<sup>9</sup> file-ingest-trgger flush导致deadlock 17.2修复**
 
-这个也是WaitUntilFlushWouldNotStallWrites引入的deadlock，进入了writestall WaitForIngestFile 有个issue 5007<sup>10</sup> 解决方法就是让ingestfile跳过writestall
+这个也是WaitUntilFlushWouldNotStallWrites引入的deadlock，进入了writestall WaitForIngestFile 有个**#issue 5007<sup>10</sup>** 解决方法就是让ingestfile跳过writestall
 
-**#pr 1480 IngestExternalFile 导致deadlock **
+**#pr 1480<sup>11</sup> IngestExternalFile 导致deadlock**
 
 这个原理没有看懂，以后有时间分析一下测试的代码<https://github.com/facebook/rocksdb/pull/1480/files>
 
-**Fix deadlock when trying update options when write stalls<sup>12</sup>**
+**#commit 6ea41f852708cf09d861894d33e1b65cd1d81c45 Fix deadlock when trying update options when write stalls<sup>12</sup>**
 
 这个就是防止write stall期间改动option造成triger混乱 加了个NeedFlushOrCompaction
 
 
 
+遇到的问题还在分析中，也有可能不是rocksdb的原因。
 
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 
 ### 参考
 

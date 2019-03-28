@@ -38,3 +38,4 @@ tags: [redis,c++]
 - 一个源码分析，已经有人做了。https://scottzzq.gitbooks.io/pika/content/
 - 项目wiki https://github.com/Qihoo360/pika/wiki
 
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

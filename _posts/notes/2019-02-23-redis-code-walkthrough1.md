@@ -148,4 +148,5 @@ if (fp == NULL || fread(seed,sizeof(seed),1,fp) != 1){
 
 10. 然后是各种初始化，LRU初始化
 
-    未完待续
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

@@ -33,3 +33,5 @@ while (!pred()) {
 http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rconc-wait 
 
 ~~话说这个我只是收藏了，从来没看完过，可以理解成more modern effective c++~~
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

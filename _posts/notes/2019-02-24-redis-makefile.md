@@ -453,3 +453,5 @@ install: all
 - make 参考文档 https://www.gnu.org/software/make/manual/make.pdf
 
 - 跟我一起写makefile https://seisman.github.io/how-to-write-makefile
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

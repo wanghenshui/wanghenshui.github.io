@@ -35,3 +35,5 @@ cflow2dot -i default/berry.c -o b.svg -f svg
 刚搜了个cflow +graphviz的方案，需要中间构造dot文件，需要tree2dotx脚本，我搜了一下关键字，直接蹦出来这个pip包了。利器。分析十分带劲。下面是两个刚抓的图，c++画图稍微有点问题，不过也能画出来
 
 ![redis.svg0](https://wanghenshui.github.io/assets/redis.svg0.svg)![b.svg0](https://wanghenshui.github.io/assets/b.svg0.svg)
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

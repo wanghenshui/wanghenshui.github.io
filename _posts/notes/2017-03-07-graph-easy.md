@@ -50,3 +50,5 @@ graph-easy文件在bin目录下，拷贝到usr/bin或者使用路径访问都可
 ## 参考
 
 这里有个教程 https://weishu.gitbooks.io/graph-easy-cn
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

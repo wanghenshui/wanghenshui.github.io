@@ -86,3 +86,5 @@ for _ in range(10000000):
 代码在这https://github.com/python/cpython/blob/a24107b04c1277e3c1105f98aff5bfa3a98b33a0/Objects/abstract.c#L1030
 
 没仔细研究，应该内部调用的还是glibc
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

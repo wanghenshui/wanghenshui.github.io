@@ -150,3 +150,5 @@ return _where_impl<void>(Check{}, expression);
 
 
 ppt没理解通，代码倒是简单走了一遍，太复杂了。咋想到的。
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
