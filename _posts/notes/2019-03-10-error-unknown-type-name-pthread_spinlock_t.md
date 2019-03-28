@@ -41,3 +41,5 @@ tags : [c,gcc]
 - 介绍`__GNU_SOURCE`  和`__USE_GNU`https://stackoverflow.com/questions/7296963/gnu-source-and-use-gnu
 - 一个-std=c99报错，rwlock也不是标准的，需要pthread.h，也得用gnu https://stackoverflow.com/questions/15673492/gcc-compile-fails-with-pthread-and-option-std-c99
 - spinlock manpage ，注意`_POSIX_C_SOURCE >= 200112L` http://man7.org/linux/man-pages/man3/pthread_spin_lock.3.html
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

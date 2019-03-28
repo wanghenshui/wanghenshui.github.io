@@ -165,6 +165,8 @@ Status DBImpl::DelayWrite(uint64_t num_bytes,
 
 遇到的问题还在分析中，也有可能不是rocksdb的原因。
 
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+
 ### 参考
 
 1. https://github.com/facebook/rocksdb/pull/4475

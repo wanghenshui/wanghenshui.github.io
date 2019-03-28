@@ -29,7 +29,7 @@ service start sshd
 使用ssh  -p 12345 root@localhost 访问即可
 
 
-
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 ---
 
 到此为止下面是牢骚

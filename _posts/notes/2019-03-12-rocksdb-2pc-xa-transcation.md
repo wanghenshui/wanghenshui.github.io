@@ -210,11 +210,34 @@ while (!duration.Done(1)) {
 ```
 加上个flags_transaction_db_xa 对应的option也得注意，要enable allow_2pc
 
-没enable allow_2pc做了个测试，结果真的就是降低了10%，没啥参考价值的感觉。
+没enable allow_2pc做了个测试，结果真的就是降低了10%，没啥参考价值的感觉。 最后一列是100% prepare
+
+```bash
+1       mt0     37353   21628   22018   21845
+1       mt1     38089   21171   22606   21688
+2       mt0     62627   31901   27003   32895
+2       mt1     62029   33865   31083   33691
+4       mt0     64915   41651   26226   40853
+4       mt1     88089   51123   29066   48673
+8       mt0     79742   51276   25154   49865
+8       mt1     134687  72683   25000   71469
+16      mt0     88103   61816   21568   60656
+16      mt1     192417  98546   21265   97890
+24      mt0     91989   64858   20592   63141
+24      mt1     232313  111736  20706   110083
+32      mt0     91073   65840   20399   64103
+32      mt1     221337  61289   20164   118167
+40      mt0     85909   66244   20144   64709
+40      mt1     116536  59155   20119   55437
+48      mt0     86006   68390   19828   66910
+48      mt1     125246  63577   19700   61621
+```
 
 
 
 
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 ### reference
 
 1. 分布式事务，2pc 3pc <https://www.hollischuang.com/archives/681>
@@ -222,3 +245,4 @@ while (!duration.Done(1)) {
 3. rocksdb 事务，其中有2pc事务讲解<https://zhuanlan.zhihu.com/p/31255678>
 4. myrocks deep dive，不错，关于rocksdb的部分提纲摰领<https://www.percona.com/live/plam16/sites/default/files/slides/myrocksdeepdive201604-160419162421.pdf>
 5. <https://mariadb.com/kb/en/library/myrocks-system-variables/>
+

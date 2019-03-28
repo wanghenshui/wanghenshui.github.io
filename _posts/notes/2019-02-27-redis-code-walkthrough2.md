@@ -239,5 +239,5 @@ server.maxmemory这个字段用来判断，这个字段有没有推荐设定值�
 
 
 
-
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 

@@ -65,4 +65,7 @@ version set 属性图
 - cockroachdb 用的rocksdb， 怎么做的？ https://www.cockroachlabs.com/blog/cockroachdb-on-rocksd/
 - myrocks 分析，参数很有参考价值。https://www.percona.com/blog/2018/04/30/a-look-at-myrocks-performance/
   - 一个cpu指标数据分析，http://www.cs.unca.edu/brock/classes/Spring2013/csci331/notes/paper-1130.pdf
+  
+  
+  看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 

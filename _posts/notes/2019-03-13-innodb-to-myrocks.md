@@ -204,6 +204,10 @@ Mitigating write stall 缓解写停顿
 - 批量载入能降低compaction stall
 - 支持事务和崩溃安全性
 
+
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+
 ### reference
 
 1. <https://www.usenix.org/sites/default/files/conference/protected-files/srecon17asia_slides_yoshinori.pdf>

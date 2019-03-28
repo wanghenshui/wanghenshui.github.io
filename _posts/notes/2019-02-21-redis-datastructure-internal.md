@@ -103,3 +103,6 @@ string
 
 - 文字都来自 http://redisbook.com/ 整理的太详细了。我只是做了点点记录
 - dot画图需要学习一下
+
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

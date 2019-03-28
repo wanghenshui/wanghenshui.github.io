@@ -157,3 +157,6 @@ int main() {
   - https://mpark.github.io/programming/2019/01/22/variant-visitation-v2/
   - http://talesofcpp.fusionfenix.com/post-17/eggs.variant---part-i
   - 上面的链接有两个variant的实现。
+  
+  
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。

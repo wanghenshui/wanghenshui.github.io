@@ -35,3 +35,5 @@ gcc编译提示siginfo_t找不到
 https://stackoverflow.com/questions/48332332/what-does-define-posix-source-mean
 
 https://stackoverflow.com/questions/22912674/unknown-type-name-siginfo-t-with-clang-using-posix-c-source-2-why
+
+看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
