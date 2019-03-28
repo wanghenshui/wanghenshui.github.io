@@ -171,7 +171,7 @@ shadow traffic 测试<sup>4</sup>
 
 硬停顿
 
-- 所有的写被commit组神色。直到解锁
+- 所有的写被commit阻塞。直到解锁
 
 Mitigating write stall 缓解写停顿
 
@@ -215,6 +215,7 @@ Mitigating write stall 缓解写停顿
    1. 这是介绍<https://zhuanlan.zhihu.com/p/50610215>
    2. 这是一个思考，如何把线上流量导入测试环境<https://zhuanlan.zhihu.com/p/35021628>
 5. 范围锁 主要是提升事务性能。行锁效率太低 <https://www.percona.com/blog/2012/03/27/innodbs-gap-locks/>
+6. 作者这哥们的pr 挺有意思的。<https://github.com/facebook/rocksdb/pull/1721>
 
 
 
