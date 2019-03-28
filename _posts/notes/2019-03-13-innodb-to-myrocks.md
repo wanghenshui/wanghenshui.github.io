@@ -1,7 +1,7 @@
 ---
 layout: post
 category : database
-title: PPT 笔记: InnoDB to MyRocks migration in main MySQL database at Facebook
+title: PPT笔记 InnoDB to MyRocks migration in main MySQL database at Facebook
 tags : [rocksdb, innodb, mysql]
 ---
 {% include JB/setup %}
@@ -209,11 +209,12 @@ Mitigating write stall 缓解写停顿
 1. <https://www.usenix.org/sites/default/files/conference/protected-files/srecon17asia_slides_yoshinori.pdf>
 2. 两次写 https://www.percona.com/blog/2006/08/04/innodb-double-write/ 另外每次写1M写两次是百度到的。。这个数据不确定。感觉写放大有点大的离谱了。
 3. b树碎片
-   1. <https://www.cnblogs.com/woodytu/p/4513562.html>
+   1. 索引碎片 讲的很详细<https://www.cnblogs.com/woodytu/p/4513562.html>
    2. Avoiding Fragmentation with Fractal Trees 科普一下新的数据结构设计<https://www.percona.com/blog/2010/11/17/avoiding-fragmentation-with-fractal-trees/>
 4. shadow traffic test 
    1. 这是介绍<https://zhuanlan.zhihu.com/p/50610215>
    2. 这是一个思考，如何把线上流量导入测试环境<https://zhuanlan.zhihu.com/p/35021628>
+5. 范围锁 主要是提升事务性能。行锁效率太低 <https://www.percona.com/blog/2012/03/27/innodbs-gap-locks/>
 
 
 
