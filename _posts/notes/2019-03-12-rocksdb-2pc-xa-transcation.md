@@ -48,7 +48,11 @@ txn->Commit();
 
 dbbench改动，增加allow_2pc配置，如果有这个配置，就true， 调用定义DEFINE_bool就好了（gflags这个库也很好玩，之前吐槽没有命令行的库，孤陋寡闻）
 
-机器32核，脚本参考mark改的，核心代码
+机器32核，脚本参考mark改的，执行脚本
+
+> bash r.sh  10000000 60 32 4 /home/vdb/rocksdb-5.14.3/rdb 0 /home/vdb/rocksdb-5.14.3/db_bench
+
+核心代码
 
 ```bash
 #set -x
@@ -236,6 +240,65 @@ while (!duration.Done(1)) {
 
 
 我enable allow2pc 100%prepare 测了一组数据，作为对照，测了一个0%prepare 
+
+
+
+```shell
+#set -x
+numk=$1
+secs=$2
+val=$3
+batch=$4
+dbdir=$5
+sync=$6
+dbb=$7
+
+# sync, dbdir, concurmt, secs, dop
+
+function runme {
+  a_concurmt=$1
+  a_dop=$2
+  a_extra=$3
+
+  rm -rf $dbdir; mkdir $dbdir
+  # TODO --perf_level=0
+
+$dbb --benchmarks=randomtransaction --use_existing_db=0 --sync=$sync --db=$dbdir --wal_dir=$dbdir --num=$numk --duration=$secs --num_levels=6 --key_size=8 --value_size=$val --block_size=4096 --cache_size=$(( 20 * 1024 * 1024 * 1024 )) --cache_numshardbits=6 --compression_type=none --compression_ratio=0.5 --level_compaction_dynamic_level_bytes=true --bytes_per_sync=8388608 --cache_index_and_filter_blocks=0 --benchmark_write_rate_limit=0 --write_buffer_size=$(( 64 * 1024 * 1024 )) --max_write_buffer_number=4 --target_file_size_base=$(( 32 * 1024 * 1024 )) --max_bytes_for_level_base=$(( 512 * 1024 * 1024 )) --verify_checksum=1 --delete_obsolete_files_period_micros=62914560 --max_bytes_for_level_multiplier=8 --statistics=0 --stats_per_interval=1 --stats_interval_seconds=60 --histogram=1 --allow_concurrent_memtable_write=$a_concurmt --enable_write_thread_adaptive_yield=$a_concurmt --memtablerep=skip_list --bloom_bits=10 --open_files=-1 --level0_file_num_compaction_trigger=4 --level0_slowdown_writes_trigger=20 --level0_stop_writes_trigger=30 --max_background_jobs=8 --max_background_flushes=2 --threads=$a_dop --merge_operator="put" --seed=1454699926 --transaction_sets=$batch --compaction_pri=3 $a_extra -enable_pipelined_write=false
+}
+
+for dop in 1 2 4 8 16 24 32 40 48 ; do
+for concurmt in 0 1 ; do
+
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.notrx
+runme $concurmt $dop ""  >& $fn
+q1=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+t=transaction_db
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.pessim
+runme $concurmt $dop --${t}=1  >& $fn
+q2=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+t=optimistic_transaction_db
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.optim
+runme $concurmt $dop --${t}=1  >& $fn
+q3=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+t=transaction_db_xa
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.pessimxa
+runme $concurmt $dop --${t}=1  >& $fn
+q4=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.pessimnopre
+runme $concurmt $dop --${t}=-1  >& $fn #-1 for no prepare
+q5=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+echo $dop mt${concurmt} $q1 $q2 $q3 $q4 $q5 | awk '{ printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\n", $1, $2, $3, $4, $5, $6, $7 }'
+
+done
+done
+```
+
+
 
 | 线程数 | 是否并发写 | 无事务 | 悲观事务 默认90%prepare      allwo_2pc=0 | 乐观事务 | 悲观事务  prepare 100% allwo_2pc=1 | 悲观事务      prepare 0% |
 | ------ | ---------- | ------ | ---------------------------------------- | -------- | ---------------------------------- | ------------------------ |
