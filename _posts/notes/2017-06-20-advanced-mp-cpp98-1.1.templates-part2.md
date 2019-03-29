@@ -232,7 +232,7 @@ template class X<double>;
 template double sq<double>(const double&);
 ```
 
-可以理解成“导出” c++11 之后又extern 模板
+可以理解成“导出” c++11 之后有extern 模板
 
 
 
