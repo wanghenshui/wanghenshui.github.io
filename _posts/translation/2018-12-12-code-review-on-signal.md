@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 代码审核：关于信号
-category: translation
-keywords: [signal,linux,vm,code]
+category: linux
+keywords: [linux,signal,gcc]
 ---
-
+{% include JB/setup %}
 
 
 //翻译的十分糟糕，就当做自己的阅读笔记了[原文点击](http://delyan.me/code-review-signals/)

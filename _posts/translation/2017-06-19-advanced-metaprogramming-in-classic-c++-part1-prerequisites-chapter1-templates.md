@@ -2,10 +2,10 @@
 layout: post
 title: advanced_metaprogramming_in_classic_c++_part1_prerequisites_chapter1_templates
 category: translation
-keywords: [c++,template,c++98,TMP]
+keywords: [c++,template]
 ---
 
-
+{% include JB/setup %}
 
 ### 第一部分 预备知识 #include 
 
@@ -243,7 +243,7 @@ waring: potential divide by 0;
   ```
 
     };
-    
+  
     SomeClass::PRODUCT > s1;
 
 - 某些宏 **LINE**
