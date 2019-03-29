@@ -2,7 +2,7 @@
 layout: post
 title: 代码审核：关于信号
 category: linux
-keywords: [linux, signal, gcc]
+tags : [linux, signal, gcc]
 ---
 {% include JB/setup %}
 

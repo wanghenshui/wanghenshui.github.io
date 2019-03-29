@@ -2,7 +2,7 @@
 layout: post
 title: 写好Pull Requests(PR)
 category: translation
-keywords: [git]
+tags : [git]
 ---
 {% include JB/setup %}
 

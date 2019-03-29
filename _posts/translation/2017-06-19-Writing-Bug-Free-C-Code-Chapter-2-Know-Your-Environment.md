@@ -2,7 +2,7 @@
 layout: post
 title: Writing Bug Free C Code Chapter 2 Know Your Environment
 category: translation
-keywords: [c, gcc]
+tags : [c, gcc]
 ---
 {% include JB/setup %}                                                                                                                                                                                                                                                                                
 

@@ -2,7 +2,7 @@
 layout: post
 title: advanced metaprogramming in classic c++ 1.1 templates
 category: translation
-keywords: [c++, template]
+tags : [c++, template]
 ---
 
 {% include JB/setup %}
