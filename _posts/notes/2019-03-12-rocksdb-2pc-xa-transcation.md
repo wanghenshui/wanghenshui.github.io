@@ -327,6 +327,8 @@ markdown 不能调格间距，真破
 
 这个数据作为参考。
 
+另外，有个2pc的bug 值得关注一下 pr <https://github.com/facebook/rocksdb/pull/1768>
+
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 ### reference
 
@@ -336,4 +338,5 @@ markdown 不能调格间距，真破
 4. myrocks deep dive，不错，关于rocksdb的部分提纲摰领<https://www.percona.com/live/plam16/sites/default/files/slides/myrocksdeepdive201604-160419162421.pdf>
 5. <https://mariadb.com/kb/en/library/myrocks-system-variables/>
 6. 我的测试改动 <https://github.com/wanghenshui/rocksdb/tree/14.3-modified-db-bench>
+7. 一个excel小知识，生成的数据如何整理成excel格式，选择这列 ->{数据}菜单 ->分列->按照空格分列，<https://zhidao.baidu.com/question/351335222>
 
