@@ -2,7 +2,7 @@
 layout: post
 title: 针对 Redis on Flash 优化RocksDB
 category: translation
-keywords: [rocksdb,redis]
+keywords: [rocksdb, redis]
 ---
 {% include JB/setup %}
 

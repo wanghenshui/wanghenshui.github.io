@@ -2,7 +2,7 @@
 layout: post
 title: Writing Bug Free C code chapter 1 Understand Why Bugs Exist
 category: translation
-keywords: [c,bug]
+keywords: [c, gcc]
 ---
 {% include JB/setup %}
 
