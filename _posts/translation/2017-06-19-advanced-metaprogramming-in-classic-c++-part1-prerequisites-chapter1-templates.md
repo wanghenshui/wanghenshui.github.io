@@ -1,6 +1,6 @@
 ---
 layout: post
-title: advanced_metaprogramming_in_classic_c++_part1_prerequisites_chapter1_templates
+title: advanced metaprogramming in classic c++ 1.1 templates
 category: translation
 keywords: [c++,template]
 ---
