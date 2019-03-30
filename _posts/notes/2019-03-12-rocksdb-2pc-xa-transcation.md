@@ -339,4 +339,5 @@ markdown 不能调格间距，真破
 5. <https://mariadb.com/kb/en/library/myrocks-system-variables/>
 6. 我的测试改动 <https://github.com/wanghenshui/rocksdb/tree/14.3-modified-db-bench>
 7. 一个excel小知识，生成的数据如何整理成excel格式，选择这列 ->{数据}菜单 ->分列->按照空格分列，<https://zhidao.baidu.com/question/351335222>
+8. cockroachdb 用rocksdb 2pc的一个讨论，有时间仔细看看 <https://github.com/cockroachdb/cockroach/issues/16948>
 
