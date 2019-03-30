@@ -22,6 +22,26 @@ tags : [rocksdb,c++]
 
 插入就是插入，更新是追加插入，删除也是更新，value空。支持writebatch，原子性
 
+put <https://www.jianshu.com/p/daa18eebf6e1>
+
+<https://glitterisme.github.io/2018/07/03/%E6%89%8B%E6%92%95RocksDB-1/>
+
+myrocks put <http://mysql.taobao.org/monthly/2017/07/05/>
+
+wirte详解？ <https://blog.csdn.net/wang_xijue/article/details/46521605>
+
+<http://mysql.taobao.org/monthly/2018/07/04/>
+
+并发写？
+
+<http://www.pandademo.com/2016/10/parallel-write-rocksdb-source-dissect-3/>
+
+<https://www.jianshu.com/p/fd7e98fd5ee6>
+
+<https://youjiali1995.github.io/rocksdb/write-batch/>
+
+write stall？ 什么时候会write stall？
+
 `Gets Iterators Snapshots `
 
 iterator 和snapshot是一致的。底层引用计数保证不被删除。但是这个数据是不被持久化的，对比git，这就是拉个分支，然后在分支上修改，但是这个分支信息不记录，不保存就丢，可以在这基础上创建checkpoint然后搞备份
@@ -93,9 +113,23 @@ next_file_number 18 last_sequence 7515368  prev_log_number 0 max_column_family 0
 
 ` 事务`
 
-这又是个复杂的话题
+这又是个复杂的话题，见参考链接
 
+`memtable`
 
+一般为了支持并发写，会使用skiplist 
+
+ `compaction`
+
+leveldb的由来，compaction gc
+
+什么时候会compaction？
+
+compaction原则？
+
+`flush`
+
+什么时候会flush？
 
 
 
@@ -116,7 +150,15 @@ next_file_number 18 last_sequence 7515368  prev_log_number 0 max_column_family 0
    2. WAL恢复 https://blog.csdn.net/dongfengxueli/article/details/66975838
    3. WAL生命周期 <https://www.jianshu.com/p/40a4f2521e0a>
    4. WAL调研，这哥们写了一半 <https://youjiali1995.github.io/rocksdb/wal/>
-4. 事务
+4. 事务 <https://github.com/facebook/rocksdb/wiki/Transactions>
+   1. rocksdb 事务实现分析 <https://yq.aliyun.com/articles/257424>
+   2. 更进一步 <https://github.com/facebook/rocksdb/wiki/WritePrepared-Transactions>
+      1. <https://yq.aliyun.com/articles/627737#>
+   3. myrocks 事务<http://mysql.taobao.org/monthly/2016/11/02/?spm=a2c4e.11153940.blogcont627737.14.d47c5ce5SNWg8r>
+      1. mysql xa事务<http://mysql.taobao.org/monthly/2017/09/05/>
+      2. binlog xa <https://blog.51cto.com/wangwei007/2323844>
+5. level compaction<http://mysql.taobao.org/monthly/2018/10/08/>
+6. flush <https://yq.aliyun.com/articles/643754>
 
 
 

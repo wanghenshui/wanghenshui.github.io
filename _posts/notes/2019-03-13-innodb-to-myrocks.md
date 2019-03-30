@@ -220,6 +220,9 @@ Mitigating write stall 缓解写停顿
    2. 这是一个思考，如何把线上流量导入测试环境<https://zhuanlan.zhihu.com/p/35021628>
 5. 范围锁 主要是提升事务性能。行锁效率太低 <https://www.percona.com/blog/2012/03/27/innodbs-gap-locks/>
 6. 作者这哥们的pr 挺有意思的。<https://github.com/facebook/rocksdb/pull/1721>
+7. myrocks介绍，有时间写个博客顺一下<https://www.percona.com/live/17/sites/default/files/slides/MyRocks_Tutorial.pdf>
+8. yc上myrocks的讨论，有点意思<https://news.ycombinator.com/item?id=15835188>
+9. yc 上关于rocksdb cockroachdb的讨论 需要做个笔记<https://news.ycombinator.com/item?id=18938737>
 
 
 
