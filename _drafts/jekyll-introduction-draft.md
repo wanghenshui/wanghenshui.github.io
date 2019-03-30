@@ -31,5 +31,7 @@ reference link here
 
 ### contact
 
-any advice mailto:wanghenshui@qq.com, thanks!
+Any advice mailto:wanghenshui@qq.com, thanks! 
+
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
 
