@@ -127,6 +127,12 @@ leveldb的由来，compaction gc
 
 compaction原则？
 
+compaction中的snapshot？
+
+
+
+<https://yq.aliyun.com/articles/655902>
+
 `flush`
 
 什么时候会flush？

@@ -39,7 +39,7 @@ int sq(const int x);//无效的特化，参数不一致了。需要和前面的�
 ```c++
 template <typename T>
 void f(const T& x){
-    std:;cout<<"i am f(reference)";
+    std::cout<<"i am f(reference)";
 }//1
 template <typename T>
 void f(const T* x){
