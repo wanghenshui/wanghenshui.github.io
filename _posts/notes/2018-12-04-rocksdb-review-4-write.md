@@ -1,7 +1,7 @@
 ---
 layout: post
 category : database
-title: rocksdb 初探 3：put/write
+title: rocksdb 初探 4：put/write
 tags : [rocksdb,c++]
 ---
 {% include JB/setup %}
@@ -31,6 +31,25 @@ WriteBatchInternal内部工具类。当然是WriteBatch的友元类啦。可以�
 `Writer, WriteGroup, WriteBatch`， 并发写
 
 每个Writer是持有WriteBatch的。
+
+
+
+
+
+`dbformat`
+
+internalkey  setinternalkey parsedinternalkey userkey 
+
+简单来说 userkey就是internalkey 因为一个key会把lsn和类型编码进去(PackSequenceAndType)，去掉这八个字节就是userkey，在rocksdb代码中，有些地方就直接是硬编码，-8了，有些地方转换回来还要+8， Jesus
+
+```c++
+Slice MemTableRep::UserKey(const char* key) const {
+  Slice slice = GetLengthPrefixedSlice(key);
+  return Slice(slice.data(), slice.size() - 8);
+}
+```
+
+其实应该有个更小的封装，因为-8可能变（对于想要用rocksdb来修改的人来说）
 
 ---
 
