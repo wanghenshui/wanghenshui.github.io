@@ -30,9 +30,11 @@ WriteBatchInternal内部工具类。当然是WriteBatch的友元类啦。可以�
 
 `Writer, WriteGroup, WriteBatch`， 并发写
 
-每个Writer是持有WriteBatch的。
+每个Writer是持有WriteBatch的。调用db put接口后就写到WriteBatch中，WriteBatch相当于缓存，这种异步和事件触发的异步不太一样，是同步造出一个二阶段缓存搞的异步。WriteBatch越大吞吐量越大，但是写到memtable越多则会影响后面的flush造成write stall，是个负反馈过程。
 
+WriteBatch+WriteGroup 主要是为了写WAL，WAL是没办法并发写的，Leader Writer负责写，写完唤醒其他Writer，大家一起写memtable，无锁队列+condvar。无锁队列是用原子量实现的。主要逻辑在LinkOne
 
+`Write Stall， Write Controller`
 
 
 
@@ -50,6 +52,12 @@ Slice MemTableRep::UserKey(const char* key) const {
 ```
 
 其实应该有个更小的封装，因为-8可能变（对于想要用rocksdb来修改的人来说）
+
+`memtable inserter, memtable， iterate`
+
+最终并发写入会调用memtableInserter， 也会生成memtable对象（就那么一个new入口），memtable inserter实现了memtable::handler，内部接口，操作memtable，调用add。
+
+inserter会遍历当前的WriteBatch，解析出每个kv头的tag，然后分别调用putcf,deletecf 等等，内部都是memtable->add
 
 ---
 
