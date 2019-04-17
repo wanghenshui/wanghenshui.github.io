@@ -1,7 +1,7 @@
 ---
 layout: post
 category : database
-title: rocksdb 初探 5 iterator
+title: rocksdb 初探 5: iterator
 tags : [rocksdb,c++]
 ---
 {% include JB/setup %}
@@ -81,7 +81,7 @@ assert(options.statistics->getTickerCount(NUMBER_OF_RESEEKS_IN_ITERATION)==num_r
 
 反过来，如果插入了新的b，先找b后找a，也会出现同样的场景
 
-```
+```c++
 Put("b","v2");
 // 现在是 a3 a2 a1 b2 b1 假设这个iter不指定snapshot
 iter = NewIterator(RO, CF);
@@ -89,7 +89,39 @@ iter->SeekToLast();// iter指向b v2
 iter->Prev();//正常来说是a，但是版本不确定，迭代大于3，就得reseek
 ```
 
+`iterate_lower_bound, iterate_upper_bound`
 
+ReadOption中带有的这两个选项，限定iterator的有效与否
+
+```c++
+  // `iterate_lower_bound` defines the smallest key at which the backward
+  // iterator can return an entry. Once the bound is passed, Valid() will be
+  // false. `iterate_lower_bound` is inclusive ie the bound value is a valid
+  // entry.
+  //
+  // If prefix_extractor is not null, the Seek target and `iterate_lower_bound`
+  // need to have the same prefix. This is because ordering is not guaranteed
+  // outside of prefix domain.
+  //
+  // Default: nullptr
+  const Slice* iterate_lower_bound;
+
+  // "iterate_upper_bound" defines the extent upto which the forward iterator
+  // can returns entries. Once the bound is reached, Valid() will be false.
+  // "iterate_upper_bound" is exclusive ie the bound value is
+  // not a valid entry.  If iterator_extractor is not null, the Seek target
+  // and iterator_upper_bound need to have the same prefix.
+  // This is because ordering is not guaranteed outside of prefix domain.
+  //
+  // Default: nullptr
+  const Slice* iterate_upper_bound;
+```
+
+如果有key  a b y z，设定upper_bound x，seek c，这个场景下iter是invalid的，过了x也没找到c，那就是无效的，同理lower_bound
+
+`tombstones, Next`
+
+看SeekAfterHittingManyInternalKeys这个测试用例
 
 ### reference
 

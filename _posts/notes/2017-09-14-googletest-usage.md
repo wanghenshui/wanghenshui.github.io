@@ -1,7 +1,7 @@
 ---
 layout: post
 category : c++
-title: googletest使用记录
+title: googletest使用记录，以及遇到的一个奇怪的问题
 tags : [rocksdb,c++]
 ---
 {% include JB/setup %}
@@ -56,9 +56,163 @@ gdb调试googletest
 | --gtest_throw_on_failure | 当案例失败时以C++异常的方式抛出                              |
 | --gtest_catch_exceptions | 是否捕捉异常。gtest默认是不捕捉异常的，因此假如你的测试案例抛了一个异常，很可能会弹出一个对话框，这非常的不友好，同时也阻碍了测试案例的运行。如果想不弹这个框，可以通过设置这个参数来实现。如将--gtest_catch_exceptions设置为一个非零的数。注意：这个参数只在Windows下有效。 |
 
+
+
+说到问题，有这么个测试错误，应该是key1后面多了一串0
+
+```c++
+db/db_log_iter_test.cc:280: Failure
+Value of: handler.seen
+  Actual: "Put(1, key1\0\0\0\0\0\0\0\0, 1024)Put(0, key2\0\0\0\0\0\0\0\0, 1024)LogData(blob1\0\0\0\0\0\0\0\0)Put(1, key3\0\0\0\0\0\0\0\0, 1024)LogData(blob2\0\0\0\0\0\0\0\0)Delete(0, key2\0\0\0\0\0\0\0\0)"
+Expected: "Put(1, key1, 1024)" "Put(0, key2, 1024)" "LogData(blob1)" "Put(1, key3, 1024)" "LogData(blob2)" "Delete(0, key2)"
+Which is: "Put(1, key1, 1024)Put(0, key2, 1024)LogData(blob1)Put(1, key3, 1024)LogData(blob2)Delete(0, key2)"
+[  FAILED  ] DBTestXactLogIterator.TransactionLogIteratorBlobs (102 ms)
+
+```
+
+这两个是同一个字符串
+
+```c++
+#include <iostream>
+#include <string>
+#include <iomanip>
+std::string s1="Put(1, key1, 1024)" "Put(0, key2, 1024)" "LogData(blob1)" "Put(1, key3, 1024)" "LogData(blob2)" "Delete(0, key2)";
+std::string s2="Put(1, key1, 1024)Put(0, key2, 1024)LogData(blob1)Put(1, key3, 1024)LogData(blob2)Delete(0, key2)";
+
+int main()
+{
+    bool b = s1==s2;
+    std::cout<<std::boolalpha << b << std::endl;// true
+}
+```
+
+
+
+`EXCEPT_EQ`
+
+```c++
+#define GTEST_ASSERT_EQ(expected, actual) \
+  ASSERT_PRED_FORMAT2(::testing::internal:: \
+                      EqHelper<GTEST_IS_NULL_LITERAL_(expected)>::Compare, \
+                      expected, actual)
+//这个宏展开就是f(#a,#b,a,b)
+//EqHelper 偏特化 如果是null就是eqhelper<true>
+
+template <bool lhs_is_null_literal>
+class EqHelper {
+ public:
+  // This templatized version is for the general case.
+  template <typename T1, typename T2>
+  static AssertionResult Compare(const char* expected_expression,
+                                 const char* actual_expression,
+                                 const T1& expected,
+                                 const T2& actual) {
+    return CmpHelperEQ(expected_expression, actual_expression, expected,
+                       actual);
+  }
+
+  // With this overloaded version, we allow anonymous enums to be used
+  // in {ASSERT|EXPECT}_EQ when compiled with gcc 4, as anonymous
+  // enums can be implicitly cast to BiggestInt.
+  //
+  // Even though its body looks the same as the above version, we
+  // cannot merge the two, as it will make anonymous enums unhappy.
+  static AssertionResult Compare(const char* expected_expression,
+                                 const char* actual_expression,
+                                 BiggestInt expected,
+                                 BiggestInt actual) {
+    return CmpHelperEQ(expected_expression, actual_expression, expected,
+                       actual);
+  }
+};
+
+// This specialization is used when the first argument to ASSERT_EQ()
+// is a null pointer literal, like NULL, false, or 0.
+template <>
+class EqHelper<true> {
+ public:
+  // We define two overloaded versions of Compare().  The first
+  // version will be picked when the second argument to ASSERT_EQ() is
+  // NOT a pointer, e.g. ASSERT_EQ(0, AnIntFunction()) or
+  // EXPECT_EQ(false, a_bool).
+  template <typename T1, typename T2>
+  static AssertionResult Compare(
+      const char* expected_expression,
+      const char* actual_expression,
+      const T1& expected,
+      const T2& actual,
+      // The following line prevents this overload from being considered if T2
+      // is not a pointer type.  We need this because ASSERT_EQ(NULL, my_ptr)
+      // expands to Compare("", "", NULL, my_ptr), which requires a conversion
+      // to match the Secret* in the other overload, which would otherwise make
+      // this template match better.
+      typename EnableIf<!is_pointer<T2>::value>::type* = 0) {
+    return CmpHelperEQ(expected_expression, actual_expression, expected,
+                       actual);
+  }
+
+  // This version will be picked when the second argument to ASSERT_EQ() is a
+  // pointer, e.g. ASSERT_EQ(NULL, a_pointer).
+  template <typename T>
+  static AssertionResult Compare(
+      const char* expected_expression,
+      const char* actual_expression,
+      // We used to have a second template parameter instead of Secret*.  That
+      // template parameter would deduce to 'long', making this a better match
+      // than the first overload even without the first overload's EnableIf.
+      // Unfortunately, gcc with -Wconversion-null warns when "passing NULL to
+      // non-pointer argument" (even a deduced integral argument), so the old
+      // implementation caused warnings in user code.
+      Secret* /* expected (NULL) */,
+      T* actual) {
+    // We already know that 'expected' is a null pointer.
+    return CmpHelperEQ(expected_expression, actual_expression,
+                       static_cast<T*>(NULL), actual);
+  }
+};
+//核心就是这个了
+// The helper function for {ASSERT|EXPECT}_EQ.
+template <typename T1, typename T2>
+AssertionResult CmpHelperEQ(const char* expected_expression,
+                            const char* actual_expression,
+                            const T1& expected,
+                            const T2& actual) {
+GTEST_DISABLE_MSC_WARNINGS_PUSH_(4389 /* signed/unsigned mismatch */)
+  if (expected == actual) {
+    return AssertionSuccess();
+  }
+GTEST_DISABLE_MSC_WARNINGS_POP_()
+
+  return CmpHelperEQFailure(expected_expression, actual_expression, expected,
+                            actual);
+}
+
+```
+
+
+
+
+
 ### reference
 
 1. <http://www.cnblogs.com/coderzh/archive/2009/04/10/1432789.html>
+
+
+
+另外，单元测试太多，写了个小脚本，抓出失败的
+
+```bash
+#!/bin/bash
+for file in *test
+do
+  ./$file > /dev/null 2>&1
+  if [[ $? != 0 ]]
+  then
+    echo $file
+  fi
+done
+
+```
 
 
 

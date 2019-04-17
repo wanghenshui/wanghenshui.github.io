@@ -59,7 +59,17 @@ Slice MemTableRep::UserKey(const char* key) const {
 
 inserter会遍历当前的WriteBatch，解析出每个kv头的tag，然后分别调用putcf,deletecf 等等，内部都是memtable->add
 
+`merge`
+
 ---
+
+```c++
+  options.merge_operator = MergeOperators::CreatePutOperator();
+```
+
+
+
+merge有时候语义上就是put
 
 ### reference
 
