@@ -237,7 +237,7 @@ class C;
 
 template <typename T>
 class H{
-  H&operator ==(constH&)  const ;
+  H&operator ==(const H&)  const ;
 };
 template <typename T, int CAP>
 class C :public H<T>
