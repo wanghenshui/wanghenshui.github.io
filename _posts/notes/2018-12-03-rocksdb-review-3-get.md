@@ -65,6 +65,34 @@ table_cache_->Get(k)
 
 
 
+`OptimizeForPointLookup`
+
+```c++
+ColumnFamilyOptions* ColumnFamilyOptions::OptimizeForPointLookup(
+    uint64_t block_cache_size_mb) {
+  prefix_extractor.reset(NewNoopTransform());
+  BlockBasedTableOptions block_based_options;
+  block_based_options.index_type = BlockBasedTableOptions::kHashSearch;
+  block_based_options.filter_policy.reset(NewBloomFilterPolicy(10));
+  block_based_options.block_cache =
+      NewLRUCache(static_cast<size_t>(block_cache_size_mb * 1024 * 1024));
+  table_factory.reset(new BlockBasedTableFactory(block_based_options));
+  memtable_prefix_bloom_size_ratio = 0.02;
+  return this;
+}
+```
+
+优化点查询，实际上是改变了BlockBasedTable的index_type, 变成hash自然就不可迭代，主要是bloomfilter prefix tranform哪里会有hash查找
+
+```c++
+  bool const may_contain =
+      nullptr == prefix_bloom_
+          ? false
+          : prefix_bloom_->MayContain(prefix_extractor_->Transform(user_key));
+```
+
+
+
 ---
 
 ### reference
@@ -76,6 +104,8 @@ table_cache_->Get(k)
 5. <http://idning.github.io/leveldb-rocksdb-on-large-value.html>
 6. <http://www.d-kai.me/leveldb%E8%AF%BB%E6%B5%81%E7%A8%8B1/>
 7. <http://www.d-kai.me/leveldb%E8%AF%BB%E6%B5%81%E7%A8%8B2/>
+8. 点查询优化，不可迭代 https://stackoverflow.com/questions/52139349/iterating-when-using-optimizeforpointlookup
+9. 优化点查询，介绍<https://rocksdb.org/blog/2018/08/23/data-block-hash-index.html>
 
 
 

@@ -16,6 +16,12 @@ tags : [rocksdb,c++]
 ./db_iterator_test --gtest_filter=-DBIteratorTestInstance/DBIteratorTest.IterSeekBeforePrevWithTimestamp/*
 ```
 
+过滤用例，也可以代码中加DISABLED_
+
+```
+TEST(FooTest, DISABLED_DoesAbc) { ... }
+```
+
 
 
 gdb调试googletest 
@@ -196,6 +202,7 @@ GTEST_DISABLE_MSC_WARNINGS_POP_()
 ### reference
 
 1. <http://www.cnblogs.com/coderzh/archive/2009/04/10/1432789.html>
+2. 跳过用例 <https://stackoverflow.com/questions/7208070/googletest-how-to-skip-a-test>
 
 
 
