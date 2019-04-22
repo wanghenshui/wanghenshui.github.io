@@ -22,6 +22,12 @@ tags : [rocksdb,c++]
 TEST(FooTest, DISABLED_DoesAbc) { ... }
 ```
 
+过滤多个用例，匹配模式之间用分好隔开
+
+ ```bash
+./table_test  --gtest_filter=*FilterBlockInBlockCache:*BasicBlockBasedTableProperties
+ ```
+
 
 
 gdb调试googletest 
@@ -227,5 +233,9 @@ done
 
 
 
+---
 
+### Ref
+
+- <https://stackoverflow.com/questions/14018434/how-to-specify-multiple-exclusion-filters-in-gtest-filter/14619685>
 
