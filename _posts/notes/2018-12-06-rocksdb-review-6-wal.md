@@ -1,10 +1,12 @@
 ---
 layout: post
-category : database
-title: rocksdb 初探 6: wal
-tags : [rocksdb,c++]
+category: database
+title: rocksdb 初探6 wal
+tags : [rocksdb, c++]
 ---
 {% include JB/setup %}
+
+
 
 对RocksDB的每一次update都会写入两个位置：1） 内存表（内存数据结构，后续会flush到SST file） 2）磁盘中的write ahead log（WAL）。在故障发生时，WAL可以用来恢复内存表中的数据。默认情况下，RocksDB通过在每次用户写时调用fflush WAL文件来保证一致性。
 
