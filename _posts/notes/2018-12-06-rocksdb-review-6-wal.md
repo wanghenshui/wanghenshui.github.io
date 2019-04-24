@@ -1,7 +1,7 @@
 ---
 layout: post
 category: database
-title: rocksdb 初探6 wal
+title: rocksdb 初探 6：wal
 tags : [rocksdb, c++]
 ---
 {% include JB/setup %}

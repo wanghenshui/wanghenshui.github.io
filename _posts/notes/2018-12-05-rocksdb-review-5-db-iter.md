@@ -1,7 +1,7 @@
 ---
 layout: post
 category: database
-title: rocksdb 初探5 iterator
+title: rocksdb 初探 5：iterator
 tags : [rocksdb,c++]
 ---
 {% include JB/setup %}
