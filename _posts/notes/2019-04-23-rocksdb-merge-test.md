@@ -290,6 +290,17 @@ size_t MemTable::CountSuccessiveMergeEntries(const LookupKey& key) {
 
 理清这些概念，注意到背景，修改lookupkey初始化。因为进入mergeCf之前已经编码了要加的字段，lookupkey有加了一次，需要预处理一下。结束。
 
+```gdb
+#  删除断点
+delete 5
+# 单步调试想返回，需要提前record
+record
+reverse-next
+record stop
+```
+
+
+
 ### reference
 
 1.  官方文档 <https://github.com/facebook/rocksdb/wiki/Merge-Operator>
