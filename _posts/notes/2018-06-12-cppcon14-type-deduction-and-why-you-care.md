@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  [cppcon2014]类型推导以及为什么需要关注这个
+title:  cppcon2014 类型推导以及为什么需要关注这个
 category: c++
 tags: [c++, cppcon]
 ---
