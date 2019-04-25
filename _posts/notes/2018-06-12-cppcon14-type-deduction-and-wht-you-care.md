@@ -10,7 +10,7 @@ tags: [c++, cppcon]
 
 用一个图来概括
 
-![1556106456533](E:\blog\assets\1556106456533.png)
+![1556106456533](https://wanghenshui.github.io/assets/1556106456533.png)
 
 和auto相关的类型推导
 
