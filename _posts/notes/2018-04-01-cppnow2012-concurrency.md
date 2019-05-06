@@ -25,7 +25,7 @@ tags: [c++, boostcon, cppnow]
 ```c++
 #include <thread>
 std::map<std::string, std::string> french 
-{{"hello","bonjour"},{"world","tout le monde"}};
+{ {"hello","bonjour"},{"world","tout le monde"} };
 
 int main(){
     std::string greet = french["hello"];
