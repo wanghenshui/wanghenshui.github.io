@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  cppcon2014 用表达式模板实现一个一个简单安全的log
+title: cppcon2014 用表达式模板实现一个一个简单安全的log
 category: c++
 tags: [c++, cppcon]
 ---

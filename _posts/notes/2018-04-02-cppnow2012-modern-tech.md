@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  cppnow2012 Michael Caisse Introduction to Modern C++ Techniques 
+title: cppnow2012 Michael Caisse Introduction to Modern C++ Techniques 
 category: c++
 tags: [c++, boostcon, cppnow]
 ---

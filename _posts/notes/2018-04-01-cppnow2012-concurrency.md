@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  cppnow2012 John Wiegley C++11 High-Level Threading
+title: cppnow2012 John Wiegley C++11 High-Level Threading
 category: c++
 tags: [c++, boostcon, cppnow]
 ---
