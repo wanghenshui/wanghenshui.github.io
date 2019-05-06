@@ -1,11 +1,13 @@
 ---
 layout: post
-title: cppnow2012 John Wiegley C++11 High-Level Threading
+title: C++11 High-Level Threading
 category: c++
 tags: [c++, boostcon, cppnow]
 ---
 
 {% include JB/setup %}
+
+#### cppnow2012 John Wiegley C++11 High-Level Threading
 
  这个ppt讲的是std::thread, 算是一个教学指南
 

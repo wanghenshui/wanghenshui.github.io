@@ -1,10 +1,12 @@
 ---
 layout: post
-title: cppcon2016 using types effectively
+title: using types effectively
 category: c++
 tags: [c++, cppcon]
 ---
 {% include JB/setup %}
+
+#### cppcon2016 using types effectively
 
 本来还在看cppcon2014，偶然翻到个和类型相关的演讲，以为是以为是PLT那种东西。学习过之后发现还是讨论的代数类型
 

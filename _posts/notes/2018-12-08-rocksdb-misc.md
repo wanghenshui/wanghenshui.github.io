@@ -1,7 +1,7 @@
 ---
 layout: post
 category: database
-title: rocksdb 一些杂项概念
+title: rocksdb一些杂项概念
 tags: [rocksdb, c++]
 ---
 {% include JB/setup %}
@@ -76,12 +76,19 @@ Status s = db->Flush();
 
 
 
+**memory**
+
+主要几大块， blockcache，memtable，index & filter block， pinned by iterator
+
+
+
 ### reference
 
 1.  官方文档 https://github.com/facebook/rocksdb/wiki/Write-Buffer-Manager
 2. 上面的一个翻译<https://github.com/johnzeng/rocksdb-doc-cn/blob/master/doc/Write-Buffer-Manager.md>
 3.  <https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html>
 4.  Direct IO官方文档https://github.com/facebook/rocksdb/wiki/Direct-IO>
+5.  Rate Limiter <https://github.com/johnzeng/rocksdb-doc-cn/blob/master/doc/Rate-Limiter.md>
 
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
 

@@ -1,11 +1,15 @@
 ---
 layout: post
-title: cppnow2012 Michael Caisse Introduction to Modern C++ Techniques 
+title:  Introduction to Modern C++ Techniques 
 category: c++
 tags: [c++, boostcon, cppnow]
 ---
 
 {% include JB/setup %}
+
+### cppnow2012 Michael Caisse Introduction to Modern C++ Techniques 
+
+
 
 这个讲的是一些小组件，部分在AA的书中介绍过
 
