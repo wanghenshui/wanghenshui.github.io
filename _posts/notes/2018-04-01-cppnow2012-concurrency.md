@@ -158,7 +158,7 @@ void parallel_merge_sort(Iter start, Itera finish) {
 }
 ```
 
-`std:;future`
+`std::future`
 
 api是这个样子
 

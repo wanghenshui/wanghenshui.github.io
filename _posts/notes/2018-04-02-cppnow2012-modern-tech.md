@@ -32,7 +32,7 @@ struct cloneable{
   return new Derived(static_cast<Derived const&>(*this));
   }
 };
-struct bar ; clonealbe<bar>{...};
+struct bar : clonealbe<bar>{...};
 ```
 
 还有一个经典的例子是enable_shared_from_this, 作为一个观测者(weak_ptr),需要shared的时候抛出去shared_ptr
