@@ -12,7 +12,22 @@ tags: [rocksdb, c++]
 
 Write Buffer Manager正如名字，就是控制写入buffer的，这个正是memtable的总大小上限，没有设置的话会有个默认的设定比如两个memtable大小
 
+什么时候会切换memtable？
 
+![](https://bravoboy.github.io/images/memtable_switch.jpg)ScheduleFlushes | HandleWALFull |  HandleWriteBufferFull | FlushMemTable
+
+条件
+
+1. 当前线程持有db的大锁
+
+2. 当前线程是写wal文件的leader
+
+   - 如果开启了enable_pipelined_write选项(写wal和写memtable分开), 那么同时要等到成为写memtable的leader
+
+   - 判断当前wal文件是否为空，如果不为空就创建新的wal文件(recycle_log_file_num选项开启就复用)，然后构建新memtable。刷盘当前wal文件
+   - 把之前的memtable变成immutable，然后切到新memtable
+
+   - 调用InstallSuperVersionAndScheduleWork函数，这个函数会更新super_version_
 
 **Direct IO**
 
@@ -80,7 +95,7 @@ Status s = db->Flush();
 
 主要几大块， blockcache，memtable，index & filter block， pinned by iterator
 
-
+memtable也可以被write buffer manager来控制
 
 ### reference
 
@@ -89,6 +104,9 @@ Status s = db->Flush();
 3.  <https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html>
 4.  Direct IO官方文档https://github.com/facebook/rocksdb/wiki/Direct-IO>
 5.  Rate Limiter <https://github.com/johnzeng/rocksdb-doc-cn/blob/master/doc/Rate-Limiter.md>
+6.  memtable原理，看WriteBufferManager部分<https://bravoboy.github.io/2018/12/07/rocksdb-Memtable/>
+    1.  <https://zhuanlan.zhihu.com/p/29277585>
+    2.  <https://bravoboy.github.io/2018/11/30/SwitchMemtable/>
 
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
 
