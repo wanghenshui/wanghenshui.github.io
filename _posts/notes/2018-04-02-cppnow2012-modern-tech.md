@@ -2,7 +2,7 @@
 layout: post
 title:  Introduction to Modern C++ Techniques 
 category: c++
-tags: [c++, boostcon, cppnow]
+tags: [c++, boost, cppnow]
 ---
 
 {% include JB/setup %}

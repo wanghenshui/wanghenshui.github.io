@@ -2,7 +2,7 @@
 layout: post
 title: C++11 High-Level Threading
 category: c++
-tags: [c++, boostcon, cppnow]
+tags: [c++, boost, cppnow]
 ---
 
 {% include JB/setup %}

@@ -14,6 +14,10 @@ Write Buffer Manager正如名字，就是控制写入buffer的，这个正是mem
 
 什么时候会切换memtable？
 
+- Memtable的大小在一次写入后超过write_buffer_size。
+- 所有列族中的memtable大小超过db_write_buffer_size了，或者write_buffer_manager要求落盘。在这种场景，最大的memtable会被落盘
+- WAL文件的总大小超过max_total_wal_size。在这个场景，有着最老数据的memtable会被落盘，这样才允许携带有跟这个memtable相关数据的WAL文件被删除。
+
 ![](https://bravoboy.github.io/images/memtable_switch.jpg)ScheduleFlushes | HandleWALFull |  HandleWriteBufferFull | FlushMemTable
 
 条件
@@ -28,6 +32,28 @@ Write Buffer Manager正如名字，就是控制写入buffer的，这个正是mem
    - 把之前的memtable变成immutable，然后切到新memtable
 
    - 调用InstallSuperVersionAndScheduleWork函数，这个函数会更新super_version_
+
+**memtable**
+
+影响memtable的几个选项
+
+影响memtable的最重要的几个选项是：
+
+- memtable_factory: memtable对象的工厂。通过声明一个工厂对象，用户可以改变底层memtable的实现，并提供事先声明的选项。
+- write_buffer_size：一个memtable的大小
+- db_write_buffer_size：多个列族的memtable的大小总和。这可以用来管理memtable使用的总内存数。
+- write_buffer_manager：除了声明memtable的总大小，用户还可以提供他们自己的写缓冲区管理器，用来控制总体的memtable使用量。这个选项会覆盖db_write_buffer_size
+- max_write_buffer_number：内存中可以拥有刷盘到SST文件前的最大memtable数。
+
+| Memtable类型             | SkipList                     | HashSkipList                                         | HashLinkList                                  | Vector                       |
+| ------------------------ | ---------------------------- | ---------------------------------------------------- | --------------------------------------------- | ---------------------------- |
+| 最佳使用场景             | 通用                         | 带特殊key前缀的范围查询                              | 带特殊key前缀，并且每个前缀都只有很小数量的行 | 大量随机写压力               |
+| 索引类型                 | 二分搜索                     | 哈希+二分搜索                                        | 哈希+线性搜索                                 | 线性搜索                     |
+| 是否支持全量db有序扫描？ | 天然支持                     | 非常耗费资源（拷贝以及排序一生成一个临时视图）       | 同HashSkipList                                | 同HashSkipList               |
+| 额外内存                 | 平均（每个节点有多个指针）   | 高（哈希桶+非空桶的skiplist元数据+每个节点多个指针） | 稍低（哈希桶+每个节点的指针）                 | 低（vector尾部预分配的内存） |
+| Memtable落盘             | 快速，以及固定数量的额外内存 | 慢，并且大量临时内存使用                             | 同HashSkipList                                | 同HashSkipList               |
+| 并发插入                 | 支持                         | 不支持                                               | 不支持                                        | 不支持                       |
+| 带Hint插入               | 支持（在没有并发插入的时候） | 不支持                                               | 不支持                                        | 不支持                       |
 
 **Direct IO**
 
@@ -97,6 +123,8 @@ Status s = db->Flush();
 
 memtable也可以被write buffer manager来控制
 
+table_options.block_cache->GetPinnedUsage()获得第四个
+
 ### reference
 
 1.  官方文档 https://github.com/facebook/rocksdb/wiki/Write-Buffer-Manager
@@ -107,6 +135,7 @@ memtable也可以被write buffer manager来控制
 6.  memtable原理，看WriteBufferManager部分<https://bravoboy.github.io/2018/12/07/rocksdb-Memtable/>
     1.  <https://zhuanlan.zhihu.com/p/29277585>
     2.  <https://bravoboy.github.io/2018/11/30/SwitchMemtable/>
+7.  官方文档翻译<https://github.com/johnzeng/rocksdb-doc-cn/blob/master/doc/MemTable.md>
 
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
 
