@@ -202,6 +202,8 @@ int main() {
 
 - 类模板实参推导 <https://zh.cppreference.com/w/cpp/language/class_template_argument_deduction> 注意后面的User-defined deduction guides 用户定义推导指引
 
+- 这篇文章更好的写了个match，我没写成。。这个写的还挺好玩的<https://zhuanlan.zhihu.com/p/52519126>
+
   
 
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
