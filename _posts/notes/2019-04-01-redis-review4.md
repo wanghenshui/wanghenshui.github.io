@@ -1,6 +1,6 @@
 ---
 layout: post
-title: redis 代码走读 server.c 2
+title: redis 代码走读 4
 category: database
 tags: [redis, c]
 ---
