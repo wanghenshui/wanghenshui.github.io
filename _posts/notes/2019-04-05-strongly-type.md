@@ -22,9 +22,9 @@ foo(int index,int offset);
 
 具体就是在基本类型的基础上封装上各种各样的policy类，和get接口，进一步，对各种量纲做类型traits
 
+11
 
-
-然后介绍了std::chrono中的量纲 std::ratio, 类似的，利用std::ratio能实现一些
+然后介绍了std::chrono中的量纲 std::ratio, 类似的，利用std::ratio能实现一些其他的量纲
 
 ### reference
 

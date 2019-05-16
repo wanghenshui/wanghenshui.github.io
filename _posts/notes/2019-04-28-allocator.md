@@ -10,6 +10,8 @@ tags: [cpp17, c++]
 
 了解学习allocator
 
+源标题 An Allocator is a Handle to a Heap by Arthur O'Dwyer
+
 ---
 
 #### object和value语义
@@ -68,18 +70,125 @@ std::pmr::new_delete_resource 实际上就是个singleton::get
 
 std::pmr::polymorphic_allocator只要持有memory_resource的指针就行了
 
+还要注意，这里allocator仅能有copy语义而不能有move语义。见参考链接2
+
+#### rebind
+
+之前一直不理解rebind 作者列出了一个rebindable的例子 <https://wandbox.org/permlink/mHrj7Y55k3Gqu4Q5>
+
+实际上是各种容器内部实现的区别，比如`vector<int>` 内部allocator分配的T就是int，但是 `list<T>`就不一样了，内部实际上是`Node<int>`  由于这种原因才有不同的allocator构造接口(rebind接口)
+
+要让allocator和T无关，这就回到了 std::pmr这个上了，干掉背后的类型，虚函数来搞，T交给背后的memory_resource，看起来好像这里的allocator就起到了一个指针的作用 `allocator_traits<AllocT>::pointer`可能是T*，也可能是藏了好几层的玩意儿，fancy pointer，比如`boost::interprocess::offset_ptr<T>`
+
+
+
+#### fancy pointer
+
+此外，这个指针还有问题，比如他到底在堆还是在栈中？有可能都在，也就是fancy pointer场景，比如`std::list<T> ` 声明一个局部对象，考虑list的内部实现，头结点是对象本身持有的，分配在栈上，但是其他链表结点是在堆中的
+
 
 
 ### reference
 
-1.  提案<http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0532r0.pdf>
-2.  <https://zh.cppreference.com/w/cpp/utility/launder> 翻译的偏学术，结合例子看更佳
-3.  这个博客讲的很好<https://miyuki.github.io/2016/10/21/std-launder.html>
-    1.  其中涉猎的很多链接我都是先看了一遍，才搜到这个博客。。走了点弯路
-    2.  我也搜了launder的实现，结果发现这个博客已经列举了。
-4.  上面的博客援引的链接 ，也是用的同样的实例<https://stackoverflow.com/questions/39382501/what-is-the-purpose-of-stdlaunder>
-5.  folly的实现 <https://github.com/facebook/folly/blob/master/folly/lang/Launder.h>
-6.  llvm的实现<https://reviews.llvm.org/D40218>
+1. <https://github.com/CppCon/CppCon2018/blob/master/Presentations/an_allocator_is_a_handle_to_a_heap/an_allocator_is_a_handle_to_a_heap__arthur_odwyer__cppcon_2018.pdf>
+
+2. allocator的move问题 <https://cplusplus.github.io/LWG/issue2593>
+
+3. 关于fancy pointer的深度讨论<http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0773r0.html>
+
+4. 关于allocator的讨论<https://www.zhihu.com/question/274802525>
+
+   1.  这个讨论里提到了cppcon2015 allocator Is to Allocation what vector Is to Vexation by Andrei Alexandrescu 有时间总结一下 
+
+5. rebind的讨论<https://bbs.csdn.net/topics/200079053> 结论<https://www.cnblogs.com/whyandinside/archive/2011/10/23/2221675.html>
+
+   连接中的rebind指的语义上的rebind，作者的rebind例子是是这样的 注意rebind copy ctor和move ctor
+
+   ```c++
+   #include <list>
+   #include <vector>
+   #include <memory>
+   #include <stdio.h>
+   
+   namespace Stateless {
+   template<class T>
+   struct A {
+       A() { puts("default-constructed"); }
+       A(const A&) { puts("copy-constructed"); }
+       A(A&&) { puts("move-constructed"); }
+       void operator=(const A&) { puts("copy-assigned"); }
+       void operator=(A&&) { puts("move-assigned"); }
+   
+       template<class U>
+       A(const A<U>&) { puts("rebind-copy-constructed"); }
+       template<class U>
+       A(A<U>&&) { puts("rebind-move-constructed"); }
+   
+       using value_type = T;
+       T *allocate(size_t n) { return std::allocator<T>{}.allocate(n); }
+       void deallocate(T *p, size_t n) { return std::allocator<T>{}.deallocate(p, n); }
+   };
+   static_assert(std::allocator_traits<A<int>>::is_always_equal::value == true);
+   } // namespace Stateless
+   
+   namespace Stateful {
+   template<class T>
+   struct A {
+       int i = 0;
+       A() { puts("default-constructed"); }
+       A(const A&) { puts("copy-constructed"); }
+       A(A&&) { puts("move-constructed"); }
+       void operator=(const A&) { puts("copy-assigned"); }
+       void operator=(A&&) { puts("move-assigned"); }
+   
+       template<class U>
+       A(const A<U>&) { puts("rebind-copy-constructed"); }
+       template<class U>
+       A(A<U>&&) { puts("rebind-move-constructed"); }
+       
+       using value_type = T;
+       T *allocate(size_t n) { return std::allocator<T>{}.allocate(n); }
+       void deallocate(T *p, size_t n) { return std::allocator<T>{}.deallocate(p, n); }
+   };
+   static_assert(std::allocator_traits<A<int>>::is_always_equal::value == false);
+   } // namespace Stateful
+   
+   template<template<class...> class CONTAINER>
+   void test()
+   {
+       puts(__PRETTY_FUNCTION__);
+       puts("--------Stateless:--------");
+       {
+           using namespace Stateless;
+           puts("--- during default-construction:");
+           CONTAINER<int, A<int>> a;
+           puts("--- during copy-construction:");
+           CONTAINER<int, A<int>> b(a);
+           puts("--- during move-construction:");
+           CONTAINER<int, A<int>> c(std::move(a));
+           puts("--- during destructions:");
+       }
+       puts("--------Stateful:--------");
+       {
+           using namespace Stateful;
+           puts("--- during default-construction:");
+           CONTAINER<int, A<int>> a;
+           puts("--- during copy-construction:");
+           CONTAINER<int, A<int>> b(a);
+           puts("--- during move-construction:");
+           CONTAINER<int, A<int>> c(std::move(a));
+           puts("--- during destructions:");
+       }
+   }
+   
+   int main()
+   {
+       test<std::list>();
+       test<std::vector>();
+   }
+   ```
+
+   
 
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
 
