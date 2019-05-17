@@ -84,7 +84,9 @@ std::pmr::polymorphic_allocator只要持有memory_resource的指针就行了
 
 #### fancy pointer
 
-此外，这个指针还有问题，比如他到底在堆还是在栈中？有可能都在，也就是fancy pointer场景，比如`std::list<T> ` 声明一个局部对象，考虑list的内部实现，头结点是对象本身持有的，分配在栈上，但是其他链表结点是在堆中的
+此外，这个指针还有问题，比如他到底在堆还是在栈中？有可能都在，也就是fancy pointer场景，比如`std::list<T> ` 声明一个局部对象，考虑list的内部实现，头结点是对象本身持有的，分配在栈上，但是其他链表结点是在堆中的。
+
+这个话题太长了，Bob Steagall 也有个PPT，100多页，还要看看消化一下这里暂时跳过
 
 
 
