@@ -9,10 +9,12 @@ tagline: bro
 
 [Compiler Explorer](https://godbolt.org/) [c++ Insights](https://cppinsights.io/) [Wandbox](https://wandbox.org/) [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) [cpp ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
 
+[rocksdb cn doc](https://wanghenshui.github.io/rocksdb-doc-cn/)  [cpp draft](https://wanghenshui.github.io/cppwp/)
+
 ## About Me
 
-a humble coder, working in c++, python and rust
-Current research in NoSQL database, [cv](https://github.com/wanghenshui/resume/blob/master/wqw.pdf)
+A humble coder, working in c++, python and rust
+Current research in NoSQL database, [resume](https://wanghenshui.github.io/resume/)
 
 Want to learn about kernel, compiler, networking, distributed server, and so on.
 

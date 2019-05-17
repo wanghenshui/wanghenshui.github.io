@@ -275,6 +275,25 @@ allocator的复制策略
 
 还有其他粒度上的控制，比如类型控制，工厂函数，设计，block设计等。不在列举
 
+
+
+```c++
+using FList = Freelist<Mallocator, 0, -1>;
+using A = Segregator<
+	8, Freelist<Mallocator, 0, 8>,
+	128, Bucketizer<FList, 1, 128, 16>,
+	256, Bucketizer<FList, 129, 256, 32>,
+	512, Bucketizer<FList, 257, 512, 64>,
+	1024, Bucketizer<FList, 513, 1024, 128>,
+	2048, Bucketizer<FList, 1025, 2048, 256>,
+	3584, Bucketizer<FList, 2049, 3584, 512>,
+	4072*1024, CascadingAllocator<decltype(newHeapBlock)>,
+	Mallocator
+>;
+```
+
+
+
 ---
 
 总结
