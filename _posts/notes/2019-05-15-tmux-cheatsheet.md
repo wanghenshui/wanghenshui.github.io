@@ -233,3 +233,11 @@ run '~/.tmux/plugins/tpm/tpm'
 
 - 转自这里<https://gist.github.com/ryerh/14b7c24dfd623ef8edc7>
 - 这里有个详细版教程<http://louiszhai.github.io/2017/09/30/tmux/>
+
+### contact
+
+Any advice mailto:wanghenshui@qq.com, thanks! 
+
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
+
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。

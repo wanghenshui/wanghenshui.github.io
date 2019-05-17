@@ -50,7 +50,7 @@ void free(struct blk block);
   - allocator应该以block为单位
   - `rebind<U>::other`邪恶到家了
 - 无状态
-  - 甚至是个全局单例
+  - 甚至是个全局单例 monostate
 - 复杂问题：组合
   - 通常allocator都是各种size块组合的，结合着各种list tree，freelist。如何组合，以及调试，观察状态都是问题
 
@@ -293,6 +293,8 @@ allocator的复制策略
 2. 提到了cppcon2014 Making Allocators Work 需要翻出来看一下
 
 3. <http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3536.html>
+
+4. 也是神奇，搜monostate搜出来这个<https://en.cppreference.com/w/cpp/utility/variant/monostate>
 
    
 

@@ -381,5 +381,11 @@ void MemTable::Add(SequenceNumber s, ValueType type,
 1.  一个应用，作者是tikv的 https://www.jianshu.com/p/26214e45fd4a
 2.  源码分析 https://www.jianshu.com/p/9848a376d41d
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
+### contact
+
+Any advice mailto:wanghenshui@qq.com, thanks! 
+
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
+
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
 
