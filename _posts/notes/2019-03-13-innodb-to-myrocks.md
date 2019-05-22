@@ -206,6 +206,33 @@ Mitigating write stall 缓解写停顿
 
 
 
+#### Update
+
+2019-5-22 19:38:18
+
+热备不支持Innodb，不能转系统表
+
+限制
+
+- 不支持分区表，Online ddl,外键，全文索引，空间索引，表空间transport
+- gap lock支持不健全(仅primary key上支持), 使用statement方式复制会导致不一致
+- 不支持select … in share mode
+- 大小写敏感，不支持*_bin collation
+- binlog与RocksDB之间没有xa，异常crash可能丢数据。所以，MyRocks一般开启semi-sync.
+- 不支持savepoint
+- order by 不比较慢
+- 不支持MRR
+- 暂不支持O_DIRECT
+- innodb和RocksDB混合使用还不稳定
+
+来源 <http://mysql.taobao.org/monthly/2016/08/03/>
+
+
+
+mysql直接热备innodb还原到myrocks 5.7应该是无解的
+
+不过percona的xbackup支持8.0版本。
+
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 
 ### reference
@@ -223,6 +250,8 @@ Mitigating write stall 缓解写停顿
 7. myrocks介绍，有时间写个博客顺一下<https://www.percona.com/live/17/sites/default/files/slides/MyRocks_Tutorial.pdf>
 8. yc上myrocks的讨论，有点意思<https://news.ycombinator.com/item?id=15835188>
 9. yc 上关于rocksdb cockroachdb的讨论 需要做个笔记<https://news.ycombinator.com/item?id=18938737>
+10. MyRocks以及使用场景 <https://zhuanlan.zhihu.com/p/45652076>
+11. Mysql与Innodb <https://draveness.me/mysql-innodb>
 
 
 
