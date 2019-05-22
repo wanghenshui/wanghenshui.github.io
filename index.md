@@ -5,11 +5,13 @@ tagline: bro
 ---
 {% include JB/setup %}
 
-## Website I usually  used:
+## Website I usually  used
 
 [Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) \| [Rust Doc](https://doc.rust-lang.org/std/)
 
-[Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) \| [Cpp Draft](https://wanghenshui.github.io/cppwp/)\| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/)
+[Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng))\| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc))\|
+
+[Cpp Draft](https://wanghenshui.github.io/cppwp/)\| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/)
 
 ## About Me
 
