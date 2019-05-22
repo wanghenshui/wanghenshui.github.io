@@ -7,13 +7,13 @@ tagline: bro
 
 ## Website I usually  used:
 
-[Compiler Explorer](https://godbolt.org/) | [C++ Insights](https://cppinsights.io/) | [Wandbox](https://wandbox.org/) | [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) | [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
+[Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
 
-[Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) | [Cpp Draft](https://wanghenshui.github.io/cppwp/)
+[Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) \| [Cpp Draft](https://wanghenshui.github.io/cppwp/)
 
 [Rust Doc](https://doc.rust-lang.org/std/)
 
-[gist viewer](https://wanghenshui.github.io/gist-viewer/) | [Readfree](https://readfree.me/)
+[gist viewer](https://wanghenshui.github.io/gist-viewer/) \| [Readfree](https://readfree.me/)
 
 ## About Me
 
