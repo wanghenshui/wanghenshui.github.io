@@ -49,7 +49,7 @@ for(int i=0; i<100; ++i){
 
 一个实现结构
 
-![Snipaste_2019-05-20_14-52-24](../assets/Snipaste_2019-05-20_14-52-24.png)
+![Snipaste_2019-05-20_14-52-24](https://wanghenshui.github.io/assets/Snipaste_2019-05-20_14-52-24.png)
 
 感知share`share-aware` enable_shared_from_this
 
