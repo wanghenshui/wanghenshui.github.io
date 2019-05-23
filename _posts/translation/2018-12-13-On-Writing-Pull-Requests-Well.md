@@ -2,9 +2,9 @@
 layout: post
 title: 写好Pull Requests(PR)
 category: translation
-keywords: [mr,pr,git]
+tags : [git]
 ---
-
+{% include JB/setup %}
 
 
 [原文链接](http://satran.in/2018/12/10/On_Writing_Pull_Requests_Well.html) 

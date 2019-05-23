@@ -67,5 +67,5 @@ version set 属性图
   - 一个cpu指标数据分析，http://www.cs.unca.edu/brock/classes/Spring2013/csci331/notes/paper-1130.pdf
   
   
-  看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+  看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
 

@@ -1,18 +1,22 @@
 ---
 layout: page
-title: Welcome
+title: What's Up, Bro
 tagline: bro
 ---
 {% include JB/setup %}
 
-## Website I usually  used:
+## Website I usually  used
 
-[Compiler Explorer](https://godbolt.org/) [c++ Insights](https://cppinsights.io/) [Wandbox](https://wandbox.org/) [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) [cpp ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)
+[Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) \| [Rust Doc](https://doc.rust-lang.org/std/)
+
+[Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
+
+[Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) \| [Book Review](https://wanghenshui.github.io/book_review/) not finish yet
 
 ## About Me
 
-a humble coder, working in c++, python and rust
-Current research in NoSQL database, [cv](https://github.com/wanghenshui/resume/blob/master/wqw.pdf)
+A humble coder, working in c++, python and rust
+Current research in NoSQL database, [resume](https://wanghenshui.github.io/resume/)
 
 Want to learn about kernel, compiler, networking, distributed server, and so on.
 
@@ -34,11 +38,11 @@ All quarrels are but few readings.
 
 @wechat&&phone&&QQ(base64): MTg4NDQxODk1MzM= 
 
-![Wechat code](https://raw.githubusercontent.com/wanghenshui/wanghenshui.github.io/master/assets/0-1552008412820.jpg)
+![Wechat code](https://wanghenshui.github.io/assets/0-1552008412820.jpg)
 
 @email: wanghenshui@qq.com
 
-[@telegram](t.me/wanghenshui) 
+[@telegram](http://t.me/wanghenshui) 
 [@steam](https://steamcommunity.com/id/wanghenshui/) 
 [@github]( https://github.com/wanghenshui/) 
 [@zhihu](https://zhuanlan.zhihu.com/jieyaren) 

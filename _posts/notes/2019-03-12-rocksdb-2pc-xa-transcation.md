@@ -48,7 +48,11 @@ txn->Commit();
 
 dbbench改动，增加allow_2pc配置，如果有这个配置，就true， 调用定义DEFINE_bool就好了（gflags这个库也很好玩，之前吐槽没有命令行的库，孤陋寡闻）
 
-机器32核，脚本参考mark改的，核心代码
+机器32核，脚本参考mark改的，执行脚本
+
+> bash r.sh  10000000 60 32 4 /home/vdb/rocksdb-5.14.3/rdb 0 /home/vdb/rocksdb-5.14.3/db_bench
+
+核心代码
 
 ```bash
 #set -x
@@ -182,7 +186,7 @@ bool RandomTransactionInserter::DoInsert(DB* db, Transaction* txn,
 
 
 
-改动点
+改动点<sup>6</sup>
 
 - 加上transaction_db_xa
 - 所有 FLAGS_transaction_db都得或上FLAGS_transaction_db_xa，避免遗漏，或者不复用，单独再写
@@ -235,7 +239,95 @@ while (!duration.Done(1)) {
 
 
 
+我enable allow2pc 100%prepare 测了一组数据，作为对照，测了一个0%prepare 
 
+
+
+```shell
+#set -x
+numk=$1
+secs=$2
+val=$3
+batch=$4
+dbdir=$5
+sync=$6
+dbb=$7
+
+# sync, dbdir, concurmt, secs, dop
+
+function runme {
+  a_concurmt=$1
+  a_dop=$2
+  a_extra=$3
+
+  rm -rf $dbdir; mkdir $dbdir
+  # TODO --perf_level=0
+
+$dbb --benchmarks=randomtransaction --use_existing_db=0 --sync=$sync --db=$dbdir --wal_dir=$dbdir --num=$numk --duration=$secs --num_levels=6 --key_size=8 --value_size=$val --block_size=4096 --cache_size=$(( 20 * 1024 * 1024 * 1024 )) --cache_numshardbits=6 --compression_type=none --compression_ratio=0.5 --level_compaction_dynamic_level_bytes=true --bytes_per_sync=8388608 --cache_index_and_filter_blocks=0 --benchmark_write_rate_limit=0 --write_buffer_size=$(( 64 * 1024 * 1024 )) --max_write_buffer_number=4 --target_file_size_base=$(( 32 * 1024 * 1024 )) --max_bytes_for_level_base=$(( 512 * 1024 * 1024 )) --verify_checksum=1 --delete_obsolete_files_period_micros=62914560 --max_bytes_for_level_multiplier=8 --statistics=0 --stats_per_interval=1 --stats_interval_seconds=60 --histogram=1 --allow_concurrent_memtable_write=$a_concurmt --enable_write_thread_adaptive_yield=$a_concurmt --memtablerep=skip_list --bloom_bits=10 --open_files=-1 --level0_file_num_compaction_trigger=4 --level0_slowdown_writes_trigger=20 --level0_stop_writes_trigger=30 --max_background_jobs=8 --max_background_flushes=2 --threads=$a_dop --merge_operator="put" --seed=1454699926 --transaction_sets=$batch --compaction_pri=3 $a_extra -enable_pipelined_write=false
+}
+
+for dop in 1 2 4 8 16 24 32 40 48 ; do
+for concurmt in 0 1 ; do
+
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.notrx
+runme $concurmt $dop ""  >& $fn
+q1=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+t=transaction_db
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.pessim
+runme $concurmt $dop --${t}=1  >& $fn
+q2=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+t=optimistic_transaction_db
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.optim
+runme $concurmt $dop --${t}=1  >& $fn
+q3=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+t=transaction_db_xa
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.pessimxa
+runme $concurmt $dop --${t}=1  >& $fn
+q4=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+
+
+fn=o.dop${dop}.val${val}.batch${batch}.concur${concurmt}.pessimnopre
+runme $concurmt $dop --${t}=-1  >& $fn #-1 for no prepare
+q5=$( grep ^randomtransaction $fn | awk '{ print $5 }' )
+echo $dop mt${concurmt} $q1 $q2 $q3 $q4 $q5 | awk '{ printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\n", $1, $2, $3, $4, $5, $6, $7 }'
+
+done
+done
+```
+
+
+
+| 线程数 | 是否并发写 | 无事务 | 悲观事务 默认90%prepare      allwo_2pc=0 | 乐观事务 | 悲观事务  prepare 100% allwo_2pc=1 | 悲观事务      prepare 0% |
+| ------ | ---------- | ------ | ---------------------------------------- | -------- | ---------------------------------- | ------------------------ |
+| 1      | mt0        | 40631  | 22399                                    | 23447    | 22085                              | 23957                    |
+| 1      | mt1        | 40744  | 21680                                    | 23316    | 21896                              | 24040                    |
+| 2      | mt0        | 59313  | 33031                                    | 27751    | 32342                              | 36653                    |
+| 2      | mt1        | 60690  | 33169                                    | 30819    | 33349                              | 34445                    |
+| 4      | mt0        | 54808  | 41715                                    | 25583    | 37383                              | 46622                    |
+| 4      | mt1        | 74016  | 50699                                    | 29411    | 48445                              | 52160                    |
+| 8      | mt0        | 68584  | 48591                                    | 25009    | 45397                              | 59238                    |
+| 8      | mt1        | 94581  | 64892                                    | 24612    | 70616                              | 83271                    |
+| 16     | mt0        | 86554  | 60897                                    | 22602    | 58607                              | 74842                    |
+| 16     | mt1        | 186053 | 96305                                    | 21548    | 93654                              | 121303                   |
+| 24     | mt0        | 91051  | 63187                                    | 20792    | 61605                              | 79021                    |
+| 24     | mt1        | 209827 | 111059                                   | 20735    | 106036                             | 144641                   |
+| 32     | mt0        | 90318  | 64180                                    | 20839    | 62339                              | 77219                    |
+| 32     | mt1        | 185310 | 113754                                   | 20439    | 108233                             | 84580                    |
+| 40     | mt0        | 87769  | 65888                                    | 20449    | 63999                              | 80699                    |
+| 40     | mt1        | 119916 | 60919                                    | 19891    | 56265                              | 88792                    |
+| 48     | mt0        | 86097  | 67501                                    | 19838    | 66396                              | 81704                    |
+| 48     | mt1        | 119423 | 61086                                    | 19217    | 59750                              | 86127                    |
+
+
+
+markdown 不能调格间距，真破
+
+这个数据作为参考。
+
+另外，有个2pc的bug 值得关注一下 pr <https://github.com/facebook/rocksdb/pull/1768>
 
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 ### reference
@@ -245,4 +337,7 @@ while (!duration.Done(1)) {
 3. rocksdb 事务，其中有2pc事务讲解<https://zhuanlan.zhihu.com/p/31255678>
 4. myrocks deep dive，不错，关于rocksdb的部分提纲摰领<https://www.percona.com/live/plam16/sites/default/files/slides/myrocksdeepdive201604-160419162421.pdf>
 5. <https://mariadb.com/kb/en/library/myrocks-system-variables/>
+6. 我的测试改动 <https://github.com/wanghenshui/rocksdb/tree/14.3-modified-db-bench>
+7. 一个excel小知识，生成的数据如何整理成excel格式，选择这列 ->{数据}菜单 ->分列->按照空格分列，<https://zhidao.baidu.com/question/351335222>
+8. cockroachdb 用rocksdb 2pc的一个讨论，有时间仔细看看 <https://github.com/cockroachdb/cockroach/issues/16948>
 

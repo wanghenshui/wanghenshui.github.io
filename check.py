@@ -1,4 +1,5 @@
 #/bin/env python
+# -*- coding: utf-8 -*-
 import re
 import sys
 import os
@@ -26,4 +27,4 @@ def check_img():
             
 if __name__ == '__main__':
 	check_img()
-	check_post_format()
+	#check_post_format()
