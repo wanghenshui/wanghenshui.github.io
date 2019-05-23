@@ -165,6 +165,7 @@ Fridge::Fridge() : impl_(new FridgeImpl) {}
 
 - [How to implement the pimpl idiom by using unique_ptr](https://www.fluentcpp.com/2017/09/22/make-pimpl-using-unique_ptr/)
 - <https://www.boost.org/doc/libs/1_64_0/libs/core/doc/html/core/checked_delete.html#core.checked_delete.checked_delete>
+- 这条也是effective modern c++提到的一条 <https://blog.csdn.net/big_yellow_duck/article/details/52351729>
 
 ### contact
 
