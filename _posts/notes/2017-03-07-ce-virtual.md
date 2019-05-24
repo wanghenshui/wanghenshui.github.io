@@ -1,9 +1,9 @@
-```
+---
 layout: post
-title:  c++究竟是怎么实现多态的
+title: c++究竟是怎么实现多态的
 category: cpp
 tags: [c++]
-```
+---
 
 {% include JB/setup %}
 
