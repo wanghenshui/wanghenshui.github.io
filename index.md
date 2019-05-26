@@ -7,7 +7,7 @@ tagline: bro
 
 ## Website I usually  used
 
-[Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) \| [Rust Doc](https://doc.rust-lang.org/std/)
+[CppCoreGuidelines](https://isocpp.github.io/CppCoreGuidelines/)\| [Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) \| [Rust Doc](https://doc.rust-lang.org/std/)
 
 [Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
 
@@ -16,9 +16,10 @@ tagline: bro
 ## About Me
 
 A humble coder, working in c++, python and rust
-Current research in NoSQL database, [resume](https://wanghenshui.github.io/resume/)
-
+Current research in NoSQL database
 Want to learn about kernel, compiler, networking, distributed server, and so on.
+
+[Resume](https://wanghenshui.github.io/resume/)
 
 Not a pro, try my best.
 
