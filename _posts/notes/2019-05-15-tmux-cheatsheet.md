@@ -28,23 +28,23 @@ tags: [tmux, shell]
 
     tmux ls
 
-<a name="killSessions"></a>关闭会话：
+关闭会话：
 
     tmux kill-session -t 会话名
 
-<a name="killAllSessions"></a>关闭所有会话：
+关闭所有会话：
 
     tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill
 
-# 在 Tmux 中，按下 Tmux 前缀 `ctrl+b`，然后：
+在 Tmux 中，按下 Tmux 前缀 `ctrl+b`，然后：
 
-## 会话
+### 会话
 
     :new<回车>  启动新会话
     s           列出所有会话
     $           重命名当前会话
 
-## <a name="WindowsTabs"></a>窗口 (标签页)
+### 窗口 (标签页)
 
     c  创建新窗口
     w  列出所有窗口
@@ -54,13 +54,15 @@ tags: [tmux, shell]
     ,  重命名当前窗口
     &  关闭当前窗口
 
-## 调整窗口排序
+### 调整窗口排序
 
     swap-window -s 3 -t 1  交换 3 号和 1 号窗口
     swap-window -t 1       交换当前和 1 号窗口
     move-window -t 1       移动当前窗口到 1 号
 
-## <a name="PanesSplits"></a>窗格（分割窗口） 
+### 窗格（分割窗口）
+
+注意这个很常用，尤其是 o 可以和命令键一起连按，十分爽快
 
     %  垂直分割
     "  水平分割
@@ -72,7 +74,7 @@ tags: [tmux, shell]
     } 与下一个窗格交换位置
     z 切换窗格最大化/最小化
 
-## <a name="syncPanes"></a>同步窗格
+### 同步窗格
 
 这么做可以切换到想要的窗口，输入 Tmux 前缀和一个冒号呼出命令提示行，然后输入：
 
@@ -84,8 +86,7 @@ tags: [tmux, shell]
 这个选项值针对某个窗口有效，不会影响别的会话和窗口。
 完事儿之后再次执行命令来关闭。[帮助](http://blog.sanctum.geek.nz/sync-tmux-panes/)
 
-
-## 调整窗格尺寸
+### 调整窗格尺寸
 
 如果你不喜欢默认布局，可以重调窗格的尺寸。虽然这很容易实现，但一般不需要这么干。这几个命令用来调整窗格：
 
@@ -98,7 +99,7 @@ tags: [tmux, shell]
 
 
 ​    
-## 文本复制模式：
+### 文本复制模式：
 
 按下 `PREFIX-[` 进入文本复制模式。可以使用方向键在屏幕中移动光标。默认情况下，方向键是启用的。在配置文件中启用 Vim 键盘布局来切换窗口、调整窗格大小。Tmux 也支持 Vi 模式。要是想启用 Vi 模式，只需要把下面这一行添加到 .tmux.conf 中：
 
