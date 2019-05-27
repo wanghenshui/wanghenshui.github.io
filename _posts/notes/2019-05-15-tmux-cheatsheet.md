@@ -22,7 +22,10 @@ tags: [tmux, shell]
 
 恢复会话：
 
-    tmux at [-t 会话名]
+```bash
+tmux at [-t 会话名]
+tmux a #恢复上一个回话
+```
 
 列出所有会话：
 
@@ -144,6 +147,17 @@ tags: [tmux, shell]
     0              C-a          移到行首
     Space          C-Space      开始选中
                    C-t          字符调序
+
+滚屏
+
+``` 
+C-b PageUp/PageDown
+q退出滚屏
+```
+
+
+
+
 
 ## 杂项：
 
