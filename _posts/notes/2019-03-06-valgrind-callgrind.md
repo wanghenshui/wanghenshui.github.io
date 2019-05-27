@@ -29,8 +29,8 @@ kcachegrind
 
 有gprof2dot工具 [地址](https://github.com/jrfonseca/gprof2dot) [单文件](https://raw.githubusercontent.com/jrfonseca/gprof2dot/master/gprof2dot.py)
 
-```
-python gprof2dot.py --format=callgrind --output=out .dot  callgrind.out.32281
+```shell
+python gprof2dot.py --format=callgrind --output=out.dot  callgrind.out.32281
 dot -Tsvg out.dot -o graph1.svg
 ```
 

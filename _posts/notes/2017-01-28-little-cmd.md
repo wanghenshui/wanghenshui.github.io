@@ -58,6 +58,12 @@ tags: []
 
   - cmder /register all
 
+
+
+- 特殊场景
+  - 端口占用 netstat|grep 11221
+    - lsof -i :11221抓到对应的进程
+
 ---
 
 看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
