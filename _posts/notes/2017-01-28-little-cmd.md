@@ -65,6 +65,9 @@ tags: []
     - du -hsx * | sort -rh | head -10
   - 端口占用 netstat|grep 11221
     - lsof -i :11221抓到对应的进程
+- putty
+  - alt enter退出全屏
+  - 记得保存设置
 
 ---
 
@@ -76,6 +79,7 @@ tags: []
 - tar <https://blog.csdn.net/silvervi/article/details/6325698>
 - <https://my.oschina.net/huxuanhui/blog/58119>
 - scp <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html>
+- putty 保存设置<https://blog.csdn.net/tianlesoftware/article/details/5831605>
 
 
 
