@@ -13,6 +13,8 @@ tagline: bro
 
 [Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) \| [Book Review](https://wanghenshui.github.io/book_review/) not finish yet
 
+[Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)
+
 ## About Me
 
 A humble coder, working in c++, python and rust

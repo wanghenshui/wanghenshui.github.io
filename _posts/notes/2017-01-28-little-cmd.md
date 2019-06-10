@@ -66,7 +66,10 @@ tags: []
   - 端口占用 netstat|grep 11221
     - lsof -i :11221抓到对应的进程
 - putty
-  - alt enter退出全屏
+  - alt enter退出全屏 在window behaviour里，勾选最后一个
+    - [x] full screen on alt-enter
+  - 小键盘设置，在terminal features 勾选 
+    - [x] disable application keypad mode
   - 记得保存设置
 
 ---
