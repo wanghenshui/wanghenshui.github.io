@@ -71,6 +71,8 @@ tags: []
   - 小键盘设置，在terminal features 勾选 
     - [x] disable application keypad mode
   - 记得保存设置
+- telnet 
+  - 退出 ctrl  ]
 
 ---
 

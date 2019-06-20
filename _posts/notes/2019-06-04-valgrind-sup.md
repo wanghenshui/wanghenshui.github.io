@@ -61,7 +61,7 @@ sup表示suppress，避免valgrind出错的意思，这个文件定义一系列�
 
 ```
 
-这个很明显，valgrind有问题，这段代码没问题却告警了
+这个很明显，valgrind有问题，这段代码没问题（问题不大）却告警了
 
 ```c++
   struct epoll_event ee;
@@ -70,7 +70,9 @@ sup表示suppress，避免valgrind出错的意思，这个文件定义一系列�
   return epoll_ctl(epfd_, EPOLL_CTL_ADD, fd, &ee);
 ```
 
-实际上没啥问题，怎么办呢。生成类似的sup规则
+这个原因见参考链接，实际上需要加个memset，由于padding问题。
+
+但是这步完全可以省掉，生成类似的sup规则
 
 ```
 {
@@ -102,6 +104,8 @@ valgrind --leak-check=full --show-reachable=yes --error-limit=no --gen-suppressi
 ### ref
 
 - <https://wiki.wxwidgets.org/Valgrind_Suppression_File_Howto>
+- 这有个epoll告警的例子<https://github.com/libuv/libuv/issues/1215>
+- 上面这个epoll告警的一个解决办法，实际上屏蔽就可以<https://stackoverflow.com/questions/19364942/points-to-uninitialised-bytes-valgrind-errors>
 
 
 ### contact

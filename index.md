@@ -18,7 +18,9 @@ tagline: bro
 ## About Me
 
 A humble coder, working in c++, python and rust
+
 Current research in NoSQL database
+
 Want to learn about kernel, compiler, networking, distributed server, and so on.
 
 [Resume](https://wanghenshui.github.io/resume/)
