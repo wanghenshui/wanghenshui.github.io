@@ -42,6 +42,8 @@ mvc的毛病
 
 ![1553086836467](https://wanghenshui.github.io/assets/1553086836467.png)
 
+我感觉这个东西就是Immutable.js的思路？
+
 ---
 
 ### reference
