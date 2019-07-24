@@ -40,7 +40,15 @@ stream key 每条消息存储并生成streamid-seq，然后id和消费组挂钩�
 
 首先，stream key本身维护一组信息，需要知道最后一个streamid，需要知道stream个数，本身就算是一个元数据
 
-其次，stream key需要和子字段，streamid编码，方便区分是谁的key的streamID下的字段，
+其次，stream key需要和子字段，streamid编码，方便区分是谁的key的streamID下的字段
+
+消费组，这也算是一个元数据，需要保存最后一个消费到的id，为了快速定位消费组，可以保存到stream key的value里。
+
+然后就是消费者了，这个就是PEL，消费者应该没有必要单独存一个表 。
+
+
+
+kafka是怎么实现的呢？
 
 
 
