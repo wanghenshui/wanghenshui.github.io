@@ -15,6 +15,8 @@ tagline: bro
 
 [Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)
 
+[ISOCPP Blog](https://isocpp.org/blog) | [Fluent C++](https://www.fluentcpp.com/) | [Bartek's Awesome blog](https://www.bfilipek.com/)
+
 ## About Me
 
 A humble coder, working in c++, python and rust
