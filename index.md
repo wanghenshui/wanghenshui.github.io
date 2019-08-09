@@ -11,9 +11,9 @@ tagline: bro
 
 [Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
 
-[Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) \| [Book Review](https://wanghenshui.github.io/book_review/) not finish yet
+[Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) \| [Book Review](https://wanghenshui.github.io/book_review/) not finish yet |
 
-[Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  | [ISOCPP Blog](https://isocpp.org/blog) | [Fluent C++](https://www.fluentcpp.com/) | [Bartek's Awesome blog](https://www.bfilipek.com/)
+[Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  | [ISOCPP Blog](https://isocpp.org/blog) | [Fluent C++](https://www.fluentcpp.com/) | [Bartek's Awesome blog](https://www.bfilipek.com/) 
 
 ## About Me
 
