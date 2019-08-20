@@ -9,17 +9,25 @@ tagline: bro
 
 [CppCoreGuidelines](https://isocpp.github.io/CppCoreGuidelines/)\| [Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) \| [Rust Doc](https://doc.rust-lang.org/std/)
 
-[Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
+[rocksdb blog](https://rocksdb.org/blog/) \| [Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
 
-[Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) \| [Book Review](https://wanghenshui.github.io/book_review/) not finish yet |
+[Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) \| [Book Review](https://wanghenshui.github.io/book_review/) not finish yet \|
 
-[Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  | [ISOCPP Blog](https://isocpp.org/blog) | [Fluent C++](https://www.fluentcpp.com/) | [Bartek's Awesome blog](https://www.bfilipek.com/) , cool c++ blog| 
+[Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  \| [ISOCPP Blog](https://isocpp.org/blog) \| [Fluent C++](https://www.fluentcpp.com/) \| [Bartek's Awesome c++  blog](https://www.bfilipek.com/)\| [Simon Brand's c++ blog](https://blog.tartanllama.xyz/)
+
+[leveldb](https://dirtysalt.github.io/html/leveldb.html) \| [Crafting Interpreters](http://craftinginterpreters.com/contents.html) \| [redbase](https://cs.stanford.edu/people/widom/cs346/) \| [TDOP](https://tdop.github.io/) \|
+
+[Awesome Distribute systems](https://github.com/zhenlohuang/awesome-distributed-systems)\| [ds](https://github.com/ty4z2008/Qix/blob/master/ds.md) \| [Christopher Meiklejohn's cool blog, about distribute system](http://christophermeiklejohn.com/) \|
+
+[Rust Macro cn](http://blog.luxko.site/tlborm-chinese/book/) \|
 
 
 
 some cool chinese's blog
 
 [dirtysalt](https://dirtysalt.github.io/html/blogs.html) 
+
+[zenlife.tk](http://zenlife.tk/)
 
 ## About Me
 
