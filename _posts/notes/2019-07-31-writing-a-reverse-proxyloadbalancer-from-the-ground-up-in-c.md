@@ -77,7 +77,9 @@ void handle_client_connection(int client_socket_fd,
 }
 ```
 
-错误处理
+
+
+这是简单的同步写法。当然nginx肯定要用epoll来尽量异步
 
 
 
@@ -88,6 +90,7 @@ void handle_client_connection(int client_socket_fd,
 1. http://www.gilesthomas.com/2013/08/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-1/
 2. http://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-2-handling-multiple-connections-with-epoll/
 3. 代码仓库 https://github.com/gpjt/rsp
+4. 这有个haproxy的代码解析。https://illx10000.github.io/2018/09/03/16.html
 
 Any advice mailto:wanghenshui@qq.com, thanks! 
 
