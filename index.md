@@ -15,21 +15,29 @@ tagline: bro
 
 [Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  \| [ISOCPP Blog](https://isocpp.org/blog) \| [Fluent C++](https://www.fluentcpp.com/) \| [Bartek's Awesome c++  blog](https://www.bfilipek.com/)\| [Simon Brand's c++ blog](https://blog.tartanllama.xyz/)
 
+[python anti-pattern](https://docs.quantifiedcode.com/python-anti-patterns/index.html) \|
+
 [leveldb](https://dirtysalt.github.io/html/leveldb.html) \| [Crafting Interpreters](http://craftinginterpreters.com/contents.html) \| [redbase](https://cs.stanford.edu/people/widom/cs346/) \| [TDOP](https://tdop.github.io/) \|
 
 [Awesome Distribute systems](https://github.com/zhenlohuang/awesome-distributed-systems)\| [ds](https://github.com/ty4z2008/Qix/blob/master/ds.md) \| [Christopher Meiklejohn's cool blog, about distribute system](http://christophermeiklejohn.com/) \|
 
 [Rust Macro cn](http://blog.luxko.site/tlborm-chinese/book/) \|
 
+[YAML lint](http://www.yamllint.com/) \|
+
 
 
 some cool chinese's blog
+
+[loopjump](http://loopjump.com/)
 
 [dirtysalt](https://dirtysalt.github.io/html/blogs.html) 
 
 [zenlife.tk](http://zenlife.tk/)
 
 [andremouche, cool girl](http://andremouche.github.io/)
+
+[xargin](https://www.xargin.com/)
 
 ## About Me
 
