@@ -38,6 +38,8 @@ tags: []
   - ctrl + win + →
   - win + L 锁屏
   - 磁盘格式转换 convert h: /fs:ntfs
+  - windows查看端口占用 `netstat -aon|findstr 25340` 最后一行就是进程id
+  - windows 杀死进程，在任务管理找不到的前提下 taskkill /f /pid 13656
 - VS
 
   - Ctrl+k Ctrl+f 对齐(format)
@@ -73,6 +75,17 @@ tags: []
   - 记得保存设置
 - telnet 
   - 退出 ctrl  ]
+
+
+
+特殊需求
+
+拆分 合并文件
+
+```shell
+split -b 10M data
+cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后台运行
+```
 
 ---
 

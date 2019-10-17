@@ -227,6 +227,10 @@ Prefer `=default` over writing an equivalent implementation by hand, even if tha
 
 声明成友元函数，或者用个wrapunique，或者替换成shared_ptr
 
+##### totw #141: Beware Implicit Conversions to bool
+
+bool转换的问题。属于老生常谈了。特定类型就需要实现safe bool，一般类型用`option<T>`包装一层 `absl::optional<T>::has_value()`判断
+
 ##### totw #149 Object Lifetimes vs. `=delete`
 
 不只是构造函数析构函数可以标记为delete，普通成员函数也可以标记delete。这就引入了复杂性问题，是让类更完备还是更复杂
