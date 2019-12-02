@@ -31,6 +31,8 @@ tagline: bro
 
 [YAML lint](http://www.yamllint.com/) \|
 
+[oi wiki](https://oi-wiki.org/)  \|
+
 
 
 some cool chinese's blog
