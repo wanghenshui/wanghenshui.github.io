@@ -35,6 +35,7 @@ tagline: bro
 
 [random string](https://www.random.org/strings/) \|
 
+[current time] (https://currentmillis.com/) \|
 
 
 some cool chinese's blog
