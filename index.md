@@ -29,11 +29,13 @@ tagline: bro
 
 [Rust Macro cn](http://blog.luxko.site/tlborm-chinese/book/) \|
 
+[bash cheat sheet](https://devhints.io/bash) \|
+
 [YAML lint](http://www.yamllint.com/) \|
 
 [oi wiki](https://oi-wiki.org/)  \|
 
-[random string](https://www.random.org/strings/) \|
+[random string](https://www.random.org/strings/) \| [random password](https://passwordsgenerator.net/) \|
 
 [current time] (https://currentmillis.com/) \|
 
