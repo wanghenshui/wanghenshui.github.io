@@ -1,6 +1,6 @@
 ---
 layout: post
-title: tex cheatchart
+title: tex cheatsheet
 category: tools
 tags: [tex]
 ---
