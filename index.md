@@ -37,10 +37,13 @@ tagline: bro
 
 [random string](https://www.random.org/strings/) \| [random password](https://passwordsgenerator.net/) \|
 
-[current time] (https://currentmillis.com/) \|
+[current time](https://currentmillis.com/)  \|
+
 
 
 some cool chinese's blog
+
+[hcoona](https://hcoona.github.io/)  awesome database stuff.
 
 [loopjump](http://loopjump.com/)
 
@@ -100,7 +103,9 @@ All quarrels are but few readings.
 [@zhihu](https://zhuanlan.zhihu.com/jieyaren) 
 [@douban]( https://www.douban.com/people/61740133/) 
 
+Any advice mailto:wanghenshui@qq.com, thanks! 
 
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
 
 
 

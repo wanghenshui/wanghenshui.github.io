@@ -118,3 +118,13 @@ tags : [c, gcc]
 6. When you fix a bug, make sure you are really fixing the underlying  cause of the bug and not just the symptom of the bug. Ask yourself how  many times you have fixed the same type of bug.
 7. Strive to write code that is straightforward and easily understandable by others. Avoid writing code that pulls a lot of tricks.
 8. Finally, make sure that you use the Windows debug kernel all the  time. It contains extra error checking that can automatically detect  certain types of bugs that go undetected in the retail release of  Windows
+
+
+
+---
+
+Any advice mailto:wanghenshui@qq.com, thanks! 
+
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
+
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。

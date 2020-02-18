@@ -47,3 +47,13 @@ tags : [git]
 当你改动一个bug的时候，往往也想顺便改个变量名字顺便改个文件结构，请不要这么做。这会使评审走读原本的改动变得困难。本来就是几个小改动，上面这样改可能看起来就是一大堆函数添加删除改动很大。将这种改动和修bug拆开
 
 代码是写出来给别人读的。我认为这在社区中已经说过很多次，PR更应该遵循。它表达出我作为一个作者在项目中改动的意图。这不简单，这需要时间和思考。但利大于弊。如果我希望评审做好工作，那我的工作应该让他更轻松。记住这个动机，它会改变创建PR这个流程
+
+
+
+---
+
+Any advice mailto:wanghenshui@qq.com, thanks! 
+
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
+
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。

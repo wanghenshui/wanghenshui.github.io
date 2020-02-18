@@ -60,6 +60,15 @@ void PosixWritableFile::SetWriteLifeTimeHint(Env::WriteLifeTimeHint hint) {
 
 ...结果显然了，不支持`fcntl`  `F_SET_RW_HINT`选项。
 
+注意：
+
+- 如果需要跑valgrind，编译的rocksdb需要定义`ROCKSDB_VALGRIND_RUN`
+- 如果有必要，最好也定义PORTABLE，默认是march=native可能会遇到指令集不支持
+
+
+
+
+
 特意搜了一下，这个参数是这样定义的
 
 `env/io_posix.cc`

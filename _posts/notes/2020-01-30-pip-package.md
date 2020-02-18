@@ -104,3 +104,12 @@ redis的目录也很简单，就一层redis目录，没有我那层src嵌套（�
 
 说的十分粗糙，但是临时用一下造一个粗糙的轮子包够用了。
 
+
+
+---
+
+Any advice mailto:wanghenshui@qq.com, thanks! 
+
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
+
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。

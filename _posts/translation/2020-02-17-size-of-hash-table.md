@@ -88,3 +88,11 @@ struct BucketItem
  博客地址 https://bduvenhage.me/performance/2019/04/22/size-of-hash-table.html
 
 作者的代码 https://github.com/bduvenhage/Bits-O-Cpp/blob/master/containers/main_hash_table.cpp
+
+---
+
+Any advice mailto:wanghenshui@qq.com, thanks! 
+
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
+
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
