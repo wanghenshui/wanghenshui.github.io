@@ -1,8 +1,8 @@
 ---
 layout: post
 title: unordered set 背后的堆分配行为
-category: translation
-tags : [rocksdb, redis]
+category: [translation,cpp]
+tags : [cpp, algorithm]
 ---
 {% include JB/setup %}
 
