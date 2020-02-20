@@ -1,9 +1,9 @@
-```
+---
 layout: post
 title: 使用perl模块 graph easy 画图
 category: tools
 tags: perl
-```
+---
 
 {% include JB/setup %}
 
@@ -47,8 +47,10 @@ graph-easy文件在bin目录下，拷贝到usr/bin或者使用路径访问都可
 
 还算省事儿，有机会读读代码实现。（又挖坑）
 
-## 参考
+---
 
-这里有个教程 https://weishu.gitbooks.io/graph-easy-cn
+Any advice mailto:wanghenshui@qq.com, thanks! 
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
+
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。

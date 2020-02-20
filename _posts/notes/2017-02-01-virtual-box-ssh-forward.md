@@ -28,8 +28,6 @@ service start sshd
 
 使用ssh  -p 12345 root@localhost 访问即可
 
-
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 ---
 
 到此为止下面是牢骚
@@ -42,9 +40,12 @@ service start sshd
 
 有个[issue](https://github.com/Microsoft/WSL/issues/2291#issuecomment-383698720) 解释了半天也没说（或者我没看明白）不用hyper-v能不能用docker，所以只能搞虚拟机，还要在开个窗口麻烦，所以搞个转发wsl访问
 
+---
 
 
 
+Any advice mailto:wanghenshui@qq.com, thanks! 
 
+Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
 
-
+看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
