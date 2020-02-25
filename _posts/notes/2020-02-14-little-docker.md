@@ -46,7 +46,13 @@ docker exec -it 8b947752d9d4 bash
 docker container stop _container_name_
 ```
 
+拷贝文件
 
+```shell
+docker cp /root/xx hardcore_varahamihira:/root/
+```
+
+hardcore_varahamihira是docker名字
 
 ---
 
