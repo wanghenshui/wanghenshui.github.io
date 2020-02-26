@@ -7,7 +7,9 @@ tagline: bro
 
 ## Website I usually  used
 
-[CppCoreGuidelines](https://isocpp.github.io/CppCoreGuidelines/)\| [Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) \| [Rust Doc](https://doc.rust-lang.org/std/) \| [demangle online](http://demangler.com/) \| [c++filtjs](https://d.fuqu.jp/c++filtjs/) \| [ISOCPP Blog](https://isocpp.org/blog) \| [Fluent C++](https://www.fluentcpp.com/) \| 
+[CppCoreGuidelines](https://isocpp.github.io/CppCoreGuidelines/)\| [Compiler Explorer](https://godbolt.org/) \| [C++ Insights](https://cppinsights.io/) \| [Wandbox](https://wandbox.org/) \| [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html#acknowledgements) \| [C++ Ref](http://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) \| [Rust Doc](https://doc.rust-lang.org/std/) \| 
+
+[demangle online](http://demangler.com/) \| [c++filtjs](https://d.fuqu.jp/c++filtjs/) \| [ISOCPP Blog](https://isocpp.org/blog) \| [Fluent C++](https://www.fluentcpp.com/) \| 
 
 [rocksdb blog](https://rocksdb.org/blog/) \| [Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
 
@@ -17,11 +19,13 @@ tagline: bro
 
 [python anti-pattern](https://docs.quantifiedcode.com/python-anti-patterns/index.html) \| [Rust Macro cn](http://blog.luxko.site/tlborm-chinese/book/) \|
 
-[highscalability](http://highscalability.com/) \| [programming in the twenty-first century](https://prog21.dadgum.com/23.html) \| [Building a Data Pipeline - Languages and Stack](https://blog.subnetzero.io/post/2018/11/grimwhisker-language-and-stack/) \| [leveldb](https://dirtysalt.github.io/html/leveldb.html) \| [Crafting Interpreters](http://craftinginterpreters.com/contents.html) \| [redbase](https://cs.stanford.edu/people/widom/cs346/) \| [TDOP](https://tdop.github.io/) \|
+[highscalability](http://highscalability.com/) \| [programming in the twenty-first century](https://prog21.dadgum.com/23.html) \| [Building a Data Pipeline - Languages and Stack](https://blog.subnetzero.io/post/2018/11/grimwhisker-language-and-stack/) \|
+
+ [leveldb](https://dirtysalt.github.io/html/leveldb.html) \| [Crafting Interpreters](http://craftinginterpreters.com/contents.html) \| [redbase](https://cs.stanford.edu/people/widom/cs346/) \| [TDOP](https://tdop.github.io/) \|
 
 [Awesome Distribute systems](https://github.com/zhenlohuang/awesome-distributed-systems)\| [ds](https://github.com/ty4z2008/Qix/blob/master/ds.md) \| [Christopher Meiklejohn's cool blog, about distribute system](http://christophermeiklejohn.com/) \| [baptiste-wicht's cool blog, about c++](https://baptiste-wicht.com/) \|
 
-[bash cheat sheet](https://devhints.io/bash) \| [YAML lint](http://www.yamllint.com/) \| [oi wiki](https://oi-wiki.org/)  \| [Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  \|  [ascii table](http://www.asciitable.com/) \|
+[bash cheat sheet](https://devhints.io/bash) \| [YAML lint](http://www.yamllint.com/) \| [oi wiki](https://oi-wiki.org/)  \| [Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  \|  [ascii table](http://www.asciitable.com/) \| [regex viewer](https://regexper.com/) \|
 
 [random string](https://www.random.org/strings/) \| [random password](https://passwordsgenerator.net/) \| [current time](https://currentmillis.com/)  \|
 
