@@ -17,8 +17,8 @@ tags: []
 
   - Ctrl + L清屏
   - mv filename(/*) -t directory 也有重命名功能
-
-  - du -a du -h
+- du -a du -h
+    - du -h --max-depth=1 常用，看一个目录
   - file libvswrtp.so 查询文件信息（查链接库版本一个小经验）ldd
 - win
 
