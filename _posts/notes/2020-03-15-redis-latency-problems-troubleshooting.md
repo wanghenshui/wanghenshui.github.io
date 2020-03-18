@@ -1,8 +1,8 @@
 ---
 layout: post
-title: (译)Redis响应延迟问题排查
-category: database
-tags: [redis]
+title: (转)(译)Redis响应延迟问题排查
+category: [database, translation, debug]
+tags: [redis,translation]
 ---
 {% include JB/setup %}
 
