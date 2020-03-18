@@ -14,6 +14,14 @@ tags: [redis,translation]
 
 ---
 
+
+
+转载自https://nullcc.github.io/2018/02/15/(%E8%AF%91)Redis%E5%93%8D%E5%BA%94%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/
+
+非常感谢！ 博客不错，比我的好看多了
+
+---
+
 本文翻译自[Redis latency problems troubleshooting](https://redis.io/topics/latency)。
 
 
@@ -456,13 +464,7 @@ CONFIG SET watchdog-period 500
 
 
 
----
 
-## 参考
-
-- 转载自https://nullcc.github.io/2018/02/15/(%E8%AF%91)Redis%E5%93%8D%E5%BA%94%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/
-
-  非常感谢！ 博客不错，比我的好看多了
 
 ---
 
