@@ -1,6 +1,6 @@
 ---
 layout: post
-title: advanced metaprogramming in classic c++ 1.2 特化和参数推导
+title: (译)advanced metaprogramming in classic c++ 1.2 特化和参数推导
 category: translation
 tags: [c++, template]
 ---

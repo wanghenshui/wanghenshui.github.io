@@ -1,6 +1,6 @@
 ---
 layout: post
-title: advanced metaprogramming in classic c++ 1.3 风格惯例，约定 style conventions
+title: (译)advanced metaprogramming in classic c++ 1.3 风格惯例，约定 style conventions
 category: translation
 tags: [c++, template]
 ---

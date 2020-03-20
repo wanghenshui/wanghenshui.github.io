@@ -1,6 +1,6 @@
 ---
 layout: post
-title: advanced metaprogramming in classic c++ 1.5-1.7 代码安全，编译器约定，预处理器
+title: (译)advanced metaprogramming in classic c++ 1.5-1.7 代码安全，编译器约定，预处理器
 category: translation
 tags: [c++, template]
 ---

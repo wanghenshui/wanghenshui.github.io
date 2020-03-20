@@ -43,6 +43,8 @@ some cool chinese's blog
 
 [andremouche, cool girl](http://andremouche.github.io/)
 
+[baotiao, mysql stuff](http://baotiao.github.io/)
+
 [xargin](https://www.xargin.com/)
 
 [meituan tech blog](https://tech.meituan.com/)

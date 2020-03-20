@@ -1,6 +1,6 @@
 ---
 layout: post
-title: advanced metaprogramming in classic c++ 3 静态编程
+title: (译)advanced metaprogramming in classic c++ 3 静态编程
 category: translation
 tags: [c++, template]
 ---

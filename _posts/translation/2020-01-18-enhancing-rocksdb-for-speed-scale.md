@@ -1,6 +1,6 @@
 ---
 layout: post
-title: yugabytedb 在rocksdb上做的改动
+title: (译)yugabytedb 在rocksdb上做的改动
 category: [translation, database]
 tags : [rocksdb]
 ---

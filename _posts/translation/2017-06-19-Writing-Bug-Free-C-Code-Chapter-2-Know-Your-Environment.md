@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Writing Bug Free C Code Chapter 2 Know Your Environment
+title: (译)Writing Bug Free C Code Chapter 2 Know Your Environment
 category: translation
 tags : [c, gcc]
 ---
