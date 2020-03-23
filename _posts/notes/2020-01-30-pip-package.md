@@ -44,6 +44,9 @@ python setup.py install
 
 以我的包为例，目录结构是
 
+
+
+```
 fake_redis_command/
 ├── HACKING.txt
 ├── MANIFEST.in
@@ -68,8 +71,7 @@ fake_redis_command/
         ├── not-zip-safe
         ├── requires.txt
         └── top_level.txt
-
-
+```
 
 大部分都是和包不相关的，主要`setup.py文件`要写对，比如我的文件只有src/fake_redis_command/下一个文件，还是`__init__.py`文件，所以`setup.py文件`里写的
 

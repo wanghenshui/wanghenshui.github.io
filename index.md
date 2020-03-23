@@ -25,6 +25,8 @@ tagline: bro
 
 [Awesome Distribute systems](https://github.com/zhenlohuang/awesome-distributed-systems)\| [ds](https://github.com/ty4z2008/Qix/blob/master/ds.md) \| [Christopher Meiklejohn's cool blog, about distribute system](http://christophermeiklejohn.com/) \| [baptiste-wicht's cool blog, about c++](https://baptiste-wicht.com/) \|
 
+[tromey, cool stuff about compile and security](https://tromey.com/blog/) \|
+
 [bash cheat sheet](https://devhints.io/bash) \| [YAML lint](http://www.yamllint.com/) \| [oi wiki](https://oi-wiki.org/)  \| [Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  \|  [ascii table](http://www.asciitable.com/) \| [regex viewer](https://regexper.com/) \|
 
 [random string](https://www.random.org/strings/) \| [random password](https://passwordsgenerator.net/) \| [current time](https://currentmillis.com/)  \|

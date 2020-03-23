@@ -2,7 +2,7 @@
 layout: post
 title: 常用命令的整理
 category: tools
-tags: []
+tags: [linux]
 ---
 {% include JB/setup %}
 
@@ -80,6 +80,25 @@ tags: []
 
 特殊需求
 
+git统计提交行数
+
+```bash
+git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -  $2 } END { printf "added lines: %s, removed lines: %s, total lines:  %s\n", add, subs, loc }'
+```
+比较两个文件夹
+
+```bash
+ diff -Nrq a b
+```
+
+
+
+列出目录几层的文件
+
+```bash
+tree -L 1
+```
+
 拆分 合并文件
 
 ```shell
@@ -98,6 +117,9 @@ cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后�
 - <https://my.oschina.net/huxuanhui/blog/58119>
 - scp <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html>
 - putty 保存设置<https://blog.csdn.net/tianlesoftware/article/details/5831605>
+- tree https://www.jianshu.com/p/f117be185c6f
+  - tree在markdown中格式会乱的解决办法，用`````` https://stackoverflow.com/questions/19699059/representing-directory-file-structure-in-markdown-syntax
+- diff https://blog.csdn.net/longxj04/article/details/7033744
 
 
 
