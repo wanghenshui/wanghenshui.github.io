@@ -110,7 +110,7 @@ tags: []
 
       - VMA
 
-        ![image-20200313121136446](../../assets/image-20200313121136446.png)
+        ![image-20200313121136446](https://wanghenshui.github.io/assets/image-20200313121136446.png)
 
     - 将CPU指令集设定成可执行文件入口地址，启动执行
 
@@ -136,8 +136,10 @@ tags: []
   | 栈       | √    | √    | x    | 匿名，无映像，可向下拓展 |
 
 -  内核装载ELF的优化
+  
   - 直接为0，bss不映射扔到堆里
 - 段地址对齐以及优化
+  
   - 碎片浪费 ->共享物理页，映射多次
 - 进程栈初始化
 - 内核装载ELF过程简介
@@ -194,9 +196,10 @@ tags: []
           ```
 
       - 全局变量怎么处理
+        
         - 可执行文件bss段创建库的全局变量副本 加一条mov来访问
-      - 数据段地址无关性
-
+  - 数据段地址无关性
+      
       
 
 - 延迟绑定PLT
@@ -273,8 +276,106 @@ tags: []
   - `/usr/local/lib` 第三方库，python解析器的lib，之类的
 - 共享库的查找过程
   - `.dynamic`段中`DT_NEED`列出路径，如果是绝对路径，就会找这个文件，如果是相对路径，就会从`/lib` `/usr/lib` `/etc/ld.so.conf`配置文件指定的目录中查找
-    - 每次查`/etc/ld.so.conf`必然很慢，ldconfig会cache一份`/etc/ld.so.cache`
+    - 每次查`/etc/ld.so.conf`中的目录必然很慢，ldconfig会cache一份`/etc/ld.so.cache`
     - 更改/etc/ld.so.conf需要运行`ldconfig` 重新cache一份
+- 环境变量
+  - `LD_LIBRARY_PATH` 临时更改某个应用程序的共享库查找路径，不影响整体 
+    - `LD_LIBRARY_PATH=/home/user /bin/ls`
+    - 相同方案，直接启动动态链接器运行程序 `/lib/ld-linux.so.2 -library-path /home/user /bin/ls`
+    - 整体查找顺序 `LD_LIBRARY_PATH` -> `/etc/ld.so.cache` -> `/usr/lib`, `/lib`
+    - 注意不要滥用`LD_LIBRARY_PATH`，最好不要`export`
+  - `LD_PRELOAD` 指定覆盖，优先加载，比`LD_LIBRARY_PATH`优先级还高
+    - 同样，有个`/etc/ld.so.preload`
+  - `LD_DEBUG` 打开动态链接器的调试功能
+    - LD_DEBUG=files ls
+      - 还支持libs bindings versions reloc symbols statictics all help
+- 共享库的创建和安装
+  - `gcc -shared -Wl, -soname, my_soname -o libraty_name source_files libraty_files` 
+    - soname 不指定，就没有，ldlconfig就没用
+    - 调试先别去掉符号和调试信息（strip），以及`-fomit-frame-pointer`
+    - 查找lib目录，可以临时定义`LD_LIBRARY_PATH`，也可以`-rpath=/home/mylib`
+    -   符号表，用不到不会导出。如果延迟导入`dlopen`可能就会反向引用失败，使用`-export-dynamic`
+  - 清除符号信息 strip libfoo.so
+    - 生成库不带信息 ld -s/ld -S S debug symbol， s all symbol
+  - 共享库安装 ldconfig -n lib_dir
+  - 共享库构造与析构
+    - ` __attribute__((constructor))` 在main之前/dlopen返回之前执行
+    - `__attribute__((destructor))` 在main执行结束/dlclose返回之前执行
+    - 必须依赖startfiles stdlib
+  - 共享库脚本
+
+### 内存
+
+- 程序的内存布局
+
+  - 栈，维护函数调用上下文
+  - 堆，动态分配内存区
+  - 可执行文件映像
+  - 保留区
+
+- 栈与调用惯例
+
+  - 堆栈帧 
+
+    - 函数返回地址和参数
+
+    - 临时变量
+
+    - 保存的上下文 寄存器 ebp esp![image-20200324105106459](https://wanghenshui.github.io/assets/image-20200324105106459.png)
+
+      - 参数入栈，有遗漏的参数，分配给寄存器
+      - 下一条指令的地址入栈，跳转到函数体执行
+
+      ```asm
+      push ebp#后面会出栈恢复
+      mov ebp, esp
+      #sub esp, xxx
+      #push xxx
+      
+      ####结束后，与开头正好相反
+      #pop xxx
+      mov esp, ebp
+      pop ebp
+      ret
+      ```
+
+  - 调用惯例
+
+    - 函数参数的传递顺序和方式
+    - 栈维护方式
+    - 名字修饰策略 name-mangling `cdecl`
+
+  - 函数返回值传递
+
+    - 寄存器有限，如果返回值太大，寄存器传指针，做复制动作`rep move` 或者`call memcpy`
+      - 返回值多出来的空间占用，在栈上回预留
+    - 流程 栈空间预留，预留地址传给函数-> 函数执行拷贝，把地址传出 ->外层函数把地址指向的对象拷贝 拷贝两次。
+      - 返回大对象非常浪费
+      - 返回值优化可能会优化掉一次拷贝。
+
+- 堆与内存管理
+
+  - free list 容易损坏，性能差
+  - bitmap 碎片浪费
+  - 内存池
+
+
+
+### 运行时
+
+- main并不是开始
+
+  ```asm
+  void _start()
+  {
+      %ebp = 0;
+      int argc = `pop from stack`;
+      char** argv = `top of stack`;
+      __libc_start_main(main, argc, argv, libc_csu_init, __lib_csu_fini, edx, `top of stack`);
+  }
+  ```
+
+  
 
 ---
 
