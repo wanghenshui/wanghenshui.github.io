@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 程序员自我修养链接加载库 读书笔记
-category: tools
-tags: []
+category: [tools, book review]
+tags: [debug, c, gdb, c++, gcc, linux]
 ---
 {% include JB/setup %}
 
@@ -199,7 +199,7 @@ tags: []
         
         - 可执行文件bss段创建库的全局变量副本 加一条mov来访问
   - 数据段地址无关性
-      
+    
       
 
 - 延迟绑定PLT
@@ -375,9 +375,94 @@ tags: []
   }
   ```
 
-  
+- exit都做了什么
+
+  - 遍历函数链表，执行atexit __cxa_atexit
+
+    ```asm
+    movl 4(%esp), %ebx
+    movl $__NR_exit, %eax ;call exit
+    int $0x80; halt如果exit退出失败，就强制停止。一般走不到这里
+    ```
+
+    
+
+- 运行库与IO
+
+- C/C++运行库
+
+  - 基本功能
+    - 启动与退出
+    - 标准函数
+      - 变长参数，压栈
+      - 复杂化printf，所以要指定参数
+        - va_list char *
+        - va_start 参数末尾
+        - va_args获得当前参数的值，调整指针位置
+        - va_end，指针清零
+    - IO功能封装和实现
+    - 堆的封装和实现
+    - 语言实现
+    - 调试
+
+- glibc
+
+  - crt1.0 _start crti.o init fini开头 crtn.o init fini结尾
+  - crtbegin.o crtend.o c++相关全局构造析构目标文件。属于gcc
+
+- 运行库和多线程
+
+  - 栈，tls，寄存器私有，其余共有
+  - 线程安全
+    1. errno等全局变量
+    2. strtok等不可重入函数
+    3. 内存分配
+    4. 异常
+    5. IO函数
+    6. 信号相关
+
+- c++全局构造与析构
+
+  - `__libc_csu_init` -> `_init()`   调用init段 -> `__do_global_ctors_aux ` 
+    - 和编译系统相关。    来自`crtbegin.o` 由`gcc/Crtstuff.c`编好。内部会有`__CTOR_LIST__`  如何生成？- > 所有的`.ctor`段拼凑-> `crtbegin.o`串起来
+      -  `crtend.o`负责定义`__CTOR_END__`指向`.ctor`末尾
+
+- IO  初探，通过fread
+
+  - 缓冲buffer
+  - 缓冲溢出保护，枷锁 -> 循环读取，缓冲 ->换行符转换 ->读取api
+
+
+
+### 系统调用
+
+- glibc封装系统调用，可绕过
+- 系统调用原理
+ ![image-20200327205248542](https://wanghenshui.github.io/assets/image-20200327205248542.png)
+ - 特权级与中断
+    - 中断向量表(  原来内核都有这玩意儿。。我之前玩stm32也有这东西，以为搞的什么新花样)
+    - ![image-20200327205619506](https://wanghenshui.github.io/assets/image-20200327205619506.png)
+       - 触发中断陷入内核 ->切换堆栈，保存寄存器信息，每个进程都有自己的内核栈
+
+ - linux新型系统调用，由于int指令性能不佳
+    - `linux-gate.so.1` aka `[vdso]` 可以通过maps查看，占用4k，可以导出内部细节就是sysenter等
+
+
+
+### CRT运行库实现
+
+- 入口以及exit
+- 实现堆
+  - freelist based 堆空间分配算法 malloc free
+  - new delete
+- IO与文件操作
+- 格式化字符串
+
+
 
 ---
+
+
 
 Any advice mailto:wanghenshui@qq.com, thanks! 
 
