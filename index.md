@@ -21,7 +21,7 @@ tagline: bro
 
 [highscalability](http://highscalability.com/) \| [programming in the twenty-first century](https://prog21.dadgum.com/23.html) \| [Building a Data Pipeline - Languages and Stack](https://blog.subnetzero.io/post/2018/11/grimwhisker-language-and-stack/) \|
 
- [leveldb](https://dirtysalt.github.io/html/leveldb.html) \| [Crafting Interpreters](http://craftinginterpreters.com/contents.html) \| [redbase](https://cs.stanford.edu/people/widom/cs346/) \| [TDOP](https://tdop.github.io/) \|
+ [leveldb](https://dirtysalt.github.io/html/leveldb.html) \| [Crafting Interpreters](http://craftinginterpreters.com/contents.html) \| [redbase](https://cs.stanford.edu/people/widom/cs346/) \| [TDOP](https://tdop.github.io/) \| [sqlzoo for sql basic test](https://sqlzoo.net) \|
 
 [Awesome Distribute systems](https://github.com/zhenlohuang/awesome-distributed-systems)\| [ds](https://github.com/ty4z2008/Qix/blob/master/ds.md) \| [Christopher Meiklejohn's cool blog, about distribute system](http://christophermeiklejohn.com/) \| [baptiste-wicht's cool blog, about c++](https://baptiste-wicht.com/) \|
 
