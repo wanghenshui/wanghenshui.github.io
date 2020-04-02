@@ -1,16 +1,16 @@
 ---
 layout: post
-title: 几个命令行小工具
+title: 压缩图片几个命令行小工具
 category: tools
 tags: [linux]
 ---
 {% include JB/setup %}
 
-
+需求，网络限制，超过50k不让上传
 
 压缩图片 
 
-- jpg - jpegtran
+- jpg by `jpegtran`
 
 ```bash
 apt install libjpeg-progs
@@ -19,14 +19,14 @@ jpegtran -optimize image-20200402171439048.jpg
 
 
 
-- png optipng
+- png by  `optipng`
 
 ```bash
 apt install optipng
 optipng -o3 image-20200402172644242.png
 ```
 
-
+o1 ~ o7 七个等级压缩
 
 ---
 
