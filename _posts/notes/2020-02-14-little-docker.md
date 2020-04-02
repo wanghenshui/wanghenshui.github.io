@@ -37,7 +37,7 @@ docker run -it --privileged -d  _linkxx_
 `exec`
 
 ```shell
-docker exec -it 8b947752d9d4 bash
+docker exec -it commitid/_container_name_ bash
 ```
 
 `stop`
@@ -46,10 +46,18 @@ docker exec -it 8b947752d9d4 bash
 docker container stop _container_name_
 ```
 
+ `commit`
+
+```bash
+docker commit _container_name_ linkxx
+```
+
+
+
 拷贝文件
 
 ```shell
-docker cp /root/xx hardcore_varahamihira:/root/
+docker cp /root/xx _container_name_:/root/
 ```
 
 hardcore_varahamihira是docker名字
