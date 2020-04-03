@@ -18,6 +18,7 @@ https://www.docker.com/sites/default/files/d8/2019-09/docker-cheat-sheet.pdf
 
 ```bash
 docker system prune
+# -a 能把所有的都删掉，包括overlay里头的。太大了
 ```
 
 `pull`
@@ -57,6 +58,14 @@ docker cp /root/xx _container_name_:/root/
 ```
 
 hardcore_varahamihira是docker名字
+
+`登陆`
+
+```bash
+docker login -u username -p password registry.xx.com
+```
+
+
 
 ---
 
