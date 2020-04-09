@@ -35,6 +35,8 @@ tagline: bro
 
 some cool chinese's blog
 
+[terarkdb](http://nark.cc/) fancy db and compression stuff. interesting
+
 [hcoona](https://hcoona.github.io/)  awesome database stuff.
 
 [loopjump](http://loopjump.com/)
