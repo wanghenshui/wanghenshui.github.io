@@ -1,6 +1,6 @@
 ---
 layout: post
-title: redis 代码走读 rdb.c/bio.c aof.c
+title: redis 代码走读 rdb.c
 category: database
 tags: [redis, c]
 ---
@@ -9,7 +9,9 @@ tags: [redis, c]
 
 rdb文件是内存的一份快照
 
-`rdbLoad`代码很短
+## `rdbLoad`
+
+代码很短
 
 ```c
 if ((fp = fopen(filename,"r")) == NULL) return C_ERR;
@@ -186,6 +188,22 @@ Set结构和List结构一样，也是依次存储各个元素的
 注意这个整理，现在6.0版本是不准的，多了module和stream。
 
 其中stream的处理方法是类似的，也是遍历
+
+
+
+## `rdbSaveRio`
+
+逐个保存，所有的kv对都变成string
+
+核心逻辑
+
+```c
+for(all db)
+  for(each type)
+      rdbSaveKeyValuePair()
+```
+
+
 
 ---
 
