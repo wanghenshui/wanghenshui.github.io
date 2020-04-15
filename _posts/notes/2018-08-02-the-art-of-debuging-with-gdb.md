@@ -19,7 +19,9 @@ tags: [linux, debug, gdb]
 - gdbinit启动文件
   - gdb -command=z x 在x上运行gdb，从z文件中读命令
 
+- 原理 ptrace
 
+  
 
 ### 停下来看一看
 
@@ -60,6 +62,7 @@ tags: [linux, debug, gdb]
 - display disp 每次断点击中都会打印上次display的内容， p升级版
 - commands组合
   - commands + call
+  - commands组合命令也可以录入命令来做复现
 - 数组
   - p *x@25  *pointer@number_of_elements
   - 支持强制类型转换 p (int [25]) *x
@@ -67,7 +70,8 @@ tags: [linux, debug, gdb]
   -  需要带上命名空间/类空间
   - ptype打印结构
 - 局部变量 info locals
-- x 查看内存地址
+- x 查看内存地址 x/10wx addr
+  - x/10i addr
 - p disp 高进选项
   - p/x y 十六进制查看
   - dis disp 1临时禁止display 1
@@ -91,11 +95,15 @@ tags: [linux, debug, gdb]
 ### 多活动上下文中的调试
 
 - 网络编程 gdb 系统函数+ strace系统函数
+-  信号 handle
 - 多线程,切换线程看函数调用栈
   - info threads thread n bt f n
   - break _cond_ thread n（当线程3到达源代码行时停止执行）
+  - thread apply bt all
+  - 转到线程t
 - 多进程MPI
   - attach到进程上看调用栈以及对应栈帧上的信息
+- 不阻塞 gdb -batch -ex “cmd” -p pid
 
 
 
@@ -118,6 +126,12 @@ tags: [linux, debug, gdb]
 基本大同小异
 
 最好要了解一点汇编
+
+
+
+没有符号信息，自己编译一套-g的o文件，反汇编 有-g `obj -d -S -l xx.o`, 没-g`objdump -dr xx.o`
+
+如果没有o文件，反汇编看call调用自己推到调用栈
 
 ---
 

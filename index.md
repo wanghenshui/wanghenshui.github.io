@@ -31,6 +31,8 @@ tagline: bro
 
 [random string](https://www.random.org/strings/) \| [random password](https://passwordsgenerator.net/) \| [current time](https://currentmillis.com/)  \|
 
+[morning paper, cs paper,](https://blog.acolyer.org/)\|
+
 
 
 some cool chinese's blog
