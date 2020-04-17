@@ -100,7 +100,11 @@ tags: [linux, debug, gdb]
   - info threads thread n bt f n
   - break _cond_ thread n（当线程3到达源代码行时停止执行）
   - thread apply bt all
+    - 打印过长导致进程复位，或者连接断开，使用不阻塞方式
+      - 查线程id `find / proc/pid/task -name "sched" |xargs grep threads`
+      - pstack
   - 转到线程t
+  - `set scheduler-locking off|on|step`控制当前线程调度
 - 多进程MPI
   - attach到进程上看调用栈以及对应栈帧上的信息
 - 不阻塞 gdb -batch -ex “cmd” -p pid
@@ -129,9 +133,23 @@ tags: [linux, debug, gdb]
 
 
 
+
+
+
+
 没有符号信息，自己编译一套-g的o文件，反汇编 有-g `obj -d -S -l xx.o`, 没-g`objdump -dr xx.o`
 
 如果没有o文件，反汇编看call调用自己推到调用栈
+
+​	找特殊调用 寻址偏移 特殊值
+
+
+
+---
+
+### ref
+
+- https://github.com/hellogcc/100-gdb-tips/
 
 ---
 
