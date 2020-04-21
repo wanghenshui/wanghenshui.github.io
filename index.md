@@ -37,11 +37,11 @@ tagline: bro
 
 ### some cool chinese's blog
 
-[eric fu](https://ericfu.me/), awesome database stuff
+[eric fu,awesome database stuff](https://ericfu.me/)
 
-[terarkdb](http://nark.cc/) fancy db and compression stuff. interesting
+[terarkdb,fancy db and compression stuff. interesting](http://nark.cc/) 
 
-[hcoona](https://hcoona.github.io/)  awesome database stuff.
+[hcoona ,awesome database paper review](https://hcoona.github.io/)  
 
 [loopjump](http://loopjump.com/)
 
@@ -62,6 +62,8 @@ tagline: bro
 [nosuchfield](https://www.nosuchfield.com/)
 
 [kkfnui's blog](http://blog.makerome.com/)
+
+[raoenhui, very funny](https://raoenhui.github.io)
 
 
 
