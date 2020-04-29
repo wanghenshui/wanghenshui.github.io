@@ -6,6 +6,18 @@ tags: [todo]
 ---
 {% include JB/setup %}
 
+
+
+
+
+tcpaccept
+
+https://blog.csdn.net/zhangskd/article/details/42614793
+
+https://blog.csdn.net/for_tech/article/details/54175571
+
+https://unix.stackexchange.com/questions/94104/real-world-use-of-tcp-defer-accept
+
 gflags
 
 glog
