@@ -18,7 +18,13 @@ git commit --amend --author="NewAuthor <NewEmail@address.com>"
 
 
 
+分支丢了或者head detached了或者错误覆盖了，不要慌，`git reflog`能找回来
 
+
+
+##### ref
+
+- https://blog.csdn.net/hupoling/article/details/79017382
 
 ---
 
