@@ -56,12 +56,16 @@ tags: [linux]
   - cmder /register all
 - gdb
   - thread apply all bt
+  - pstack
+    - pstack在chroot下执行的进程，可能找不到符号，要到chroot下面的目录去执行pstack
+      - https://nanxiao.me/linux-pstack/
 - tar 
   - 对于xz文件 **tar xvJf  \**\*.tar.xz**
 - mount
   - mount /dev/vdb target_dir
 - scp 
   - scp local_file root@xx.xx.xx.xx:/root
+- rpm -ivh xx.rpm
 - 特殊场景
   - 查找体积较大的十个文件
     - du -hsx * | sort -rh | head -10

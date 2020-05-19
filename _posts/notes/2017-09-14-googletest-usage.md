@@ -2,7 +2,7 @@
 layout: post
 category : c++
 title: googletest使用记录，以及遇到的一个奇怪的问题
-tags : [rocksdb,c++]
+tags : [googletest, debug ,c++]
 ---
 {% include JB/setup %}
 
