@@ -35,6 +35,8 @@ tagline: bro
 
 [pg and database news weekly](https://grantzhou.github.io/) \|[mysql and alibaba database news monthly](http://mysql.taobao.org/monthly/) \|
 
+[linux preformance analysis](http://www.brendangregg.com/blog/)
+
 ### some cool chinese's blog
 
 [eric fu,awesome database stuff](https://ericfu.me/)
