@@ -18,6 +18,7 @@ tags: [linux]
 - 进程
   - 内存布局，文本，数据，堆，栈
   - _exit  退出 （实现是调用sys_exit退出，c标准库中的exit比这个函数多了一些清空IO 的动作，遇到过一次和log4cplus挂死的问题）
+    - 后面的章节会讲这个
   - 进程的用户和组标识符，凭证，限定权限
   - 特权进程，用户ID为0 的进程，内核权限限制对这种进程无效
   - 不同用户的权限有不同的能力，可以赋予进程来执行或者取消特殊的能力 CAP_KILL
@@ -55,8 +56,72 @@ tags: [linux]
   - 内核栈保存寄存器的值，校验系统编号，正式调用sysytemcall
     - 可以用strace抓
 - 库函数
+  - 版本号
+  - errno perror 封装一些错误处理和解析函数
+- 可移植性问题，指的是一些宏开关，BSD POSIX GNU_SOURCE之类的 
 
 
+
+# 文件IO: 通用的IO模型
+
+
+
+- open
+  - flag 只列有意思的，后面还会讲
+    - O_CLOEXEC fcntl
+    - O_NONBLOCK 非阻塞io
+    - O_ASYNC 信号驱动io， fcntl(file control)
+  - err
+    - 无法访问，目录问题，文件描述符上限，文件打开数目上限，文件只读，文件为exe
+- read 返回值，错误-1没了0读到多少返回多少
+  - 内核维护读到那里，aka偏移量 lseek
+- write 返回值，写入了多少。可能和指定的count不一致（磁盘满/RLIMIT_FSIZE）
+  - 偏移量超过文件结尾继续写入 aka文件空洞 eg: coredump
+    - 文件空洞占不占用？严格说占用，看空洞边界落在哪里，落在文件块内还是会分配空间的 用0填充
+- ioctl (io control)
+
+- 原子操作和竞争条件
+- fcntl更改文件状态位
+- 文件描述符与打开文件的关系
+  - 内核维护的数据结构
+    - 进程及文件描述符表
+      - fd
+      - flag
+    - 系统级打开文件表
+      - 文件句柄
+      - 文件偏移量，状态，访问模式，inode引用
+    - 文件系统inode表
+      - 文件类型，访问权限，锁指针，文件属性
+    - 多个文件描述符可以对应同一个句柄，共用同一个偏移量
+      - 复制文件描述符 dup/dup2 2>&1
+    - O_CLOSEXEC 描述符私有
+- 特定偏移 pread pwrite
+- 分散输入和集中输出scatter-gather readv writev
+- 阶段文件truncate ftruncate
+- 大文件IO
+- /dev/fd ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ps -o majflt,minflt -p pid
+
+minor fault 在内核中，缺页中断导致的异常叫做page fault。其中，因为filemap映射导致的缺页，或者swap导致的缺页，叫做major fault；匿名映射导致的page fault叫做minor fault。 作者一般这么区分：需要IO加载的是major fault；minor fault则不需要IO加载
 
 
 
@@ -87,7 +152,6 @@ tags: [linux]
 1. 
 
    
-
 
 ---
 
