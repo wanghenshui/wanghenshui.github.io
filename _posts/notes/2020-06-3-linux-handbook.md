@@ -60,11 +60,9 @@ tags: [linux]
   - errno perror 封装一些错误处理和解析函数
 - 可移植性问题，指的是一些宏开关，BSD POSIX GNU_SOURCE之类的 
 
-
+---
 
 # 文件IO: 通用的IO模型
-
-
 
 - open
   - flag 只列有意思的，后面还会讲
@@ -101,6 +99,64 @@ tags: [linux]
 - 大文件IO
 - /dev/fd ?
 
+---
+
+# 进程
+
+- pstree
+- 内存布局
+- 虚拟内存管理
+  - 空间局部性和时间局部性
+  - 驻留集 resident set和交换区swap area
+  - 有效虚拟地址范围发生变化
+    - 栈增长到之前没到过的地方
+    - malloc brk sbrk提升program break位置
+    - 共享内存访问 shmat shmdt
+    - mmaSp/munmap
+  - 地址空间隔离的有点
+    - 进程进程 进程内核间隔离
+    - 共享内存
+      - 同一份代码副本
+      - shmget mmap共享内存
+    - 内存保护
+    - 每个进程使用的真实内存少，使得容纳的进程多，CPU利用率高
+  - 栈和栈帧 不多说
+  - 环境 env 不多说
+  - setjmp longjmp 别用
+
+---
+
+# 内存分配
+
+- 堆当前边界 program break
+  - 调整边界brk/sbrk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -122,16 +178,6 @@ tags: [linux]
 ps -o majflt,minflt -p pid
 
 minor fault 在内核中，缺页中断导致的异常叫做page fault。其中，因为filemap映射导致的缺页，或者swap导致的缺页，叫做major fault；匿名映射导致的page fault叫做minor fault。 作者一般这么区分：需要IO加载的是major fault；minor fault则不需要IO加载
-
-
-
-
-
-
-
-
-
-
 
 
 
