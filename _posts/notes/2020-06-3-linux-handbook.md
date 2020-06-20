@@ -130,22 +130,65 @@ tags: [linux]
 
 - 堆当前边界 program break
   - 调整边界brk/sbrk
+  - malloc free实现，老生常谈了
+    - 调试malloc
+      - mtrace muntrace 搭配MALLOC_TRACE mtrace 分析文件写入
+      - mcheck mprobe 一致性检查分析
+      - MALLOC_CHECK_ 环境变量，提供上面的功能，动态的，安全原因，设置用户id组id的程序无法设置
+      - glibc检测 mallopt mallinfo
+  - calloc realloc
+  - 对齐分配 memalign posix_memalign
+  - 栈上分配alloca 
+    - 邪门歪道别乱用
+
+---
+
+用户和组 
+
+- 密码与密码文件/etc/shadow
+
+- /etc/group 
+
+  
+
+  跳过了，没啥说的。
 
 
 
+---
 
+进程凭证
 
+讲了一大堆关于用户组，权限之类的东西
 
+---
 
+# 时间
 
+- gettimeofday
+  - time 多余的
+  - ctime打印用
+- 时区TZ
+- 地区LC_ALL
+- 软件时钟jiffies
+- 进程时间
+  - time命令，有两个
 
+系统限制和选项
 
+- sysconf getconf pathconf
 
+---
 
+# 系统和进程信息
 
+- /proc
 
+  - cat /proc/pid/status
 
+  - 关注env  status cwd fd maps mem mounts task
 
+    ![image-20200620203233057](D:\github\log\assets\image-20200620203233057.png)
 
 
 
