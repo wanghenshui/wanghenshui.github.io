@@ -198,6 +198,16 @@ tags: [linux]
 
 - 用户空间缓冲区和内核空间缓冲区之间的数据复制，不会直接发起磁盘访问
 
+- 系统调用越少越好
+
+- 刷新stdio fflush
+
+- fsync 刷盘，包括元数据更新 fdatafync可能会减少磁盘操作的次数
+
+  - 写入同步O_SYNC
+
+  ![image-20200623144236672](https://wanghenshui.github.io/assets/image-20200623144236672.png)
+
 
 
 
