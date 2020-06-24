@@ -208,17 +208,38 @@ tags: [linux]
 
   ![image-20200623144236672](https://wanghenshui.github.io/assets/image-20200623144236672.png)
 
+- 绕过缓存 直接IO O_DIRECT
 
+  - 必须对齐
 
+---
 
+# 系统编程概念
 
+- 设备文件 /dev
+  - 字符型设备 终端键盘
+  - 块设备，磁盘，512倍数
+- 文件系统
+  - 引导块，超级块 i节点表 数据块
+  - inode 文件元数据
+    - 数据块指针
+      - lseek，算指针就行了
+- VFS
+- 日志文件系统
+- 挂载mount 太复杂了。我还是现搜现用吧
+- tmpfs
 
+---
 
+文件属性 没啥说的
 
+- stat
+- chown
+- utime
 
+- 扩展属性setattr
 
-
-
+---
 
 
 
