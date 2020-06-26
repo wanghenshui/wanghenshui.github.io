@@ -2,12 +2,12 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://lrita.github.io
+url: https://wanghenshui.github.io
 date_format: "ordinal"
-title: 源代码
+title: Welcome, bro
 subtitle: ""
-description: "lrita's blog"
-keywords: 源代码, golang, c, cpp, c++, rust
+description: "王很水的博客"
+keywords: cpp
 timezone: Asia/Shanghai
 encoding: "utf-8"
 side_bar_repo_limit: 5
@@ -15,12 +15,12 @@ side_bar_repo_limit: 5
 # ---------------- #
 #      Author      #
 # ---------------- #
-author: Neal Hu
-organization: Weibo, Inc.
-organization_url: http://www.weibo.com
-github_username: lrita
-location: Beijing, China
-email: lrita@163.com
+author: Ted
+organization: Get Fired.
+organization_url: wanghenshui.github.io
+github_username: wanghenshui
+location: ShenZhen, China
+email: wanghenshui@qq.com
 
 # ---------------- #
 #    Navigation    #
@@ -38,9 +38,7 @@ navs:
     href: /archives/
     label: 归档
 
-  -
-    href: /wiki/
-    label: 维基
+
 
   -
     href: /links/
@@ -76,12 +74,9 @@ gems:
     - jekyll-feed
     - jemoji
 #     - jekyll-mentions
-collections:
-    wiki:
-        output: true
-        permalink: /wiki/:path/
 
-repository: lrita/lrita.github.io
+
+repository: wanghenshui/wanghenshui.github.io
 
 webrick:
   headers:
@@ -116,4 +111,4 @@ lazy_load_disqus : false
 #    Analytics     #
 # ---------------- #
 google:
-    analytics_id: UA-110226116-1
+    analytics_id: UA-77338766-1
