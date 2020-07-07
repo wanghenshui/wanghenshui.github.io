@@ -241,7 +241,11 @@ tags: [linux]
 
 ---
 
+目录与链接
 
+- 软链接硬链接 没啥说的，inode
+
+- unlink
 
 
 
