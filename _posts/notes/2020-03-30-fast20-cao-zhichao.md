@@ -48,6 +48,20 @@ facebook做的社交数据收集工具，底层是mysql on myrocks
 | primary key   | table index number + primary key                 | columns + checksum |
 | secondary key | table index number + secondary key + primary key | checksum           |
 
+UDB的RocksDB通过6个ColumnFamily来存储不同类型的数据，分别是：
+
+Object：存储object数据
+
+Assoc：存储associations数据
+
+Assoc_count：存储每个object的association数
+
+Object_2ry，Assoc_2ry：object和association的secondary index
+
+Non-SG：存储其他非社交图数据相关的服务
+
+
+
 ### ZippyDB UP2X
 
 rocksdb kv集群,用来保存AIML信息的
