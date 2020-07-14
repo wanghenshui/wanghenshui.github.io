@@ -79,6 +79,7 @@ rocksdb kv集群,用来保存AIML信息的
 
 ## ref 
 
+- 详细的论文描述看这里 https://www.jianshu.com/p/97d9bdd3cd4e 我只说了个大概
 - https://www.usenix.org/system/files/fast20-cao_zhichao.pdf
 - https://rockset.com/rocksdb/RocksDBZhichaoFAST2020.pdf?fbclid=IwAR0j6IpFrZ_hiYJOJLf5bMENUC2v86LUw69KWh_0ZBvQxMqWiDahyb0IYDw
 - 文章中提到的工具在论文引用里介绍了，wiki 页面 https://github.com/facebook/rocksdb/wiki/RocksDB-Trace%2C-Replay%2C-Analyzer%2C-and-Workload-Generation 有机会可以试试

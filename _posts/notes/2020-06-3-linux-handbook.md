@@ -246,6 +246,7 @@ tags: [linux]
 - 软链接硬链接 没啥说的，inode
 
 - unlink
+- raname
 
 
 
