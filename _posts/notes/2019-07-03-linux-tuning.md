@@ -66,6 +66,50 @@ minor fault 在内核中，缺页中断导致的异常叫做page fault。其中�
 
 
 
+刷新缓冲区
+
+![](https://lihz1990.gitbooks.io/transoflptg/content/01.%E7%90%86%E8%A7%A3Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/flushing-dirty-buffers.png)
+
+
+
+
+
+网络
+
+![网络层级结构和网络通信过程概览](https://lihz1990.gitbooks.io/transoflptg/content/01.%E7%90%86%E8%A7%A3Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/network-layered-structure-and-overview-of-networking-operation.png)
+
+
+
+
+
+socket buffer详情
+
+```bash
+/proc/sys/net/core/rmem_max
+/proc/sys/net/core/rmem_default
+/proc/sys/net/core/wmem_max
+/proc/sys/net/core/wmem_default
+/proc/sys/net/ipv4/tcp_mem
+/proc/sys/net/ipv4/tcp_rmem
+/proc/sys/net/ipv4/tcp_wmem
+```
+
+![](https://lihz1990.gitbooks.io/transoflptg/content/01.%E7%90%86%E8%A7%A3Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/socket-buffer-memory-allocation.png)
+
+
+
+
+
+tcp链接状态图
+
+![TCP连接状态图](https://lihz1990.gitbooks.io/transoflptg/content/01.%E7%90%86%E8%A7%A3Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/tcp-connection-state-diagram.png)
+
+
+
+
+
+
+
 
 
 ##### ref
