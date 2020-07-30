@@ -285,9 +285,9 @@ minor fault 在内核中，缺页中断导致的异常叫做page fault。其中�
 目录与链接
 
 - 软链接硬链接 没啥说的，inode
-
 - unlink
 - raname
+- nftw遍历目录树？ 没发现啥使用场景
 
 
 
