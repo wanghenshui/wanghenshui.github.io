@@ -100,9 +100,6 @@ All quarrels are but few readings.
 ![Wechat code](https://wanghenshui.github.io/assets/0-1552008412820.jpg)
 
 @email: wanghenshui@qq.com
-
-[@telegram](http://t.me/wanghenshui) 
-[@steam](https://steamcommunity.com/id/wanghenshui/) 
 [@github]( https://github.com/wanghenshui/) 
 [@zhihu](https://zhuanlan.zhihu.com/jieyaren) 
 [@douban]( https://www.douban.com/people/61740133/) 

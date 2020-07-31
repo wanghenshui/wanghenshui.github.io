@@ -272,7 +272,7 @@ minor fault 在内核中，缺页中断导致的异常叫做page fault。其中�
 
 ---
 
-文件属性 没啥说的
+## 文件属性 没啥说的
 
 - stat
 - chown
@@ -282,13 +282,144 @@ minor fault 在内核中，缺页中断导致的异常叫做page fault。其中�
 
 ---
 
-目录与链接
+## 目录与链接
 
 - 软链接硬链接 没啥说的，inode
 - unlink
 - raname
 - nftw遍历目录树？ 没发现啥使用场景
 
+---
+
+监控文件事件
+
+inotify可以和epoll串起来
+
+和内核交互，会耗费内核内存，所以有限制
+
+​	/proc/sys/fs/inotify
+
+---
+
+## 信号
+
+signal handler
+
+kill 发送信号
+
+- raise相当于自己调用kill(getpid(),sig)
+- killpg
+
+
+
+信号掩码，没用过
+
+可重入要考虑
+
+终止signal handler
+
+- _exit， exit不安全，这是个典型问题了 exit会刷stdio，可能会卡死
+- kill
+- abort
+- setjmp longjmp 有点魔法，没见过谁用
+
+系统调用期间遇到的信号 -EINTR， 可能系统调用体检结束失败了。 
+
+利用这个特性，可以为阻塞调用设置一个定时器
+
+也可以手动重启调用
+
+- 对应有个NO_EINTR的宏
+
+```c
+#define NO_EINTR(stmt) while((stmt) == -1 && errno = EINTR)
+```
+
+​	这样循环执行忽略EINTR错误，比较不方便，但我感觉直接屏蔽信号更好一些
+
+- 用sigaction指定SA_RESTART让内核帮助重试调用，但是这只是部分有效，比如poll这些肯定是无效的
+
+
+
+高级特性
+
+- core文件
+  - /proc/sys/kernel/core_pattern
+
+- TASK_INTERRUPTIBLE  -> S , TASK_UNINTERRUPTIBLE -> D
+- 如果用了信号阻塞，信号恢复后怎么传递？序号升序 ，越小优先级越高
+- signal函数用sigaction实现的。
+
+
+
+---
+
+## 定时器和休眠
+
+settitimer alarm
+
+alarm会让阻塞的系统调用产生EINTR，也就是超时结束了
+
+但这东西可能有竞态问题，还是用select /poll超时特性更好，还能整合到轮训框架内
+
+nanosleep
+
+---
+
+## 进程
+
+创建
+
+- 父子进程文件共享
+  - fd操作文件表项，包含当前文件原信息，修改会互相影响
+
+- 父子进程谁先谁后？
+  - 2.6.32之后默认父在前，有点点性能优势，但差异很小
+  - 同步信号规避竞争
+
+终止
+
+- _exit和exit说了好几遍了
+  - exit会主动调用atexit/on_exit注册函数，清理stdio，然后在调用_exit所以期间可能会锁死
+  - main函数return n等于exit(n)
+- 更多终止细节
+  - 关闭打开的文件描述符 目录流各种描述符
+  - 释放各种文件锁
+  - 分离各种共享内存段
+  - 如果不是daemon，会向终端发送SIGHUP
+  - system v信号量 semadj +到信号量值里（没懂这块）
+  - 关闭各种posix有名信号量sem_close
+  - 关闭各种posix消息队列 mq_close
+  - 进程组孤儿 SIGHUP + SIGCONT？
+  - 溢出各种内存所mlock
+  - 取消各种内存映射mmap
+
+fork和stdio缓冲区的问题
+
+书中的例子printf是有'\n'的
+
+输出到终端是行缓冲会直接刷新到终端，输出到文件是块缓冲，不会立即刷到文件，这就复制了两份缓冲区
+
+如果printf没有‘\n’还是会有缓冲区的问题
+
+标准输出是行缓冲，所以遇到“\n”的时候会刷出缓冲区，但对于磁盘这个块设备来说，“\n”并不会引起缓冲区刷出的动作，那是全缓冲
+
+看参考链接 1 2能加深理解
+
+解决方法，
+
+- 手动flush 
+- 手动设置缓冲为0 setvbuf
+- 子进程_exit跳过刷新缓冲区
+
+孤儿进程和僵尸进程
+
+- 需要父进程wait，不然占用内核空间
+- 主动处理SIGCHLD或者子进程忽略SIGCHLD 直接系统丢弃子进程状态
+
+
+
+---
 
 
 
@@ -298,26 +429,13 @@ minor fault 在内核中，缺页中断导致的异常叫做page fault。其中�
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 ##### ref
 
-1. 
+1. https://www.veaxen.com/fork%E5%AF%B9%E8%A1%8C%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%BD%B1%E5%93%8D.html
+
+2. https://coolshell.cn/articles/7965.html
 
    
 
