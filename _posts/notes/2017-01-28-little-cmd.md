@@ -79,6 +79,8 @@ tags: [linux]
   - 记得保存设置
 - telnet 
   - 退出 ctrl  ]
+- iptables
+    - 查看端口 **cat  /etc/sysconfig/iptables**
 
 
 

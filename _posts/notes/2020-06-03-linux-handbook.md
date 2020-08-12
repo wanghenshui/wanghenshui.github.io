@@ -419,6 +419,12 @@ fork和stdio缓冲区的问题
 
 
 
+文件描述符与exec
+
+FD_CLOSEXEC
+
+为什么system实现要阻塞SIGCHLD，忽略SIGINT和SIGQUIT信号？
+
 ---
 
 
