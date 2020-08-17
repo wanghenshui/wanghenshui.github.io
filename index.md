@@ -37,6 +37,12 @@ tagline: bro
 
 [linux preformance analysis](http://www.brendangregg.com/blog/)
 
+[lobste, tech log review](https://lobste.rs/)
+
+[coq](https://coq-zh.github.io/SF-zh/)
+
+[A Distributed Systems Reading List ](http://dancres.github.io/Pages/)
+
 ### some cool chinese's blog
 
 [eric fu,awesome database stuff](https://ericfu.me/)
