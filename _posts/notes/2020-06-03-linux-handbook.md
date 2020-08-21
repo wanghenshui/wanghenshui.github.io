@@ -429,11 +429,124 @@ FD_CLOSEXEC
 
 
 
+### 线程
+
+- errno一个线程一个
+
+- pthread api返回值
+- 链接带上lpthread
+- 可重入函数要注意
+
+创建线程
+
+- pthread_create 
+  - pthread_self获取
+
+终止线程
+
+- 线程函数return/exit
+- pthread_exit
+  - pthread_join获取返回值
+- pthread_cancel
 
 
 
+- thread_join 类似waitpid
+  - 特定的tid（waitpid可以任意pid）
+  - 阻塞的（可以自己用condvar搞非阻塞）
+  - 对等的（waitpid只能是父等子）
+- pthread_detach
+- pthread_attr_init 属性设置
+
+更多细节
+
+- 线程栈
+- 线程和信号
+
+---
+
+### 线程同步
+
+互斥量mutex -> futex虽然慢也比fcntl信号量这种系统调用要快
+
+注意死锁
+
+condvar 经典问题，为啥用while守着signal
+
+---
+
+### 线程安全
+
+可重入
+
+一次性初始化 pthread_once  std::call_once
+
+一个线程安全的singleton是什么样的
+
+---
+
+### 进程组 会话和作业控制
+
+```bash
+find / 2> /dev/null | wc -l &
+```
+
+find命令和wc命令同进程组
+
+find命令和wc命令和当前bash同会话，bash是会话首进程
+
+一个终端也就只有一个会话
+
+前台进程和后台进程组，前台进程就一个or没有
+
+进程控制 nohup SIGHUP
+
+作业控制 jobs
 
 
+
+---
+
+### 进程优先级和调度
+
+nice值和分配策略
+
+cpu亲和
+
+使用的资源与资源限制
+
+防范
+
+- 特权？
+
+- chroot jail？
+- 缓冲区溢出
+- 不可信用户输入
+- DDoS
+
+能力
+
+- 用户ID ？root？
+
+---
+
+### daemon
+
+永远不会成为会话组长，也就永远不会成为控制终端
+
+关掉不用的0 1 2，不要浪费文件描述符
+
+---
+
+### 共享库
+
+使用共享库的有用工具 
+
+- ldd
+- readelf/objdump
+- nm
+
+版本与命名规则
 
 ---
 
@@ -452,3 +565,4 @@ Any advice mailto:wanghenshui@qq.com, thanks!
 Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
 
 看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
+
