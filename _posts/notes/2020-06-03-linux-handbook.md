@@ -550,11 +550,171 @@ cpu亲和
 
 ---
 
+### 进程间通信
+
+#### 通信工具
+
+- 数据传输工具
+  - 字节流 ：文件是一个字节序列 读取动作是消耗性质的
+    - 管道
+    - FIFO
+    - 数据报socket
+  - 消息队列
+    - system V消息队列
+    - posix 消息队列
+    - 数据报socket交换
+  - 伪终端
+- 共享内存 速度快但是需要同步 所有进程都可见
+  - system V共享内存
+  - posix共享内存
+  - 内存映射
+
+#### 同步工具
+
+- 信号量
+- 文件锁
+- mutex condvar
+- 通信工具也可以用来同步，pipe eventfd
+
+---
+
+### 管道pipe 和FIFO
+
+管道
+
+- 字节流，单向
+- 容量有限，写入阻塞
+- 进程同步方法
+- 管道和缓冲
+  - 伪终端替换管道
+
+FIFO aka命名管道
+
+
+
+屏蔽SIGPIPE
+
+阻塞IO 非阻塞IO设置？
+
+
+
+---
+
+### system v ipc
+
+消息队列/信号量/共享内存
+
+ipc key:整数 IPR_PRIVATE/ftok
+
+ipcs ipcrm 类似ls rm
+
+```bash
+ipcs
+
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages
+0x00001f4f 0          Ruby       666        0            0
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+
+------ Semaphore Arrays --------
+key        semid      owner      perms      nsems
+
+```
+
+获取ipc对象列表
+
+/proc/sysvipc
+
+```bash
+cat /proc/sysvipc/msg
+       key      msqid perms      cbytes       qnum lspid lrpid   uid   gid  cuid  cgid      stime      rtime      ctime
+      8015          0   666           0          0     0     0  3000  3000  3000  3000          0          0 1598235273
+```
+
+查看限制
+
+```bash
+ipcs -l
+
+------ Messages Limits --------
+max queues system wide = 963
+max size of message (bytes) = 8192
+default max size of queue (bytes) = 16384
+
+------ Shared Memory Limits --------
+max number of segments = 4096
+max seg size (kbytes) = 0
+max total shared memory (kbytes) = 18014398442373116
+min seg size (bytes) = 1
+
+------ Semaphore Limits --------
+max number of arrays = 32000
+max semaphores per array = 32000
+max semaphores system wide = 1024000000
+max ops per semop call = 500
+semaphore max value = 32767
+```
+
+
+
+消息队列
+
+无法结合内核本身的文件描述符系统
+
+标识符引用，键(key)复杂度都省
+
+无连接，涉及到资源管理就会很糟糕
+
+- 什么时候删除？
+- 应用怎么保证不用的资源被删除？
+
+避免使用system v ipc消息队列
+
+
+
+信号量
+
+进程同步 尤其是共享内存
+
+共享内存
+
+所处位置
+
+全是偏移
+
+---
+
+### 内存映射
+
+mmap munmap
+
+支持映射文件
+
+- 省一步写，能快点
+
+虚拟内存操作
+
+mprotect mlock mincore
+
+madvise 内存使用建议
+
+----
+
+### posix ipc
+
+消息队列 信号量 共享内存 用fd管理
+
+---
+
 ##### ref
 
 1. https://www.veaxen.com/fork%E5%AF%B9%E8%A1%8C%E7%BC%93%E5%86%B2%E5%8C%BA%E7%9A%84%E5%BD%B1%E5%93%8D.html
 
 2. https://coolshell.cn/articles/7965.html
+
+3. mmap实现cp https://stackoverflow.com/questions/27535033/copying-files-using-memory-map
 
    
 

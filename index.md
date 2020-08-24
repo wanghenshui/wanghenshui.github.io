@@ -43,6 +43,8 @@ tagline: bro
 
 [A Distributed Systems Reading List ](http://dancres.github.io/Pages/)
 
+[Another, database learning list](https://github.com/pingcap/awesome-database-learning)
+
 ### some cool chinese's blog
 
 [eric fu,awesome database stuff](https://ericfu.me/)
