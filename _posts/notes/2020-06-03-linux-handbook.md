@@ -706,6 +706,127 @@ madvise 内存使用建议
 
 消息队列 信号量 共享内存 用fd管理
 
+信号量和共享内存api和system v的api差不多。都挺复杂
+
+
+
+---
+
+### 文件加锁
+
+加锁与stdio缓冲问题
+
+flock
+
+fcntl
+
+---
+
+### socket
+
+创建fd(socket) 绑定fd(bind) 监听(listen, backlog含义，系统未accept之前的客户端connect占用的fd最大个数)
+
+接受connect( accept, 返回连接的fd，操作这个fd进行通信) 
+
+客户端主动发起connect(失败？)
+
+close没啥说的，得结合时序图才有意思
+
+unix domain socket 本机通信用
+
+tcp/ip
+
+**数据链路层隐藏**
+
+**网络层无连接不可靠**
+
+**传输层**
+
+TCP
+
+- 数据打包成段
+- 确认重传以及超时
+- 排序
+- 流量控制
+  - 拥塞控制：慢启动和拥塞避免算法
+
+UDP 注意分段
+
+**网络相关**
+
+- 网络字节序， 大端
+- 主机服务转换函数
+  - gethostbyname废弃，inet_ntop getaddrinfo
+
+**服务设计**
+
+- 迭代型
+- 并发性
+  - 预先准备好线程/进程 服务池
+  - 集群
+  - IO复用怎么没提？
+
+inetd
+
+**高级主题**
+
+- 部分读部分写
+- shutdown关闭一半
+- 深入TCP
+  - 报文格式
+  - 确认机制
+  - 状态机
+  - 建立和终止
+    - listen被动打开
+    - connect主动打开
+    - close主动关闭，另一侧也执行close，被动关闭
+  - TIME_WAIT
+    - 可靠的断开，2MSL
+
+netstat -a --inet
+
+tcpdump抓流量
+
+- socke选项
+  - SO_REUSEADDR
+
+---
+
+### 其他IO模型
+
+水平触发和边缘处罚 LT ET
+
+select poll是水平触发，信号驱动IO是边缘触发，epoll都支持
+
+水平触发可以任意时刻查看fd的就绪状态，处理不完继续处理
+
+边缘触发一次就得处理完，采取边缘触发的程序设计规则
+
+- 接收到IO时间尽可能多的执行IO，如果没这么做可能会失去至此那个的机会，数据丢失程序阻塞
+  - 也就是说这种动作可能会饿到fd，比如上一组动作没处理完，这一组又在等待
+- 如果程序采用循环来处理fd尽可能多，而fd优势阻塞的，这样整个IO调用就阻塞住了，所以必须要改成非阻塞模式，有事件就重复执行IO直到失败为止
+  - 对于epoll而言是这样的
+    - 所有fd非阻塞
+    - epoll_ctl管理fd列表
+    - 循环
+      - epoll_wait拿到就绪fd
+      - 不断执行执行IO系统调用(read/write/send/accept/recv)直到EAGAIN到EWOULDBLOCK
+- 针对其他的fd会饿到的风险场景
+  - 用一个列表维护一下有过就绪态的fd，把他们的超时时间调小（分给他们的时间片调小）
+  - 维护的列表中已经出现过的，操作要稍微调度一下，rr之类的，而不是直接处理epoll_wait返回的列表，如果出现了错误，就移除
+
+self-pipe技术。不多数
+
+---
+
+### 终端, 伪终端
+
+CR EOF DISCARD
+
+stty命令
+
+
+
 ---
 
 ##### ref

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 手撕算法整理笔记
+title: 算法4/手撕算法整理笔记
 category: [algorithm]
 tags: [data structure, algorithm]
 ---
@@ -11,6 +11,16 @@ tags: [data structure, algorithm]
 > https://github.com/labuladong/fucking-algorithm
 
 ---
+
+## 基础
+
+### 数据抽象
+
+
+
+
+
+
 
 ## 动态规划
 
