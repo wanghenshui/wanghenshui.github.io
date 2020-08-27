@@ -9,6 +9,29 @@ tags: [c++]
 
 ---
 
+
+
+> 屡次被stdc++ glibc 符号困扰。
+>
+> 从4.9开始记录。这个版本算是真正支持c++11的
+
+
+
+| gcc版本 | libstdc++版本号     | glibc版本号    | cxxabi版本号  |
+| ------- | ------------------- | -------------- | ------------- |
+| 4.9     | libstdc++.so.6.0.20 | GLIBCXX_3.4.20 | CXXABI_1.3.8  |
+| 5.1     | libstdc++.so.6.0.21 | GLIBCXX_3.4.21 | CXXABI_1.3.9  |
+| 6.1     | libstdc++.so.6.0.22 | GLIBCXX_3.4.22 | CXXABI_1.3.10 |
+| 7.1     | libstdc++.so.6.0.23 | GLIBCXX_3.4.23 | CXXABI_1.3.11 |
+| 7.2     | libstdc++.so.6.0.24 | GLIBCXX_3.4.24 | CXXABI_1.3.11 |
+| 8.1     | libstdc++.so.6.0.25 | GLIBCXX_3.4.25 | CXXABI_1.3.11 |
+| 9.1     | libstdc++.so.6.0.26 | GLIBCXX_3.4.26 | CXXABI_1.3.12 |
+| 9.2     | libstdc++.so.6.0.27 | GLIBCXX_3.4.27 | CXXABI_1.3.12 |
+| 9.3     | libstdc++.so.6.0.28 | GLIBCXX_3.4.28 | CXXABI_1.3.12 |
+| 10.1    | libstdc++.so.6.0.28 | GLIBCXX_3.4.28 | CXXABI_1.3.12 |
+
+
+
 #### why
 
 CI编译机是docker，内置了gcc4.8.5，在上层目录gcc5.4,不能网页端设定gcc版本，要用需要自己脚本适配。这是个踩坑记录
@@ -105,6 +128,7 @@ target_link_libraries(gemini-proxy -static-libgcc -static-libstdc++)
 ### ref
 
 1. https://stackoverflow.com/questions/44773296/libstdc-so-6-version-glibcxx-3-4-20-not-found/46613656
+2. https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html
 
 
 ### contact
