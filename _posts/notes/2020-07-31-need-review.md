@@ -35,3 +35,13 @@ https://vladmihalcea.com/sql-left-join/
 https://tiledb.com/blog/tiledb-closes-15m-series-a-for-industry-s-first-universal-data-engine-2020-07-14
 
 https://ketanbhatt.com/db-concurrency-defects/
+
+
+
+leveldb pdf 已经读过了。记录一下
+
+https://yuerblog.cc/wp-content/uploads/leveldb%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90.pdf
+
+C＋＋ 中把 lambda 优雅地转化为函数指针 · Terark/terarkdb Wiki
+
+https://github.com/Terark/terarkdb/wiki/C%EF%BC%8B%EF%BC%8B-%E4%B8%AD%E6%8A%8A-lambda-%E4%BC%98%E9%9B%85%E5%9C%B0%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88

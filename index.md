@@ -11,7 +11,7 @@ tagline: bro
 
 [demangle online](http://demangler.com/) \| [c++filtjs](https://d.fuqu.jp/c++filtjs/) \| [ISOCPP Blog](https://isocpp.org/blog) \| [Fluent C++](https://www.fluentcpp.com/) \| 
 
-[rocksdb blog](https://rocksdb.org/blog/) \| [Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
+[rocksdb blog](https://rocksdb.org/blog/) \| [Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [rocksdb doxygen](https://wipple.devnull.network/research/rippled/api.docs/namespacerocksdb.html)\| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
 
 [Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) dead, sorry for that \| 
 
