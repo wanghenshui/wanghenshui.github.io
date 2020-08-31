@@ -1,6 +1,6 @@
 ---
 layout: post
-category: cpp
+category: c++
 title: 使用gsl::not_null封装raw pointer
 tags: [gcc, c++]
 

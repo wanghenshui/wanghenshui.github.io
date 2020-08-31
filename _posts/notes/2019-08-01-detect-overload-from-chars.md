@@ -1,6 +1,6 @@
 ---
-is_compute_availablelayout: post
-category: cpp
+layout: post
+category: c++
 title: 检测函数重载
 tags: [c++, template, sfinae]
 ---

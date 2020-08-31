@@ -1,6 +1,6 @@
 ---
 layout: post
-category: cpp
+category: c++
 title: base from member 
 tags: [c++]
 ---

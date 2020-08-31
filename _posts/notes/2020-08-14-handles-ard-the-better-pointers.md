@@ -1,8 +1,8 @@
 ---
 layout: post
 title: (译)Handles are the better pointers
-category: [cpp]
-tags: [c++, yaml]
+category: [c++]
+tags: [c++, data structure]
 ---
 {% include JB/setup %}
 
