@@ -232,6 +232,7 @@ tags: [data structure, algorithm]
 加权图 权值最小的生成树
 
 - Prim/Kruskal
+  - Prim 贪心 + 优先队列
 - 几个简化
   - 权重不同，路径唯一
   - 只考虑连通
