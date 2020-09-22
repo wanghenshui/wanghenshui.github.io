@@ -10,7 +10,7 @@ tags: [rocksdb]
 
 [toc]
 
-这个是同事调参的经验，我直接抄过来了
+> 这个是同事调参的经验，我直接抄过来了
 
 不少都是经常提到的
 
@@ -22,6 +22,7 @@ rocksdb配置：
   - rocksdb里有compaction任务，可能还会耗时，能停掉就更好了
 - close会主动flush flush可能触发compaction和write stall。先跳过
 - open会读wal恢复memtable，所以最好不要有wal，close的时候刷掉
+- targetbase和放大因子要根据自身的存储来调整 比如写入hdfs，设置60M就比较合适，不会频繁更新元数据
 
 ### ref
 
