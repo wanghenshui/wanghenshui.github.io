@@ -275,9 +275,108 @@ class AnonymousTokenPool {
 
 # Lambda Expressions
 
+c++20
+
+```c++
+[capture clause] <template parameters\> (parameter list)
+specifier exception attribute -> return type requires { body }
+```
+
+- specifier
+  - mutable
+  - constexpr（能推导出来，所以这个非必须）
+  - consteval
+- exception
+  - noexcept
+  - throw 别用
+- requires 
+  - capture clause
+  - template parameters
+  -  arguments passed in the parameter list
+  -  anything which can be checked at compile time
+
+- capture std::unique_ptr
+
+```c++
+std::unique_ptr<Widget> myPtr = std::make_unique<Widget>();
+auto myLamb = [ capturedPtr = std::move(myPtr) ] ( )
+{ return capturedPtr->computeSize(); };
+```
+
+---
+
+# Move Semantics
+
+再谈右值
+
+- No rvalue reference as function return type
+
+```c++
+int&& func() { return 42; }
+void test() {
+	int a = func();//返回之前已经销毁
+}
+```
+
+std::move
+
+```c++
+template <class T>
+constexpr remove_reference_t<T>&& move(T&& t) noexcept
+{
+	return static_cast<remove_reference_t<T>&&>(t);
+}
+```
+
+- Next operation after std::move is destruction or assignment move完只能销毁或者重新赋值，其他操作会引入问题
+-  Don’t  std::move the return of a local variable 别move返回值
 
 
 
+---
+
+# Smart Pointers
+
+- std::unique_ptr
+  - 没有copy语义
+  - 比raw pointer无劣势
+  - 定制deleter（需要可见）
+  - 数组的特化std::unique_ptr<T[]>
+  - std::make_unique 要比std::unique_ptr构造要快
+
+- std::shared_ptr
+  - 有count原子计数。有消耗
+    - 本身线程安全但是不保证引用的资源是线程安全
+  - 定制deleter
+  - std::make_shared 要比std::shared_ptr构造要快
+  - std::shared_ptr\<void> https://www.cnblogs.com/imjustice/p/how_shared_ptr_void_works.html
+- std::weak_ptr
+  - 借，生成shared_ptr
+
+使用建议，最好别用share or
+
+-  std::atomic_shared_ptr/std::atomic_weak_ptr -> std::atomic\<std::shared_ptr<T\>> std::atomic\<std::weak_ptr<T\>>
+
+---
+
+# C++ Templates
+
+
+
+---
+
+# Abstract Machines/The Structure of a Program
+
+讲了一遍编译原理
+
+- ODR 
+
+- ABI
+
+- name-mangling 
+
+- 变量存储在哪
+  - 注意static和thread_local
 
 ---
 
