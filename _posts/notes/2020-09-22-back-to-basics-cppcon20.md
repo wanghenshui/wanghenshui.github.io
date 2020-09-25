@@ -331,7 +331,42 @@ constexpr remove_reference_t<T>&& move(T&& t) noexcept
 - Next operation after std::move is destruction or assignment move完只能销毁或者重新赋值，其他操作会引入问题
 -  Don’t  std::move the return of a local variable 别move返回值
 
+move ctor
 
+- Move constructor / assignment should be explicitly noexcept
+- Use t =default when possible
+- Moved-from object must be left in a valid state
+- Make move assignment safe for self-assignment
+
+```c++
+struct S {
+	double* data;
+	S( S&& other ) noexcept
+		: data(std::exchange(other.data, nullptr))
+	{ }
+    
+    S& operator=( S&& other ) noexcept {
+        if (this == &other) return *this;
+		
+        delete[] data;
+		data = std::exchange(other.data, nullptr);
+		return *this;
+	}
+};
+```
+
+
+
+完美转发
+
+```c++
+template <class T> void f(T&& value)
+{
+	g(std::forward<T>(value));
+}
+```
+
+有些类型只能move不能copy
 
 ---
 
@@ -361,7 +396,24 @@ constexpr remove_reference_t<T>&& move(T&& t) noexcept
 
 # C++ Templates
 
+- c++17引入CTAD 没啥说的
 
+- using
+
+```c++
+template<size_t N>
+using CharArray = std::array<char, N>;
+```
+
+- std::array受限于NTTP这种参数难受，不如std::span
+
+- 变参模板
+
+- SFINAE
+  - 其他套路
+    - tag dispatch
+    - if constexpr
+  - c++20 用concept代替
 
 ---
 
@@ -388,6 +440,10 @@ constexpr remove_reference_t<T>&& move(T&& t) noexcept
 - https://github.com/CppCon/CppCon2020/blob/main/Presentations/back_to_basics_exceptions/back_to_basics_exceptions__klaus_iglberger__cppcon_2020.pdf
 - https://github.com/CppCon/CppCon2020/blob/main/Presentations/back_to_basics_lambda_expressions/back_to_basics_lambda_expressions__barbara_geller__ansel_sermersheim__cppcon_2020.pdf
 - https://github.com/CppCon/CppCon2020/blob/main/Presentations/back_to_basics_move_semantics/back_to_basics_move_semantics__david_olsen__cppcon_2020.pdf
+  - Nicolai M. Josuttis, C++ Move Semantics: The Complete Guide,http://www.cppmove.com/
+  - C++ Core Guidelineshttps://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html
+  - Nicolai Josuttis, “The Hidden Secrets of Move Semantics”, CppCon 2020
+  - Nicolai Josuttis, “The Nightmare of Move Semantics for Trivial Classes”, CppCon 2017 https://www.youtube.com/watch?v=PNRju6_yn3o
 - https://github.com/CppCon/CppCon2020/blob/main/Presentations/back_to_basics_smart_pointers/back_to_basics_smart_pointers__rainer_grimm__cppcon_2020.pdf
 - https://github.com/CppCon/CppCon2020/blob/main/Presentations/back_to_basics_templates_part_1/back_to_basics_templates_part_1__andreas_fertig__cppcon_2020.pdf
 - https://github.com/CppCon/CppCon2020/blob/main/Presentations/back_to_basics_templates_part_2/back_to_basics_templates_part_2__andreas_fertig__cppcon_2020.pdf
