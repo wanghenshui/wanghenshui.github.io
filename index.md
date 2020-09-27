@@ -13,9 +13,7 @@ tagline: bro
 
 [rocksdb blog](https://rocksdb.org/blog/) \| [Rocksdb CN Doc](https://wanghenshui.github.io/rocksdb-doc-cn/) (tks [johnzeng](https://github.com/johnzeng)) \| [rocksdb doxygen](https://wipple.devnull.network/research/rippled/api.docs/namespacerocksdb.html)\| [MyRocks CN Doc](https://wanghenshui.github.io/MyRocks_zh_doc/) (tks [zhangshuao](https://github.com/zhangshuao/MyRocks_zh_doc)) \|
 
-[Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) dead, sorry for that \| 
-
-[Bartek's Awesome c++  blog](https://www.bfilipek.com/)\| [Simon Brand's c++ blog](https://blog.tartanllama.xyz/)
+[Cpp Draft](https://wanghenshui.github.io/cppwp/) \| [Gist Viewer](https://wanghenshui.github.io/gist-viewer/) \| [ReadFree](https://readfree.me/) dead, sorry for that \| [coq](https://coq-zh.github.io/SF-zh/)
 
 [python anti-pattern](https://docs.quantifiedcode.com/python-anti-patterns/index.html) \| [Rust Macro cn](http://blog.luxko.site/tlborm-chinese/book/) \|
 
@@ -23,13 +21,27 @@ tagline: bro
 
  [leveldb](https://dirtysalt.github.io/html/leveldb.html) \| [Crafting Interpreters](http://craftinginterpreters.com/contents.html) \| [redbase](https://cs.stanford.edu/people/widom/cs346/) \| [TDOP](https://tdop.github.io/) \| [sqlzoo for sql basic test](https://sqlzoo.net) \|
 
-[Awesome Distribute systems](https://github.com/zhenlohuang/awesome-distributed-systems)\| [ds](https://github.com/ty4z2008/Qix/blob/master/ds.md) \| [Christopher Meiklejohn's cool blog, about distribute system](http://christophermeiklejohn.com/) \| [baptiste-wicht's cool blog, about c++](https://baptiste-wicht.com/) \|
+[Awesome Distribute systems](https://github.com/zhenlohuang/awesome-distributed-systems)\| [ds](https://github.com/ty4z2008/Qix/blob/master/ds.md) \| [Christopher Meiklejohn's cool blog, about distribute system](http://christophermeiklejohn.com/) \|
+
+**some cool c++ blog (english)**
+
+[Bartek's Awesome c++  blog](https://www.bfilipek.com/)\| [Simon Brand's c++ blog](https://blog.tartanllama.xyz/) \| [Fluent C++](https://www.fluentcpp.com/)
+
+ [baptiste-wicht's cool blog, about c++](https://baptiste-wicht.com/) \| [ vector-of-bool , i don't know his name, but he's blog is awesome](https://vector-of-bool.github.io/) 
 
 [tromey, cool stuff about compile and security](https://tromey.com/blog/) \|[lemire, software performance and data engineering](https://lemire.me) \|
+
+---
+
+**tool websit**
 
 [bash cheat sheet](https://devhints.io/bash) \| [YAML lint](http://www.yamllint.com/) \| [oi wiki](https://oi-wiki.org/)  \| [Vim CheatSheet](https://vim.rtorr.com/lang/zh_cn)  \|  [ascii table](http://www.asciitable.com/) \| [regex viewer](https://regexper.com/) \|
 
 [random string](https://www.random.org/strings/) \| [random password](https://passwordsgenerator.net/) \| [current time](https://currentmillis.com/)  \|
+
+---
+
+**database read list**
 
 [morning paper, cs paper,](https://blog.acolyer.org/)\|
 
@@ -39,13 +51,13 @@ tagline: bro
 
 [lobste, tech log review](https://lobste.rs/)
 
-[coq](https://coq-zh.github.io/SF-zh/)
-
 [A Distributed Systems Reading List ](http://dancres.github.io/Pages/)
 
 [Another, database learning list](https://github.com/pingcap/awesome-database-learning)
 
-### some cool chinese's blog
+---
+
+**some cool chinese's blog**
 
 [eric fu,awesome database stuff](https://ericfu.me/)
 
@@ -75,7 +87,7 @@ tagline: bro
 
 [raoenhui, very funny](https://raoenhui.github.io)
 
-
+---
 
 ## About Me
 

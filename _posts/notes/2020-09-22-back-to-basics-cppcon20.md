@@ -384,7 +384,9 @@ template <class T> void f(T&& value)
     - 本身线程安全但是不保证引用的资源是线程安全
   - 定制deleter
   - std::make_shared 要比std::shared_ptr构造要快
-  - std::shared_ptr\<void> https://www.cnblogs.com/imjustice/p/how_shared_ptr_void_works.html
+  - std::shared_ptr\<void>
+    -  https://www.cnblogs.com/imjustice/p/how_shared_ptr_void_works.html
+    - https://stackoverflow.com/questions/5913396/why-do-stdshared-ptrvoid-work
 - std::weak_ptr
   - 借，生成shared_ptr
 
