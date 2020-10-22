@@ -130,7 +130,7 @@ struct get_size
     
 template<std::size_t id, std::size_t Idx>
 struct get_count
-    : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockCount>{
+    : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockCount>{\
 };
 
 template<std::size_t id, std::size_t... Idx>
