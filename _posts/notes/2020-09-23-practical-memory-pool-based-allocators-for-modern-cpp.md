@@ -10,7 +10,7 @@ tags: [c++,cppcon ,cppcon2020]
 
 [toc]
 
-**Practical memory pool based allocators for Modern C++ **
+**Practical memory pool based allocators for Modern C++**
 
 又讲内存池实现的，内存池等于块池
 
@@ -126,6 +126,7 @@ using pool_type = std::array<bucket, bucket_count<id>>;
 template<std::size_t id, std::size_t Idx>
 struct get_size
     : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockSize>{};
+    
 template<std::size_t id, std::size_t Idx>
 struct get_count
 : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockCount>{};
