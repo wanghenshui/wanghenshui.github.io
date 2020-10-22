@@ -125,17 +125,17 @@ using pool_type = std::array<bucket, bucket_count<id>>;
 
 template<std::size_t id, std::size_t Idx>
 struct get_size
-    : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockSize>{
+    : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockSize>{\\
 };
     
 template<std::size_t id, std::size_t Idx>
 struct get_count
-    : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockCount>{\
+    : std::integral_constant<std::size_t, std::tuple_element_t<Idx, bucket_descriptors_t<id>>::BlockCount>{\\
 };
 
 template<std::size_t id, std::size_t... Idx>
 auto & get_instance(std::index_sequence<Idx...>) noexcept {
-	static pool_type<id> instance{{{get_size<id, Idx>::value, get_count<id, Idx>::value} ...}};
+	static pool_type<id> instance{\{\{get_size<id, Idx>::value, get_count<id, Idx>::value} ...\}\};
 	return instance;
 }
 template<std::size_t id>
