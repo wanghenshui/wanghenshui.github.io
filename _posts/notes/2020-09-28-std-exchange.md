@@ -1,8 +1,8 @@
 ---
 layout: post
 title: std::exchange 
-category: [blahblah]
-tags: [blahblah, blahblah]
+category: [c++]
+tags: [c++, c++14, cppcon, cppcon17]
 ---
 {% include JB/setup %}
 
