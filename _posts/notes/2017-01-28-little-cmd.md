@@ -40,6 +40,11 @@ tags: [linux]
   - 磁盘格式转换 convert h: /fs:ntfs
   - windows查看端口占用 `netstat -aon|findstr 25340` 最后一行就是进程id
   - windows 杀死进程，在任务管理找不到的前提下 taskkill /f /pid 13656
+- MAC
+    - 截图 command shift 4
+    - 截图且复制到剪贴板 Shift+Control+Command+4
+    - 截屏command shift 3
+    - 截屏且复制到剪贴板 Shift+Control+Command+3
 - VS
 
   - Ctrl+k Ctrl+f 对齐(format)
