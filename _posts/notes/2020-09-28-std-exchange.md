@@ -1,6 +1,6 @@
 ---
 layout: post
-title: std::exchange 
+title: std::exchange用法
 category: [c++]
 tags: [c++, c++14, cppcon, cppcon17]
 ---
