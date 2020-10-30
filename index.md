@@ -79,6 +79,8 @@ tagline: bro
 
 [meituan tech blog](https://tech.meituan.com/)
 
+[pingcap tech blog](https://pingcap.com/blog-cn/)
+
 [Linux Kernel Exploration](http://ilinuxkernel.com/)
 
 [nosuchfield](https://www.nosuchfield.com/)

@@ -209,6 +209,9 @@ class Dispatcher {
 - https://stackoverflow.com/questions/20807938/stdswap-vs-stdexchange-vs-swap-operator
 - https://github.com/CppCon/CppCon2017/blob/master/Lightning%20Talks%20and%20Lunch%20Sessions/std%20exchange%20idioms/std%20exchange%20idioms%20-%20Ben%20Deane%20-%20CppCon%202017.pdf
 - https://www.fluentcpp.com/2020/09/25/stdexchange-patterns-fast-safe-expressive-and-probably-underused/
+
+
+
 ---
 
 Any advice mailto:wanghenshui@qq.com, thanks! 

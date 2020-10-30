@@ -12,7 +12,7 @@ tags: [cppcon, cppcon2019, c++]
 
 本来concurrency-ts是做了future::then的，本计划要放在<experimental/future> 
 
-asio作者的实现](https://github.com/chriskohlhoff/executors) 最终还是没合入
+[asio作者的实现](https://github.com/chriskohlhoff/executors) 最终还是没合入
 
 参考链接1里提到，这个方案作废了
 
@@ -48,11 +48,15 @@ Lazy future advantages
 - https://www.youtube.com/watch?v=tF-Nz4aRWAM
   - ppt https://github.com/CppCon/CppCon2019/blob/master/Presentations/a_unifying_abstraction_for_async_in_cpp/a_unifying_abstraction_for_async_in_cpp__eric_niebler_david_s_hollman__cppcon_2019.pdf
 - ASIO作者的设计 http://chriskohlhoff.github.io/executors/ 还挺好用的，用post取代std::async生成future，可以指定不同的executor，然后executor切换可以通过wrap来换，就相当于folly里的via 基本功能和folly差不太多了
+- 一个concurrency-ts future实现 https://github.com/jaredhoberock/future
 - executor设计还在推进中，我看计划是c++23，变化可能和eric说的差不多，https://github.com/executors/executors 
   - http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/p0443r14.html
   - 文档看不下去？这有个介绍写的不错 https://cor3ntin.github.io/posts/executors/
 - 有个介绍实现无需type erasure的future C++Now 2018: Vittorio Romeo “Futures Without Type Erasure” https://www.youtube.com/watch?v=Avvhs3PLP7o 简单说就是编译期确定调用链结构，用模版
   - 还有个文档解说 https://www.maxpagani.org/2018/07/31/it18-zero-allocation-and-no-type-erasure-futures/
+
+
+
 ---
 
 Any advice mailto:wanghenshui@qq.com, thanks! 
