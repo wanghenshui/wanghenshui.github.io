@@ -18,35 +18,44 @@ tags: [c++, boost, asio]
 新框架有几个核心概念，Context，Scheduler，Service，Executor，Strand。
 
 **Context**:
-1, asio所有功能都必需在一个***Context\*** 里调度执行
-2, 每个***Context*** 都有一个***Service*** 注册表，管理***Service***
-3, 每个***Context*** 下的***Service*** 都是唯一的
-4, 每个***Context*** 都有一个***Scheduler***
-5, ***Context*** 必须通过在线程运行poll()或run()进入调度消费***Scheduler*** 执行队列并执行任务
-6, io_context是一种对io操作优先的优化***Context***，将io事件复路分集方法做成内嵌任务
-7, io_context的win版本对***Schdeluer*** 进行了优化，聚合了iocp。
-8, 可以在多线程上同时运行poll()或run()，并且线程安全
+
+- asio所有功能都必需在一个***Context\*** 里调度执行
+- 每个***Context*** 都有一个***Service*** 注册表，管理***Service***
+-  每个***Context*** 下的***Service*** 都是唯一的
+-  每个***Context*** 都有一个***Scheduler***
+-  ***Context*** 必须通过在线程运行poll()或run()进入调度消费***Scheduler*** 执行队列并执行任务
+-  io_context是一种对io操作优先的优化***Context***，将io事件复路分集方法做成内嵌任务
+-  io_context的win版本对***Schdeluer*** 进行了优化，聚合了iocp。
+-  可以在多线程上同时运行poll()或run()，并且线程安全
+
 **Scheduler**:
-1, 首先是一个***Context*** 的一个服务
-2, 有一条op_queue执行队列
-3, 所有***Service*** 的调度都最终依赖***Scheduler*** 调度
-4, ***Scheduler*** 的dispatch()方法将任务调度到执行队列
+
+- 首先是一个***Context*** 的一个服务
+- 有一条op_queue执行队列
+- 所有***Service*** 的调度都最终依赖***Scheduler*** 调度
+- ***Scheduler*** 的dispatch()方法将任务调度到执行队列
+  
 **Service**:
-1, 为某种功能提供调度以及功能服务
-2, 最终依赖所在的 ***Context*** 的 ***Scheduler*** 调度服务
-3, 每种 ***Service*** 都有一个service_impl类，并为这个类提供服务
+
+- 为某种功能提供调度以及功能服务
+- 最终依赖所在的 ***Context*** 的 ***Scheduler*** 调度服务
+- 每种 ***Service*** 都有一个service_impl类，并为这个类提供服务
+
 **Executor**:
-1, 相当于ios中的可并行的dispatch_queue
-2, 相当于一个 ***Context*** 的服务，或者对 ***Context*** 的 ***Execution*** 行为的委托
-3, 最终依赖所在的***Context***的***Scheduler***调度服务
+
+- 相当于ios中的可并行的dispatch_queue
+- 相当于一个 ***Context*** 的服务，或者对 ***Context*** 的 ***Execution*** 行为的委托
+- 最终依赖所在的***Context***的***Scheduler***调度服务
+
 **Strand**:
-1, 相当于ios中的串行化的dispatch_queue
-2, 分两种服务，绑定本io ***Context*** 以及可以指定***Executor*** (即不同类型的***Context*** )
-3, 每个***Strand*** 有独立的执行队列
-4, ***Strand*** 本身作为一个任务，必须在***Scheduler*** 进行调度分派。
-5, 同一个***Strand*** 同时只能在一条线程上分派执行队列
-6, 当多线程同时对***Strand*** 分派时，其它线程只能将任务缓冲到等待队列
-7, 利用本身强制串行化的特性，可代替同步锁，保护变量和代码，减少线程切换
+
+- 相当于ios中的串行化的dispatch_queue
+- 分两种服务，绑定本io ***Context*** 以及可以指定***Executor*** (即不同类型***Context***)
+- 每个***Strand*** 有独立的执行队列
+- ***Strand*** 本身作为一个任务，必须在***Scheduler*** 进行调度分派。
+- 同一个***Strand*** 同时只能在一条线程上分派执行队列
+- 当多线程同时对***Strand*** 分派时，其它线程只能将任务缓冲到等待队列
+- 利用本身强制串行化的特性，可代替同步锁，保护变量和代码，减少线程切换
 
 ---
 
