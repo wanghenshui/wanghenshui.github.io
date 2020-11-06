@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Declarative Control Flow
+title:  (cppcon)Declarative Control Flow
 category: c++
 tags: [c++, cppcon]
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: cppcon2020 back to basics
+title: (cppcon)back to basics
 category: [c++]
 tags: [c++,cppcon ,cppcon2020]
 ---
@@ -172,7 +172,12 @@ class Logger {
 };
 ```
 
-
+|                           `mutex`                            |               `condition_variable`                |                         `once_flag`                          |
+| :----------------------------------------------------------: | :-----------------------------------------------: | :----------------------------------------------------------: |
+|       `lock` blocks only if someone “owns” the mutex.        |               `wait` always blocks.               |  `call_once` blocks only if the “done” flag isn’t yet set.   |
+|             Many threads can queue up on `lock`.             |       Many threads can queue up on `wait`.        |          Many threads can queue up on `call_once`.           |
+| Calling `unlock` unblocks exactly one waiter: the new “owner.” | Calling `notify_one` unblocks exactly one waiter. | Failing at the callback unblocks exactly one waiter: the new “owner.” |
+|                                                              |    Calling `notify_all` unblocks all waiters.     | Succeeding at the callback unblocks all waiters and sets the “done” flag. |
 
 **New C++17 and C++20 primitives**
 

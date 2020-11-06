@@ -16,7 +16,7 @@ tags: [cppcon, cppcon2019, c++]
 
 参考链接1里提到，这个方案作废了
 
-参考链接2 的视频里说了这个then contination方案的缺陷，future-promise的都要求太高
+参考链接2 的视频里 eric说了这个then contination方案的缺陷，future-promise的都要求太高
 
 由于future-promise之间是需要通信且共享状态的，需要一些资源
 
@@ -39,6 +39,10 @@ Lazy future advantages
 
 
 展示的代码里没有future，就是各种lambda和execute和then 的结合
+
+eric的作品链接在这里
+
+https://github.com/facebookexperimental/libunifex 还在开发中。很有意思
 
 ---
 

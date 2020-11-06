@@ -1,6 +1,6 @@
 ---
 layout: post
-title: cppcon2014 return values take a closure walk
+title: (cppcon)return values take a closure walk
 category: c++
 tags: [c++, cppcon]
 ---

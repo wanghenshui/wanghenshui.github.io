@@ -1,6 +1,6 @@
 ---
 layout: post
-title: using types effectively
+title: (cppcon)using types effectively
 category: c++
 tags: [c++, cppcon]
 ---

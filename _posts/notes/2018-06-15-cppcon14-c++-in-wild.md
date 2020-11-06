@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  cppcon2014 c++11 几个生产中常用的小工具
+title:  (cppcon)c++11 几个生产中常用的小工具
 category: c++
 tags: [c++, cppcon]
 ---
