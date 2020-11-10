@@ -35,6 +35,7 @@ tags: [c++, boost, asio]
 - 所有***Service*** 的调度都最终依赖***Scheduler*** 调度
 - ***Scheduler*** 的dispatch()方法将任务调度到执行队列
   
+
 **Service**:
 
 - 为某种功能提供调度以及功能服务
@@ -62,6 +63,8 @@ tags: [c++, boost, asio]
 ### ref
 
 - https://www.cnblogs.com/bbqzsl/p/11919502.html
+- asio使用样例，不错 https://github.com/franktea/network
+- 介绍实现的 https://zhuanlan.zhihu.com/p/55503053
 
 
 

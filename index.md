@@ -31,6 +31,8 @@ tagline: bro
 
 [tromey, cool stuff about compile and security](https://tromey.com/blog/) \|[lemire, software performance and data engineering](https://lemire.me) \|[cor3ntin, modern c++](https://cor3ntin.github.io/)
 
+[Eric Niebler, C++ Expert](https://ericniebler.com/)
+
 ---
 
 **tool websit**

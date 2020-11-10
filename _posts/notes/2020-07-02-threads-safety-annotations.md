@@ -56,21 +56,22 @@ tags: [c++, thread]
 ### ref
 
 - https://clang.llvm.org/docs/ThreadSafetyAnalysis.html
-
   - 可以直接把这个宏抄过去 http://clang.llvm.org/docs/ThreadSafetyAnalysis.html#mutex-h
     - https://github.com/tensorflow/runtime/blob/1f60e4778e91d9932ac04647769a178a9646c0a7/include/tfrt/support/thread_annotations.h 直接抄的
-
 - 原理论文 https://research.google.com/pubs/archive/42958.pdf
-
 - ppt介绍 https://llvm.org/devmtg/2011-11/Hutchins_ThreadSafety.pdf
-
 - 用法 1 https://stackoverflow.com/questions/40468897/clang-thread-safety-with-stdcondition-variable
-
 - 用法 2 https://zhuanlan.zhihu.com/p/47837673
-
 - std::priority_queue 看成员对象那一小节https://en.cppreference.com/w/cpp/container/priority_queue
+- 定时器实现总结 https://www.ibm.com/developerworks/cn/linux/l-cn-timers/index.html 文章写得很棒
 
-  
+重点关注最小堆(优先队列) 来维护定时器组，以及时间轮 
+
+- https://www.zhihu.com/question/68451392 管理定时器，不一定需要timerqueue 暴力扫也不是不可以 只要timer不多
+- kafka中的事件轮 https://club.perfma.com/article/328984
+- https://www.cnblogs.com/zhongwencool/p/timing_wheel.html 他这个博客做的不错。。。
+
+
 
 ---
 
