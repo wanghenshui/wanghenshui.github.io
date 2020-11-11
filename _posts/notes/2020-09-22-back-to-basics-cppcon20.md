@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (cppcon)back to basics
+title: (cppcon2020) back to basics
 category: [c++]
 tags: [c++,cppcon ,cppcon2020]
 ---

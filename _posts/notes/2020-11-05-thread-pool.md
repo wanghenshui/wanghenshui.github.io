@@ -26,7 +26,7 @@ tags: [c++, rocksdb, folly]
 
 3. 异步事件框架 +线程池 线程池没有别的作用，就是资源池，事件框架可以是reactor/proactor，有调度器 schedule，负责选用资源 比如boost::asio
 
-4. 异步事件处理 + future/promise + 任务队列  比如seastar (侵入比较强，系统级)
+4. 异步事件处理(一个主事件线程+一个工作线程+一个无锁队列) + future/promise + 任务队列  比如seastar (侵入比较强，系统级)
 
 
 
