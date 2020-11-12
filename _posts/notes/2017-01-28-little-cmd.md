@@ -65,6 +65,7 @@ tags: [linux]
     - 打开新终端 comand + T
     - 回到桌面 fn + f11 或者五个手指缩放(比较反人类，算了)
       - 设置触发角，我设置到了右下角，这样和windows行为一致
+    - 终端分屏 cmd + d 取消 cmd + shift + d
     - 设置 /使用习惯
       - 鼠标 滚轮 去掉自然
       - sudo spctl --master-disable 设置信任
@@ -158,9 +159,19 @@ split -b 10M data
 cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后台运行
 ```
 
+
+
+## top命令 一图流
+
+![](https://wanghenshui.github.io/assets/top.png)
+
+
+
+
+
 ---
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+
 
 ### 参考
 
