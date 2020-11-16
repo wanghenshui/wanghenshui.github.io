@@ -9,7 +9,7 @@ def check_post_format():
     with open(file, "r+") as f:
         l=f.readlines()
         print(l)
-        l.insert(6,"{% include JB/setup %}\n")
+        l.insert(6,"  \n")
         print(l)
         f.seek(0,0)
         f.truncate()

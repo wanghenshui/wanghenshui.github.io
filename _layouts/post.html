@@ -1,34 +1,70 @@
 ---
 layout: default
 ---
-{% include JB/setup %}
 
-<div id="gitmentContainer"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<div class="container">
+  <div class="row-fluid main">
+    <div class="col-md-9 content">
+      <article class="post">
+        <h1 class="post-title">{{ page.title }}</h1>
 
+        <div class="post-info">
+          <span class="post-date">{{ page.date | date_to_string }}</span>
+          {% if page.categories.size > 0 %} | 
+            <span class="fa fa-folder-open" aria-hidden="true">
+            {% for category in page.categories %}
+              <a class="post-categories" href="{{ site.baseurl }}/categories.html#{{ category }}">{{ category }}</a>
+            {% endfor %}
+            </span>
+          {% endif %}
+          {% if page.tags.size > 0 %} | 
+            <span class="fa fa-tag" aria-hidden="true">
+            {% for tag in page.tags %}
+              <a class="post-tags" href="{{ site.baseurl }}/tags.html#{{ tag }}">{{ tag }}</a>
+            {% endfor %}
+            </span>
+          {% endif %}
+        </div>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-96JKJ1Q1L4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        <hr>
+        <div class="post-content">
+          {{ content }}
+        </div>
+        <br><br>
+      </article>
 
-  gtag('config', 'G-96JKJ1Q1L4');
-</script>
+      <nav class="post-pagination">
+        {% if page.previous %}
+        <a href="{{ site.baseurl }}{{ page.previous.url }}" class="btn previous" title="{{ page.previous.title }}">&larr; {{ page.previous.title }}</a>
+        {% endif %}
+        {% if page.next %}
+        <a href="{{ site.baseurl }}{{ page.next.url }}" class="btn next" title="{{ page.next.title }}">{{ page.next.title }} &rarr;</a>
+        {% endif %}
+      </nav>
 
+      <hr>
 
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-    owner: wanghenshui,
-    repo: wanghenshui.github.io,
-    oauth: {
-        client_id: d78eed812bc47bb6eac6,
-        client_secret: 19c0fedb4f73e1fdf6444cb321043e4237e0b0e0,
-    },
-});
-gitment.render('gitmentContainer');
-</script>
+      {% if site.related_posts != empty %}
+      <aside class="related">
+        <h3>Related Posts</h3>
+        <ul class="related-posts">
+          {% for post in site.related_posts limit:3 %}
+            <li>
+              <a href="{{ site.baseurl }}{{ post.url }}">
+                {{ post.title }}
+                <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </aside>
+      {% endif %}
 
-{% include themes/twitter/post.html %}
+      {% include {{ site.baseurl }}comments.html %}
+    </div>
+    
+    <div class="col-md-3 post-sidebar">
+      {% include {{ site.baseurl }}sidebar_post.html %}
+    </div>
+  </div>
+</div>
