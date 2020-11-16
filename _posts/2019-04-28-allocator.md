@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: c++17 std::pmr::polymorphic_allocator
 tags: [cpp17, cppcon, c++]
 ---

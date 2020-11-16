@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: libstdc++.so.6 version GLIBCXX_3.4.20 not found
 tags: [c++]
 ---

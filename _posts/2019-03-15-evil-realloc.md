@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title: 为啥不用realloc
 tags : [c,gcc]
 ---

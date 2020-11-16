@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux调优指南
-category: [linux]
+categories: [linux]
 tags: [linux]
 ---
   

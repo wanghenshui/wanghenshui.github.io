@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 折腾了一下darknet
-category: tools
+categories: tools
 tags: [c]
 ---
   

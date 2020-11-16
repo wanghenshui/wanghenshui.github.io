@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: pebblesdb
 tags: [c++,rocksdb,lsm]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux/Unix系统编程手册 整理笔记
-category: [linux]
+categories: [linux]
 tags: [linux]
 ---
   

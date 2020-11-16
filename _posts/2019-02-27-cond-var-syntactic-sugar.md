@@ -1,7 +1,7 @@
 ---
 layout: post
 title: std::condition_variable::wait 一处细节
-category: c++
+categories: c++
 tags: [c++]
 ---
   

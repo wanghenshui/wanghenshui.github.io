@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: DeleteRange以及删除范围key
 tags: [rocksdb]
 ---

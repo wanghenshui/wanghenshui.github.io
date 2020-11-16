@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Optimizing Bulk Load in RocksDB
-category: [database, rocksdb]
+categories: [database, rocksdb]
 tags: [rocksdb]
 ---
   

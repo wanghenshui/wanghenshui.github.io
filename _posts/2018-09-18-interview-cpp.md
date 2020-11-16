@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 之前c++面试被问到过的问题
-category: c++
+categories: c++
 tags: [c++]
 ---
   

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MongoDB权威指南笔记
-category: database
+categories: database
 tags: [c++,mongodb]
 ---
   

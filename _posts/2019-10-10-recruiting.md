@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 招人啦
-category: [c++]
+categories: [c++]
 tags: [tools]
 ---
   

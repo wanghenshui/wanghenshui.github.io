@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: strcasecmp
 tags: [string, c++]
 

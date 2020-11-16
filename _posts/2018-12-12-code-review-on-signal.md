@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)代码审核：关于信号
-category: linux
+categories: linux
 tags : [linux, signal, gcc]
 ---
   

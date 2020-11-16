@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redis 代码走读 rdb.c
-category: database
+categories: database
 tags: [redis, c]
 ---
   

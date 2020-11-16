@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title: gcc编译提示siginfo_t找不到
 tags : [c,gcc]
 ---

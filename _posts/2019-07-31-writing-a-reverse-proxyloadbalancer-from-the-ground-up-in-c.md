@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: Writing a reverse proxy loadbalancer from the ground up in C
 tags: [c, linux, proxy, nginx]
 ---

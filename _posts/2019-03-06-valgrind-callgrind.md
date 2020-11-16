@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Valgrind & CallGrind
-category: tools
+categories: tools
 tags: [c, python]
 ---
   

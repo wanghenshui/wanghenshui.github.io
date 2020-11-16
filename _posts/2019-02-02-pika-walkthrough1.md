@@ -1,7 +1,7 @@
 ---
 layout: post
 title: pika 初探
-category: database
+categories: database
 tags: [redis,c++]
 ---
 

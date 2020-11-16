@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 如何快速制作一个python包
-category: language
+categories: language
 tags: [pip, python]
 ---
   

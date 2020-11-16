@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 算法4/手撕算法整理笔记
-category: [algorithm]
+categories: [algorithm]
 tags: [data structure, algorithm]
 ---
   

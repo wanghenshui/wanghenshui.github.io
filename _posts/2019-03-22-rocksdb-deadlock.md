@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: rocksdb delay write死锁
 tags : [rocksdb, gcc]
 ---

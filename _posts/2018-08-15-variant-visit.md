@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title: std::variant 与 std::visit
 tags : [c++,gcc]
 ---

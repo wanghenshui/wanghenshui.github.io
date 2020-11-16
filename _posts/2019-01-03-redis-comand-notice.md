@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redis命令使用建议
-category: database
+categories: database
 tags: [redis]
 ---
   

@@ -1,6 +1,6 @@
 layout: post
 title: tcp keepalive
-category: [linux]
+categories: [linux]
 tags: [tcp,linux,c]
 
   

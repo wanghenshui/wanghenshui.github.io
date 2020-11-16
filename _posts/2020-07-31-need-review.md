@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 七月待读 need review 
-category: tools
+categories: tools
 tags: [todo]
 ---
   

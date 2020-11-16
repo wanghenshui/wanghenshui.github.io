@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: Redis Stream相关总结
 tags: [rocksdb]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)Beyond Relational Databases:A Focus on Redis, MongoDB, and ClickHouse
-category: [database]
+categories: [database]
 tags: [redis, mongodb, clickhouse, nosql]
 ---
   

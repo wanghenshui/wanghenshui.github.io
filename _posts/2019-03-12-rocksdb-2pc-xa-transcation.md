@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: 分布式事务，xa，2pc，以及rocksdb xa测试
 tags : [rocksdb, gcc]
 ---

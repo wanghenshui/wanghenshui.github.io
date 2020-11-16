@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: Buffering SQL Writes with Redis
 tags: [redis, postgresql]
 

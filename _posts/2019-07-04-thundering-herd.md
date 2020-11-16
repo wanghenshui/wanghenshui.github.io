@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: SO_REUSEPORT与惊群问题
 tags: [c++,linux,epoll]
 ---

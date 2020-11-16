@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用perl模块 graph easy 画图
-category: tools
+categories: tools
 tags: perl
 ---
 

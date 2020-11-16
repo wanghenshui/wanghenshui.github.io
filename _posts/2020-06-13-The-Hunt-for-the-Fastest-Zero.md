@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)The Hunt for the Fastest Zero
-category: [c++, stl]
+categories: [c++, stl]
 tags: [c++]
 ---
   

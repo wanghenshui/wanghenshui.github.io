@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 类型擦除技术 type erasure
-category: [c++]
+categories: [c++]
 tags: [c++]
 ---
   

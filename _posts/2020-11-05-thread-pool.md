@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 线程池/任务队列调研
-category: [c++]
+categories: [c++]
 tags: [c++, rocksdb, folly]
 ---
   

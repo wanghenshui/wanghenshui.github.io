@@ -1,7 +1,7 @@
 ---
 layout: post
 title: memcached源码剖析笔记
-category: [c]
+categories: [c]
 tags: [c,kv,cache,memcache, linux]
 ---
   

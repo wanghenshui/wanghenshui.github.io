@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redis hyperloglog实现总结
-category: database
+categories: database
 tags: [redis, c]
 ---
   

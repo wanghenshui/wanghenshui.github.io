@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title: immer ,一个不可变数据结构的实现
 tags : [cppcon,c++]
 ---

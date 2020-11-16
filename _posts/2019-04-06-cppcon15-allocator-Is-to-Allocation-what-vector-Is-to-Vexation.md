@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: allocator Is to Allocation what vector Is to Vexation
 tags: [cppcon, c++]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)Handles are the better pointers
-category: [c++]
+categories: [c++]
 tags: [c++, data structure]
 ---
   

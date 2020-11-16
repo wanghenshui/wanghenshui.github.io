@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 看redis makefile，重新学习makefile
-category: database
+categories: database
 tags: [redis, c]
 ---
 

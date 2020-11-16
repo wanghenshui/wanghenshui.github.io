@@ -1,7 +1,7 @@
 ---
 layout: post
 title: git cheatsheet
-category: tools
+categories: tools
 tags: [git]
 ---
   

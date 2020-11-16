@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 改造glog 提供日志轮转
-category: [cpp]
+categories: [cpp]
 tags: [log,glog]
 ---
   

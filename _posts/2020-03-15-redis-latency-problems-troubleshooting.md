@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (转)(译)Redis响应延迟问题排查
-category: [database, translation, debug]
+categories: [database, translation, debug]
 tags: [redis,translation]
 ---
   

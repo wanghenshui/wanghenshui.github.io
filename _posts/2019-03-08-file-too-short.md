@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title: 运行提示load shared libraries error，xxx file too short
 tags : [c,gcc,ld]
 ---

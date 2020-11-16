@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redis io复用
-category: database
+categories: database
 tags: [redis, c, linux]
 ---
   

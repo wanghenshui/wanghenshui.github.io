@@ -1,7 +1,7 @@
 ---
 layout: post
 title: LD_PRELOAD为何不能劫持printf
-category: c++
+categories: c++
 tags: [linux, gcc, c]
 ---
   

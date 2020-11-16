@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: rocksdb一些杂项概念
 tags: [rocksdb, c++]
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: rocksdb merge_test 单测不过问题定位
 tags : [rocksdb,c++]
 ---

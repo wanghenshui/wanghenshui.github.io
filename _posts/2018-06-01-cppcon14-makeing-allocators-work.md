@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Making Allocators Work 
-category: c++
+categories: c++
 tags: [c++, cppcon]
 ---
   

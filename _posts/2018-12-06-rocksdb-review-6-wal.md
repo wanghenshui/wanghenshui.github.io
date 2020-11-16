@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: rocksdb 初探 6：wal
 tags : [rocksdb, c++]
 ---

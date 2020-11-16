@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 链接器和加载器 读书笔记
-category: tools
+categories: tools
 tags: []
 ---
   

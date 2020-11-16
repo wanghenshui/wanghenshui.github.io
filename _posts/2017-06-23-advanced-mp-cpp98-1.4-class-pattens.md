@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)advanced metaprogramming in classic c++ 1.4 典型模式 classic patterns
-category: translation
+categories: translation
 tags: [c++, template]
 ---
 

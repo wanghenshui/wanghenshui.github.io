@@ -1,7 +1,7 @@
 ---
 layout: post
 title: cmake cheatchart
-category: tools
+categories: tools
 tags: [cmake]
 ---
   

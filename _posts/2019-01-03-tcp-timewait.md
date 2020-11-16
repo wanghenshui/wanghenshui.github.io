@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 说说 time_wait
-category: net
+categories: net
 tags: [tcp]
 ---
   

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)写好Pull Requests(PR)
-category: translation
+categories: translation
 tags : [git]
 ---
   

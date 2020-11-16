@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: rocksdb 目录创建的一个坑
 tags : [rocksdb,c++]
 ---

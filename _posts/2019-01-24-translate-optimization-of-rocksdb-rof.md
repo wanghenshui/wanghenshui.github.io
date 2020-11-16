@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)针对 Redis on Flash 优化RocksDB
-category: translation
+categories: translation
 tags : [rocksdb, redis]
 ---
   

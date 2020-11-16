@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: relocation error version GLIBC_PRIVATE not defined in file 
 tags: [c++]
 ---

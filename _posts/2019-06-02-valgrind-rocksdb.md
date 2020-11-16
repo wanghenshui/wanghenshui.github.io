@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: valgrind跑一个rocksdb应用出现错误，以及背后的write hint
 tags: [rocksdb, fs, linux, valgrind]
 ---

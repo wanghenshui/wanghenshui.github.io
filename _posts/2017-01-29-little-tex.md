@@ -1,7 +1,7 @@
 ---
 layout: post
 title: tex cheatsheet
-category: tools
+categories: tools
 tags: [tex]
 ---
   

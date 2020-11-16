@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (cppcon)一些老的编程规范的反思
-category: [c++, cppcon, cppcon2019]
+categories: [c++, cppcon, cppcon2019]
 tags: [c++]
 ---
   

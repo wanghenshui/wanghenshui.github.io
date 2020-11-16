@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tools
+categories: tools
 title: gprof和oprofile使用
 tags: [gprof,oprofile]
 ---

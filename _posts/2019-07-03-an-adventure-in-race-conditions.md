@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: ACCU an adventure in race conditions
 tags: [c++]
 ---

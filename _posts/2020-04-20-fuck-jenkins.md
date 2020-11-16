@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 遇到的两个jenkins问题
-category: [tools]
+categories: [tools]
 tags: [debug,linux]
 ---
   

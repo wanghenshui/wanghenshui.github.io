@@ -1,7 +1,7 @@
 ---
 layout: post
 title: std::exchange用法
-category: [c++]
+categories: [c++]
 tags: [c++, c++14, cppcon, cppcon17]
 ---
   

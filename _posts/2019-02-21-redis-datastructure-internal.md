@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redis数据结构内部实现
-category: database
+categories: database
 tags: [redis, c]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)终极python调试指南 Ultimate Guide to Python Debugging
-category: [python, debug]
+categories: [python, debug]
 tags: [python]
 ---
   

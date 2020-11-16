@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (cppcon2020) back to basics
-category: [c++]
+categories: [c++]
 tags: [c++,cppcon ,cppcon2020]
 ---
   

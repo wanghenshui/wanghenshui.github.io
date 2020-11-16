@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: Avoiding Disasters with Strongly Typed C++
 tags: [cppcon, c++]
 ---

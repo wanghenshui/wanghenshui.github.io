@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MongoRocks优化与实践
-category: [database, rocksdb]
+categories: [database, rocksdb]
 tags: [rocksdb, mongodb]
 ---
   

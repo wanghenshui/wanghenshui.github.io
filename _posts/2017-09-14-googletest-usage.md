@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title: googletest使用记录，以及遇到的一个奇怪的问题
 tags : [googletest, debug ,c++]
 ---

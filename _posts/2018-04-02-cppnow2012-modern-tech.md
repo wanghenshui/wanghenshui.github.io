@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Introduction to Modern C++ Techniques 
-category: c++
+categories: c++
 tags: [c++, boost, cppnow]
 ---
 

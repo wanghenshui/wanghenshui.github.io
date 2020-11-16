@@ -1,7 +1,7 @@
 ---
 layout: post
 title: need review list
-category: tools
+categories: tools
 tags: [todo]
 ---
   
@@ -20,7 +20,7 @@ https://wanghenshui.github.io/assets/
 ---
 layout: post
 title: blahblah
-category: [blahblah]
+categories: [blahblah]
 tags: [blahblah, blahblah]
 ---
   

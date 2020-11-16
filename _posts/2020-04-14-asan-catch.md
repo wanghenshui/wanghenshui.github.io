@@ -1,7 +1,7 @@
 ---
 layout: post
 title: asan常见的抓错报告
-category: [tools, c,]
+categories: [tools, c,]
 tags: [debug, c, gcc]
 ---
   

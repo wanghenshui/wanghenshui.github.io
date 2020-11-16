@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: systench-tpcc适配mongo踩坑
 tags : [linux, mongodb, lua]
 ---

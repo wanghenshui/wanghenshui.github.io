@@ -1,7 +1,7 @@
 ---
 layout: post
 title: c++究竟是怎么实现多态的
-category: c++
+categories: c++
 tags: [c++]
 ---
 

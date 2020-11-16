@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title:  打印uint64_t以及编译错误
 tags : [c,gcc]
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: db_bench测试rocksdb性能
 tags : [rocksdb, gcc]
 ---

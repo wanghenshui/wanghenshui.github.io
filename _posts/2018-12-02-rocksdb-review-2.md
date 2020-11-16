@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: rocksdb 初探 2：基本概念
 tags : [rocksdb,c++]
 ---

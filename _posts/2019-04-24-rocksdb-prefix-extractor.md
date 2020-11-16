@@ -1,6 +1,6 @@
 ---
 layout: post
-category : database
+categories : database
 title: rocksdb perfix extrator
 tags : [rocksdb,c++]
 ---

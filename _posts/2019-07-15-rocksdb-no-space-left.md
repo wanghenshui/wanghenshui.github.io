@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: rocksdb IO error No Space Left
 tags: [c++,rocksdb]
 ---

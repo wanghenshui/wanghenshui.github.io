@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: mysql几个优化
 tags: [mysql]
 ---

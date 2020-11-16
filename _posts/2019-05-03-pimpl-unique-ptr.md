@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c++
+categories: c++
 title: unique_ptr实现pimpl惯用法
 tags: [gcc, c++]
 

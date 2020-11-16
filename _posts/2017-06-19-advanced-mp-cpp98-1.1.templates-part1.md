@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)advanced metaprogramming in classic c++ 1.1 templates
-category: translation
+categories: translation
 tags : [c++, template]
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: rocksdb 小知识 WalTerminationPoint
 tags: [rocksdb, c++]
 ---

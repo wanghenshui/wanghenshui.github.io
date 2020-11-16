@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 压缩图片几个命令行小工具
-category: tools
+categories: tools
 tags: [linux]
 ---
   

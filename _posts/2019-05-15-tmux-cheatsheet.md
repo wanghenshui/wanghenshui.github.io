@@ -1,6 +1,6 @@
 ---
 layout: post
-category: tools
+categories: tools
 title: Tmux 快捷键 & 速查表
 tags: [tmux, shell]
 

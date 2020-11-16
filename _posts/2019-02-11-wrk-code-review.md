@@ -1,7 +1,7 @@
 ---
 layout: post
 title: wrk 代码阅读
-category: c++
+categories: c++
 tags: [c++, rocksdb]
 ---
   

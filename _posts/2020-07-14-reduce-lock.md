@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 改造pika如何去掉key锁
-category: [database]
+categories: [database]
 tags: [rocksdb,redis]
 ---
   

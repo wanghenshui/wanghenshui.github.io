@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (todo)quick-bench的原理是啥？
-category: [c++]
+categories: [c++]
 tags: [benchmark, todo]
 ---
   

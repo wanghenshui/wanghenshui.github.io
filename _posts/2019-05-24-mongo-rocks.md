@@ -1,6 +1,6 @@
 ---
 layout: post
-category: database
+categories: database
 title: mongorocks PPT介绍
 tags: [mongodb, rocksdb]
 

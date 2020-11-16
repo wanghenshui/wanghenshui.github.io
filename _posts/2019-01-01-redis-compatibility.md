@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redis release note 与 redis命令cheatsheet
-category: database
+categories: database
 tags: [redis, c]
 ---
   

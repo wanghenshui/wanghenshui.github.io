@@ -1,7 +1,7 @@
 ---
 layout: post
 title: future promise实现程度调研
-category: [c++]
+categories: [c++]
 tags: [future]
 ---
   

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: docker cheatsheet
-category: tools
+categories: tools
 tags: [docker]
 ---
   

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 常用快捷键/命令的整理/系统设定
-category: tools
+categories: tools
 tags: [linux]
 ---
   

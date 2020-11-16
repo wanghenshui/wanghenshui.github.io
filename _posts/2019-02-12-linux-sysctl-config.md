@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 基本的Linux内核参数的优化
-category: linux
+categories: linux
 tags: [linux, tcp]
 ---
   

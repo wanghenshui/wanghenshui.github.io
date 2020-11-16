@@ -1,6 +1,6 @@
 ---
 layout: post
-category: c
+categories: c
 title: buserr segfault, corrupted double-linked list
 tags: [algorithm]
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: python
+categories: python
 title: subprocess一次挂死问题
 tags: [python, subprocess]
 ---

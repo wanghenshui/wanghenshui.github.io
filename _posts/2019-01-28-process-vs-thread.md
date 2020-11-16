@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 进程线程比较
-category: linux
+categories: linux
 tags: [linux, c, pthread]
 ---
   

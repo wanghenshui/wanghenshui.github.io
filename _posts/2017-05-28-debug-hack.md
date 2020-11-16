@@ -1,7 +1,7 @@
 ---
 layout: post
 title: debug hack读书笔记
-category: tools
+categories: tools
 tags: [debug,c,linux]
 ---
   

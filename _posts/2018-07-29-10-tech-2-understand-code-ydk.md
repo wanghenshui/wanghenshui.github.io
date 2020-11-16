@@ -1,6 +1,6 @@
 ---
 layout: post
-category: debug
+categories: debug
 title: 10 TECHNIQUES TO UNDERSTAND CODE YOU DONT KNOW
 tags: [codereview]
 ---

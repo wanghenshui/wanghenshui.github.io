@@ -1,6 +1,6 @@
 ---
 layout: post
-category : c++
+categories : c++
 title: gcc提示未知类型pthread_spinlock_t
 tags : [c,gcc]
 ---

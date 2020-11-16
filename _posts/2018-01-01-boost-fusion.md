@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 怀旧系列 boost fusion
-category: c++
+categories: c++
 tags: [c++, boost]
 ---
 
@@ -105,7 +105,7 @@ Tuple <- iterator + Sequence + Algorithm <- Support
   - [is_sequence](https://www.boost.org/doc/libs/1_70_0/libs/fusion/doc/html/fusion/support/is_sequence.html)
   - [is_view](https://www.boost.org/doc/libs/1_70_0/libs/fusion/doc/html/fusion/support/is_view.html)
   - [tag_of](https://www.boost.org/doc/libs/1_70_0/libs/fusion/doc/html/fusion/support/tag_of.html)
-  - [category_of](https://www.boost.org/doc/libs/1_70_0/libs/fusion/doc/html/fusion/support/category_of.html)
+  - [categories_of](https://www.boost.org/doc/libs/1_70_0/libs/fusion/doc/html/fusion/support/categories_of.html)
   - [deduce](https://www.boost.org/doc/libs/1_70_0/libs/fusion/doc/html/fusion/support/deduce.html)
   - [deduce_sequence](https://www.boost.org/doc/libs/1_70_0/libs/fusion/doc/html/fusion/support/deduce_sequence.html)
   - pair
