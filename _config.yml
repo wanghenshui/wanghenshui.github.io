@@ -1,10 +1,6 @@
-# This is the default format.
-# For more see: http://jekyllrb.com/docs/permalinks/
-permalink: /:year/:month/:day/:title
+#permalink: /:year/:month/:day/:title
 
 
-# https://help.github.com/articles/migrating-your-pages-site-from-maruku
-# Markdown settings
 highlighter: rouge
 markdown: kramdown
 kramdown:
@@ -18,11 +14,11 @@ paginate: 20
 paginate_path: "/pages:num/"
 mathjax: false
 excerpt_separator: <!-- more -->
-#permalink: /:categories/:title.html
+permalink: /:categories/:title.html
 encoding: UTF-8
 title : wanghenshui 's blog
 tagline: Site Tagline
-author :wanghenshui
+author : wanghenshui
 email : wanghenshui@qq.com
 
 
