@@ -175,3 +175,8 @@ decltype推导
 
 - [https://github.com/CppCon/CppCon2014/blob/master/Presentations/Type%20Deduction%20and%20Why%20You%20Care/C%2B%2B%20Type%20Deduction%20and%20Why%20You%20Care%20-%20Scott%20Meyers%20-%20CppCon%202014%20-%20CppCon%202014.pdf](https://github.com/CppCon/CppCon2014/blob/master/Presentations/Type Deduction and Why You Care/C%2B%2B Type Deduction and Why You Care - Scott Meyers - CppCon 2014 - CppCon 2014.pdf)
 
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
+</details>

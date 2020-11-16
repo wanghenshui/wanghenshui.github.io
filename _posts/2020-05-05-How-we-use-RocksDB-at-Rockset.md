@@ -8,7 +8,7 @@ tags: [rocksdb]
 
 ---
 
-[toc]
+ 
 
 rockset 是一个db服务提供商，他们用rocksdb来实现converged indexing 我也不明白是什么意思，在参考链接2有介绍，大概就是有一个文档，保存成行，成列，成index，他们大量采用的rocksdb
 
@@ -120,8 +120,8 @@ ColumnFamilyOptions.compression_opts.max_dict_bytes: 32768
 
 ---
 
-Any advice mailto:wanghenshui@qq.com, thanks! 
-
-Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
-
-看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
+</details>

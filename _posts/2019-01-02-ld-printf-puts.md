@@ -392,4 +392,8 @@ _IO_ssize_t n;
 
 注意 linux-gate.so在磁盘上并不存在，它是内核镜像中的特定页，由内核编译生成。关于它的更多信息，可以参考文章[《linux-gate.so技术细节》](http://www.newsmth.net/bbsanc.php?path=/groups/comp.faq/KernelTech/innovate/solofox/M.1222336489.G0)和《[What is linux-gate.so.1?》](http://www.trilithium.com/johan/2005/08/linux-gate/)。
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
+</details>

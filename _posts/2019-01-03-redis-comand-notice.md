@@ -450,4 +450,8 @@ Scripting功能是作为事务功能的替代者诞生的，事务提供的所�
 
 关于Scripting的具体使用，本文不做详细介绍，请参考官方文档 [https://redis.io/commands/eval](https://link.jianshu.com?t=https://redis.io/commands/eval)
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
+</details>

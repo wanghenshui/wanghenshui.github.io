@@ -42,4 +42,8 @@ tags : [c,gcc]
 - 一个-std=c99报错，rwlock也不是标准的，需要pthread.h，也得用gnu https://stackoverflow.com/questions/15673492/gcc-compile-fails-with-pthread-and-option-std-c99
 - spinlock manpage ，注意`_POSIX_C_SOURCE >= 200112L` http://man7.org/linux/man-pages/man3/pthread_spin_lock.3.html
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
+</details>

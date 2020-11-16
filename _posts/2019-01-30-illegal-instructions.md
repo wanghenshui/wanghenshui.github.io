@@ -54,4 +54,8 @@ grep就会发现，且INSTALL中也有提示，要是想提高移植性，makefi
 
 <https://answers.ros.org/question/11873/illegal-instruction-when-using-image_view-with-theora/>
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
+</details>
