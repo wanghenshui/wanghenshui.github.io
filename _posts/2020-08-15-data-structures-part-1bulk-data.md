@@ -4,11 +4,8 @@ title: (译)Data Structures Part 1 Bulk Data
 categories: [c++]
 tags: [c++, data structure]
 ---
-  
 
----
-
-[toc]
+ 
 
 作者把数据结构抽象了，不按照传统的什么树跳表堆什么的，根据用途来分类
 
@@ -263,8 +260,8 @@ And for the cases where you need really fast number crunching over the data:
 
 ---
 
-Any advice mailto:wanghenshui@qq.com, thanks! 
-
-Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
-
-看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

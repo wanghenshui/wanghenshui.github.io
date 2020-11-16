@@ -39,3 +39,9 @@ https://zhuanlan.zhihu.com/p/108968057
 https://www.cockroachlabs.com/blog/cockroachdb-sigmod-2020/?utm_campaign=cooperpress-2020-Q2&utm_source=dbweekly&utm_medium=newsletter&utm_content=dbweekly-primary-sigmod
 
 https://ketanbhatt.com/db-concurrency-defects/
+
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

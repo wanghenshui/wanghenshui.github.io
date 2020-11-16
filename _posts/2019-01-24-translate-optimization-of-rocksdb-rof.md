@@ -11,7 +11,7 @@ tags : [rocksdb, redis]
 > Concepts Information systems → Key-value stores; Database performance evaluation;
 > Keywords: Databases, Benchmark, Redis, Rocksdb, Key-Value Store, SSD,NVMe
 
-[TOC]
+ 
 
 ## 0. 概述
 

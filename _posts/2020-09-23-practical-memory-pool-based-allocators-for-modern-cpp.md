@@ -6,10 +6,6 @@ tags: [c++,cppcon ,cppcon2020]
 ---
   
 
----
-
-[toc]
-
 **Practical memory pool based allocators for Modern C++**
 
 又讲内存池实现的，内存池等于块池
@@ -303,8 +299,8 @@ opt -load alloc-analyzer.so -alloc-analyze -gen-hdr my_defs.hpp -entry-point "ma
 - https://github.com/CppCon/CppCon2020/blob/main/Presentations/practical_memory_pool_based_allocators_for_modern_cpp/practical_memory_pool_based_allocators_for_modern_cpp__misha_shalem__cppcon_2020.pdf
 ---
 
-Any advice mailto:wanghenshui@qq.com, thanks! 
-
-Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
-
-看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

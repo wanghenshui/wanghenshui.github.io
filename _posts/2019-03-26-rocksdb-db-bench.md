@@ -428,7 +428,6 @@ db_bench help页面也列出了这个参数。我没想到。下次记得先看�
 48      mt0     86848   68086   19611
 ```
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
 ### 参考
 
 1. gist被屏蔽的一个解决办法 <https://blog.jiayu.co/2018/06/an-alternative-github-gist-viewer/> 这个帮助很大
@@ -438,4 +437,8 @@ db_bench help页面也列出了这个参数。我没想到。下次记得先看�
 5. pipeline 提升性能 <https://github.com/facebook/rocksdb/wiki/Pipelined-Write> 测试结果 <https://gist.githubusercontent.com/yiwu-arbug/3b5a5727e52f1e58d1c10f2b80cec05d/raw/fc1df48c4fff561da0780d83cd8aba2721cdf7ac/gistfile1.txt>
 6. 这个滴滴的大神fix的这个bug，链接里有分析过程<https://bravoboy.github.io/2018/09/11/rocksdb-deadlock/>
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

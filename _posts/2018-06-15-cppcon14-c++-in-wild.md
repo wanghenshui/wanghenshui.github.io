@@ -81,4 +81,9 @@ tags: [c++, cppcon]
 - [https://github.com/CppCon/CppCon2014/blob/master/Presentations/C%2B%2B11%20in%20the%20Wild%20-%20Techniques%20from%20a%20Real%20Codebase/C%2B%2B11%20in%20the%20Wild%20-%20Techniques%20from%20a%20Real%20Codebase%20-%20Arthur%20O'Dwyer%20-%20CppCon%202014.pdf](https://github.com/CppCon/CppCon2014/blob/master/Presentations/C%2B%2B11 in the Wild - Techniques from a Real Codebase/C%2B%2B11 in the Wild - Techniques from a Real Codebase - Arthur O'Dwyer - CppCon 2014.pdf)
 - 上面那段exit抄自<http://llvm.org/docs/doxygen/ScopeExit_8h_source.html> 作者的实现是不支持move的，没有release
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

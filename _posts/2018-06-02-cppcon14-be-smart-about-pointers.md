@@ -111,3 +111,8 @@ shared_ptr构造中判断是否是enable_shared_from_this基类( 函数重载)�
   - 原理<http://blog.guorongfei.com/2017/01/25/enbale-shared-from-this-implementaion/>
 - shared_ptr几个错误用法介绍，还行<https://heleifz.github.io/14696398760857.html>
 
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

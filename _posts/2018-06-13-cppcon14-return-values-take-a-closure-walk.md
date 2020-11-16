@@ -159,3 +159,9 @@ void callWithin(const Fn& fn) -> std::optional<decltype(fn())>
 - [https://github.com/CppCon/CppCon2014/blob/master/Lightning%20Talks/Return%20values%20take%20a%20closure%20walk/Return%20values%20take%20a%20closure%20walk%20-%20Martin%20Troxler.pdf](https://github.com/CppCon/CppCon2014/blob/master/Lightning Talks/Return values take a closure walk/Return values take a closure walk - Martin Troxler.pdf)
 -  ppt2014，那时候还没有 std::optional 和std::nullopt， 使用的是 boost::optional和boost::none 使用上没有差别
 
+
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

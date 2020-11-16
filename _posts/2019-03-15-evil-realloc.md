@@ -32,7 +32,11 @@ realloc为了复用这小块地方能带来的优势十分有限。并且这个�
 
 c程序员不是最喜欢纯粹，一眼能看出来c代码背后做了什么，反对c++这种背后隐藏语义，怎么会喜欢realloc ？这个api可能在背后帮你memmove，如果not trivial，复制就是有问题的。这种心智负担放在使用api的人身上肯定有问题，何况这个api真的太烂了，api caller不了解的话就是个深坑。
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>
 
 ## 参考
 

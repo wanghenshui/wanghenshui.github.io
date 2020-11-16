@@ -7,7 +7,7 @@ tags: [redis, c]
   
 #redis 代码走读 server.c
 
-[TOC]
+ 
 
 
 
@@ -620,4 +620,8 @@ void bytesToHuman(char *s, unsigned long long n) {
 - huangz给的建议，如何阅读redis代码<http://blog.huangz.me/diary/2014/how-to-read-redis-source-code.html>
 - 大部分都抄自这里 http://www.zbdba.com/2018/06/23/深入浅出-redis-client-server交互流程/
 
-看到这里或许你有建议或者疑问，我的邮箱wanghenshui@qq.com 先谢指教。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>

@@ -6,7 +6,6 @@ tags: [c++]
 ---
   
 
----
 
 一个场景，把长度为n的字符数组用0填满
 如果用c的话，大家肯定都用memset ，这个文章的主题是c++，咱们用c++来写，是这样的
@@ -185,8 +184,8 @@ size_t fill5(char *p, size_t n) {
    
 
 ---
-Any advice mailto:wanghenshui@qq.com, thanks! 
-
-Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
-
-看到这里或许你有建议或者疑问或者指出我的错误，我的邮箱wanghenshui@qq.com 先谢指教。或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+![微信转账](https://wanghenshui.github.io/assets/wepay.png)
+</details>
