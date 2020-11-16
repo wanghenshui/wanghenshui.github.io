@@ -1,4 +1,4 @@
-#permalink: /:year/:month/:day/:title
+permalink: /:year/:month/:day/:title
 
 
 highlighter: rouge
@@ -14,14 +14,13 @@ paginate: 20
 paginate_path: "/pages:num/"
 mathjax: false
 excerpt_separator: <!-- more -->
-permalink: /:categories/:title.html
 encoding: UTF-8
 title : wanghenshui 's blog
 author : wanghenshui
 email : wanghenshui@qq.com
 
 
-description: "null"
+#description: "null"
 url : https://wanghenshui.github.io
 sitesearchurl : wanghenshui.github.io
 baseurl: "" 
