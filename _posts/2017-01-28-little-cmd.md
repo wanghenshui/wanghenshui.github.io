@@ -4,7 +4,7 @@ title: 常用快捷键/命令的整理/系统设定
 categories: tools
 tags: [linux]
 ---
-  
+
 
 整理一下常用的命令行，不分平台，tmux和vim不在此列
 
@@ -126,10 +126,23 @@ tags: [linux]
   - 退出 ctrl  ]
   
 - iptables
-    
+  
     - 查看端口 **cat  /etc/sysconfig/iptables**
 
+- tex 
 
+  ```tex
+  \tiny
+  \scriptsize
+  \footnotesize
+  \small
+  \normalsize
+  \large
+  \Large
+  \LARGE
+  \huge
+  \Huge
+  ```
 
 特殊需求
 

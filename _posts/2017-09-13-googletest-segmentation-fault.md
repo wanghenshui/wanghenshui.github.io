@@ -2,9 +2,9 @@
 layout: post
 title: googletest segmentation fault
 categories: c++
-tags: [c++, googletest, debug]
+tags: [c++, googletest, debug,gdb,dmesg]
 ---
-  
+
 
 
 

@@ -2,9 +2,9 @@
 layout: post
 title: 嵌套lambda 捕获shared_ptr引发的bug
 categories: [c++, debug]
-tags: [c++]
+tags: [lambda,thread,shared_ptr]
 ---
-  
+
  
 
 bug代码片抽象成这样

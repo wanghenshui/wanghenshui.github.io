@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 改造glog 提供日志轮转
-categories: [cpp]
+categories: [c++]
 tags: [log,glog]
 ---
-  
+
 
 ---
 

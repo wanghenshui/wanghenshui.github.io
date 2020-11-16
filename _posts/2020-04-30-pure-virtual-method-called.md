@@ -2,9 +2,9 @@
 layout: post
 title: pure virtual method called
 categories: [c++]
-tags: [c++]
+tags: [vtable]
 ---
-  
+
 
 ---
 

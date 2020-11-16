@@ -2,9 +2,9 @@
 layout: post
 title: (cppcon2020) back to basics
 categories: [c++]
-tags: [c++,cppcon ,cppcon2020]
+tags: [type, cppcon ,cppcon2020]
 ---
-  
+
 
 # Algebraic Data Types
 

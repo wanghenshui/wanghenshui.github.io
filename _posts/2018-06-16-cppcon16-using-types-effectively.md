@@ -2,9 +2,9 @@
 layout: post
 title: (cppcon)using types effectively
 categories: c++
-tags: [c++, cppcon]
+tags: [c++, cppcon,type]
 ---
-  
+
 
 #### cppcon2016 using types effectively
 

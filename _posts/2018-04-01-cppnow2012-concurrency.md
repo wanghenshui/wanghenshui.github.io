@@ -2,7 +2,7 @@
 layout: post
 title: C++11 High-Level Threading
 categories: c++
-tags: [c++, boost, cppnow]
+tags: [c++, boost, cppnow, thread]
 ---
 
   

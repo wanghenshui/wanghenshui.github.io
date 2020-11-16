@@ -1,10 +1,10 @@
 ---
 layout: post
 title: (cppcon)linux下c++现代调试工具手段
-categories: [c++, cppcon, cppcon2019]
-tags: [c++]
+categories: [c++]
+tags: [linux, cppcon, cppcon2019,gdb,valgrind,sanitizer]
 ---
-  
+
 
 > 这第三页ppt介绍的也不能说modern吧。rr确实没用过
 

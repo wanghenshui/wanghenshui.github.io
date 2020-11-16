@@ -2,7 +2,7 @@
 layout: post
 title: c++究竟是怎么实现多态的
 categories: c++
-tags: [c++]
+tags: [c++, vtable]
 ---
 
   

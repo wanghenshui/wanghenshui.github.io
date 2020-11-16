@@ -2,9 +2,9 @@
 layout: post
 title: 线程池/任务队列调研
 categories: [c++]
-tags: [c++, rocksdb, folly]
+tags: [rocksdb, folly, thread, future]
 ---
-  
+
 
 ---
 

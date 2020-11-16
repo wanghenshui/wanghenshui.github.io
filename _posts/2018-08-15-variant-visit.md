@@ -2,9 +2,9 @@
 layout: post
 categories : c++
 title: std::variant 与 std::visit
-tags : [c++,gcc]
+tags : [c++,gcc,stl]
 ---
-  
+
 
 ### why
 
@@ -159,6 +159,7 @@ int main() {
   - 上面的链接有两个variant的实现。
   
   
+
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
 <details>
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>

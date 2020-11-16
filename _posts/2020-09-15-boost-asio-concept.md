@@ -2,10 +2,10 @@
 layout: post
 title: (转)boost.asio新框架的设计概念总结
 categories: [c++]
-tags: [c++, boost, asio]
+tags: [thread, boost, asio]
 
 ---
- 
+
 
 1.66版本，boost.asio库重新设计了框架，目前最新版为1.71。读了几天代码后，对框架中相关概念总结。因为是泛型编程的库，所以分析的概念层的设计。
 

@@ -2,9 +2,9 @@
 layout: post
 title: (译)Handles are the better pointers
 categories: [c++]
-tags: [c++, data structure]
+tags: [pointer, data structure]
 ---
-  
+
  
 
 作者的一个经验，把指针转换成index-handles，也就是如何写不涉及分配和指针的程序

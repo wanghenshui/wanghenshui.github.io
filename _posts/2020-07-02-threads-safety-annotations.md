@@ -2,9 +2,9 @@
 layout: post
 title: threads safety annotations 以及std::priority_queue的一个小用法
 categories: [c++]
-tags: [c++, thread]
+tags: [debug, thread]
 ---
-  
+
 
 ---
 

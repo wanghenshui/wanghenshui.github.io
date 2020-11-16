@@ -1,10 +1,10 @@
 ---
 layout: post
 title: (译)The Hunt for the Fastest Zero
-categories: [c++, stl]
-tags: [c++]
+categories: [c++]
+tags: [libcxx, stl]
 ---
-  
+
 
 
 一个场景，把长度为n的字符数组用0填满

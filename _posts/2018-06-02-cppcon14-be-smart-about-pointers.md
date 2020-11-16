@@ -2,9 +2,9 @@
 layout: post
 title: be smart about pointers 
 categories: c++
-tags: [c++, cppcon]
+tags: [c++, cppcon, pointer]
 ---
-  
+
 
 讲了几种pointer以及背后的惯用法
 

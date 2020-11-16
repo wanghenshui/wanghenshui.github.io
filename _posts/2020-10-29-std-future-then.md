@@ -2,9 +2,9 @@
 layout: post
 title: std::future 为什么没有then continuation
 categories: [c++]
-tags: [cppcon, cppcon2019, c++]
+tags: [cppcon, cppcon2019, continuation, future]
 ---
-  
+
 
 本来concurrency-ts是做了future::then的，本计划要放在<experimental/future> 
 

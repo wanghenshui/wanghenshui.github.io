@@ -2,7 +2,7 @@
 layout: post
 title: (译)Data Structures Part 1 Bulk Data 
 categories: [c++]
-tags: [c++, data structure]
+tags: [pointer, data structure]
 ---
 
  

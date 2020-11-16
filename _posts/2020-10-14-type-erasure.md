@@ -2,9 +2,9 @@
 layout: post
 title: 类型擦除技术 type erasure
 categories: [c++]
-tags: [c++]
+tags: [type,vtable]
 ---
-  
+
 
 ---
 

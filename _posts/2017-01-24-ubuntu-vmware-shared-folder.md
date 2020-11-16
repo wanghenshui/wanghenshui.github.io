@@ -1,8 +1,8 @@
 ---
 layout: post
-title: advanced metaprogramming in classic c++ 1.1 templates （2）总结
-categories: translation
-tags : [c++,template]
+title: ubuntu设置共享目录
+categories: tools
+tags : [ubuntu,vm,fs]
 ---
 
   

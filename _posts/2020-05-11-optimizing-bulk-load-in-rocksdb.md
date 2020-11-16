@@ -2,11 +2,11 @@
 layout: post
 title: Optimizing Bulk Load in RocksDB
 categories: [database, rocksdb]
-tags: [rocksdb]
+tags: [rocksdb,tuning]
 ---
-  
 
- 
+
+
 
 还是rockset的文章，讲他们怎么优化批量载入rocksdb的速度
 

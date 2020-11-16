@@ -2,9 +2,9 @@
 layout: post
 title: 折腾了一下darknet
 categories: tools
-tags: [c]
+tags: [c,darknet]
 ---
-  
+
 
 
 
