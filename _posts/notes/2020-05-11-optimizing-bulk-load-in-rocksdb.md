@@ -4,7 +4,7 @@ title: Optimizing Bulk Load in RocksDB
 category: [database, rocksdb]
 tags: [rocksdb]
 ---
-{% include JB/setup %}
+  
 
 ---
 

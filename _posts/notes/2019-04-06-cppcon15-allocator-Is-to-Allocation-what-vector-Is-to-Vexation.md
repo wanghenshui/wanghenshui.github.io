@@ -4,7 +4,7 @@ category: c++
 title: allocator Is to Allocation what vector Is to Vexation
 tags: [cppcon, c++]
 ---
-{% include JB/setup %}
+  
 
 演讲主题 Allocator的设计历史，AA主讲，标题也是够讽刺哈哈，其实概括的说allocator是设计错误（当初对virtual引入标准库还有抵触，觉得不够zero cost），才有c++17的 std::pmr
 

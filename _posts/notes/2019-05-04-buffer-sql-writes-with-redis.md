@@ -6,7 +6,7 @@ tags: [redis, postgresql]
 
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

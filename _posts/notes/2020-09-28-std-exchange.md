@@ -4,7 +4,7 @@ title: std::exchange用法
 category: [c++]
 tags: [c++, c++14, cppcon, cppcon17]
 ---
-{% include JB/setup %}
+  
 
 ---
 

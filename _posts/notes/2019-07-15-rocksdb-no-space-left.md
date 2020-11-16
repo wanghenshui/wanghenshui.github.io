@@ -5,7 +5,7 @@ title: rocksdb IO error No Space Left
 tags: [c++,rocksdb]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

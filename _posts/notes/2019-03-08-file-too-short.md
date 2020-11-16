@@ -4,7 +4,7 @@ category : c++
 title: 运行提示load shared libraries error，xxx file too short
 tags : [c,gcc,ld]
 ---
-{% include JB/setup %}
+  
 
 部署出现问题，库的软连接坏了，变成莫名其妙的实体了，然后二进制运行加载文件太短，就有这个效果了
 

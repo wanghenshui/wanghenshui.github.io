@@ -4,7 +4,7 @@ category: c++
 title: fancy pointers for fun and profit
 tags: [cppcon, c++]
 ---
-{% include JB/setup %}
+  
 
 演讲主题 是fancy pointer 作者称之为synthetic pointer
 

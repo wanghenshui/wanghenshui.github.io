@@ -6,7 +6,7 @@ tags: [string, c++]
 
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

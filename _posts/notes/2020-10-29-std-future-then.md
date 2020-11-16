@@ -4,7 +4,7 @@ title: std::future 为什么没有then continuation
 category: [c++]
 tags: [cppcon, cppcon2019, c++]
 ---
-{% include JB/setup %}
+  
 
 ---
 

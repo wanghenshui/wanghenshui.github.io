@@ -4,7 +4,7 @@ title: googletest segmentation fault
 category: c++
 tags: [c++, googletest, debug]
 ---
-{% include JB/setup %}
+  
 
 
 

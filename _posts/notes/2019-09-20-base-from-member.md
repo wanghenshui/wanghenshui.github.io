@@ -5,7 +5,7 @@ title: base from member
 tags: [c++]
 ---
 
-{% include JB/setup %}
+  
 
 一个遇到的技巧
 

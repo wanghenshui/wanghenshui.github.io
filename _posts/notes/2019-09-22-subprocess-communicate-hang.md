@@ -5,7 +5,7 @@ title: subprocess一次挂死问题
 tags: [python, subprocess]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

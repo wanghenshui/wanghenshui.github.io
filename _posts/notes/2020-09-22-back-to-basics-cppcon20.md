@@ -4,7 +4,7 @@ title: (cppcon2020) back to basics
 category: [c++]
 tags: [c++,cppcon ,cppcon2020]
 ---
-{% include JB/setup %}
+  
 
 ---
 

@@ -5,7 +5,7 @@ title: No route to host vs Connection refused
 tags: [linux,net]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

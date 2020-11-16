@@ -5,7 +5,7 @@ category: c++
 tags: [c++, boost, cppnow]
 ---
 
-{% include JB/setup %}
+  
 
 #### cppnow2012 John Wiegley C++11 High-Level Threading
 

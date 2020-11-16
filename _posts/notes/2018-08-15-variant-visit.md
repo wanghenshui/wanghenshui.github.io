@@ -4,7 +4,7 @@ category : c++
 title: std::variant 与 std::visit
 tags : [c++,gcc]
 ---
-{% include JB/setup %}
+  
 
 ### why
 

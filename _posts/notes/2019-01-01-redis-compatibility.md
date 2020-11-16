@@ -4,7 +4,7 @@ title: redis release note 与 redis命令cheatsheet
 category: database
 tags: [redis, c]
 ---
-{% include JB/setup %}
+  
 
 
 

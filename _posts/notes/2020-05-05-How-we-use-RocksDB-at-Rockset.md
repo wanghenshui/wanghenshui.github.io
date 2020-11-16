@@ -4,7 +4,7 @@ title: rockset是如何使用rocksdb的
 category: [database, rocksdb]
 tags: [rocksdb]
 ---
-{% include JB/setup %}
+  
 
 ---
 

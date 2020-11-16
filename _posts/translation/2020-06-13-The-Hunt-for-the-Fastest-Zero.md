@@ -4,7 +4,7 @@ title: (译)The Hunt for the Fastest Zero
 category: [c++, stl]
 tags: [c++]
 ---
-{% include JB/setup %}
+  
 
 ---
 

@@ -4,7 +4,7 @@ title:  (cppcon)c++11 几个生产中常用的小工具
 category: c++
 tags: [c++, cppcon]
 ---
-{% include JB/setup %}
+  
 
 这个讲的是scope_exit, std::range, make_range , operator <=> ，后面这两个已经进入c++标准了，前面这个有很多案例
 

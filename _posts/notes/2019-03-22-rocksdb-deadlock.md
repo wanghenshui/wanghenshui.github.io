@@ -4,7 +4,7 @@ category : database
 title: rocksdb delay write死锁
 tags : [rocksdb, gcc]
 ---
-{% include JB/setup %}
+  
 
 >场景 mongorocks配合rocksdb使用，版本5.1.2是内部分支，合入了一些改动和私有开发改动，这是前提
 

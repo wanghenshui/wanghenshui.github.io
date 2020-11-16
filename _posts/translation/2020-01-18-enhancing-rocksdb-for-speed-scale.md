@@ -4,7 +4,7 @@ title: (译)yugabytedb 在rocksdb上做的改动
 category: [translation, database]
 tags : [rocksdb]
 ---
-{% include JB/setup %}
+  
 
 > 这是翻译整理
 

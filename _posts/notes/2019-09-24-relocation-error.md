@@ -5,7 +5,7 @@ title: relocation error version GLIBC_PRIVATE not defined in file
 tags: [c++]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

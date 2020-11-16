@@ -4,7 +4,7 @@ title: (译)redis核心数据结构的典型用法
 category: translation
 tags : [redis]
 ---
-{% include JB/setup %}
+  
 
 ---
 

@@ -4,7 +4,7 @@ title: 压缩图片几个命令行小工具
 category: tools
 tags: [linux]
 ---
-{% include JB/setup %}
+  
 
 需求，网络限制，超过50k不让上传
 

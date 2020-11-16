@@ -4,7 +4,7 @@ category : c++
 title: gcc提示未知类型pthread_spinlock_t
 tags : [c,gcc]
 ---
-{% include JB/setup %}
+  
 
 >只要遇到的问题多，天天都能水博客
 

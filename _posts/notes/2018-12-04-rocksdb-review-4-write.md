@@ -4,7 +4,7 @@ category : database
 title: rocksdb 初探 4：put/write
 tags : [rocksdb,c++]
 ---
-{% include JB/setup %}
+  
 
 参考文章<sup>1</sup> 非常详尽，图非常棒。十分好奇咋画的
 

@@ -4,7 +4,7 @@ category : database
 title: rocksdb 初探 2：基本概念
 tags : [rocksdb,c++]
 ---
-{% include JB/setup %}
+  
 
 ### why
 

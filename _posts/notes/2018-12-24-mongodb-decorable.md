@@ -4,7 +4,7 @@ title: MongoDB中的装饰器模式
 category: c++
 tags: [c++,mongodb,design pattern]
 ---
-{% include JB/setup %}
+  
 
 
 

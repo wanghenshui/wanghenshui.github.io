@@ -5,7 +5,7 @@ title: pebblesdb
 tags: [c++,rocksdb,lsm]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

@@ -5,7 +5,7 @@ title: Writing a reverse proxy loadbalancer from the ground up in C
 tags: [c, linux, proxy, nginx]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

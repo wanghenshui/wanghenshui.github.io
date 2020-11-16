@@ -4,7 +4,7 @@ category : c++
 title: 为啥不用realloc
 tags : [c,gcc]
 ---
-{% include JB/setup %}
+  
 
 >只要遇到的问题多，天天都能水博客
 

@@ -4,7 +4,7 @@ title: (cppcon)一些老的编程规范的反思
 category: [c++, cppcon, cppcon2019]
 tags: [c++]
 ---
-{% include JB/setup %}
+  
 
 ---
 

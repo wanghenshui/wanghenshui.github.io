@@ -5,7 +5,7 @@ title: 10 TECHNIQUES TO UNDERSTAND CODE YOU DONT KNOW
 tags: [codereview]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

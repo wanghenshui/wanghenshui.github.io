@@ -4,7 +4,7 @@ category: database
 title: rocksdb一些杂项概念
 tags: [rocksdb, c++]
 ---
-{% include JB/setup %}
+  
 
 **Write Buffer Manager**
 

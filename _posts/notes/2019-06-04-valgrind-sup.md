@@ -5,7 +5,7 @@ title: valgrind sup文件的作用以及生成
 tags: [valgrind]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

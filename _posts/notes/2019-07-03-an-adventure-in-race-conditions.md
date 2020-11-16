@@ -5,7 +5,7 @@ title: ACCU an adventure in race conditions
 tags: [c++]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

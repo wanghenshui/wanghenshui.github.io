@@ -5,7 +5,7 @@ title: copy elision
 tags: [c++]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

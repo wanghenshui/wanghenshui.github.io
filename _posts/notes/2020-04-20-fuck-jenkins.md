@@ -4,7 +4,7 @@ title: 遇到的两个jenkins问题
 category: [tools]
 tags: [debug,linux]
 ---
-{% include JB/setup %}
+  
 
 ---
 

@@ -5,7 +5,7 @@ category: c++
 tags: [c++, thread]
 ---
 
-{% include JB/setup %}
+  
 
 #### C++ Concurrency In Action
 

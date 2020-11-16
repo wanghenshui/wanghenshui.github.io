@@ -4,7 +4,7 @@ title: MongoRocks优化与实践
 category: [database, rocksdb]
 tags: [rocksdb, mongodb]
 ---
-{% include JB/setup %}
+  
 
 ---
 

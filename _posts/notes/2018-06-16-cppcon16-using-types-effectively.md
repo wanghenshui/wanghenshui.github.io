@@ -4,7 +4,7 @@ title: (cppcon)using types effectively
 category: c++
 tags: [c++, cppcon]
 ---
-{% include JB/setup %}
+  
 
 #### cppcon2016 using types effectively
 

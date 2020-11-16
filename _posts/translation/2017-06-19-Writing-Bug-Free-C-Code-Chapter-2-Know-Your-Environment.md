@@ -4,7 +4,7 @@ title: (译)Writing Bug Free C Code Chapter 2 Know Your Environment
 category: translation
 tags : [c, gcc]
 ---
-{% include JB/setup %}                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                  
 
 \##### 这已经不是翻译了，这就是笔记了。
 

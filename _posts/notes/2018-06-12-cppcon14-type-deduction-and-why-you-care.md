@@ -4,7 +4,7 @@ title: (cppcon)类型推导以及为什么需要关注这个
 category: c++
 tags: [c++, cppcon]
 ---
-{% include JB/setup %}
+  
 
 作者是Scott Meyers，这个内容就是他写的modern effective c++ 前几条
 

@@ -4,7 +4,7 @@ title: (cppcon)用表达式模板实现一个一个简单安全的log
 category: c++
 tags: [c++, cppcon]
 ---
-{% include JB/setup %}
+  
 
   传统写法
 

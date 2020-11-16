@@ -4,7 +4,7 @@ title: cmake cheatchart
 category: tools
 tags: [cmake]
 ---
-{% include JB/setup %}
+  
 
 整理一下cmake遇到的问题
 

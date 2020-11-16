@@ -5,7 +5,7 @@ category: c++
 tags: [c++, boost]
 ---
 
-{% include JB/setup %}
+  
 
 ### why
 

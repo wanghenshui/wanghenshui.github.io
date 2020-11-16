@@ -4,7 +4,7 @@ title: pure virtual method called
 category: [c++]
 tags: [c++]
 ---
-{% include JB/setup %}
+  
 
 ---
 

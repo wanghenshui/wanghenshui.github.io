@@ -5,7 +5,7 @@ category: tools
 tags: perl
 ---
 
-{% include JB/setup %}
+  
 
 graph-easy
 

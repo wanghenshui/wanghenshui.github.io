@@ -4,7 +4,7 @@ title: (cppcon)Practical memory pool based allocators for Modern C++
 category: [c++]
 tags: [c++,cppcon ,cppcon2020]
 ---
-{% include JB/setup %}
+  
 
 ---
 

@@ -4,7 +4,7 @@ title: 如何快速制作一个python包
 category: language
 tags: [pip, python]
 ---
-{% include JB/setup %}
+  
 
 
 

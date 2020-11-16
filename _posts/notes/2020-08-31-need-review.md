@@ -4,7 +4,7 @@ title: 八月待读 need review
 category: tools
 tags: [todo]
 ---
-{% include JB/setup %}
+  
 
 公司不让访问外网了呜呜
 

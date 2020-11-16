@@ -5,7 +5,7 @@ title: buserr segfault, corrupted double-linked list
 tags: [algorithm]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

@@ -4,7 +4,7 @@ category: c++
 title: Avoiding Disasters with Strongly Typed C++
 tags: [cppcon, c++]
 ---
-{% include JB/setup %}
+  
 
 演讲主题 类型歧义以及强类型解决方案
 

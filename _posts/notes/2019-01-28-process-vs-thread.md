@@ -4,7 +4,7 @@ title: 进程线程比较
 category: linux
 tags: [linux, c, pthread]
 ---
-{% include JB/setup %}
+  
 
 
 

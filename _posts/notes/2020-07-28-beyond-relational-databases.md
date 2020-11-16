@@ -4,7 +4,7 @@ title: (译)Beyond Relational Databases:A Focus on Redis, MongoDB, and ClickHous
 category: [database]
 tags: [redis, mongodb, clickhouse, nosql]
 ---
-{% include JB/setup %}
+  
 
 ---
 

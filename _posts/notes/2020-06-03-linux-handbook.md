@@ -4,7 +4,7 @@ title: Linux/Unix系统编程手册 整理笔记
 category: [linux]
 tags: [linux]
 ---
-{% include JB/setup %}
+  
 
 ---
 

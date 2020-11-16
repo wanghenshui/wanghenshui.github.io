@@ -6,7 +6,7 @@ tags: [mongodb, rocksdb]
 
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

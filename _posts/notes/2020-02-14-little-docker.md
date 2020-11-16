@@ -4,7 +4,7 @@ title: docker cheatsheet
 category: tools
 tags: [docker]
 ---
-{% include JB/setup %}
+  
 
 官网做好了图，挺好
 

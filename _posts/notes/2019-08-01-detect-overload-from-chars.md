@@ -5,7 +5,7 @@ title: 检测函数重载
 tags: [c++, template, sfinae]
 ---
 
-{% include JB/setup %}
+  
 
 本文是参考链接1 的翻译，感谢原作者。
 

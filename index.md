@@ -3,7 +3,7 @@ layout: page
 title: What's Up, Bro
 tagline: bro
 ---
-{% include JB/setup %}
+  
 
 ## Website I Strongly Recommend
 
@@ -117,18 +117,7 @@ All quarrels are but few readings.
 
 
 
-## Contact Me
 
-@wechat&&phone&&QQ(base64): MTg4NDQxODk1MzM= 
-
-![Wechat code](https://wanghenshui.github.io/assets/0-1552008412820.jpg)
-
-@email: wanghenshui@qq.com
-[@github]( https://github.com/wanghenshui/) 
-[@zhihu](https://zhuanlan.zhihu.com/jieyaren) 
-[@douban]( https://www.douban.com/people/61740133/) 
-
-Any advice mailto:wanghenshui@qq.com, thanks! 
 
 Pulling a [issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) is fine! I can get noticed from email.
 

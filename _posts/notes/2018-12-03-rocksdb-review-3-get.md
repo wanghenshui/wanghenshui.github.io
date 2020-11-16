@@ -4,7 +4,7 @@ category : database
 title: rocksdb 初探 3：get
 tags : [rocksdb,c++]
 ---
-{% include JB/setup %}
+  
 
 参考链接<sup>1, 2</sup>写的非常到位。本文基本上是复述这两个链接，梳理自己的理解
 

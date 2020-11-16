@@ -3,7 +3,7 @@ title: tcp keepalive
 category: [linux]
 tags: [tcp,linux,c]
 
-{% include JB/setup %}
+  
 
 ---
 

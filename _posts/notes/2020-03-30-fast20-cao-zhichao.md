@@ -4,7 +4,7 @@ title: Characterizing, Modeling, and Benchmarking RocksDB Key-Value Workloads at
 category: [database, paper review, translation]
 tags: [debug, rocksdb]
 ---
-{% include JB/setup %}
+  
 
 ---
 [toc]

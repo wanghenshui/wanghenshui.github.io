@@ -4,7 +4,7 @@ category : c++
 title: overloaded trick
 tags : [c++,gcc]
 ---
-{% include JB/setup %}
+  
 
 ### why
 

@@ -4,7 +4,7 @@ title:  (cppcon)Declarative Control Flow
 category: c++
 tags: [c++, cppcon]
 ---
-{% include JB/setup %}
+  
 
 这个讲的是scope_exit和栈回溯异常处理问题，用上了std::uncaught_exceptions
 

@@ -4,7 +4,7 @@ title: be smart about pointers
 category: c++
 tags: [c++, cppcon]
 ---
-{% include JB/setup %}
+  
 
 讲了几种pointer以及背后的惯用法
 

@@ -4,7 +4,7 @@ title: future promise实现程度调研
 category: [c++]
 tags: [future]
 ---
-{% include JB/setup %}
+  
 
 ---
 

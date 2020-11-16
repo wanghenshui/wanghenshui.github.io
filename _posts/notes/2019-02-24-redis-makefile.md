@@ -5,7 +5,7 @@ category: database
 tags: [redis, c]
 ---
 
-{% include JB/setup %}
+  
 
 >曾经我以为我懂makefile，看着网上的一步一步教你写makefile读完，感觉自己啥都会了。makefile不就是个语法诡异的perl吗，都有cmake了谁还有make。那个时候，我既不懂编译原理，也不懂perl，更不懂cmake，现在我也不太懂。
 

@@ -4,7 +4,7 @@ category : database
 title: db_bench测试rocksdb性能
 tags : [rocksdb, gcc]
 ---
-{% include JB/setup %}
+  
 
 场景需要，测试rocksdb事务的性能
 

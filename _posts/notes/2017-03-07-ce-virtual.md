@@ -5,7 +5,7 @@ category: c++
 tags: [c++]
 ---
 
-{% include JB/setup %}
+  
 
 大家都说虚表虚指针，有虚表虚指针，怎么就能动态的指向虚表呢？
 

@@ -4,7 +4,7 @@ title: 嵌套lambda 捕获shared_ptr引发的bug
 category: [c++, debug]
 tags: [c++]
 ---
-{% include JB/setup %}
+  
 
 ---
 

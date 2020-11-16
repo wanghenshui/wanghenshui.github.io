@@ -4,7 +4,7 @@ title: tex cheatsheet
 category: tools
 tags: [tex]
 ---
-{% include JB/setup %}
+  
 
 整理一下常用的tex语句
 

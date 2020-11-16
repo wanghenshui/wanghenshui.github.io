@@ -6,7 +6,7 @@ tags: [tmux, shell]
 
 ---
 
-{% include JB/setup %}
+  
 
 转载。见参考链接
 

@@ -4,7 +4,7 @@ title: redis 代码走读 rdb.c
 category: database
 tags: [redis, c]
 ---
-{% include JB/setup %}
+  
 [TOC]
 
 rdb文件是内存的一份快照

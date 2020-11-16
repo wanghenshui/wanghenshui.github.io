@@ -4,7 +4,7 @@ title: Linux调优指南
 category: [linux]
 tags: [linux]
 ---
-{% include JB/setup %}
+  
 
 ---
 

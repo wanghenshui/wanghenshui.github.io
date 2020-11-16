@@ -4,7 +4,7 @@ title: (译)unordered set 背后的堆分配行为
 category: [translation,c++]
 tags : [c++, algorithm]
 ---
-{% include JB/setup %}
+  
 
 > 翻译整理自 https://bduvenhage.me/performance/2019/04/22/size-of-hash-table.html
 >

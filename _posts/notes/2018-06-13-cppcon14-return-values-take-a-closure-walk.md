@@ -4,7 +4,7 @@ title: (cppcon)return values take a closure walk
 category: c++
 tags: [c++, cppcon]
 ---
-{% include JB/setup %}
+  
 
 这个ppt讲的是如何把返回值用lambda包起来，让返回值auto，用作者的图来总结这篇内容
 

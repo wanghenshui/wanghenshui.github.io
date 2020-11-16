@@ -4,7 +4,7 @@ title: 说说 time_wait
 category: net
 tags: [tcp]
 ---
-{% include JB/setup %}
+  
 
 不只是time_wait， 说说tcp关闭状态
 

@@ -4,7 +4,7 @@ category : database
 title: rocksdb 目录创建的一个坑
 tags : [rocksdb,c++]
 ---
-{% include JB/setup %}
+  
 
 虽然有CreateIfMiss，但有时候目录还会创建失败，场景就是级联目录 rocksdb没有这种语义
 

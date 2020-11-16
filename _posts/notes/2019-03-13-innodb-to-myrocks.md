@@ -4,7 +4,7 @@ category : database
 title: PPT笔记 InnoDB to MyRocks migration in main MySQL database at Facebook
 tags : [rocksdb, innodb, mysql]
 ---
-{% include JB/setup %}
+  
 
 ### why
 

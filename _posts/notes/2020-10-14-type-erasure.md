@@ -4,7 +4,7 @@ title: 类型擦除技术 type erasure
 category: [c++]
 tags: [c++]
 ---
-{% include JB/setup %}
+  
 
 ---
 

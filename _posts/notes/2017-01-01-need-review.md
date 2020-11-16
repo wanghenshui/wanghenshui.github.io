@@ -4,7 +4,7 @@ title: need review list
 category: tools
 tags: [todo]
 ---
-{% include JB/setup %}
+  
 
 
 
@@ -23,7 +23,7 @@ title: blahblah
 category: [blahblah]
 tags: [blahblah, blahblah]
 ---
-{% include JB/setup %}
+  
 
 ---
 

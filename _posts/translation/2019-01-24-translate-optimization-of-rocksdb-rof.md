@@ -4,7 +4,7 @@ title: (译)针对 Redis on Flash 优化RocksDB
 category: translation
 tags : [rocksdb, redis]
 ---
-{% include JB/setup %}
+  
 
 > [原文 Optimization of RocksDB for Redis on Flash]( http://kereno.com/rocksdb-rof.pdf)
 > 作者Keren Ouaknine, Oran Agra, Zvika GuzCCS

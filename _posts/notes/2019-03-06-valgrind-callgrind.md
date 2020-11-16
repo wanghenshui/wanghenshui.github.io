@@ -4,7 +4,7 @@ title: Valgrind & CallGrind
 category: tools
 tags: [c, python]
 ---
-{% include JB/setup %}
+  
 
 
 

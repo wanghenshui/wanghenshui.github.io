@@ -4,7 +4,7 @@ title: debug hack读书笔记
 category: tools
 tags: [debug,c,linux]
 ---
-{% include JB/setup %}
+  
 
 ---
 

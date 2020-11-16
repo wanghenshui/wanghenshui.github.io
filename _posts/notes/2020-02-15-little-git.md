@@ -4,7 +4,7 @@ title: git cheatsheet
 category: tools
 tags: [git]
 ---
-{% include JB/setup %}
+  
 
 整理一下常用的git语句
 

@@ -5,7 +5,7 @@ category: [c++]
 tags: [c++, boost, asio]
 
 ---
-{% include JB/setup %}
+  
 
 ---
 

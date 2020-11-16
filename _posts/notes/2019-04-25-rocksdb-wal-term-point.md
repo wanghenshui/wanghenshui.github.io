@@ -4,7 +4,7 @@ category: database
 title: rocksdb 小知识 WalTerminationPoint
 tags: [rocksdb, c++]
 ---
-{% include JB/setup %}
+  
 
 这个数据是在WriteBatch中的，和写WAL相关，数据结构是SavePoint
 

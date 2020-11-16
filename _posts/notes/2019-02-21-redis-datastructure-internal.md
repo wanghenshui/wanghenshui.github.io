@@ -5,7 +5,7 @@ category: database
 tags: [redis, c]
 ---
 
-{% include JB/setup %}
+  
 
 
 

@@ -5,7 +5,7 @@ category: database
 tags : [c++, redis, rocksdb, glog, callgrind]
 ---
 
-{% include JB/setup %}
+  
 
 最近想研究一下redis和rocksdb融合的东西，了解到[pika](https://github.com/Qihoo360/pika)是做这个的，开始比较测试和redis的功能差异，以下是踩坑记录
 

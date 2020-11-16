@@ -4,7 +4,7 @@ title: memcached源码剖析笔记
 category: [c]
 tags: [c,kv,cache,memcache, linux]
 ---
-{% include JB/setup %}
+  
 
 ---
 

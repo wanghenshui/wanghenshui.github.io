@@ -4,7 +4,7 @@ title: (todo)quick-bench的原理是啥？
 category: [c++]
 tags: [benchmark, todo]
 ---
-{% include JB/setup %}
+  
 
 ---
 

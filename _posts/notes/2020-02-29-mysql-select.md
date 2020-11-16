@@ -5,7 +5,7 @@ title: mysql几个优化
 tags: [mysql]
 ---
 
-{% include JB/setup %}
+  
 
 ---
 

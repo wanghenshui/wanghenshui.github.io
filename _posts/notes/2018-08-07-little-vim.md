@@ -4,7 +4,7 @@ title: vim 小课堂
 category: tools
 tags: [vim]
 ---
-{% include JB/setup %}
+  
 
 > 总结一下我经常用的命令，不定期更新
 

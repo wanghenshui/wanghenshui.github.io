@@ -4,7 +4,7 @@ title: 常用快捷键/命令的整理/系统设定
 category: tools
 tags: [linux]
 ---
-{% include JB/setup %}
+  
 
 整理一下常用的命令行，不分平台，tmux和vim不在此列
 

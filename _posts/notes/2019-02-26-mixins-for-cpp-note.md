@@ -4,7 +4,7 @@ title: Mixins for C++ PPT 笔记 && sqlpp11简单走读
 category: c++
 tags: [c++,cppcon]
 ---
-{% include JB/setup %}
+  
 
 #  Mixins for C++ PPT 笔记 && sqlpp11简单走读
 

@@ -4,7 +4,7 @@ category : database
 title: rocksdb merge_test 单测不过问题定位
 tags : [rocksdb,c++]
 ---
-{% include JB/setup %}
+  
 
 背景，给key加了个字段，改写了了WriteBatch, 每组数据会重写，加这个字段。
 

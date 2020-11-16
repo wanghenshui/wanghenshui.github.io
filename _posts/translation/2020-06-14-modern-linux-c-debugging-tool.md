@@ -4,7 +4,7 @@ title: (cppcon)linux下c++现代调试工具手段
 category: [c++, cppcon, cppcon2019]
 tags: [c++]
 ---
-{% include JB/setup %}
+  
 
 ---
 

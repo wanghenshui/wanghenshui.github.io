@@ -4,7 +4,7 @@ title: MongoDB权威指南笔记
 category: database
 tags: [c++,mongodb]
 ---
-{% include JB/setup %}
+  
 
 ##< MongoDB权威指南>笔记
 

@@ -4,7 +4,7 @@ title: 又招人啦
 category: [c++]
 tags: [tools]
 ---
-{% include JB/setup %}
+  
 
 ---
 

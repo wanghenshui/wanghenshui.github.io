@@ -4,7 +4,7 @@ title: 程序员自我修养链接加载库 读书笔记
 category: [tools, book review]
 tags: [debug, c, gdb, c++, gcc, linux]
 ---
-{% include JB/setup %}
+  
 
 ---
 

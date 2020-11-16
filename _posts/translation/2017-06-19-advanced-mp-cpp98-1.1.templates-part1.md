@@ -5,7 +5,7 @@ category: translation
 tags : [c++, template]
 ---
 
-{% include JB/setup %}
+  
 
 ### 第一部分 预备知识 #include 
 

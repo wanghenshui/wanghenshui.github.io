@@ -4,7 +4,7 @@ category : c++
 title: gcc编译提示siginfo_t找不到
 tags : [c,gcc]
 ---
-{% include JB/setup %}
+  
 
 
 

@@ -5,7 +5,7 @@ category: translation
 tags: [c++, template]
 ---
 
-{% include JB/setup %}
+  
 
 主要是一些典型的用法，或者说old-fashioned 用法
 

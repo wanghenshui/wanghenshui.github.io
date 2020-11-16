@@ -5,7 +5,7 @@ title: Abseil Tip of the Week
 tags: [c++]
 ---
 
-{% include JB/setup %}
+  
 
 本文是Abseil库 tip of the week的总结。不是翻译，有些点子还是不错的。
 

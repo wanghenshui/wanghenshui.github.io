@@ -5,7 +5,7 @@ category: translation
 tags: [c++, template]
 ---
 
-{% include JB/setup %}
+  
 
 比如全都小写，这节主要是风格约定。简单走一遍
 

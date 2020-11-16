@@ -5,7 +5,7 @@ category: c++
 tags: [c++, boost, cppnow]
 ---
 
-{% include JB/setup %}
+  
 
 ### cppnow2012 Michael Caisse Introduction to Modern C++ Techniques 
 

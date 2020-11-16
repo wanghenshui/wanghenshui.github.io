@@ -4,7 +4,7 @@ category: c++
 title: a little order delving into the stl sorting algorithms
 tags: [cppcon, c++, stl]
 ---
-{% include JB/setup %}
+  
 
 演讲主题是对比std::sort std::partial_sort std::nth_elemet的速度
 
