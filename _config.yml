@@ -17,12 +17,11 @@ excerpt_separator: <!-- more -->
 permalink: /:categories/:title.html
 encoding: UTF-8
 title : wanghenshui 's blog
-tagline: Site Tagline
 author : wanghenshui
 email : wanghenshui@qq.com
 
 
-description: null
+description: "null"
 url : https://wanghenshui.github.io
 sitesearchurl : wanghenshui.github.io
 baseurl: "" 
