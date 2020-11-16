@@ -1,5 +1,7 @@
 permalink: /:year/:month/:day/:title.html
-exclude: [“index.md", "README.md"]
+exclude:
+  - index.md
+  - README.md
 
 highlighter: rouge
 markdown: kramdown
@@ -10,7 +12,7 @@ kramdown:
 
 plugins:
   - jekyll-paginate
-paginate: 20
+paginate: 5
 paginate_path: "/pages:num/"
 mathjax: false
 excerpt_separator: <!-- more -->
