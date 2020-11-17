@@ -17,12 +17,12 @@ paginate_path: "/pages:num/"
 mathjax: false
 excerpt_separator: <!-- more -->
 encoding: UTF-8
-title : wanghenshui 's blog
+title : 王很水的博客
 author : wanghenshui
 email : wanghenshui@qq.com
 
 
-#description: "null"
+description: "majar buzz kill"
 url : https://wanghenshui.github.io
 sitesearchurl : wanghenshui.github.io
 baseurl: "" 
