@@ -176,9 +176,7 @@ cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后�
 
 ## top命令 一图流
 
-![](https://wanghenshui.github.io/assets/top.png)
-
-
+<div align="center"><p><img src="https://wanghenshui.github.io/assets/top.png" alt=""></p></div>
 
 
 
