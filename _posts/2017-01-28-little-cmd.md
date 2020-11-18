@@ -6,9 +6,34 @@ tags: [linux]
 ---
 
 
-整理一下常用的命令行，不分平台，tmux和vim不在此列
+整理一下常用的命令行，不分平台，
 
 
+
+- VIM
+  - G 跳到最后
+  - set foldmethod=indent "set default foldmethod
+  - zi 打开关闭折叠 "zv 查看此行 zm 关闭折叠 zM 关闭所有 zr 打开 zR 打开所有 zc 折叠当前行 zo 打开当前折叠 zd 删除折叠 zD 删除所有折叠
+  - / 查找 n下一个
+    - 正则表达式，例如/vim$匹配行尾的"vim"
+    - \c表示大小写不敏感查找，\C表示大小写敏感查找。/foo\c
+    - set ignorecase  ~/.vimrc
+  - 替换 :{作用范围}s/{目标}/{替换}/{替换标志} %s/foo/bar/g会在全局范围(%)查找foo并替换为bar，所有出现都会被替换（g）
+    - 作用范围
+      - :s/foo/bar/g
+      - :%s/foo/bar/g
+      - :5,12s/foo/bar/g :.,+2s/foo/bar/g
+    - 替换标志
+      - 目标的第一次出现：:%s/foo/bar
+      - i表示大小写不敏感查找，I表示大小写敏感 :%s/foo/bar/i
+      - \#等效于模式中的\c（不敏感）或\C（敏感）:%s/foo\c/bar
+      - c表示需要确认，例如全局查找"foo"替换为"bar"并且需要确 :%s/foo/bar/gc
+      - 参考： [Vim中如何快速进行光标移](http://harttle.com/2015/11/07/vim-cursor.html)
+  - 1y lh 粘贴
+  - v模式 e选中 
+  - b w 前后走动
+  - 命令行 补全 ctrl l
+  - 插入模式补全 ctrl p
 
 - grep
 
@@ -56,6 +81,14 @@ tags: [linux]
         - http://zhulao.gitee.io/blog/2019/04/05/%E7%BC%96%E8%AF%91%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7-bazel/index.html 这个文档不错 什么时候用什么时候再看
 
         - 换编译器 --repo_env=CC=clang
+        
+        - 编译所有 bazel build ...
+        
+    - 测试 bazel test ...
+
+         * `--nocache_test_results` may be required if you are trying to re-run a test without changing
+           anything.
+         * `--test_filter=<TestName>` to run a specific test (when test splits are not already in use)
 
 - MAC
     - 截图 command shift 4
