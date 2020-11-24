@@ -95,10 +95,11 @@ tags: [linux]
     - 截图且复制到剪贴板 Shift+Control+Command+4
     - 截屏command shift 3
     - 截屏且复制到剪贴板 Shift+Control+Command+3
-    - 打开新终端 comand + T
+    - 打开新终端 command + T
     - 回到桌面 fn + f11 或者五个手指缩放(比较反人类，算了)
       - 设置触发角，我设置到了右下角，这样和windows行为一致
     - 终端分屏 cmd + d 取消 cmd + shift + d
+    - 终端切换标签页 command + shift  + 左右箭头
     - 设置 /使用习惯
       - 鼠标 滚轮 去掉自然
       - sudo spctl --master-disable 设置信任
@@ -111,6 +112,11 @@ tags: [linux]
   - Ctrl+k Ctrl+U 取消注释
   - F5 F9断点 F10 F11
   
+- vscode 
+
+    - 格式化代码 shift + alt + f 
+    - 配置clang-format
+
 - EverNote 
 
   - F10标签 F11笔记本列表 F9同步
@@ -177,13 +183,14 @@ tags: [linux]
   \Huge
   ```
 
-特殊需求
-
-git统计提交行数
+- git
+  - git统计提交行数
 
 ```bash
 git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -  $2 } END { printf "added lines: %s, removed lines: %s, total lines:  %s\n", add, subs, loc }'
 ```
+-  整理commit git rebase -i HEAD~3
+
 比较两个文件夹
 
 ```bash
