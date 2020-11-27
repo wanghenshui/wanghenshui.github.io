@@ -190,7 +190,13 @@ tags: [linux]
 git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -  $2 } END { printf "added lines: %s, removed lines: %s, total lines:  %s\n", add, subs, loc }'
 ```
 -  整理commit git rebase -i HEAD~3
+
 - 修改提交人 git commit --amend --author="NewAuthor <NewEmail@address.com>"
+
+- ```shell
+  git push <远程主机名> <本地分支名>:<远程分支名>
+  git pull <远程主机名> <远程分支名>:<本地分支名> 
+  ```
 
 比较两个文件夹
 
