@@ -4,7 +4,7 @@ title: (译)unordered set 背后的堆分配行为
 categories: [translation,c++]
 tags : [c++, algorithm]
 ---
-  
+
 
 > 翻译整理自 https://bduvenhage.me/performance/2019/04/22/size-of-hash-table.html
 >
@@ -30,19 +30,25 @@ unoredered_set会记录每个桶的负载因子(load factor) 也就是平均每�
 
 
 
-![容器堆占用 vs 插入个数](https://bduvenhage.me/assets/images/unordered_set_heap_size.png)
+
+
+<img src="https://bduvenhage.me/assets/images/unordered_set_heap_size.png" alt="" width="60%">
 
 上图，每次大幅度跳跃都是 调整负载因子的场景。作者想用valgrind massif工具来分析 std::unordered_set的内存占用，但是valgrind不支持macos，所以作者写了个alloctor来调用默认的alloctor，只是记录次数
 
 
 
+<img src="https://bduvenhage.me/assets/images/unordered_set_load_factor.png" alt="" width="60%">
 
 
-![负载因子 vs 插入个数](https://bduvenhage.me/assets/images/unordered_set_load_factor.png)
 
 
 
-![桶个数 vs 插入个数](https://bduvenhage.me/assets/images/unordered_set_buckets.png)
+
+
+
+
+<img src="https://bduvenhage.me/assets/images/unordered_set_buckets.png" alt="" width="60%">
 
 
 
@@ -50,9 +56,9 @@ unoredered_set会记录每个桶的负载因子(load factor) 也就是平均每�
 
 
 
+<img src="https://bduvenhage.me/assets/images/unordered_set_running_time.png" alt="" width="60%">
 
 
-![执行时间 vs 插入个数](https://bduvenhage.me/assets/images/unordered_set_running_time.png)
 
 
 

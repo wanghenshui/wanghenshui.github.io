@@ -4,7 +4,7 @@ categories : c++
 title: immer ,一个不可变数据结构的实现
 tags : [cppcon,c++]
 ---
-  
+
 
 ### why
 
@@ -34,13 +34,15 @@ imm 数组看起来很像了。怎么实现呢？
 
 mvc的毛病
 
-![1553086793090](https://wanghenshui.github.io/assets/1553086793090.png)
+<img src="https://wanghenshui.github.io/assets/1553086793090.png" alt="" width="60%">
 
 
 
 改进方案
 
-![1553086836467](https://wanghenshui.github.io/assets/1553086836467.png)
+
+
+<img src="https://wanghenshui.github.io/assets/1553086836467.png" alt="" width="60%">
 
 我感觉这个东西就是Immutable.js的思路？
 
