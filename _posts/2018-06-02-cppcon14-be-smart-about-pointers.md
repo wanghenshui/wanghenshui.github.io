@@ -1,7 +1,7 @@
 ---
 layout: post
 title: be smart about pointers 
-categories: c++
+categories: language
 tags: [c++, cppcon, pointer]
 ---
 

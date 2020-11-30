@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: c++
+categories: language
 title: a little order delving into the stl sorting algorithms
 tags: [cppcon, c++, stl]
 ---

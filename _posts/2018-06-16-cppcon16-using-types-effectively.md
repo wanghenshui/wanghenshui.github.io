@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (cppcon)using types effectively
-categories: c++
+categories: language
 tags: [c++, cppcon,type]
 ---
 

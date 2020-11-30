@@ -1,9 +1,3 @@
-https://itnext.io/modern-storage-is-plenty-fast-it-is-the-apis-that-are-bad-6a68319fbc1a
-
-
-
-https://dgraph.io/blog/post/introducing-ristretto-high-perf-go-cache/
-
 
 
 https://unixism.net/2019/04/linux-applications-performance-introduction/

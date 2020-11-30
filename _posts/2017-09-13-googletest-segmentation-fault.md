@@ -1,7 +1,7 @@
 ---
 layout: post
 title: googletest segmentation fault
-categories: c++
+categories: language
 tags: [c++, googletest, debug,gdb,dmesg]
 ---
 

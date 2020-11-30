@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (cppcon)用表达式模板实现一个一个简单安全的log
-categories: c++
+categories: language
 tags: [c++, cppcon]
 ---
   

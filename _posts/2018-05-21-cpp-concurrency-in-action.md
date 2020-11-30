@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C++ Concurrency In Action读书笔记
-categories: c++
+categories: language
 tags: [c++, thread]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  (cppcon)c++11 几个生产中常用的小工具
-categories: c++
+categories: language
 tags: [c++, cppcon]
 ---
   

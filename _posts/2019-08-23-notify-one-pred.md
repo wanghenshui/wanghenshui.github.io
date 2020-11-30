@@ -1,7 +1,7 @@
 ---
 layout: post
 title: std::condition_variable::notify_one 使用细节
-categories: [c++]
+categories: [language]
 tags: [c++, condition_variable]
 ---
   

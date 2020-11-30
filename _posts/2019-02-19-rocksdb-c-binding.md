@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 如何从c++导出c接口
-categories: c++
+categories: language
 tags: [c++, rocksdb]
 ---
   

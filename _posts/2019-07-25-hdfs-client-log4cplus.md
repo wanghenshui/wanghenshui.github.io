@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: c++
+categories: language
 title: log4cplus ERROR No appenders could be found for logger root 报错
 tags: [c++, linux]
 ---

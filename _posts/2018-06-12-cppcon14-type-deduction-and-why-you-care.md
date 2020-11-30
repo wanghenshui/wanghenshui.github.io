@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (cppcon)类型推导以及为什么需要关注这个
-categories: c++
+categories: language
 tags: [c++, cppcon, type]
 ---
 

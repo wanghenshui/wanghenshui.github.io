@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)The Hunt for the Fastest Zero
-categories: [c++]
+categories: [language]
 tags: [libcxx, stl]
 ---
 

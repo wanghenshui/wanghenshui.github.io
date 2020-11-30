@@ -1,7 +1,7 @@
 ---
 layout: post
 title: future promise实现程度调研
-categories: [c++]
+categories: [language]
 tags: [future, thread, boost, folly, seastar]
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: c++
+categories: language
 title: Abseil Tip of the Week
 tags: [c++]
 ---

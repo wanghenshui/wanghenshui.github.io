@@ -1,7 +1,7 @@
 ---
 layout: post
 title: pure virtual method called
-categories: [c++]
+categories: [language]
 tags: [vtable]
 ---
 

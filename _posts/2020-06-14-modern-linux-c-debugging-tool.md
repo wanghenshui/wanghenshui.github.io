@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (cppcon)linux下c++现代调试工具手段
-categories: [c++]
+categories: [language]
 tags: [linux, cppcon, cppcon2019,gdb,valgrind,sanitizer]
 ---
 

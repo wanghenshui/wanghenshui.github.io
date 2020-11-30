@@ -1,7 +1,7 @@
 ---
 layout: post
 title: c++编程思想 读书笔记
-categories: c++
+categories: language
 tags: [c++]
 ---
   

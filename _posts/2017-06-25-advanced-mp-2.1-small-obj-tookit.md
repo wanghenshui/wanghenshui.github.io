@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)advanced metaprogramming in classic c++ 2 小对象工具  small object toolkit
-categories: translation
+categories: [language, translation]
 tags: [c++, template]
 ---
 

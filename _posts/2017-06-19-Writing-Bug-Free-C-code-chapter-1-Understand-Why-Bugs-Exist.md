@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)Writing Bug Free C code chapter 1 Understand Why Bugs Exist
-categories: translation
+categories: [language, translation]
 tags : [c, gcc]
 ---
   

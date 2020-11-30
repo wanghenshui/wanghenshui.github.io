@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 一次 Illegal instructions 问题（围观）定位
-categories: c++
+categories: language
 tags: [c++, rocksdb]
 ---
   

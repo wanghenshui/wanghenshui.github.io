@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  (cppcon)Declarative Control Flow
-categories: c++
+categories: language
 tags: [c++, cppcon]
 ---
   

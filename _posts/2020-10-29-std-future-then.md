@@ -1,7 +1,7 @@
 ---
 layout: post
 title: std::future 为什么没有then continuation
-categories: [c++]
+categories: [language]
 tags: [cppcon, cppcon2019, continuation, future]
 ---
 

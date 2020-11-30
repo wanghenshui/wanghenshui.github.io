@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 类型擦除技术 type erasure
-categories: [c++]
-tags: [type,vtable]
+categories: [language]
+tags: [c++, type,vtable]
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: c++
+categories: language
 title: 检测函数重载
 tags: [c++, template, sfinae]
 ---

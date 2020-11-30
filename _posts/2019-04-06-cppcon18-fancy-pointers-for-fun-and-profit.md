@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: c++
+categories: language
 title: fancy pointers for fun and profit
 tags: [cppcon, c++]
 ---

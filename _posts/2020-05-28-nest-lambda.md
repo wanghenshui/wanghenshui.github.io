@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 嵌套lambda 捕获shared_ptr引发的bug
-categories: [c++, debug]
+categories: [language, debug]
 tags: [lambda,thread,shared_ptr]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MongoDB中的装饰器模式
-categories: c++
+categories: language
 tags: [c++,mongodb,design pattern]
 ---
   

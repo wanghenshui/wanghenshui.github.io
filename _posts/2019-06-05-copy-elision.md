@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: c++
+categories: language
 title: copy elision
 tags: [c++]
 ---

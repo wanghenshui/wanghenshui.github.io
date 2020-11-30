@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mixins for C++ PPT 笔记 && sqlpp11简单走读
-categories: c++
+categories: language
 tags: [c++,cppcon]
 ---
   

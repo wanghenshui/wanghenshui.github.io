@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 怀旧系列 boost fusion
-categories: c++
+categories: language
 tags: [c++, boost]
 ---
 

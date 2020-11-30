@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (cppcon)return values take a closure walk
-categories: c++
+categories: language
 tags: [c++, cppcon]
 ---
   
