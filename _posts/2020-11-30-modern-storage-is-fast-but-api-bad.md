@@ -45,7 +45,9 @@ tags: [io, device, memory, direct_io, rust,glommio]
 
 
 
-![](https://miro.medium.com/max/1400/1*v74E8E9ick4-rpiYZ2uFKA.png)问题还在，老api并不是并发读，尽管读的快但是比cpu还是慢，阻塞，还是要等待
+<p><img src="https://miro.medium.com/max/1400/1*v74E8E9ick4-rpiYZ2uFKA.png" alt="" width="60%"></p>
+
+问题还在，老api并不是并发读，尽管读的快但是比cpu还是慢，阻塞，还是要等待
 
 所以又变成多文件，提高吞吐，但是 
 
