@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: tools
+categories: [linux,debug]
 title: 一个 Valgrind Address is on Thread's 1 stack 搞笑场景
 tags: [valgrind]
 ---

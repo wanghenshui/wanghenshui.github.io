@@ -1,7 +1,7 @@
 ---
 layout: post
 title: need review list
-categories: tools
+categories: todo
 tags: [todo]
 ---
   

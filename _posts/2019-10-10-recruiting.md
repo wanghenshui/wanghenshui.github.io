@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 招人啦
-categories: [language]
-tags: [tools]
+categories: [todo]
+tags: []
 ---
   
 

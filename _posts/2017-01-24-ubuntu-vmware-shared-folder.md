@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ubuntu设置共享目录
-categories: tools
+categories: linux
 tags : [ubuntu,vm,fs]
 ---
 

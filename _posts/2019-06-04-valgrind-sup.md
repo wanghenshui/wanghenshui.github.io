@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: tools
+categories: debug
 title: valgrind sup文件的作用以及生成
 tags: [valgrind]
 ---

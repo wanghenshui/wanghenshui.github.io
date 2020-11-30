@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 程序员自我修养链接加载库 读书笔记
-categories: [tools, book review]
+categories: [review]
 tags: [debug, c, gdb, c++, gcc, linux]
 ---
 

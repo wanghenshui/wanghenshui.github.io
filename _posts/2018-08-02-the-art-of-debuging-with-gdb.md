@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 软件调试的艺术 读书笔记
-categories: [debug, tools, book review]
+categories: [debug, review]
 tags: [linux, debug, gdb]
 ---
   

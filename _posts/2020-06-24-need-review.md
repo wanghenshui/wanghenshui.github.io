@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 六月待读 need review 
-categories: tools
+categories: todo
 tags: [todo]
 ---
   

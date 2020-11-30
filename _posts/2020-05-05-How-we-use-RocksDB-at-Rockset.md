@@ -1,7 +1,7 @@
 ---
 layout: post
 title: rockset是如何使用rocksdb的
-categories: [database, rocksdb]
+categories: [database]
 tags: [rocksdb,tuning]
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-categories: c
+categories: language
 title: buserr segfault, corrupted double-linked list
-tags: [algorithm]
+tags: [c, segfault]
 ---
 
   
