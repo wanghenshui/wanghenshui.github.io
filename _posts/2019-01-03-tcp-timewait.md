@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 说说 time_wait
-categories: network
-tags: [tcp]
+categories: linux
+tags: [tcp, time_wait]
 ---
-  
+
 
 不只是time_wait， 说说tcp关闭状态
 

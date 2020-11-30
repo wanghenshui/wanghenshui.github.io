@@ -2,9 +2,9 @@
 layout: post
 title: Linux调优指南
 categories: [linux]
-tags: [linux]
+tags: [tcp, page, io,disk,socket]
 ---
-  
+
 
 ---
 

@@ -2,9 +2,9 @@
 layout: post
 title: 基本的Linux内核参数的优化
 categories: linux
-tags: [linux, tcp]
+tags: [nginx, tcp]
 ---
-  
+
 
 ## Linux内核参数的优化
 

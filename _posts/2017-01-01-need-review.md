@@ -4,13 +4,13 @@ title: need review list
 categories: todo
 tags: [todo]
 ---
-  
+
 
 经常粘贴的链接
 
 https://wanghenshui.github.io/assets/
 
-
+<img src="https://xx.png" alt="" width="60%">
 
 模版
 
@@ -111,10 +111,6 @@ http://mingxinglai.com/cn/2013/01/leveldb-arena/
 rocksdb arena http://www.pandademo.com/2016/09/arena-rocksdb-source-dissect-0/
 
 ceph rocksdb http://strugglesquirrel.com/2018/05/20/ceph%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E5%8E%86%E7%A8%8B-rocksdb%E7%AF%87-2/
-
-
-test rocksdb 
-https://www.jianshu.com/p/f6dcf546d1f5
 
 db paper
 forkbase

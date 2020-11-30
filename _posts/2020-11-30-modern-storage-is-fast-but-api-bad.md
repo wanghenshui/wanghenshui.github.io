@@ -8,9 +8,9 @@ tags: [io, device, memory, direct_io, rust,glommio]
 
 ---
 
- ~~这里存储设备指的optane这种~~
-
-简单整理，用deepl翻译的
+> ~~这里存储设备指的optane这种~~
+>
+> 简单整理，用deepl翻译的
 
 
 
