@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Characterizing, Modeling, and Benchmarking RocksDB Key-Value Workloads at Facebook
-categories: [database, paper review, translation]
+categories: [database, review, translation]
 tags: [debug, rocksdb]
 ---
-  
+
 
 ---
- 
+
 
 
 > 根据ppt和论文总结一下

@@ -1,7 +1,7 @@
 layout: post
 title: tcp keepalive
 categories: [linux]
-tags: [tcp,linux,c]
+tags: [tcp,keepalive,c]
 
   
 

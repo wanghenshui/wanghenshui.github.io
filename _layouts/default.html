@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
 
-  {% include head.html %}
+{% include head.html %}
 
 <body>
-    {% include {{ site.baseurl }}header.html %}
-  
-    {{ content }}
+  {% include {{ site.baseurl }}header.html %}
 
-    {% include {{ site.baseurl }}footer.html %}
+  {{ content }}
 
-    <a href="#top" class="back-to-top">^</a>
+  {% include {{ site.baseurl }}footer.html %}
 
-<!--     {% if site.analytics_id %}
+  <a href="#top" class="back-to-top">^</a>
+
+  <!--     {% if site.analytics_id %}
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -23,16 +23,19 @@
      </script>
     {% endif %} -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{ site.baseurl }}/assets/js/jquery-1.12.4.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ site.baseurl }}/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <!-- TOC -->
-    <script src="{{ site.baseurl }}/assets/js/toc/TOC.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{{ site.baseurl }}/assets/js/jquery-1.12.4.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{ site.baseurl }}/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <!-- TOC -->
+  <script src="{{ site.baseurl }}/assets/js/toc/TOC.js"></script>
+  <!-- Html Elements for Search -->
 
-    <script>$("#search-form").submit(function(event){
-      var query = document.getElementById("search-input").value;
-      window.open("http://google.com/search?q=" + query + "%20site:" + "{{ site.sitesearchurl}}");
-    });</script>
-  </body>
+  <input type="text" id="search-input" placeholder="Search blog posts..">
+  <ul id="results-container"></ul>
+
+  <!-- or without installing anything -->
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+</body>
+
 </html>

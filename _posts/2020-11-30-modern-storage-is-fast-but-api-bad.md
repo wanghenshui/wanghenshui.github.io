@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)现代存储硬件足够快啦就是老api不太好用
-categories: [database]
+categories: [database, translation]
 tags: [io, device, memory, direct_io, rust,glommio]
 ---
 
