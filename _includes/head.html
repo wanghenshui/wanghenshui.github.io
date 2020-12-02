@@ -5,9 +5,9 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>
     {% if page.title == "Home" %}
-      {{ site.title }} &middot; {{ site.tagline }}
+    {{ site.title }} &middot; {{ site.tagline }}
     {% else %}
-      {{ page.title }} &middot; {{ site.title }}
+    {{ page.title }} &middot; {{ site.title }}
     {% endif %}
   </title>
 
@@ -34,7 +34,8 @@
     });
   </script>
   {% if page.mathjax %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    type="text/javascript"></script>
   {% endif %}
 
   <!-- code highlighting-->
@@ -42,11 +43,13 @@
   <script src="/lib/highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script>hljs.configure({ ignore: ['text'] });</script>
-  
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <script data-ad-client="ca-pub-7220064865394892" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
