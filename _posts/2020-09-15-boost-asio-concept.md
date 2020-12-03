@@ -2,7 +2,7 @@
 layout: post
 title: (转)boost.asio新框架的设计概念总结
 categories: [language]
-tags: [thread, boost, asio]
+tags: [c++, thread, boost, asio]
 
 ---
 

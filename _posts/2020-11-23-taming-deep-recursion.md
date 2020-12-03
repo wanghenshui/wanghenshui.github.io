@@ -2,7 +2,7 @@
 layout: post
 title: (译)搞定深度递归
 categories: [database, debug,translation]
-tags: [boost, stack]
+tags: [c++, boost, stack]
 ---
 
 

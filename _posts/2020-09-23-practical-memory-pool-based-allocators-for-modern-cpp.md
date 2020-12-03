@@ -2,7 +2,7 @@
 layout: post
 title: (cppcon)Practical memory pool based allocators for Modern C++ 
 categories: [language]
-tags: [pool, cppcon ,cppcon2020]
+tags: [c++, pool, cppcon ,cppcon2020]
 ---
 
 

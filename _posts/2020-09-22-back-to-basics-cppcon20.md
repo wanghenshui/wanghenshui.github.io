@@ -2,7 +2,7 @@
 layout: post
 title: (cppcon2020) back to basics
 categories: [language]
-tags: [type, cppcon ,cppcon2020]
+tags: [c++, type, cppcon ,cppcon2020]
 ---
 
 

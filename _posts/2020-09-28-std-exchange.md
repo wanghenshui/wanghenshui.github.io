@@ -2,7 +2,7 @@
 layout: post
 title: std::exchange用法
 categories: [language]
-tags: [type, c++14, cppcon, cppcon17]
+tags: [type, c++, cppcon, cppcon17]
 ---
 
 这个函数没啥好说的，主要是为了`偷东西` 诞生的,实现非常简单

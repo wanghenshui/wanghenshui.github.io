@@ -1,3 +1,12 @@
+---
+layout: post
+title: 十月待读
+categories: [todo]
+tags: []
+---
+
+
+
 
 
 https://unixism.net/2019/04/linux-applications-performance-introduction/

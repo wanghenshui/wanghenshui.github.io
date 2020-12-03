@@ -2,7 +2,7 @@
 layout: post
 title: 类型擦除技术 type erasure以及std::function设计实现
 categories: [language]
-tags: [c++, type,vtable, sbo, std::function, type_erase]
+tags: [c++, type,vtable, sbo]
 ---
 
 
