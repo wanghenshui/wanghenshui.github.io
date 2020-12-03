@@ -1,8 +1,8 @@
 ---
 layout: post
-categories : c++
+categories: language
 title: std::variant 与 std::visit
-tags : [c++,gcc,stl]
+tags : [c++,stl]
 ---
 
 

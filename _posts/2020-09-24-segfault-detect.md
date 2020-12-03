@@ -8,7 +8,9 @@ tags: [c, signal, asm]
 
 ---
 
- 场景，当访问不合法的地址，当场segment fault，为了避免，如何探测？
+> 文章摘抄自[这里]( https://www.giovannimascellani.eu/having-fun-with-signal-handlers.html)
+
+场景，当访问不合法的地址，当场segment fault，为了避免，如何探测？
 
 两种方案
 
@@ -103,13 +105,9 @@ int main() {
 
 看一乐啊，这里就是操作指针对应的寄存器，不保证正确（多线程下应该不对，这东西应该说进程级别的，放在最外层）
 
-另外，如果不是写什么共享内存程序，segment fault 就挂了的了，别挽救了
+另外，如果不是写什么共享内存程序，segment fault 就挂了得了，别挽救了
 
----
 
-### ref
-
-- 文章摘抄自这里 https://www.giovannimascellani.eu/having-fun-with-signal-handlers.html#having-fun-with-signal-handlers
 
 
 ---

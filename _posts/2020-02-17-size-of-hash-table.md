@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)unordered set 背后的堆分配行为
-categories: [translation,c++]
+categories: [translation,language]
 tags : [c++, algorithm]
 ---
 

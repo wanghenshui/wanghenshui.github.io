@@ -1,10 +1,10 @@
 ---
 layout: post
-categories : c++
+categories: language
 title: overloaded trick
-tags : [c++,gcc]
+tags : [c++,template]
 ---
-  
+
 
 ### why
 

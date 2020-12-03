@@ -1,10 +1,10 @@
 ---
 layout: post
-categories : c++
+categories: debug
 title:  打印uint64_t以及编译错误
 tags : [c,gcc]
 ---
-  
+
 
 简单说，用PRIu64来打印uint64 有编译错误
 
