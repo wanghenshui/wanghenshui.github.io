@@ -10,7 +10,7 @@ tags: [c++, template, enable_if, sfinae]
 
  
 
-> 本文是参考链接的翻译整理
+> 本文是[这篇文章](https://artificial-mind.net/blog/2020/10/10/return-type-overloading)的翻译整理
 
 
 
@@ -131,16 +131,6 @@ struct to_string_impl<my_range<T>, std::enable_if_t<has_from_string<T>>>
 就是偏特化+sfinae套路
 
 
-
-
-
-
-
----
-
-### ref
-
-- https://artificial-mind.net/blog/2020/10/10/return-type-overloading
 
 
 ---

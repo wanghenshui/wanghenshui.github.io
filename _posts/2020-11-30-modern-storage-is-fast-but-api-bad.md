@@ -8,9 +8,9 @@ tags: [io, device, memory, direct_io, rust,glommio]
 
 ---
 
-> ~~这里存储设备指的optane这种~~
+> ~~这里存储设备指的optane这种~~ [原文]( https://itnext.io/modern-storage-is-plenty-fast-it-is-the-apis-that-are-bad-6a68319fbc1a)
 >
-> 简单整理，用deepl翻译的
+> 简单整理，用[deepl](https://www.deepl.com/zh/translator)翻译的
 
 
 
@@ -31,7 +31,7 @@ tags: [io, device, memory, direct_io, rust,glommio]
   - 如果是普通用户态进程，再拷贝一份给进程
   - 如果用了mmap，要更新虚拟页
 
-在以前，IO很慢，对比来说这些更新拷贝要慢一百倍，所以这些也无足轻重，但是现在IO延迟非常低，基本上耗时数量级持平
+在以前，IO很慢，对比来说这些更新拷贝要慢一百倍，所以这些也无足轻重，但是现在IO延迟非常低，可以看[三星nvme ssd]( https://www.samsung.com/semiconductor/global.semi.static/Ultra-Low_Latency_with_Samsung_Z-NAND_SSD-0.pdf)指标，基本上耗时数量级持平
 
 简单计算，最坏情况，设备耗时也没占上一半，时间都浪费在哪里了？这就涉及到第二个问题 `读放大`
 
@@ -65,7 +65,7 @@ io_uring是革命性的，但还是低级的api：
 
 为了使用io_uring你需要分批积累和调度，这就需要一个何时做的策略，以及某种事件循环
 
-为此，作者设计了一个io框架glommio Direct IO，基于轮训，无中断 register-buffer
+为此，作者设计了一个io框架[glommio](https://github.com/DataDog/glommio ) Direct IO，基于轮训，无中断 register-buffer
 
 Glommio处理两种文件类型
 
@@ -112,14 +112,11 @@ Direct I/O: size span of 53.69 GB, for 20s, 547479 IOPS
 
 ---
 
-### ref
+### ref/ps
 
-- 原文 https://itnext.io/modern-storage-is-plenty-fast-it-is-the-apis-that-are-bad-6a68319fbc1a
-- 三星nvme ssd指标 https://www.samsung.com/semiconductor/global.semi.static/Ultra-Low_Latency_with_Samsung_Z-NAND_SSD-0.pdf
 - https://github.com/DataDog/glommio 有时间仔细看看 这个作者之前是做seastar的，seastar是DirectIO+Future/Promise
 - 详细介绍的文档 https://www.datadoghq.com/blog/engineering/introducing-glommio/
 - 代码文档 https://docs.rs/glommio/0.2.0-alpha/glommio/
-- deepl 翻译省心啊，自己简单润色一下就行了 https://www.deepl.com/zh/translator
 
 
 ---

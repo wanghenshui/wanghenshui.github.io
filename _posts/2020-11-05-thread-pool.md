@@ -35,9 +35,11 @@ tags: [c++, rocksdb, folly, thread, future]
 |                           | 动态调整线程池        | 任务可以区分优先级                                           | 内部有队列？                                                 | 统计指标                         | 使用负担                                     |
 | ------------------------- | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------- | -------------------------------------------- |
 | rocksdb的线程池           | ✅<br>可以调整池子大小 | ✅ rocksdb线程池的优先级是系统级别的优先级，有系统调用的。而不是自定义schedule循环，自己维护优先级的 | ✅ std::duque\<BGItem>                                        | worker线程的各种状态统计idle等待 | 组件级，可以理解成高级点的任务队列           |
-| boost::asio::thread_pool  | X                     | X                                                            | 没有队列，一般使用不需要队列，如果有任务队列需要自己维护<br/>结合post使用静态的池子 | X                                | 组件级，但是得配合asio使用，摘出来没什么意义 |
-| Folly::threadpoolExecutor | ✅                     | X                                                            | 没有队列，add直接选线程调用可以定制各种类型的executor 结合future使用 future then串起队列 | worker线程的各种状态统计idle等待 | 单独用相当于epoll + 多线程worker             |
-| seastar                   | X                     | X                                                            | 有队列，每个核一个reator一个队列，核间通信靠转发，而不是同步 | X                                | 系统级，想用必须得用整个框架来组织应用       |
+| boost::asio::thread_pool  | ❌                     | ❌                                                            | 没有队列，一般使用不需要队列，如果有任务队列需要自己维护<br/>结合post使用静态的池子 | X                                | 组件级，但是得配合asio使用，摘出来没什么意义 |
+| Folly::threadpoolExecutor | ✅                     | ❌                                                            | 没有队列，add直接选线程调用可以定制各种类型的executor 结合future使用 future then串起队列 | worker线程的各种状态统计idle等待 | 单独用相当于epoll + 多线程worker             |
+| seastar                   | ❌                     | ❌                                                            | 有队列，每个核一个reator一个队列，核间通信靠转发，而不是同步 | X                                | 系统级，想用必须得用整个框架来组织应用       |
+| grpc的线程池              | ✅                     | ❌                                                            | ❌                                                            | ❌                                | ❌                                            |
+| 一般的简单线程池          | ❌                     | ❌                                                            | ❌                                                            | ❌                                | ❌                                            |
 
 
 
@@ -188,6 +190,133 @@ class ThreadPool {
       condition_.notify_all();
     }
   }
+};
+```
+
+
+
+怎么动态增删线程？判断依据是啥？
+
+```c++
+#include <condition_variable>
+#include <mutex>
+#include <thread>
+#include <queue>
+#include <list>
+
+class DynamicThreadPool
+{
+public:
+    explicit DynamicThreadPool(int reserve_threads)
+      :shutdown_(false), reserve_threads_(reserve_threads), nthreads_(0), threads_waiting_(0){
+          for (int i = 0; i < reserve_threads_; i++) {
+              std::lock_guard<std::mutex> lock(mu_);
+              nthreads_++;
+              new DynamicThread(this);
+          }
+      }
+  
+    ~DynamicThreadPool() {
+        std::unique_lock<std::mutex> lock_(mu_);
+        shutdown_ = true;
+        cv_.notify_all();
+
+        while (nthreads_ != 0) {
+            shutdown_cv_.wait(lock_);        
+        }
+
+        ReapThreads(&dead_threads_);    
+    }
+
+    void Add(const std::function<void()> &callback) {
+        std::lock_guard<std::mutex> lock(mu_);
+
+        // Add works to the callbacks list
+        callbacks_.push(callback);
+
+        // Increase pool size or notify as needed
+        if (threads_waiting_ == 0) {
+            // Kick off a new thread
+            nthreads_++;
+            new DynamicThread(this);
+        } else {
+            cv_.notify_one();
+        }
+
+        // Also use this chance to harvest dead threads
+        if (!dead_threads_.empty()) {
+            ReapThreads(&dead_threads_);
+        }
+    }
+
+private:
+    class DynamicThread {
+    public:
+        DynamicThread(DynamicThreadPool* pool):pool_(pool),thd_(new std::thread(&DynamicThreadPool::DynamicThread::ThreadFunc, this)){}
+        ~DynamicThread() {
+            thd_->join();
+            thd_.reset();    
+        }
+
+    private:
+        DynamicThreadPool* pool_;
+        std::unique_ptr<std::thread> thd_;
+        void ThreadFunc() {
+          pool_->ThreadFunc();
+
+          // Now that we have killed ourselves, we should reduce the thread count
+          std::unique_lock<std::mutex> lock(pool_->mu_);
+          pool_->nthreads_--;
+
+          // Move ourselves to dead list
+          pool_->dead_threads_.push_back(this);
+
+          if ((pool_->shutdown_) && (pool_->nthreads_ == 0)) {
+              pool_->shutdown_cv_.notify_one();
+          }
+      }
+    };
+    
+    std::mutex mu_;
+    std::condition_variable cv_;
+    std::condition_variable shutdown_cv_;
+    bool shutdown_;
+    std::queue<std::function<void()>> callbacks_;
+    int reserve_threads_;
+    int nthreads_;
+    int threads_waiting_;
+    std::list<DynamicThread*> dead_threads_;
+
+    void ThreadFunc() {
+        for (;;) {
+            std::unique_lock<std::mutex> lock(mu_);
+            // Wait until work is available or we are shutting down.
+            if (!shutdown_ && callbacks_.empty()) {
+                // If there are too many threads waiting, then quit this thread
+                if (threads_waiting_ >= reserve_threads_)
+                    break;
+                threads_waiting_++;
+                cv_.wait(lock);
+                threads_waiting_--;
+            }
+
+            // Drain callbacks before considering shutdown to ensure all work gets completed.
+            if (!callbacks_.empty()) {
+                auto cb = callbacks_.front();
+                callbacks_.pop();
+                lock.unlock();
+                cb();            
+            } else if (shutdown_)
+                break;            
+
+        }
+    }
+  
+    static void ReapThreads(std::list<DynamicThread*>* tlist) {
+        for (auto t = tlist->begin(); t != tlist->end(); t = tlist->erase(t)) {
+            delete *t;
+        }
+    }
 };
 ```
 

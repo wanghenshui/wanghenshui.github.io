@@ -8,7 +8,7 @@ tags: [c++, clickhouse, sort, miniselect]
 
 ---
 
-> 这个库是作者用在clickhouse上的，抽出来做成公共库了。借着这个库重新复习一下选择/排序算法
+> [原文链接](https://danlark.org/2020/11/11/miniselect-practical-and-generic-selection-algorithms/) 这个[库]( https://github.com/danlark1/miniselect)是作者用在clickhouse上的，抽出来做成公共库了。借着这个库重新复习一下选择/排序算法
 
 选择算法，见图
 
@@ -120,8 +120,6 @@ tags: [c++, clickhouse, sort, miniselect]
 
 ### ref
 
-- https://danlark.org/2020/11/11/miniselect-practical-and-generic-selection-algorithms/
-  - 代码仓库 https://github.com/danlark1/miniselect
 - 作者还提到了learned sort，机器学习真牛逼啊 https://blog.acolyer.org/2020/10/19/the-case-for-a-learned-sorting-algorithm/ 看不太懂
 - FR select https://zhuanlan.zhihu.com/p/109385885
 - https://rongyi.blog/fast-sorting

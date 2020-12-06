@@ -8,7 +8,9 @@ tags: [c++, boost, stack]
 
 ---
 
- 简单来说，作者写sql parse代码，可能需要分析表达式，但是表达式特别多，parse代码一半都是遍历二叉树，有递归的，这样递归深度就上去了
+> [原文链接](http://databasearchitects.blogspot.com/2020/11/taming-deep-recursion.html)
+
+简单来说，作者写sql parse代码，可能需要分析表达式，但是表达式特别多，parse代码一半都是遍历二叉树，有递归的，这样递归深度就上去了
 
 ```c++
 unique_ptr<Expression> analyzeExpression(AST* astNode) {  
@@ -62,7 +64,6 @@ unique_ptr<Expression> analyzeExpression(AST* astNode) {
 
 ### ref
 
-- 原文链接 http://databasearchitects.blogspot.com/2020/11/taming-deep-recursion.html
 - 他们还发了论文 https://db.in.tum.de/~radke/papers/hugejoins.pdf 这个论文内容说优化的，不是上面的工程实践内容
 
 
