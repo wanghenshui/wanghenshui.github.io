@@ -164,9 +164,13 @@ c++17中，map引入来新方法，extract，也是偷节点
 
 ```c++
 //Ascending order
-std::map<int, std::string> m1 = {{1, "One"}, {2, "Two"}, {3, "Three"} };
+std::map<int, std::string> m1 = {
+  {1, "One"}, {2, "Two"}, {3, "Three"} \
+};
 //Descending order
-std::map<int, std::string, std::greater<>> m2 = {{4, "Four"}, {5, "Five"} };
+std::map<int, std::string, std::greater<>> m2 = {
+  {4, "Four"}, {5, "Five"} \
+};
 
 //Print both maps
 for(auto [k, v] : m1)
