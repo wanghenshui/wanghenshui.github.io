@@ -5,9 +5,6 @@ categories: [translation, language]
 tags: [c++,list,lru,map,cache]
 ---
 
-
----
-
 > [原文](https://www.nextptr.com/tutorial/ta1576645374/stdlist-splice-for-implementing-lru-cache) splice拼接
 
 

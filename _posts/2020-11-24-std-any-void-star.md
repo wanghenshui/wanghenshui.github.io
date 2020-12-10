@@ -5,9 +5,6 @@ categories: [language,translation]
 tags: [c++,any, shared_ptr]
 ---
 
-
----
-
 > 翻译整理自这篇[文章](https://www.nextptr.com/tutorial/ta1571648512/stdany-comparison-with-void-and-motivating-examples)
 
 `std::any`不是替代`void*`的产物，但是在某些场景下确实是更安全的替代品，并且 `std::any`也是构建在`void*`之上的
