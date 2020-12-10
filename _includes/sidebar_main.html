@@ -49,17 +49,6 @@
 
   <hr />
 
-  <nav class="tags-list">
-    <h3 class="sidebar-title">Tags</h3>
-    <ul class="list-group">
-    {% for tag in site.tags %}
-      <li class="list-group-item">
-        <a href="{{ site.baseurl }}/tags.html#{{ tag[0] }}"> {{ tag[0] }}</a>
-        <span class="badge">{{ tag[1].size }}</span>
-      </li>
-    {% endfor %}
-    </ul>
-  </nav>
 
   <hr />
 
