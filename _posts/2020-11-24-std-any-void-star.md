@@ -187,7 +187,7 @@ void processResponse(Response& res) {
 
 
 
-这种user data之前有一种解决方案，`std::shared_ptr<void>`  [这里]()https://www.nextptr.com/tutorial/ta1227747841/the-stdshared_ptrvoid-as-arbitrary-userdata-pointer有文章介绍, 简单说，就是利用shared_ptr构造的时候会记录类型，保证析构
+这种user data之前有一种解决方案，`std::shared_ptr<void>`  [这里](https://www.nextptr.com/tutorial/ta1227747841/the-stdshared_ptrvoid-as-arbitrary-userdata-pointer)有文章介绍, 简单说，就是利用shared_ptr构造的时候会记录类型，保证析构
 
 ~~译者注: 之前比较无知还反驳过同事不能这么用~~
 

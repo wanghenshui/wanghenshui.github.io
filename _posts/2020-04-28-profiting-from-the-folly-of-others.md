@@ -218,12 +218,10 @@ template class HijackImpl<
 
 ### 参考
 
-- [GitHub]: Facebook Folly on GitHub: 
-- [GotW]: ‘Uses and Abuses of Access Rights
-- [JSS19]: ‘The Power of Hidden Friends in C++’ posted 25 June 2019:  https://www.justsoftwaresolutions.co.uk/cplusplus/hidden-friends.html
-- [Saks18]: Dan Saks ‘Making New Friends’ recorded at     , available at: [   https://www.youtube.com/watch?v=POa_V15je8Y  ](https://www.youtube.com/watch?v=POa_V15je8Y)
-- [Schaub10]: Johannes Schaub ‘Access to private members. That’s easy!’, posted 3 July 2010: 
-- [Schaub11]: Johannes Schaub ‘Access to private members: Safer nastiness’, posted 30 December 2011: [   http://bloglitb.blogspot.com/2011/12/access-to-private-members-safer.html  ](http://bloglitb.blogspot.com/2011/12/access-to-private-members-safer.html)
+- The Power of Hidden Friends in C++’ posted 25 June 2019:  https://www.justsoftwaresolutions.co.uk/cplusplus/hidden-friends.html
+- Dan Saks ‘Making New Friends’   https://www.youtube.com/watch?v=POa_V15je8Y  ](https://www.youtube.com/watch?v=POa_V15je8Y)
+- Johannes Schaub ‘Access to private members. That’s easy!’,http://bloglitb.blogspot.com/2011/12/access-to-private-members-safer.html
+-  Johannes Schaub ‘Access to private members: Safer nastiness’, posted 30 December 2011:   http://bloglitb.blogspot.com/2011/12/access-to-private-members-safer.html
 - https://dfrib.github.io/a-foliage-of-folly/ 这个文章更进一步，接下来翻译这个
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
