@@ -13,18 +13,18 @@ tags: [c++, folly]
 前提: 方法
 
 ```c++
-  class Widget {
-   private:
-    void forbidden();
-  };
+class Widget {
+private:
+  void forbidden();
+};
 ```
 
 访问
 
 ```c++
-  void hijack(Widget& w) {
-    w.forbidden();  // ERROR!
-  }
+void hijack(Widget& w) {
+  w.forbidden();  // ERROR!
+}
 ```
 
 ```shell
@@ -39,7 +39,7 @@ tags: [c++, folly]
 
 解决思路
 
-0. 类函数可以通过指针来调用！
+### 类函数可以通过指针来调用！
 
 比如
 
@@ -66,7 +66,7 @@ Calculator calc{};
 
 
 
-1. 私有的函数通过公有函数传指针，绕过
+### 私有的函数通过公有函数传指针，绕过
 
 ```c++
 class Widget {
@@ -90,7 +90,7 @@ void hijack(Widget& w) {
 
 但是一般函数是不会这么设计API的，太傻逼了，那怎么搞？
 
-2. 通过模版实例化绕过！
+### 通过模版实例化绕过！
 
 >  The C++17 standard contains the following paragraph (with the parts of interest to us marked in bold):
 >
@@ -100,7 +100,7 @@ void hijack(Widget& w) {
 
 重点 显式实例化
 
-3. 最终方案敲定： 私有成员函数指针做模版的非类型模版参数(NTTP)
+### 最终方案敲定： 私有成员函数指针做模版的非类型模版参数(NTTP)
 
 ```c++
 // The first template parameter is the type
@@ -133,7 +133,7 @@ void hijack(Widget& w) {
 
 但是还是报错，理论上可行，但实际上还是会提示私有，原因在于HijackImpl不是`显式实例化`
 
-4. freind封装一层调用 + 显式实例化
+### freind封装一层调用 + 显式实例化
 
 ```c++
 // HijackImpl is the mechanism for injecting the
@@ -173,7 +173,8 @@ HijackImpl<
 - 通过显式模版实例化把私有成员函数暴露出来
 - 用成员函数的地址指针作为HijackImpl的模版参数
 - 定义hijack函数在HijackImpl内部，直接用私有成员函数指针做函数调用
-- 通过freind修饰来hijack，然后显式实例化，这样调用就可以了
+- 通过freind修饰来hijack，这样hijack就可以在外面调用里面的HijackImpl
+- 显式实例化，这样调用就可以了
 
 还有一个最终的问题，实现和实例化都在头文件，在所有的编译单元(translation units, TU)里, 显式实例化只能是一个，否则会报mutiple 链接错误，如何保证？
 
@@ -218,7 +219,7 @@ template class HijackImpl<
 ### 参考
 
 - [GitHub]: Facebook Folly on GitHub: 
-- [GotW]: ‘Uses and Abuses of Access Rights at 
+- [GotW]: ‘Uses and Abuses of Access Rights
 - [JSS19]: ‘The Power of Hidden Friends in C++’ posted 25 June 2019:  https://www.justsoftwaresolutions.co.uk/cplusplus/hidden-friends.html
 - [Saks18]: Dan Saks ‘Making New Friends’ recorded at     , available at: [   https://www.youtube.com/watch?v=POa_V15je8Y  ](https://www.youtube.com/watch?v=POa_V15je8Y)
 - [Schaub10]: Johannes Schaub ‘Access to private members. That’s easy!’, posted 3 July 2010: 

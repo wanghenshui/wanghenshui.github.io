@@ -2,9 +2,9 @@
 layout: post
 categories: language
 title: c++17 std::pmr::polymorphic_allocator
-tags: [cpp17, cppcon, c++]
+tags: [pmr, cppcon, c++]
 ---
-  
+
 
 ### why 
 

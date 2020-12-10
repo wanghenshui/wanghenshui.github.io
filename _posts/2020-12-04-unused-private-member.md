@@ -56,7 +56,7 @@ tags: [c++, compiler]
 
 还有很多优化空间
 
-
+注意 没用到的私有函数是不回被删掉的，所以有个hack: 模版参数是私有函数指针，通过显式实例化绕开private限制，实现静态注入/调用，详情看[这篇文章](https://wanghenshui.github.io/2020/04/28/profiting-from-the-folly-of-others.html)
 
 
 
@@ -64,7 +64,7 @@ tags: [c++, compiler]
 
 
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 你的评论非常重要！
 <details>
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
