@@ -1,10 +1,10 @@
 ---
 layout: post
-title: (todo)quick-bench的原理是啥？
+title: quick-bench的原理是啥？
 categories: [language]
-tags: [benchmark, todo]
+tags: [c++, benchmark, todo]
 ---
-  
+
 
 ---
 
