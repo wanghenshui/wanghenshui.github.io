@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 用std::list的splice接口来实现LRU Cache
-categories: [language]
-tags: [c++, list, lru, map, cache]
+title: (译)用std::list的splice接口来实现LRU Cache
+categories: [translation, language]
+tags: [c++,list,lru,map,cache]
 ---
 
 
