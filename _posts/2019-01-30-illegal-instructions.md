@@ -1,20 +1,18 @@
 ---
 layout: post
 title: 一次 Illegal instructions 问题（围观）定位
-categories: language
-tags: [c++, rocksdb]
+categories: [language, debug]
+tags: [c++, rocksdb, asm, shared_ptr]
 ---
-  
+
 
 简单说，一个上层应用，下层是Rocksdb，编译机编好后放到测试机器上，崩溃，   Got signal: 4 (Illegal instruction).，堆栈提示崩在shared_ptr上。
 
 我简单搜了一下，发现可能有两个原因
 
-1.  ud2a 指令导致的runtime abort。需要看堆栈反汇编。简单看代码不太像这个原因
+1.  ud2a 指令导致的runtime abort。需要看堆栈反汇编。简单看代码不太像这个原因, 有个例子 [warning: cannot pass objects of non-POD type ‘class A’ through ‘...’; call will abort at runtim ](http://readlist.com/lists/gcc.gnu.org/gcc-help/3/18211.html)
 
-有个例子[warning: cannot pass objects of non-POD type ‘class A’ through ‘...’; call will abort at runtim ](http://readlist.com/lists/gcc.gnu.org/gcc-help/3/18211.html)
-
-\2. 两个机器指令集有问题，同事和我说另一个测试机器内核版本号一毛一样，就没问题。不崩溃，就更让我确定是指令集的问题，简单搜了一圈，可以确定是[-march=native](https://stackoverflow.com/questions/52653025/why-is-march-native-used-so-rarely) 这个指令，现在就要确定这个指令在makefile中有没有了
+2.  两个机器指令集有问题，同事和我说另一个测试机器内核版本号一毛一样，就没问题。不崩溃，就更让我确定是指令集的问题，简单搜了一圈，可以确定是[-march=native](https://stackoverflow.com/questions/52653025/why-is-march-native-used-so-rarely) 这个指令，现在就要确定这个指令在makefile中有没有了
 
 期间我还查cpuinfo看指令集，看编译机和测试机有没有区别（没区别）
 

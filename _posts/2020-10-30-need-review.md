@@ -21,13 +21,7 @@ https://neilmadden.blog/2020/11/25/parse-dont-type-check/
 
 
 
-https://github.com/danlark1/miniselect
 
-http://www.diglog.com/story/1034656.html
-
-https://rongyi.blog/fast-sorting
-
-https://github.com/orlp/pdqsort
 
 https://my.oschina.net/evilunix/blog/3003736
 
@@ -45,8 +39,6 @@ https://blog.csdn.net/baijiwei/article/details/78070355
 
 
 
-
-
 qbe 一个小编译器后端 https://c9x.me/compile/
 
 https://github.com/jsoysouvanh/Refureku
@@ -58,3 +50,17 @@ https://github.com/foonathan/lexy
 http://stlab.cc/2020/12/01/forest-introduction.html
 
 https://github.com/stlab/libraries/blob/develop/stlab/forest.hpp
+
+
+
+https://medium.com/build-and-learn/fun-with-text-generation-pt-1-markov-models-in-awk-5e1b55fe560c
+
+这个我估计以后也不会看。。。
+
+Cli 程序设计规范
+
+https://clig.dev/
+
+
+
+https://brevzin.github.io/c++/2020/12/01/tag-invoke/
