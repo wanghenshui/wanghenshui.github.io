@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (译)对于模版类，尽可能的使用Hidden Friend函数定义operator，而不是放在外侧当成模版方法
-categories: [language]
+categories: [language, translation]
 tags: [c++, friend, template]
 ---
 
