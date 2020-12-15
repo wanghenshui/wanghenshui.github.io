@@ -318,7 +318,7 @@ void SomeFunc(){
 Y是依赖名字，因为它依赖一个未知的参数T
 直接或间接的依赖于一个位置的参数的变量都是依赖名字，都应该明确的用typename说明
 
-//！这解决了我的一个疑问，之前遇到但是没有深究，我太菜了。见[代码和注释](https://github.com/jieyaren/100k/blob/master/cppcook/pad.cpp)
+//！这解决了我的一个疑问，之前遇到但是没有深究，我太菜了。见[代码和注释](https://github.com/wanghenshui/hello-world/blob/master/cppcook/pad.cpp)
 
 ```
 template <typename X>
