@@ -4,7 +4,7 @@ title: redis io复用
 categories: database
 tags: [redis, c, linux]
 ---
-  
+
 
 
 
@@ -13,7 +13,7 @@ tags: [redis, c, linux]
 反应器Reactor
 Reactor模式结构
 
-![Reactor](../../assets/241052434069024.jpg)
+![Reactor](https://wanghenshui.github.io/assets/241052434069024.jpg)
 
 Reactor包含如下角色：
 
@@ -29,11 +29,12 @@ Reactor包含如下角色：
  
 
 
+
 “反应”器名字中”反应“的由来： 
 “反应”即“倒置”，“控制逆转”,具体事件处理程序不调用反应器，而是由反应器分配一个具体事件处理程序，具体事件处理程序对某个指定的事件发生做出反应；这种控制逆转又称为“好莱坞法则”（不要调用我，让我来调用你）
 业务流程及时序图
 
-![seq_Reactor](../../assets/241052444538838.jpg)
+![seq_Reactor](https://wanghenshui.github.io/assets/241052444538838.jpg)
 
     应用启动，将关注的事件handle注册到Reactor中；
     调用Reactor，进入无限事件循环，等待注册的事件到来；
@@ -42,7 +43,7 @@ Reactor包含如下角色：
 主动器Proactor
 Proactor模式结构
 
-![Proactor](../../assets/241052458282851.jpg)
+![Proactor](https://wanghenshui.github.io/assets/241052458282851.jpg)
 
 Proactor主动器模式包含如下角色
 
@@ -56,7 +57,7 @@ Proactor主动器模式包含如下角色
 
 业务流程及时序图
 
-![seq_Proactor](../../assets/241052468598435.jpg)
+![seq_Proactor](https://wanghenshui.github.io/assets/241052468598435.jpg)
 
     应用程序启动，调用异步操作处理器提供的异步操作接口函数，调用之后应用程序和异步操作处理就独立运行；应用程序可以调用新的异步操作，而其它操作可以并发进行；
     应用程序启动Proactor主动器，进行无限的事件循环，等待完成事件到来；

@@ -10,7 +10,7 @@ tags: [tcp, time_wait]
 
 ![TCP CLOSE_WAIT](http://benohead.com/wp-content/uploads/2013/07/TCP-CLOSE_WAIT.png)
 
-![03130408-930b424bf5384c80b677b6a50f1c6edc](../../assets/03130408-930b424bf5384c80b677b6a50f1c6edc.png)
+![03130408-930b424bf5384c80b677b6a50f1c6edc](https://wanghenshui.github.io/assets/03130408-930b424bf5384c80b677b6a50f1c6edc.png)
 
 
 

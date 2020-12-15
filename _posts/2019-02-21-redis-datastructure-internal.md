@@ -31,7 +31,7 @@ zset
 
 skiplist 
 
-![img](../../assets/graphviz-75ee561bcc63f8ea960d0339768aec97b1f570f0.png)
+![img](https://wanghenshui.github.io/assets/graphviz-75ee561bcc63f8ea960d0339768aec97b1f570f0.png)
 
 | 命令      | `ziplist` 编码的实现方法                                     | `zset` 编码的实现方法                                        |
 | :-------- | :----------------------------------------------------------- | :----------------------------------------------------------- |

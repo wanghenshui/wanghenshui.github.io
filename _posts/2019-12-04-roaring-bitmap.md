@@ -18,7 +18,7 @@ tags: [bitmap]
 1. 支持动态修改位图（静态的位图有其它压缩方式）
 2. 利用SIMD加速位图操作
 
-![image-20201214204833017](../assets/image-20201214204833017.png)
+![image-20201214204833017](https://wanghenshui.github.io/assets/image-20201214204833017.png)
 
 
 
