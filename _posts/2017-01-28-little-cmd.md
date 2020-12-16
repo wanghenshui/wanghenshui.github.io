@@ -2,7 +2,7 @@
 layout: post
 title: 常用快捷键/命令的整理/系统设定
 categories: tools
-tags: [linux, macos, windows, vscode, vim, shell]
+tags: [linux, macos, windows, vscode, vim, shell, docker]
 ---
 
 
@@ -226,7 +226,66 @@ cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后�
 
 <p><img src="https://wanghenshui.github.io/assets/top.png" alt="" width="60%"></p>
 
+- docker
 
+官网做好了图，挺好
+
+https://www.docker.com/sites/default/files/d8/2019-09/docker-cheat-sheet.pdf
+
+
+
+我经常用的就几个
+
+`清理`
+
+```bash
+docker system prune
+# -a 能把所有的都删掉，包括overlay里头的。太大了
+```
+
+`pull`
+
+```shell
+docker pull _linkxx_
+```
+
+`run`
+
+```shell
+docker run -it --privileged -d  _linkxx_
+```
+
+`exec`
+
+```shell
+docker exec -it commitid/_container_name_ bash
+```
+
+`stop`
+
+```shell
+docker container stop _container_name_
+```
+
+ `commit`
+
+```bash
+docker commit _container_name_ linkxx
+```
+
+拷贝文件
+
+```shell
+docker cp /root/xx _container_name_:/root/
+```
+
+hardcore_varahamihira是docker名字
+
+`登陆`
+
+```bash
+docker login -u username -p password registry.xx.com
+```
 
 ---
 
@@ -242,6 +301,9 @@ cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后�
 - tree https://www.jianshu.com/p/f117be185c6f
   - tree在markdown中格式会乱的解决办法，用`````` https://stackoverflow.com/questions/19699059/representing-directory-file-structure-in-markdown-syntax
 - diff https://blog.csdn.net/longxj04/article/details/7033744
+- Docker 
+  - https://blog.csdn.net/fandroid/article/details/46817567
+  - https://www.cnblogs.com/sparkdev/p/9177283.html
 
 
 

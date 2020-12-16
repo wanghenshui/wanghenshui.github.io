@@ -140,7 +140,7 @@ std::vector<playing_sound_t> playing_sounds;
 
 作者建议各取所需，除非对遍历有强需求，否则第三种很简单，idindex信息也都在，使用更方便
 
-<img src="https://ourmachinery.com/images/dsp1-bulk-data.jpg" style="zoom:33%;" />
+<img src="https://ourmachinery.com/images/dsp1-bulk-data.jpg" width="60%" />
 
 可能最终维护框架长这个样子
 
@@ -219,7 +219,7 @@ std::vector本身有内存放大问题，如果满了就会扩容搬迁，这导
 - 分配多组buffer，各种大小，然后选。可以mmap，不用堆内存
 - 用 [use the virtual memory system to reserve a huge array](https://ourmachinery.com/post/virtual-memory-tricks/)  内存非常大
 
-<img src="https://ourmachinery.com/images/dsp1-allocation-strategies.jpg" style="zoom:33%;" />
+<img src="https://ourmachinery.com/images/dsp1-allocation-strategies.jpg" width="60%" />
 
 ### 结构体数组还是数组结构体？
 

@@ -4,7 +4,7 @@ title: rocksdb涉及到关闭开启的时间优化
 categories: [database]
 tags: [rocksdb]
 ---
-  
+
 
 ---
 
@@ -42,11 +42,7 @@ rocksdb配置：
 
 ~~后面OnAddFile阶段就不用查size了，通过这里拿到的metadata~~，但是有的文件查不到，这里，原生rocksdb用的是GetFileSize，同事是用多线程异步去查，相比原生一个一个查能加速一点
 
-### ref
 
-1. 
-
-   
 
 ---
 
