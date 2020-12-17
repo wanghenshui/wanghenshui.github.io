@@ -28,4 +28,4 @@ jobs:
         # static_list: repo_name
         # black_list: 'repo_name,repo_name2'
         force_update: true
-        # white_list: 'repo_name,repo_name2'
+        white_list: 'wanghenshui.github.io'
