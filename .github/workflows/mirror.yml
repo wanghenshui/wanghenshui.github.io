@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Mirror the Github organization repos to Gitee.
-      uses: Yikun/hub-mirror-action@master
+      uses: fakedon/hub-mirror@regex      
+      #uses: Yikun/hub-mirror-action@master
       with:
         # 必选，需要同步的Github用户（源）
         src: github/wanghenshui
@@ -28,4 +29,5 @@ jobs:
         # static_list: repo_name
         # black_list: 'repo_name,repo_name2'
         force_update: true
+        mapping: fmt='s/(.*).github.io/\1/g
         white_list: 'wanghenshui.github.io'
