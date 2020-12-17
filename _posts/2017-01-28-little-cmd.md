@@ -287,6 +287,33 @@ hardcore_varahamihira是docker名字
 docker login -u username -p password registry.xx.com
 ```
 
+
+
+### 小工具 推荐
+
+- 同步github gitee仓库 https://github.com/ShixiangWang/sync2gitee
+- git diff工具，delta https://github.com/dandavison/delta 非常好用！为啥没有rust的时候没人做这个工具呢，是因为用c++写太麻烦吗？我要写一个！
+
+- 图片压缩需求，网络限制，超过50k不让上传
+
+- jpg by `jpegtran`
+
+```bash
+apt install libjpeg-progs
+jpegtran -optimize image-20200402171439048.jpg
+```
+
+
+
+- png by  `optipng`
+
+```bash
+apt install optipng
+optipng -o3 image-20200402172644242.png
+```
+
+o1 ~ o7 七个等级压缩
+
 ---
 
 
@@ -304,6 +331,8 @@ docker login -u username -p password registry.xx.com
 - Docker 
   - https://blog.csdn.net/fandroid/article/details/46817567
   - https://www.cnblogs.com/sparkdev/p/9177283.html
+- https://www.zhihu.com/question/19779256  ytzong的答案不错。我在wsl上可以用上面的工具。对于压缩图片来说他那个cssgaga贼破，没法用
+
 
 
 
