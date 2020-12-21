@@ -1,10 +1,10 @@
 ---
 layout: post
 categories: language
-title: googletest使用记录，以及遇到的一个奇怪的问题
-tags : [googletest, debug ,c++]
+title: googletest使用记录/常用工具快速查找/以及遇到的一个奇怪的问题
+tags : [gtest, gmock ,c++]
 ---
-  
+
 
 
 
@@ -16,7 +16,7 @@ tags : [googletest, debug ,c++]
 ./db_iterator_test --gtest_filter=-DBIteratorTestInstance/DBIteratorTest.IterSeekBeforePrevWithTimestamp/*
 ```
 
-过滤用例，也可以代码中加DISABLED_
+过滤用例，也可以代码中加`DISABLED_`
 
 ```
 TEST(FooTest, DISABLED_DoesAbc) { ... }
@@ -27,6 +27,37 @@ TEST(FooTest, DISABLED_DoesAbc) { ... }
  ```bash
 ./table_test  --gtest_filter=*FilterBlockInBlockCache:*BasicBlockBasedTableProperties
  ```
+
+
+
+测试的准备工作 针对testsuits
+
+全局预设定, 实现下面的接口，一个testsuit执行一次，可以实现
+
+```c++
+static void SetUpTestSuite() {}
+static void TearDownTestSuite() {}
+```
+
+注意是static
+
+针对每一个小测试，实现下面的接口，每个test_f都会执行一次
+
+```c++
+virtual void SetUp() {}
+virtual void TearDown() {}     
+```
+
+
+
+gmock
+
+常用
+
+```c++
+using ::testing::Return;
+using ::testing::_;
+```
 
 
 
@@ -60,7 +91,7 @@ gdb调试googletest
 
  
 
-\3. 对案例的异常处理
+对案例的异常处理
 
 | **命令行参数**           | **说明**                                                     |
 | ------------------------ | ------------------------------------------------------------ |
@@ -203,15 +234,6 @@ GTEST_DISABLE_MSC_WARNINGS_POP_()
 
 
 
-
-
-### reference
-
-1. <http://www.cnblogs.com/coderzh/archive/2009/04/10/1432789.html>
-2. 跳过用例 <https://stackoverflow.com/questions/7208070/googletest-how-to-skip-a-test>
-
-
-
 另外，单元测试太多，写了个小脚本，抓出失败的
 
 ```bash
@@ -232,6 +254,11 @@ done
 ### Ref
 
 - <https://stackoverflow.com/questions/14018434/how-to-specify-multiple-exclusion-filters-in-gtest-filter/14619685>
+- <http://www.cnblogs.com/coderzh/archive/2009/04/10/1432789.html>
+- 跳过用例 <https://stackoverflow.com/questions/7208070/googletest-how-to-skip-a-test>
+- setup执行一次 就是setupsuites https://stackoverflow.com/questions/29968219/call-code-only-once-in-gtest-per-class
+
+---
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
 <details>
