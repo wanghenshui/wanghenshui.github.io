@@ -104,6 +104,7 @@ inline bool exists_test3 (const std::string& name) {
 - https://quuxplusone.github.io/blog/2018/11/26/remember-the-ifstream/
 - https://zhuanlan.zhihu.com/p/90194868
 - 检查文件的benchmark代码在这里https://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c
+- finally https://www.bfilipek.com/2017/04/finalact-follow-up.html
 
 
 ---
