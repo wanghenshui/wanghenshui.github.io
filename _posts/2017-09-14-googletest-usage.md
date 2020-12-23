@@ -234,6 +234,54 @@ GTEST_DISABLE_MSC_WARNINGS_POP_()
 
 
 
+const std::string& 在gtest使用中出现的一个奇怪的堆栈
+
+
+
+```c++
+#0  0x00000000004f6e33 in __gnu_cxx::__atomic_add (
+    __mem=0x7fffbf8c46ac <testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*)+93>, __val=1) at /usr/lib/gcc/x86_64-redhat-linux/7/../../../../include/c++/7/ext/atomicity.h:53
+#1  0x00000000004f6ef3 in __gnu_cxx::__atomic_add_dispatch (
+    __mem=0x7fffbf8c46ac <testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*)+93>, __val=1) at /usr/lib/gcc/x86_64-redhat-linux/7/../../../../include/c++/7/ext/atomicity.h:96
+#2  0x00000000005034fa in std::string::_Rep::_M_refcopy (
+    this=0x7fffbf8c469c <testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*)+77>) at /usr/lib/gcc/x86_64-redhat-linux/7/../../../../include/c++/7/bits/basic_string.h:3265
+#3  0x0000000000500802 in std::string::_Rep::_M_grab (
+    this=0x7fffbf8c469c <testing::internal::HandleSehExceptionsInMethodIfSupported<testing::Test, void>(testing::Test*, void (testing::Test::*)(), char const*)+77>, __alloc1=..., __alloc2=...) at /usr/lib/gcc/x86_64-redhat-linux/7/../../../../include/c++/7/bits/basic_string.h:3223
+#4  0x00000000004fe2b8 in std::string::assign (this=0x7fffffffdd98, __str=...)
+    at /usr/lib/gcc/x86_64-redhat-linux/7/../../../../include/c++/7/bits/basic_string.tcc:699
+#5  0x00000000004fdddf in std::string::operator= (this=0x7fffffffdd98, __str=...)
+    at /usr/lib/gcc/x86_64-redhat-linux/7/../../../../include/c++/7/bits/basic_string.h:3629
+```
+
+
+
+测试常用小代码段
+
+- 随机生成字符串
+
+```c++
+#include <algorithm>
+#include <string>
+std::string random_string(size_t length = 10) {
+  auto randchar = []() -> char
+  {
+      const char charset[] =
+      "0123456789"
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      "abcdefghijklmnopqrstuvwxyz";
+      const size_t max_index = (sizeof(charset) - 1);
+      return charset[ rand() % max_index ];
+  };
+  std::string str(length,0);
+  std::generate_n( str.begin(), length, randchar );
+  return str;
+}
+```
+
+
+
+
+
 另外，单元测试太多，写了个小脚本，抓出失败的
 
 ```bash
@@ -257,6 +305,7 @@ done
 - <http://www.cnblogs.com/coderzh/archive/2009/04/10/1432789.html>
 - 跳过用例 <https://stackoverflow.com/questions/7208070/googletest-how-to-skip-a-test>
 - setup执行一次 就是setupsuites https://stackoverflow.com/questions/29968219/call-code-only-once-in-gtest-per-class
+- https://github.com/seznam/httpmockserver 这有个httpserver mock 有点意思
 
 ---
 
