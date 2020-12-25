@@ -200,7 +200,9 @@ git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tform
   ```
 分支丢了或者head detached了或者错误覆盖了，不要慌，`git reflog`能找回来
 
+  mac要装lfs brew install git-lfs
   
+  设置拉取为变基 git config pull.rebase true
   
   git推送分支一定要设定 git config --global push.default current
   

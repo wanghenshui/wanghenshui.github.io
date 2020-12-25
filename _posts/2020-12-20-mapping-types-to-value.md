@@ -137,7 +137,9 @@ dynamic_cast<HitPointComponent>(player->get("HitPointComponent"))->takeHitFrom(p
 
 就是看着闹心，犯个错实在太轻松，core给你看
 
-既然有类型，提供类型模版接口，帮助指针转换, 类似这种用法
+我们需要type map，而不是type-string map
+
+既然有类型type，提供类型模版接口，帮助指针转换, 类似这种用法
 
 ```c++
 auto e = std::make_unique<Entity>();
@@ -163,7 +165,6 @@ e->get<HitPointComponent>()->takeHitFrom(projectile);
 解决方案，自己引入一个getTypeId 保证每个类型的值唯一，一个很简单的唯一方法，自增id
 
 ```c++
-
 // In a header file:
 #include <atomic>
 
@@ -231,7 +232,6 @@ private:
 
 template <class ValueType>
 std::atomic_int TypeMap<ValueType>::LastTypeId(0);
-
 ```
 
 
