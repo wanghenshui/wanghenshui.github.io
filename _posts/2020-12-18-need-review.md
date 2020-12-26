@@ -50,6 +50,62 @@ https://plywood.arc80.com/
 有反射
 
 
+
+React 教程 https://zh-hans.reactjs.org/tutorial/tutorial.html
+
+
+
+lisp方言
+
+https://github.com/SuperFola/Hitoban
+
+https://github.com/ArkScript-lang/Ark
+
+
+
+一个小脚本语言，架构类似lua 
+
+https://github.com/Skiars/berry
+
+这种脚本语言和mruby相比有啥优势？哦嵌入式
+
+
+
+https://github.com/ssloy/tinyraycaster
+
+https://github.com/ssloy/tinyraytracer 
+
+简短的教程，教你写光锥
+
+rust中文教程
+
+https://kaisery.github.io/trpl-zh-cn
+
+
+
+了解lua
+
+https://github.com/lichuang/Lua-Source-Internal/blob/master/doc/ch02-Lua%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.md
+
+
+
+https://www.zhihu.com/question/20617406
+
+
+
+
+
+分形树
+
+http://mysql.taobao.org/monthly/2016/04/09/
+
+https://github.com/percona/PerconaFT
+
+https://github.com/percona/tokudb-engine
+
+http://www.fxysw.com/thread-5061-1-1.html
+
+
 ---
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！
