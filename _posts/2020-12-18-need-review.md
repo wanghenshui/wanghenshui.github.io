@@ -21,6 +21,12 @@ https://github.com/bytedance/terarkdb
 
 https://www.tuicool.com/wx/BFRRb2y
 
+
+
+他们也实现了kv分离，复习一下kv分离
+
+https://en.pingcap.com/blog/titan-storage-engine-design-and-implementation
+
 字节小伙的sig_tree
 
 https://github.com/JimChengLin/sig_tree/
@@ -104,6 +110,14 @@ https://github.com/percona/PerconaFT
 https://github.com/percona/tokudb-engine
 
 http://www.fxysw.com/thread-5061-1-1.html
+
+http://mysql.taobao.org/monthly/2016/03/01/
+
+
+
+
+
+
 
 
 ---
