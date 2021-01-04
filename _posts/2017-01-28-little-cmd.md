@@ -89,6 +89,8 @@ tags: [linux, macos, windows, vscode, vim, shell, docker]
          * `--nocache_test_results` may be required if you are trying to re-run a test without changing
            anything.
          * `--test_filter=<TestName>` to run a specific test (when test splits are not already in use)
+         
+    - 遇到bazel错误先看看路径是不是错了，或者文件名是不是错了
 
 - MAC
     - 截图 command shift 4
