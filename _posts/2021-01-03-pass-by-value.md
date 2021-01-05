@@ -60,7 +60,7 @@ PS: 另外，测试代码的string要足够长 > 24，不然会有SBO优化，�
 
 
 
-PPS: 如果参数是move
+PPS: 如果参数是unique_ptr
 
 ```c++
 #include <string>
