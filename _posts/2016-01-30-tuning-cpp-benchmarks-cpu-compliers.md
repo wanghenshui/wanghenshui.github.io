@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (cppcon)Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!
+title: (cppcon)Tuning C++: Benchmarks, and CPUs, and Compilers
 categories: [language, translation]
 tags: [c++, cppcon, cppcon2015]
 ---
@@ -97,7 +97,7 @@ inline BENCHMARK_ALWAYS_INLINE void DoNotOptimize(Tp const& value) {
 
 然后展示了一个分支展开调优加速的段子
 
-
+重点还是这个防优化手段，以及bench / perf方法。在2015年还是很先进的
 
 ---
 
