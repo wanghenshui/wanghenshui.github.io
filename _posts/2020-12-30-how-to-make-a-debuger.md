@@ -1,12 +1,10 @@
 ---
 layout: post
-title: 用python做个小debug
-categories: [tools, translation debug]
-tags: [python, mysql]
+title: 用python做个小调试器
+categories: [tools, translation, debug]
+tags: [python, asm]
 
 ---
-
-<img src="https://wanghenshui.github.io/assets/quadrant.png" alt="" width="60%">
 
 > 翻译整理自这几片文章 [链接1](https://blog.asrpo.com/making_a_low_level_debugger)
 

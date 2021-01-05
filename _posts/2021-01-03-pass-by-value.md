@@ -80,6 +80,27 @@ void test(Thing &t) {
 传参数不能发生构造，必须强制move，不move直接编译不过，也不能直接传右值
 
 
+
+PPPS:
+
+如果是循环中调用setter，可能分配会更多
+
+```c++
+std::string s;
+Thing t;
+for (int i = 0 ; i < 900 ; ++i) {
+  set_next_string(s, i);
+  t.set_s(s);
+}
+```
+
+不过作为setter/accessor，不像是正常人的用法，这种场景下，s_是最开始有分配，后面有足够的空间，能省一些malloc，但是传右值+move绝对会多次malloc
+
+如果能保证s的声明周期，并不是非得落在Thing中，那么用std::string_view会更好。
+
+没有绝对正确的方案，取决于你怎么用
+
+
 ---
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！
