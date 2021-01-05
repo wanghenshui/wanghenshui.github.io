@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (cppcon)Tuning C++: Benchmarks, and CPUs, and Compilers
+title: (cppcon)Tuning C++ Benchmarks and CPUs and Compilers
 categories: [language, translation]
 tags: [c++, cppcon, cppcon2015]
 ---
