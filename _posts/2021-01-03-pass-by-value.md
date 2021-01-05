@@ -54,11 +54,30 @@ void test(Thing &t) {
 
 
 
-另外，测试代码的string要足够长 > 24，不然会有SBO优化，不会调用M_create
+PS: 另外，测试代码的string要足够长 > 24，不然会有SBO优化，不会调用M_create
 
 不过小串的版本，move也是要比传常量引用要省的 看这个对比 https://godbolt.org/z/xr1bno
 
 
+
+PPS: 如果参数是move
+
+```c++
+#include <string>
+#include <memory>
+struct Thing {
+  std::unique_ptr<std::string> s_;
+  void set_s(std::unique_ptr<std::string> s) { s_ = std::move(s); }
+};
+
+void test(Thing &t) {
+  auto s = std::make_unique<std::string>("this is a long string to show something off")
+  //t.set_s(s);
+  t.set_s(std::move(s));
+}
+```
+
+传参数不能发生构造，必须强制move，不move直接编译不过，也不能直接传右值
 
 
 ---
