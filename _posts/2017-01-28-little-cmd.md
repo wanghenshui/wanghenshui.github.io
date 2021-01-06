@@ -330,6 +330,23 @@ optipng -o3 image-20200402172644242.png
 
 o1 ~ o7 七个等级压缩
 
+
+
+
+
+软件安装清单
+
+|                | windows     | MacOS       | Ubuntu |
+| -------------- | ----------- | ----------- | ------ |
+| markdown       | typora      | typora      | typora |
+| sftp可视化工具 | winscp      | transmit    |        |
+| git管理工具    | tortoisegit | sourcetree  |        |
+| 终端           | putty       |             |        |
+| 画图           | drawio      | OmniGraffle |        |
+| 写代码         | vscode      | vscode      |        |
+
+
+
 ---
 
 
