@@ -2,7 +2,7 @@
 layout: post
 title: (cppcon)Tuning C++ Benchmarks and CPUs and Compilers
 categories: [language, translation]
-tags: [c++, cppcon, cppcon2015]
+tags: [c++, cppcon, cppcon2015, asm, perf, benchmark]
 ---
 
 

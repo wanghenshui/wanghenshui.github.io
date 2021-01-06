@@ -264,7 +264,12 @@ docker pull _linkxx_
 
 ```shell
 docker run -it --privileged -d  _linkxx_
+docker run -it --privileged -d  _linkxx_ /bin/bash #run + exec 
 ```
+
+有的镜像会在run的时候做一些动作，这个镜像不能通过run+exec分开使用，会报错
+
+> docker: Error response from daemon: OCI runtime create failed: container_linux.go:345: starting container process caused "exec: \"nginx\": executable file not found in $PATH": unknown.
 
 `exec`
 
