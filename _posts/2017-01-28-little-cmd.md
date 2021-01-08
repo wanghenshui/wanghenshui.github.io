@@ -208,7 +208,9 @@ git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tform
   
   git推送分支一定要设定 git config --global push.default current
   
-  建议写个init脚本
+  git设置保存密码 git config credential.helper store
+  
+  建议写个init脚本 https://github.com/wanghenshui/lazy-scripts/blob/master/scripts/git_config.sh
   
   比较两个文件夹
 
