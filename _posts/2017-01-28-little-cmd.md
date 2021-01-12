@@ -273,6 +273,8 @@ docker run -it --privileged -d  _linkxx_ /bin/bash #run + exec
 
 > docker: Error response from daemon: OCI runtime create failed: container_linux.go:345: starting container process caused "exec: \"nginx\": executable file not found in $PATH": unknown.
 
+如果不能使用gdb,  命令行要加上`--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` 
+
 `exec`
 
 ```shell

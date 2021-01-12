@@ -4,7 +4,7 @@ title: 软件调试的艺术 读书笔记
 categories: [debug, review]
 tags: [linux, debug, gdb]
 ---
-  
+
 
 ---
 
@@ -17,8 +17,9 @@ tags: [linux, debug, gdb]
 ### 预备知识
 
 - gdbinit启动文件
-  - gdb -command=z x 在x上运行gdb，从z文件中读命令
-
+  
+- gdb -command=z x 在x上运行gdb，从z文件中读命令
+  
 - 原理 ptrace
 
   
@@ -133,7 +134,7 @@ tags: [linux, debug, gdb]
 
 
 
-
+<img src="https://wanghenshui.github.io/assets/gdb.png" alt="" width="80%">
 
 
 
