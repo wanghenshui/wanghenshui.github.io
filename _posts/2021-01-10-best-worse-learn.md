@@ -6,13 +6,7 @@ tags: [c++, C++onSea, folly, absl, clickhouse]
 
 ---
 
-<img src="https://wanghenshui.github.io/assets/quadraddnt.png" alt="" width="60%">
-
-##  C++ STL best and worst performance features and how to learn from them - Danila Kutenin
-
 > [视频地址](https://www.youtube.com/watch?v=GRuX31P4Ric)
-
-
 
 介绍stl好用和不好用的组件
 
