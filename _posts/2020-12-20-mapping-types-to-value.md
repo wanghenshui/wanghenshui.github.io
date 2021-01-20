@@ -277,13 +277,125 @@ private:
 
 老知识，新复习
 
+---
 
+update 2021-01-10-20-14
+
+其实这种模式，如果是全局的组件，用type_id就够用了，以arangodb为例子，全局server有个addFeature和getFeature接口，思路和上面基本一致，这里把代码贴出来
+
+其中_features就是type map
+
+```c++
+class ApplicationServer {
+  using FeatureMap =
+      std::unordered_map<std::type_index, std::unique_ptr<ApplicationFeature>>;
+  ApplicationServer(ApplicationServer const&) = delete;
+  ApplicationServer& operator=(ApplicationServer const&) = delete;
+////省略一部分代码
+ public:
+   // adds a feature to the application server. the application server
+   // will take ownership of the feature object and destroy it in its
+   // destructor
+   template <typename Type, typename As = Type, typename... Args,
+             typename std::enable_if<std::is_base_of<ApplicationFeature, Type>::value, int>::type = 0,
+             typename std::enable_if<std::is_base_of<ApplicationFeature, As>::value, int>::type = 0,
+             typename std::enable_if<std::is_base_of<As, Type>::value, int>::type = 0>
+   As& addFeature(Args&&... args) {
+     TRI_ASSERT(!hasFeature<As>());
+     std::pair<FeatureMap::iterator, bool> result =
+         _features.try_emplace(std::type_index(typeid(As)),
+                           std::make_unique<Type>(*this, std::forward<Args>(args)...));
+     TRI_ASSERT(result.second);
+     result.first->second->setRegistration(std::type_index(typeid(As)));
+#ifdef ARANGODB_ENABLE_MAINTAINER_MODE
+     auto obj = dynamic_cast<As*>(result.first->second.get());
+     TRI_ASSERT(obj != nullptr);
+     return *obj;
+#else
+     return *static_cast<As*>(result.first->second.get());
+#endif
+   }
+
+   // checks for the existence of a feature by type. will not throw when used
+   // for a non-existing feature
+   bool hasFeature(std::type_index type) const noexcept {
+     return (_features.find(type) != _features.end());
+   }
+
+   // checks for the existence of a feature. will not throw when used for
+   // a non-existing feature
+   template <typename Type, typename std::enable_if<std::is_base_of<ApplicationFeature, Type>::value, int>::type = 0>
+   bool hasFeature() const noexcept {
+     return hasFeature(std::type_index(typeid(Type)));
+   }
+
+   // returns a reference to a feature given the type. will throw when used for
+   // a non-existing feature
+   template <typename AsType, typename std::enable_if<std::is_base_of<ApplicationFeature, AsType>::value, int>::type = 0>
+   AsType& getFeature(std::type_index type) const {
+     auto it = _features.find(type);
+     if (it == _features.end()) {
+       throwFeatureNotFoundException(type.name());
+     }
+#ifdef ARANGODB_ENABLE_MAINTAINER_MODE
+     auto obj = dynamic_cast<AsType*>(it->second.get());
+     TRI_ASSERT(obj != nullptr);
+     return *obj;
+#else
+     return *static_cast<AsType*>(it->second.get());
+#endif
+   }
+
+   // returns a const reference to a feature. will throw when used for
+   // a non-existing feature
+   template <typename Type, typename AsType = Type,
+             typename std::enable_if<std::is_base_of<ApplicationFeature, Type>::value, int>::type = 0,
+             typename std::enable_if<std::is_base_of<Type, AsType>::value || std::is_base_of<AsType, Type>::value, int>::type = 0>
+   AsType& getFeature() const {
+     auto it = _features.find(std::type_index(typeid(Type)));
+     if (it == _features.end()) {
+       throwFeatureNotFoundException(typeid(Type).name());
+     }
+#ifdef ARANGODB_ENABLE_MAINTAINER_MODE
+     auto obj = dynamic_cast<AsType*>(it->second.get());
+     TRI_ASSERT(obj != nullptr);
+     return *obj;
+#else
+     return *static_cast<AsType*>(it->second.get());
+#endif
+   }
+
+   // map of feature names to features
+   FeatureMap _features;
+}
+```
+
+其实可以把type_index和type_info隐藏的更深一些，不提供type_index的接口，这样背后替换更轻松一些
+
+使用时这样的
+
+```c++
+    ApplicationServer server(options, SBIN_DIRECTORY);
+//...
+    // Adding the Phases
+    server.addFeature<AgencyFeaturePhase>();
+    server.addFeature<CommunicationFeaturePhase>();
+    server.addFeature<AqlFeaturePhase>();
+    server.addFeature<BasicFeaturePhaseServer>();
+    server.addFeature<ClusterFeaturePhase>();
+//...
+```
+
+
+
+效果类似
 
 ---
 
 ### ref
 
 - https://gpp.tkchu.me/ 意外找到了游戏编程模式的中文翻译
+- Arangodb 源码 https://github.com/arangodb/arangodb
 
 
 ---

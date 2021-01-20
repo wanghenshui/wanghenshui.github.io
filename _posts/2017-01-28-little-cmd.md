@@ -363,7 +363,7 @@ o1 ~ o7 七个等级压缩
 - scp <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html>
 - putty 保存设置<https://blog.csdn.net/tianlesoftware/article/details/5831605>
 - tree https://www.jianshu.com/p/f117be185c6f
-  - tree在markdown中格式会乱的解决办法，用`````` https://stackoverflow.com/questions/19699059/representing-directory-file-structure-in-markdown-syntax
+  - tree在markdown中格式会乱的解决办法，用 https://stackoverflow.com/questions/19699059/representing-directory-file-structure-in-markdown-syntax
 - diff https://blog.csdn.net/longxj04/article/details/7033744
 - Docker 
   - https://blog.csdn.net/fandroid/article/details/46817567
