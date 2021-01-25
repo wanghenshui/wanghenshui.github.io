@@ -1,14 +1,14 @@
 ---
 layout: post
-title: 分布式系统的模式
-categories: [database]
-tags: []
+title: (译)分布式系统的模式
+categories: [database, system]
+tags: [kafka, etcd,cassandra, zookeeper, distributed-systems]
 
 ---
 
 > 看到网友推荐这篇博客，整理归纳一下 https://martinfowler.com/articles/patterns-of-distributed-systems/
 >
-> 我发现有人翻译了。。 https://xie.infoq.cn/article/f4d27dd3aa85803841d050825
+> 我发现有人翻译了，但是翻译的不全。 https://xie.infoq.cn/article/f4d27dd3aa85803841d050825
 
 这里的分布式系统是指所有的系统，共性问题
 
@@ -47,15 +47,29 @@ tags: []
 
 ## 一个整合方案，以及涉及到具体的设计细节
 
-![image-20210121211201254](/Users/wqw/wqw/wanghenshui.github.io/assets/paterns.png)
-
 <img src="https://wanghenshui.github.io/assets/paterns.png" alt="" width="80%">
 
 
 
 ### WAL
 
-首先是WAL WAL要设计的分段，方便写，但是不能无限长，所以要有个Low-Water-Mark标记，其实就是后台线程定期删日志
+首先是WAL 也就是commit log commit log要保证持久性
+
+每个日志要有独立的标记，依此来分段整理，方便写，但是不能无限长，所以要有个Low-Water-Mark标记，其实就是后台线程定期删日志
+
+日志更新就相当于队列追加写了，为了吞吐可能要异步一些
+
+![img](https://martinfowler.com/articles/patterns-of-distributed-systems/wal.png)
+
+
+
+考虑如何实现这样一个kv；
+
+首先kv得能序列化成log，并且能从log恢复
+
+需要支持指定snapshot/timestap恢复，这两种是淘汰判定的标准，也就是一个unit
+
+
 
 #### Low-Water-Mark实现方案
 
