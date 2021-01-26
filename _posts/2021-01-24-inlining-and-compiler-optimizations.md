@@ -76,7 +76,7 @@ void printArgByConstReference(const MyInt& num) {
 }
 ```
 
-由于类具有多态性，函数不能确认是积累还是子类，所以还是调用虚函数的get
+由于类具有多态性，函数不能确认是基类还是子类，所以还是调用虚函数的get
 
 <img src="https://wanghenshui.github.io/assets/image-20210126161152803.png" alt="" width="90%">
 
@@ -112,7 +112,7 @@ void multiplyArrayByTwoConstants(std::span<int> arr, MyInt x, MyInt y) {
 
 
 
-一个经典LICM例子 strlen
+### 一个经典LICM例子 strlen
 
 经常建议strlen放到for循环外面
 
