@@ -2,13 +2,12 @@
 layout: post
 title: (译)Inlining and Compiler Optimizations
 categories: [language]
-tags: [compiler]
-
+tags: [compiler,inline, lto, thinlto, llvm, clang]
 ---
 
 >  整理自 https://wolchok.org/posts/inlining-and-compiler-optimizations/
 >
-> 文章串起来了一些知识，读一读，增加一下间接。当然，学习一下clang/llvm更直接一些，这些都是二手复读
+> 文章串起来了一些知识，读一读，增加一下见解。当然，学习一下clang/llvm更直接一些，这些都是二手复读
 
 
 
