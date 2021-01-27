@@ -37,8 +37,9 @@ tags: [kafka, etcd,cassandra, zookeeper, distributed-systems]
 
 
 - 另一种异常，进程暂停，可能是内部在忙，没有及时响应，可能是gc引起的延迟等等
-  -  Generation Clock 我的理解就是term 推进，老master检测自己不是最新的index，就自动降低身份 也就是Lamport’s timestamp
-
+  
+-  Generation Clock 我的理解就是term 推进，老master检测自己不是最新的index，就自动降低身份 也就是Lamport’s timestamp
+  
 - 时间同步问题，ntp是不准的甚至是会出错的，有原子钟方案，也有lamport逻辑时钟方案 
 
   ~~（其实原子钟方案比较简单，一个gps原子钟七八万，我之前的老项目用过，这个成本对于互联网公司还好吧，为啥都不用呢，不方便部署么）~~
@@ -120,6 +121,16 @@ private long timeElaspedSince(long now, long lastLogEntryTimestamp) {
 ```
 
 
+
+### 读取？一致性方案 quorum
+
+读大多数 判定数据
+
+### 写WAL - 复制组
+
+复制组要保证高可用性 心跳检查，节点间心跳以及自身心跳处理，如果自身僵住需要退位
+
+复制组有主从，涉及到选举算法 zab raft之类
 
 
 ---
