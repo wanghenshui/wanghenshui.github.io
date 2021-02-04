@@ -23,8 +23,12 @@ author : wanghenshui
 email : wanghenshui@qq.com
 
 
+name:         王很水的博客
 description: "majar buzz kill"
 url : https://wanghenshui.github.io
+feed_items: 10
+feed_update_period: daily
+feed_update_frequency: 1
 sitesearchurl : wanghenshui.github.io
 baseurl: "" 
 social_media:

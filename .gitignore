@@ -1,3 +1,4 @@
-_site/
-_posts/design.md
-_posts/work.md
+.sass-cache
+work.md
+design.md
+_site
