@@ -19,11 +19,11 @@ mathjax: false
 excerpt_separator: <!-- more -->
 encoding: UTF-8
 title : 王很水的博客
-author : wanghenshui
+author : 王很水
 email : wanghenshui@qq.com
 
 
-name:         王很水的博客
+name: 王很水的博客
 description: "majar buzz kill"
 url : https://wanghenshui.github.io
 feed_items: 10
