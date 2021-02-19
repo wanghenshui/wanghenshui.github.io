@@ -2,7 +2,7 @@
 layout: post
 title: 怎么阻止oom killer杀进程
 categories: [debug]
-tags: [linux, shell]
+tags: [linux, oom]
 
 ---
 
