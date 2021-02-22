@@ -4,7 +4,7 @@ categories: database
 title: rocksdb一些杂项概念
 tags: [rocksdb, c++]
 ---
-  
+
 
 **Write Buffer Manager**
 
@@ -84,7 +84,7 @@ rocksdb属于自缓存应用，有memtable+blockcache来保证了一定的局部
 
 **Rate Limiter限流器**
 
-Rocksdb内置控制写入速率降低延迟的
+Rocksdb内置控制写入速率降低延迟的，当然包括compaction速率。如果compaction导致了较多毛刺，考虑一下是不是没使用limiter
 
 通过调用NewGenericRateLimiter创建一个RateLimiter对象，可以对每个RocksDB实例分别创建，或者在RocksDB实例之间共享，以此控制落盘和压缩的写速率总量。
 
@@ -125,6 +125,16 @@ memtable也可以被write buffer manager来控制
 
 table_options.block_cache->GetPinnedUsage()获得第四个
 
+
+
+**文件的快速导入rocksdb::SstFileWriter/ IngestExternalFile**
+
+具体可以看这篇文档https://github.com/facebook/rocksdb/wiki/Creating-and-Ingesting-SST-files
+
+经常用于文件导入，快速导入，调用write接口还是太慢，直接生成L0sst更快。但是存在问题，L0文件过多，触发compaction，所以要先停掉compaction，这点在rockset使用该功能的时候分享过。这里标记备忘
+
+
+
 ### reference
 
 1.  官方文档 https://github.com/facebook/rocksdb/wiki/Write-Buffer-Manager
@@ -132,10 +142,11 @@ table_options.block_cache->GetPinnedUsage()获得第四个
 3.  <https://www.ibm.com/developerworks/cn/linux/l-cn-directio/index.html>
 4.  Direct IO官方文档https://github.com/facebook/rocksdb/wiki/Direct-IO>
 5.  Rate Limiter <https://github.com/johnzeng/rocksdb-doc-cn/blob/master/doc/Rate-Limiter.md>
-6.  memtable原理，看WriteBufferManager部分<https://bravoboy.github.io/2018/12/07/rocksdb-Memtable/>
+6.  rate limiter实现 https://blog.csdn.net/Z_Stand/article/details/109558042
+7.  memtable原理，看WriteBufferManager部分<https://bravoboy.github.io/2018/12/07/rocksdb-Memtable/>
     1.  <https://zhuanlan.zhihu.com/p/29277585>
     2.  <https://bravoboy.github.io/2018/11/30/SwitchMemtable/>
-7.  官方文档翻译<https://github.com/johnzeng/rocksdb-doc-cn/blob/master/doc/MemTable.md>
+8.  官方文档翻译<https://github.com/johnzeng/rocksdb-doc-cn/blob/master/doc/MemTable.md>
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
 <details>

@@ -4,8 +4,6 @@ categories: database
 title: rocksdb 初探 7：merge
 tags: [rocksdb, c++]
 ---
-  
-
 
 
 一个堆栈信息，merge_test

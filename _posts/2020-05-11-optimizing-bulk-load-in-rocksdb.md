@@ -22,7 +22,7 @@ tags: [rocksdb,tuning]
 
 ##### 不写memtable
 
-构造的数据直接调用 [IngestExternalFile()](https://rocksdb.org/blog/2017/02/17/bulkoad-ingest-sst-file.html) api，避免写入memtabnle来同步memtable，这个动作速度快，且干净
+构造的数据直接调用 [IngestExternalFile()](https://rocksdb.org/blog/2017/02/17/bulkoad-ingest-sst-file.html) api，(rocksdb文档见[这里](https://github.com/facebook/rocksdb/wiki/Creating-and-Ingesting-SST-files)) 避免写入memtable来同步memtable，这个动作速度快，且干净
 
 但是有局限，这样构造，sst文件只有一层，如果有零星的大sst文件，后台compaction会非常慢。解决方法，一个writebatch写成一个sst文件。
 
