@@ -51,6 +51,8 @@ POSIX_FADV_DONTNEED         指定的数据近期不会被访问      立即从p
 
 ### ref
 
+- linux IOhttp://sunisdown.me/linux-io.html 这几个图画的还行。不过原理也比较简单。不多说
+
 
 ---
 
