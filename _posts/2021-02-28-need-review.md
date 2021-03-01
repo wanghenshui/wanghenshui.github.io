@@ -40,6 +40,34 @@ https://tree-sitter.github.io/tree-sitter/using-parsers
 
 cmu 15445解答 https://www.jianshu.com/nb/36265841
 
+https://youjiali1995.github.io/database/CMU-15445/
+
+
+
+这个人有很多paper review https://blog.csdn.net/weixin_37802735/article/details/108420136#comments_13612160
+
+
+
+rocksdb 多线程写 快的小技巧 https://whoiami.github.io/ROCKSDB_PUT_LOCK_USAGE
+
+
+
+用boost 写个proxy http://alexott.net/en/cpp/BoostAsioProxy.html
+
+
+
+这里也有一些 paper review 还行https://blog.xiaogaozi.org/2020/06/02/maybe-news-issue-2/
+
+
+
+table gen https://zhuanlan.zhihu.com/p/141265959
+
+
+
+天才计划可以玩一玩 https://github.com/pingcap/talent-plan/
+
+https://university.pingcap.com/talent-plan/
+
 
 ---
 
