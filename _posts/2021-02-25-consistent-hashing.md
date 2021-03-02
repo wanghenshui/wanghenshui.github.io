@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (译)Consistent Hashing: Algorithmic Tradeoffs
+title: (译) Consistent Hashing Algorithmic Tradeoffs
 categories: [database]
 tags: [hash]
 ---

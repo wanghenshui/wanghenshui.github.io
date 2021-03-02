@@ -2,11 +2,11 @@
 layout: post
 title: (翻译)关于Linux API 持久性的讨论
 categories: [database, linux, translation]
-tags: [fsync]
+tags: [fsync,O_DIRECT, fdatasync, O_SYNC, sync_file_range]
 
 ---
 
-<img src="https://wanghenshui.github.io/assets/quadraddnt.png" alt="" width="80%">
+
 
 > 这篇文章很有干货，整理一下 https://www.evanjones.ca/durability-filesystem.html
 
@@ -26,9 +26,30 @@ O_Direct优劣势：
 - 优势：直接绕过page cache/buffer cache，节省操作系统内存；使用O_DIRECT方式提示操作系统尽量使用DMA方式来进行存储设备操作，节省CPU；
 - 劣势：字节对齐写（logic block size）；无法进行IO合并；读写绕过cache，小数据读写效率低；
 
+关于函数的问题
+
+- fsync遇到过bug ，fsync可能报错EIO，系统没把脏页刷盘，但数据库层认为刷完了，导致这段数据丢了 https://wiki.postgresql.org/wiki/Fsync_Errors
+- sync_file_range这里有个[原理](http://yoshinorimatsunobu.blogspot.com/2014/03/how-syncfilerange-really-works.html) ,不刷元数据！rocksdb会用这个来刷盘，看这个[注释](https://github.com/facebook/rocksdb/blob/d1c510baecc1aef758f91f786c4fbee3bc847a63/include/rocksdb/options.h#L868)，额外再用fdatasync。除非你知道你在做什么，否则不要用这个api
 
 
-# 
+
+作者总结
+
+- fdatasync or fsync after a write (prefer fdatasync).
+- write on a file descriptor opened with O_DSYNC or O_SYNC (prefer O_DSYNC).
+
+- pwritev2 with the RWF_DSYNC or RWF_SYNC flag (prefer RWF_DSYNC).
+
+结论，推荐使用`O_DSYNC/fdatasync()`
+
+
+
+一些关于随机(写)的性能观察
+
+- 覆盖写比追加写快(~2-100% faster) 追加写要原子修改元数据。
+- 和system call相比，用flag更省，性能更好(~5% faster)
+
+
 
 系统对page cache的管理，在一些情况下可能有所欠缺，我们可以通过内核提供的`posix_fadvise`予以干预。
 
@@ -51,7 +72,7 @@ POSIX_FADV_DONTNEED         指定的数据近期不会被访问      立即从p
 
 ### ref
 
-- linux IOhttp://sunisdown.me/linux-io.html 这几个图画的还行。不过原理也比较简单。不多说
+- linux IOhttps://www.scylladb.com/2017/10/05/io-access-methods-scylla/ 这几个图画的还行。不过原理也比较简单。不多说
 
 
 ---
