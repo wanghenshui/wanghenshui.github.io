@@ -54,10 +54,6 @@ mcrouter的抽象能力非常好
 
 我浏览的途中又一次看了眼beandb，原来也是mc的协议啊
 
-https://github.com/douban/beansdb
-
-https://github.com/douban/gobeansdb 为啥用go重写啊，理解不能
-
 
 
 一个db的列表 https://github.com/sdcuike/issueBlog/blob/master/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md
