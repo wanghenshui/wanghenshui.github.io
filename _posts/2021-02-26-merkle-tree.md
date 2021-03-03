@@ -35,7 +35,43 @@ tags: [tree]
 
 ## 实际应用
 
-比特币
+比特币 这里直接摘抄
+
+![](https://upload-images.jianshu.io/upload_images/1785959-b1008e063f6007dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+这里比特币要求平衡树，如果不平衡会复制一个节点
+
+所有的交易都并不存储在Merkle树中，而是将数据哈希化，然后将哈希值存储至相应的叶子节点。这些叶子节点分别是H~A~、H~B~、H~C~和H~D~
+
+HA = SHA256(SHA256(Transaction A))
+
+将相邻两个叶子节点的哈希值串联在一起进行哈希，这对叶子节点随后被归纳为父节点。 例如，为了创建父节点H~AB~，子节点 A和子节点B的两个32字节的哈希值将被串联成64字节的字符串。随后将字符串进行两次哈希来产生父节点的哈希值:
+
+ HAB = SHA256(SHA256(H~A~ + H~B~))
+
+继续类似的操作直到只剩下顶部的一个节点，即Merkle根。产生的32字节哈希值存储在区块头，同时归纳了四个交易的所有数据。图9-2展示了如何通过成对节点的哈希值计算Merkle树的根。
+
+
+
+
+
+为了证明区块中存在某个特定的交易，一个节点只需要计算log~2~(N)个32字节的哈希值，形成一条从特定交易到树根的认证路径或者Merkle路径即可。随着交易数量的急剧增加，这样的计算量就显得异常重要，因为相对于交易数量的增长，以基底为2的交易数量的对数的增长会缓慢许多。这使得比特币节点能够高效地产生一条10或者12个哈希值（320~384字节）的路径，来证明了在一个巨量字节大小的区块中上千交易中的某笔交易的存在。
+
+在图9-5中，一个节点能够通过生成一条仅有4个32字节哈希值长度（总128字节）的Merkle路径，来证明区块中存在一  笔交易K。该路径有4个哈希值（在图9-5中由蓝色标注）H~L~、H~IJ~、H~MNOP~和H~ABCDEFGH~。由这4个哈希值产生的认证路径，再通过计算另外四对哈希值H~KL~、H~IJKL~、H~IJKLMNOP~和Merkle树根（在图中由虚线标注），任何节点都能证明H~K~（在图中由绿色标注）包含在Merkle根中。
+
+![](https://upload-images.jianshu.io/upload_images/1785959-ae838cf905db704d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+为了验证黑色块需要蓝色块算出是否满足虚框中的hash
+
+再次回顾一项使用方法
+
+交易信息hash
+
+hash信息构造出merkel tree，其实存储格式可以是数组（用数组存二叉树）
+
+然后验证某个hash ，对应着找周围的点就行了。这也叫简单单点验证 SPV
 
 
 
@@ -45,6 +81,7 @@ tags: [tree]
 
 - wiki https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C%E6%A0%91
 - 这里有个很详细的介绍 https://blog.csdn.net/Ciellee/article/details/108004428
+- 比特币 https://howieliux1.gitbooks.io/mastering-bitcoin-2nd-edition/content/ch09.html
 
 
 ---
