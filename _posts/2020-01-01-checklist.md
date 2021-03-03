@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (转)可扩展服务设计原则 checklist
+title: (转)可扩展服务设计原则checklist
 categories: [todo]
 tags: []
 ---
