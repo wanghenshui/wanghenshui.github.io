@@ -4,7 +4,7 @@ categories : database
 title: systench-tpcc适配mongo踩坑
 tags : [linux, mongodb, lua]
 ---
-  
+
 
 
 
@@ -75,24 +75,6 @@ mongod --dbpath /home/vdb/mongo/data -f /etc/mongod.conf
 
 搞定了,这点破事儿卡了半天。然后搜到了这个<https://ruby-china.org/topics/35268>，貌似是正解。不验证了。
 
-
-
-
-
-
-
-
-
-
-
-
-
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
-
 ### reference
 
 1. sysbench repo and build https://github.com/akopytov/sysbench#building-and-installing-from-source
@@ -116,3 +98,11 @@ mongod --dbpath /home/vdb/mongo/data -f /etc/mongod.conf
 8. <https://www.percona.com/blog/2016/05/13/benchmark-mongodb-sysbench/>
 
 9. iowait 多高算高？https://serverfault.com/questions/722804/what-percentage-of-iowait-is-considered-to-be-high
+
+
+
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+<details>
+<summary>觉得写的不错可以点开扫码赞助几毛</summary>
+<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
+</details>

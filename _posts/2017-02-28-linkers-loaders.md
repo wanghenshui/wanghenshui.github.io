@@ -1,10 +1,10 @@
 ---
 layout: post
 title: 链接器和加载器 读书笔记
-categories: review
+categories: [todo, review]
 tags: []
 ---
-  
+
 
 ---
 

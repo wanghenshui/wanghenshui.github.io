@@ -79,6 +79,58 @@ https://github.com/dataabc/weiboSpider 抓微博的
 实现rafthttp://yuezhang.org/2019/06/25/try-impl-raft.html
 
 
+
+boltdb
+
+https://iswade.github.io/articles/boltdb/
+
+
+
+parsergen 类似flex bison的东西？
+
+https://github.com/buck-yeh/parsergen
+
+rust 使用模式
+
+https://rust-unofficial.github.io/patterns/idioms/concat-format.html
+
+
+
+Cmu15445 一个go实现的bufferpool https://brunocalza.me/how-buffer-pool-works-an-implementation-in-go/
+
+
+
+一个rust实现的ruby
+
+https://github.com/artichoke/artichoke
+
+
+
+关注一下keydb实现的mvcc
+
+https://github.com/EQ-Alpha/KeyDB/search?q=mvcc
+
+https://docs.keydb.dev/docs/pro-mvcc/
+
+
+
+一个fio测试文件系统的例子，可以用于测数据库 数据准备加热https://juicefs.com/docs/zh/single_node_benchmark.html
+
+
+
+
+
+Redpanda kafka代替品，快https://vectorized.io/blog/fast-and-safe/
+
+
+
+实现flat_map rust https://www.eltonpinto.me/blog/posts/implementing_flatmap_in_rust/
+
+
+
+k8s详解 https://www.huweihuang.com/article/kubernetes/kubernetes-pod-introduction/
+
+
 ---
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！
