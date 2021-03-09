@@ -1,8 +1,8 @@
 ---
 layout: post
-title: (翻译)关于Linux API 持久性的讨论
+title: (译)关于Linux IO 持久性的讨论，以及page cache
 categories: [database, linux, translation]
-tags: [fsync,O_DIRECT, fdatasync, O_SYNC, sync_file_range]
+tags: [fsync,O_DIRECT, fdatasync, O_SYNC, sync_file_range, page cache]
 
 ---
 
@@ -51,6 +51,10 @@ O_Direct优劣势：
 
 
 
+
+
+### page cache
+
 系统对page cache的管理，在一些情况下可能有所欠缺，我们可以通过内核提供的`posix_fadvise`予以干预。
 
 ```
@@ -68,11 +72,24 @@ POSIX_FADV_NOREUSE           指定的数据将只访问一次       （暂无�
 POSIX_FADV_WILLNEED          指定的数据即将被访问          立即预读数据到page cache
 POSIX_FADV_DONTNEED         指定的数据近期不会被访问      立即从page cache 中丢弃数据
 
+
+
+/proc/sys/vm/dirty_writeback_centisecs：flush检查的周期。单位为0.01秒，默认值500，即5秒。每次检查都会按照以下三个参数控制的逻辑来处理。
+
+/proc/sys/vm/dirty_expire_centisecs：如果page cache中的页被标记为dirty的时间超过了这个值，就会被直接刷到磁盘。单位为0.01秒。默认值3000，即半分钟。
+
+/proc/sys/vm/dirty_background_ratio：如果dirty page的总大小占空闲内存量的比例超过了该值，就会在后台调度flusher线程异步写磁盘，不会阻塞当前的write()操作。默认值为10%。
+
+/proc/sys/vm/dirty_ratio：如果dirty page的总大小占总内存量的比例超过了该值，就会阻塞所有进程的write()操作，并且强制每个进程将自己的文件写入磁盘。默认值为20%。
+
+
+
 ---
 
 ### ref
 
 - linux IOhttps://www.scylladb.com/2017/10/05/io-access-methods-scylla/ 这几个图画的还行。不过原理也比较简单。不多说
+- page cache https://www.jianshu.com/p/92f33aa0ff52
 
 
 ---
