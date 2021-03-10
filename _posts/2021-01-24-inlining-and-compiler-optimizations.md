@@ -9,6 +9,7 @@ tags: [compiler,inline, lto, thinlto, llvm, clang]
 >
 > 文章串起来了一些知识，读一读，增加一下见解。当然，学习一下clang/llvm更直接一些，这些都是二手复读
 
+<!-- more -->
 
 
 先引入两个概念，**constant propagation** 和[**loop-invariant code motion**](https://en.wikipedia.org/wiki/Loop-invariant_code_motion) (LICM). 循环不变量外提

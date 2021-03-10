@@ -9,6 +9,7 @@ tags: [hash]
 >
 > 加了很多自己的理解
 
+<!-- more -->
 # 概念 一个好的分布式hash算法
 
 >  [引自这里](https://gardiant.github.io/2019/03/14/%E4%B8%80%E8%87%B4%E6%80%A7hash%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/)

@@ -24,8 +24,6 @@ service start sshd
 
 
 
-
-
 使用ssh  -p 12345 root@localhost 访问即可
 
 ---

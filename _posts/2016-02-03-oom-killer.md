@@ -8,6 +8,8 @@ tags: [linux, oom]
 
 我的场景是gdb加载二进制，加载中直接被kill了。dmesg查看是oom killer干掉的。怎么禁止？
 
+<!-- more -->
+
 设置overcommit_memory
 
 ```bash

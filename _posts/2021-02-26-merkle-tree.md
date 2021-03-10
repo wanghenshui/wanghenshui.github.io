@@ -15,6 +15,8 @@ tags: [tree]
 
 如果要求严苛，hash函数需要用安全的xxhash之类的。如果要求仅仅是校验 crc即可
 
+<!-- more -->
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Hash_Tree.svg/2880px-Hash_Tree.svg.png" alt="" width="80%">
 
 特点

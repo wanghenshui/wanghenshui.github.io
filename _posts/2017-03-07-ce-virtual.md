@@ -10,6 +10,7 @@ tags: [c++, vtable]
 大家都说虚表虚指针，有虚表虚指针，怎么就能动态的指向虚表呢？
 
 用Compiler Explorer一下就看出来了。这个代码片直接用CE还带颜色，更方便
+<!-- more -->
 
 ```c++
 #include <cstdio>

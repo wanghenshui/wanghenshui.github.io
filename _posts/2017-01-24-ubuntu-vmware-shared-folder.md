@@ -5,11 +5,6 @@ categories: linux
 tags : [ubuntu,vm,fs]
 ---
 
-  
-
----
-
-
 
 这个问题困扰我这工作日最后一天。由于搜索姿势不对怎么也没搜到解决办法。最后琢磨出方法之后，也看到了两个帖子。。
 
@@ -18,6 +13,8 @@ http://blog.csdn.net/cindy_cheng/article/details/50456977
 http://blog.csdn.net/kurosakimaon/article/details/53575301
 
 第一个帖子的评论解决了我得问题。
+
+<!-- more -->
 
 第二个帖子和我的场景一模一样要是早点看见就好了。
 

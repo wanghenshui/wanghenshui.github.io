@@ -9,6 +9,7 @@ tags: [redis]
 
 这里有一个估算系列的问题https://sirupsen.com/napkin/，以及需要的参数 https://github.com/sirupsen/napkin-math
 
+<!-- more -->
 作者在macbook2017拿到了一组数据
 
 | Operation                           | Latency                                  | Throughput | 1 MiB  | 1 GiB  |

@@ -9,6 +9,7 @@ tags: [c++, cppcon, cppcon2015, asm, perf, benchmark]
 
 > 一个cppcon演讲中午看的。简单整理下笔记
 
+<!-- more -->
 
 
 第一个例子是 `Measure first, tune what matters`, 讲了一个查询优化可以快20倍，解决了发现调整where子句条件快了一百倍。。。
