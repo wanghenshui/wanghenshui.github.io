@@ -43,6 +43,8 @@ tags: [debug, rocksdb]
 
 facebook做的社交数据收集工具，底层是mysql on myrocks
 
+<img src="https://wanghenshui.github.io/assets/myrocks-key.png" alt="">
+
 |               | rocksdb key                                      | rocksdb value      |
 | ------------- | ------------------------------------------------ | ------------------ |
 | primary key   | table index number + primary key                 | columns + checksum |

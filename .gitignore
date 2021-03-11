@@ -2,3 +2,5 @@
 2022-01-01-work.md
 design.md
 _site
+.ipynb_checkpoints/
+*.ipynb

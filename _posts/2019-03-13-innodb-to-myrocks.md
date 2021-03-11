@@ -4,7 +4,7 @@ categories : database
 title: PPT笔记 InnoDB to MyRocks migration in main MySQL database at Facebook
 tags : [rocksdb, innodb, mysql]
 ---
-  
+
 
 ### why
 
@@ -252,8 +252,8 @@ mysql直接热备innodb还原到myrocks 5.7应该是无解的
 5. 范围锁 主要是提升事务性能。行锁效率太低 <https://www.percona.com/blog/2012/03/27/innodbs-gap-locks/>
 6. 作者这哥们的pr 挺有意思的。<https://github.com/facebook/rocksdb/pull/1721>
 7. myrocks介绍，有时间写个博客顺一下<https://www.percona.com/live/17/sites/default/files/slides/MyRocks_Tutorial.pdf>
-8. yc上myrocks的讨论，有点意思<https://news.ycombinator.com/item?id=15835188>
-9. yc 上关于rocksdb cockroachdb的讨论 需要做个笔记<https://news.ycombinator.com/item?id=18938737>
+8. hackernews上myrocks的讨论，有点意思<https://news.ycombinator.com/item?id=15835188>
+9. hackernews 上关于rocksdb cockroachdb的讨论 需要做个笔记<https://news.ycombinator.com/item?id=18938737>
 10. MyRocks以及使用场景 <https://zhuanlan.zhihu.com/p/45652076>
 11. Mysql与Innodb <https://draveness.me/mysql-innodb>
 
