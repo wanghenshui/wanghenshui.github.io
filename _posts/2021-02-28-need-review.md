@@ -18,7 +18,15 @@ https://github.com/git-hulk/tcpkit
 
 
 
-了解原理，简单改成redis版本
+https://github.com/uutils/coreutils/issues 学习rust快速入门
+
+
+
+
+
+
+
+了解原理，简单改成c++版本
 
  https://github.com/vipshop/redis-migrate-tool
 
