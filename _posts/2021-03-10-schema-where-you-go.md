@@ -2,7 +2,7 @@
 layout: post
 title: 数据库的schema信息如何存储/维护？
 categories: [database]
-tags: [myrocks, rocksdb]
+tags: [myrocks, rocksdb, tidb, cockroachdb]
 ---
 
 
@@ -61,7 +61,7 @@ chunk和表名的映射关系单独放在config server用来记录，方便mongo
 
 
 
-### TIDB
+## TIDB
 
 本身是多database 多副本
 
@@ -99,7 +99,7 @@ chunk和表名的映射关系单独放在config server用来记录，方便mongo
 
 
 
-### 参考信息
+## 参考信息
 
 - myrocks 图来自这里 https://github.com/wisehead/myrocks_notes/blob/master/10.CF/CF/index.md 代码分析记录的很详细，代码级别
 - mongorocks整理自
@@ -107,6 +107,7 @@ chunk和表名的映射关系单独放在config server用来记录，方便mongo
 - crdb 分布式事务演进 https://www.jianshu.com/p/a4604b012f31
 - yugabyte-db介绍 https://ericfu.me/yugabyte-db-introduction/
 - http://www.postgres.cn/downfiles/pgconf_2018/PostgresChina2018_%E8%B5%96%E5%AE%9D%E5%8D%8E_%E5%BC%80%E6%BA%90%E5%88%86%E5%B8%83%E5%BC%8FNewSQL%E6%95%B0%E6%8D%AE%E5%BA%93CockroachDB%E6%9E%B6%E6%9E%84%E5%8F%8A%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.pdf
+- https://iswade.github.io/translate/crdb/crdb_paper_cn/
 
 ---
 
