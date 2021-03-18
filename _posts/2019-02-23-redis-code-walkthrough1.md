@@ -1,13 +1,109 @@
 ---
 layout: post
-title: redis 代码走读 server.c
+title: redis 代码走读
 categories: database
 tags: [redis, c]
 ---
-  
-#redis 代码走读 server.c
 
- 
+
+
+
+
+## 数据结构
+
+set 
+
+- 实现 intset / hashtable(dict)实际上是一样的，编码不同
+
+| 命令        | `intset` 编码的实现方法                                      | `hashtable` 编码的实现方法                                   |
+| :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| SADD        | 调用 `intsetAdd` 函数， 将所有新元素添加到整数集合里面。     | 调用 `dictAdd` ， 以新元素为键， `NULL` 为值， 将键值对添加到字典里面。 |
+| SCARD       | 调用 `intsetLen` 函数， 返回整数集合所包含的元素数量， 这个数量就是集合对象所包含的元素数量。 | 调用 `dictSize` 函数， 返回字典所包含的键值对数量， 这个数量就是集合对象所包含的元素数量。 |
+| SISMEMBER   | 调用 `intsetFind` 函数， 在整数集合中查找给定的元素， 如果找到了说明元素存在于集合， 没找到则说明元素不存在于集合。 | 调用 `dictFind` 函数， 在字典的键中查找给定的元素， 如果找到了说明元素存在于集合， 没找到则说明元素不存在于集合。 |
+| SMEMBERS    | 遍历整个整数集合， 使用 `intsetGet` 函数返回集合元素。       | 遍历整个字典， 使用 `dictGetKey` 函数返回字典的键作为集合元素。 |
+| SRANDMEMBER | 调用 `intsetRandom` 函数， 从整数集合中随机返回一个元素。    | 调用 `dictGetRandomKey` 函数， 从字典中随机返回一个字典键。  |
+| SPOP        | 调用 `intsetRandom` 函数， 从整数集合中随机取出一个元素， 在将这个随机元素返回给客户端之后， 调用 `intsetRemove` 函数， 将随机元素从整数集合中删除掉。 | 调用 `dictGetRandomKey` 函数， 从字典中随机取出一个字典键， 在将这个随机字典键的值返回给客户端之后， 调用 `dictDelete` 函数， 从字典中删除随机字典键所对应的键值对。 |
+| SREM        | 调用 `intsetRemove` 函数， 从整数集合中删除所有给定的元素。  | 调用 `dictDelete` 函数， 从字典中删除所有键为给定元素的键值对。 |
+
+zset 
+
+- 为什么ZSCORE是O(1)的 因为是组合存储的，hashtable+skiplist
+
+- 内部实现skiplist/ziplist
+
+skiplist 
+
+![img](https://wanghenshui.github.io/assets/graphviz-75ee561bcc63f8ea960d0339768aec97b1f570f0.png)
+
+| 命令      | `ziplist` 编码的实现方法                                     | `zset` 编码的实现方法                                        |
+| :-------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| ZADD      | 调用 `ziplistInsert` 函数， 将成员和分值作为两个节点分别插入到压缩列表。 | 先调用 `zslInsert` 函数， 将新元素添加到跳跃表， 然后调用 `dictAdd` 函数， 将新元素关联到字典。 |
+| ZCARD     | 调用 `ziplistLen` 函数， 获得压缩列表包含节点的数量， 将这个数量除以 `2` 得出集合元素的数量。 | 访问跳跃表数据结构的 `length` 属性， 直接返回集合元素的数量。 |
+| ZCOUNT    | 遍历压缩列表， 统计分值在给定范围内的节点的数量。            | 遍历跳跃表， 统计分值在给定范围内的节点的数量。              |
+| ZRANGE    | 从表头向表尾遍历压缩列表， 返回给定索引范围内的所有元素。    | 从表头向表尾遍历跳跃表， 返回给定索引范围内的所有元素。      |
+| ZREVRANGE | 从表尾向表头遍历压缩列表， 返回给定索引范围内的所有元素。    | 从表尾向表头遍历跳跃表， 返回给定索引范围内的所有元素。      |
+| ZRANK     | 从表头向表尾遍历压缩列表， 查找给定的成员， 沿途记录经过节点的数量， 当找到给定成员之后， 途经节点的数量就是该成员所对应元素的排名。 | 从表头向表尾遍历跳跃表， 查找给定的成员， 沿途记录经过节点的数量， 当找到给定成员之后， 途经节点的数量就是该成员所对应元素的排名。 |
+| ZREVRANK  | 从表尾向表头遍历压缩列表， 查找给定的成员， 沿途记录经过节点的数量， 当找到给定成员之后， 途经节点的数量就是该成员所对应元素的排名。 | 从表尾向表头遍历跳跃表， 查找给定的成员， 沿途记录经过节点的数量， 当找到给定成员之后， 途经节点的数量就是该成员所对应元素的排名。 |
+| ZREM      | 遍历压缩列表， 删除所有包含给定成员的节点， 以及被删除成员节点旁边的分值节点。 | 遍历跳跃表， 删除所有包含了给定成员的跳跃表节点。 并在字典中解除被删除元素的成员和分值的关联。 |
+| ZSCORE    | 遍历压缩列表， 查找包含了给定成员的节点， 然后取出成员节点旁边的分值节点保存的元素分值。 | 直接从字典中取出给定成员的分值。                             |
+
+
+
+### list
+
+- 内部编码 quicklist，代替linkedlist，两者区别？
+- 编码的区别，api完全一致
+
+- 这是3.0版本，新版本就是把api换成quicklist-api，接口完全一致，原来的编码方案废除
+
+```
+#define OBJ_ENCODING_QUICKLIST 9 /* Encoded as linked list of ziplists */
+typedef struct quicklist {
+    quicklistNode *head;
+    quicklistNode *tail;
+    unsigned long count;        /* total count of all entries in all ziplists */
+    unsigned long len;          /* number of quicklistNodes */
+    int fill : 16;              /* fill factor for individual nodes */
+    unsigned int compress : 16; /* depth of end nodes not to compress;0=off */
+} quicklist;
+```
+
+
+
+| 命令    | `ziplist` 编码的实现方法                                     | `linkedlist` 编码的实现方法                                  |
+| :------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| LPUSH   | 调用 `ziplistPush` 函数， 将新元素推入到压缩列表的表头。     | 调用 `listAddNodeHead` 函数， 将新元素推入到双端链表的表头。 |
+| RPUSH   | 调用 `ziplistPush` 函数， 将新元素推入到压缩列表的表尾。     | 调用 `listAddNodeTail` 函数， 将新元素推入到双端链表的表尾。 |
+| LPOP    | 调用 `ziplistIndex` 函数定位压缩列表的表头节点， 在向用户返回节点所保存的元素之后， 调用 `ziplistDelete` 函数删除表头节点。 | 调用 `listFirst` 函数定位双端链表的表头节点， 在向用户返回节点所保存的元素之后， 调用 `listDelNode` 函数删除表头节点。 |
+| RPOP    | 调用 `ziplistIndex` 函数定位压缩列表的表尾节点， 在向用户返回节点所保存的元素之后， 调用 `ziplistDelete` 函数删除表尾节点。 | 调用 `listLast` 函数定位双端链表的表尾节点， 在向用户返回节点所保存的元素之后， 调用 `listDelNode` 函数删除表尾节点。 |
+| LINDEX  | 调用 `ziplistIndex` 函数定位压缩列表中的指定节点， 然后返回节点所保存的元素。 | 调用 `listIndex` 函数定位双端链表中的指定节点， 然后返回节点所保存的元素。 |
+| LLEN    | 调用 `ziplistLen` 函数返回压缩列表的长度。                   | 调用 `listLength` 函数返回双端链表的长度。                   |
+| LINSERT | 插入新节点到压缩列表的表头或者表尾时， 使用 `ziplistPush` 函数； 插入新节点到压缩列表的其他位置时， 使用 `ziplistInsert` 函数。 | 调用 `listInsertNode` 函数， 将新节点插入到双端链表的指定位置。 |
+| LREM    | 遍历压缩列表节点， 并调用 `ziplistDelete` 函数删除包含了给定元素的节点。 | 遍历双端链表节点， 并调用 `listDelNode` 函数删除包含了给定元素的节点。 |
+| LTRIM   | 调用 `ziplistDeleteRange` 函数， 删除压缩列表中所有不在指定索引范围内的节点。 | 遍历双端链表节点， 并调用 `listDelNode` 函数删除链表中所有不在指定索引范围内的节点。 |
+| LSET    | 调用 `ziplistDelete` 函数， 先删除压缩列表指定索引上的现有节点， 然后调用 `ziplistInsert` 函数， 将一个包含给定元素的新节点插入到相同索引上面。 | 调用 `listIndex` 函数， 定位到双端链表指定索引上的节点， 然后通过赋值操作更新节点的值。 |
+
+
+
+string
+
+- kv 存在hashtable(dict), 有不同的编码方式
+
+| 命令        | `int` 编码的实现方法                                         | `embstr` 编码的实现方法                                      | `raw` 编码的实现方法                                         |
+| :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| SET         | 使用 `int` 编码保存值。                                      | 使用 `embstr` 编码保存值。                                   | 使用 `raw` 编码保存值。                                      |
+| GET         | 拷贝对象所保存的整数值， 将这个拷贝转换成字符串值， 然后向客户端返回这个字符串值。 | 直接向客户端返回字符串值。                                   | 直接向客户端返回字符串值。                                   |
+| APPEND      | 将对象转换成 `raw` 编码， 然后按 `raw`编码的方式执行此操作。 | 将对象转换成 `raw` 编码， 然后按 `raw`编码的方式执行此操作。 | 调用 `sdscatlen` 函数， 将给定字符串追加到现有字符串的末尾。 |
+| INCRBYFLOAT | 取出整数值并将其转换成 `longdouble` 类型的浮点数， 对这个浮点数进行加法计算， 然后将得出的浮点数结果保存起来。 | 取出字符串值并尝试将其转换成`long double` 类型的浮点数， 对这个浮点数进行加法计算， 然后将得出的浮点数结果保存起来。 如果字符串值不能被转换成浮点数， 那么向客户端返回一个错误。 | 取出字符串值并尝试将其转换成 `longdouble` 类型的浮点数， 对这个浮点数进行加法计算， 然后将得出的浮点数结果保存起来。 如果字符串值不能被转换成浮点数， 那么向客户端返回一个错误。 |
+| INCRBY      | 对整数值进行加法计算， 得出的计算结果会作为整数被保存起来。  | `embstr` 编码不能执行此命令， 向客户端返回一个错误。         | `raw` 编码不能执行此命令， 向客户端返回一个错误。            |
+| DECRBY      | 对整数值进行减法计算， 得出的计算结果会作为整数被保存起来。  | `embstr` 编码不能执行此命令， 向客户端返回一个错误。         | `raw` 编码不能执行此命令， 向客户端返回一个错误。            |
+| STRLEN      | 拷贝对象所保存的整数值， 将这个拷贝转换成字符串值， 计算并返回这个字符串值的长度。 | 调用 `sdslen` 函数， 返回字符串的长度。                      | 调用 `sdslen` 函数， 返回字符串的长度。                      |
+| SETRANGE    | 将对象转换成 `raw` 编码， 然后按 `raw`编码的方式执行此命令。 | 将对象转换成 `raw` 编码， 然后按 `raw`编码的方式执行此命令。 | 将字符串特定索引上的值设置为给定的字符。                     |
+| GETRANGE    | 拷贝对象所保存的整数值， 将这个拷贝转换成字符串值， 然后取出并返回字符串指定索引上的字符。 | 直接取出并返回字符串指定索引上的字符。                       | 直接取出并返回字符串指定索引上的字符。                       |
+
+
+
+---
 
 
 
@@ -610,7 +706,290 @@ void bytesToHuman(char *s, unsigned long long n) {
 }
 ```
 
+rdb文件是内存的一份快照
 
+## `rdbLoad`
+
+代码很短
+
+```c
+if ((fp = fopen(filename,"r")) == NULL) return C_ERR;
+startLoadingFile(fp, filename,rdbflags);
+rioInitWithFile(&rdb,fp);//绑定write read flush 等系统api
+retval = rdbLoadRio(&rdb,rdbflags,rsi); //正式读
+fclose(fp);
+stopLoading(retval==C_OK);
+```
+
+`rdbLoadRio` 处理一些不同类型的数据，像文件头，selectdb号，moduleID等等，处理完之后会进入真正的读string object。kv都帮到一起了，rdb加载就能直接解出来，主要逻辑
+
+```c
+//while(1) 
+        if ((key = rdbLoadStringObject(rdb)) == NULL) goto eoferr;
+        /* Read value */
+        if ((val = rdbLoadObject(type,rdb,key)) == NULL) {
+            decrRefCount(key);
+            goto eoferr;
+        }
+```
+
+`rdbLoadObject`解出来每一个object，拿到value。这个函数会根据每种类型来解。如果是list之类的还要在内部继续遍历继续解。代码500行，不抄了
+
+具体的格式见参考链接，我直接抄过来
+
+
+
+```bash
+----------------------------# RDB文件是二进制的，所以并不存在回车换行来分隔一行一行.
+52 45 44 49 53              # 以字符串 "REDIS" 开头
+30 30 30 33                 # RDB 的版本号，大端存储，比如左边这个表示版本号为0003
+----------------------------
+FE 00                       # FE = FE表示数据库编号，Redis支持多个库，以数字编号，这里00表示第0个数据库
+----------------------------# Key-Value 对存储开始了
+FD $length-encoding         # FD 表示过期时间，过期时间是用 length encoding 编码存储的，后面会讲到
+$value-type                 # 1 个字节用于表示value的类型，比如set,hash,list,zset等
+$string-encoded-key         # Key 值，通过string encoding 编码，同样后面会讲到
+$encoded-value              # Value值，根据不同的Value类型采用不同的编码方式
+----------------------------
+FC $length-encoding         # FC 表示毫秒级的过期时间，后面的具体时间用length encoding编码存储
+$value-type                 # 同上，也是一个字节的value类型
+$string-encoded-key         # 同样是以 string encoding 编码的 Key值
+$encoded-value              # 同样是以对应的数据类型编码的 Value 值
+----------------------------
+$value-type                 # 下面是没有过期时间设置的 Key-Value对，为防止冲突，数据类型不会以 FD, FC, FE, FF 开头
+$string-encoded-key
+$encoded-value
+----------------------------
+FE $length-encoding         # 下一个库开始，库的编号用 length encoding 编码
+----------------------------
+...                         # 继续存储这个数据库的 Key-Value 对
+FF                          ## FF：RDB文件结束的标志
+```
+
+
+
+### Magic Number
+
+第一行就不用讲了，REDIS字符串用于标识是Redis的RDB文件
+
+### 版本号
+
+用了4个字节存储版本号，以大端（big endian）方式存储和读取
+
+### 数据库编号
+
+以一个字节的0xFE开头，后面存储数据库的具体编号，数据库的编号是一个数字，通过 “Length Encoding” 方式编码存储，“Length Encoding” 我们后面会讲到。
+
+### Key-Value值对
+
+值对包括下面四个部分 1. Key 过期时间，这一项是可有可无的 2. 一个字节表示value的类型 3. Key的值，Key都是字符串，通过 “Redis String Encoding” 来保存 4. Value的值，通过 “Redis Value Encoding” 来根据不同的数据类型做不同的存储
+
+### Key过期时间
+
+过期时间由 0xFD 或  0xFC开头用于标识，分别表示秒级的过期时间和毫秒级的过期时间，后面的具体时间是一个UNIX时间戳，秒级或毫秒级的。具体时间戳的值通过“Redis Length Encoding” 编码存储。在导入RDB文件的过程中，会通过过期时间判断是否已过期并需要忽略。
+
+### Value类型
+
+Value类型用一个字节进行存储，目前包括以下一些值：
+
+- 0 = “String Encoding”
+- 1 = “List Encoding”
+- 2 = “Set Encoding”
+- 3 = “Sorted Set Encoding”
+- 4 = “Hash Encoding”
+- 9 = “Zipmap Encoding”
+- 10 = “Ziplist Encoding”
+- 11 = “Intset Encoding”
+- 12 = “Sorted Set in Ziplist Encoding”
+
+### Key
+
+Key值就是简单的 “String Encoding” 编码，具体可以看后面的描述
+
+### Value
+
+上面列举了Value的9种类型，实际上可以分为三大类
+
+- type = 0, 简单字符串
+- type 为  9, 10, 11 或 12, value字符串在读取出来后需要先解压
+- type 为 1, 2, 3 或 4, value是字符串序列，这一系列的字符串用于构建list，set，hash 和 zset 结构
+
+### Length Encoding
+
+上面说了很多 Length Encoding ，现在就为大家讲解。可能你会说，长度用一个int存储不就行了吗？但是，通常我们使用到的长度可能都并不大，一个int 4个字节是否有点浪费呢。所以Redis采用了变长编码的方法，将不同大小的数字编码成不同的长度。
+
+1. 首先在读取长度时，会读一个字节的数据，其中前两位用于进行变长编码的判断
+2. 如果前两位是 0 0，那么下面剩下的 6位就表示具体长度
+3. 如果前两位是 0 1，那么会再读取一个字节的数据，加上前面剩下的6位，共14位用于表示具体长度
+4. 如果前两位是 1 0，那么剩下的 6位就被废弃了，取而代之的是再读取后面的4 个字节用于表示具体长度
+5. 如果前两位是 1 1，那么下面的应该是一个特殊编码，剩下的 6位用于标识特殊编码的种类。特殊编码主要用于将数字存成字符串，或者编码后的字符串。具体见 “String Encoding”
+
+这样做有什么好处呢，实际就是节约空间：
+
+1. 0 – 63的数字只需要一个字节进行存储
+2. 而64 – 16383 的数字只需要两个字节进行存储
+3. 16383 - 2^32 -1 的数字只需要用5个字节（1个字节的标识加4个字节的值）进行存储
+
+### String Encoding
+
+Redis的 String Encoding 是二进制安全的，也就是说他没有任何特殊分隔符用于分隔各个值，你可以在里面存储任何东西。它就是一串字节码。 下面是 String Encoding 的三种类型
+
+1. 长度编码的字符串
+2. 数字替代字符串：8位，16位或者32位的数字
+3. LZF 压缩的字符串
+
+#### 长度编码字符串
+
+长度编码字符串是最简单的一种类型，它由两部分组成，一部分是用 “Length Encoding” 编码的字符串长度，第二部分是具体的字节码。
+
+#### 数字替代字符串
+
+上面说到过 Length Encoding 的特殊编码，就在这里用上了。所以数字替代字符串是以 1 1 开头的，然后读取这个字节剩下的6 位，根据不同的值标识不同的数字类型：
+
+- 0 表示下面是一个8 位的数字
+- 1 表示下面是一个16 位的数字
+- 2 表示下面是一个32 位的数字
+
+#### LZF压缩字符串
+
+和数据替代字符串一样，它也是以1 1 开头的，然后剩下的6 位如果值为4，那么就表示它是一个压缩字符串。压缩字符串解析规则如下：
+
+1. 首先按 Length Encoding 规则读取压缩长度 clen
+2. 然后按 Length Encoding 规则读取非压缩长度
+3. 再读取第二个 clen
+4. 获取到上面的三个信息后，再通过LZF算法解码后面clen长度的字节码
+
+### List Encoding
+
+Redis List 结构在RDB文件中的存储，是依次存储List中的各个元素的。其结构如下：
+
+1. 首先按 Length Encoding 读取这个List 的长度 size
+2. 然后读取 size个 String Encoding的值
+3. 然后再用这些读到的 size 个值重新构建 List就完成了
+
+### Set Encoding
+
+Set结构和List结构一样，也是依次存储各个元素的
+
+### Sorted Set Encoding
+
+也是和list类似的，注意double有两种保存方法，做了优化，所以读取也要做区分
+
+### Hash Encoding
+
+1. 首先按 Length Encoding 读出hash 结构的大小 size
+2. 然后读取2×size 个 String Encoding的字符串（因为一个hash项包括key和value两项）
+3. 将上面读取到的2×size 个字符串解析为hash 和key 和 value
+4. 然后将上面的key value对存储到hash结构中
+
+
+
+注意这个整理，现在6.0版本是不准的，多了module和stream。
+
+其中stream的处理方法是类似的，也是遍历
+
+
+
+## `rdbSaveRio`
+
+逐个保存，所有的kv对都变成string
+
+核心逻辑
+
+```c
+for(all db)
+  for(each type)
+      rdbSaveKeyValuePair()
+```
+
+
+
+rdb文件整体都是大端的。这也算方便跨平台吧
+
+
+
+6.0带来的一大改动就是多线程IO了。
+
+## IOThreadMain
+
+多线程IO读。提高并发。核心代码
+
+```c
+        listRewind(io_threads_list[id],&li);
+        while((ln = listNext(&li))) {
+            client *c = listNodeValue(ln);
+            if (io_threads_op == IO_THREADS_OP_WRITE) {
+                writeToClient(c,0);
+            } else if (io_threads_op == IO_THREADS_OP_READ) {
+                readQueryFromClient(c->conn);
+            } else {
+                serverPanic("io_threads_op value is unknown");
+            }
+        }
+```
+
+### readQueryFromClient
+
+核心代码没什么好说的
+
+```c
+    nread = connRead(c->conn, c->querybuf+qblen, readlen);
+    if (nread == -1) {
+        if (connGetState(conn) == CONN_STATE_CONNECTED) {
+            return;
+        } else {
+            serverLog(LL_VERBOSE, "Reading from client: %s",connGetLastError(c->conn));
+            freeClientAsync(c);
+            return;
+        }
+    } else if (nread == 0) {
+        serverLog(LL_VERBOSE, "Client closed connection");
+        freeClientAsync(c);
+        return;
+    } else if (c->flags & CLIENT_MASTER) {
+        /* Append the query buffer to the pending (not applied) buffer
+         * of the master. We'll use this buffer later in order to have a
+         * copy of the string applied by the last command executed. */
+        c->pending_querybuf = sdscatlen(c->pending_querybuf,
+                                        c->querybuf+qblen,nread);
+    }
+```
+
+这里读完，后面是`processInputBufferAndReplicate->processInputBuffer`   解析完命令等执行
+
+从客户链接读数据，几个优化点
+
+- 内存预分配，和redis业务相关。不讲
+- postponeClientRead 如果IO线程没读完，接着读，别处理
+
+## createClient
+
+- 绑定handler等等
+  - noblock, tcpnodelay, keepalive
+- 上线文设定，buf，db，cmd，auth等等
+- 对应freeclient
+  - 各种释放缓存，unwatch unpubsub
+  - unlinkClient 处理handler，关掉fd，如果有pending，扔掉
+
+## prepareClientToWrite
+
+-  如果不能写，需要把client标记成pending_write，等调度
+
+
+
+各种accept略过
+
+### processInputBufferAndReplicate
+
+各种buffer处理总入口，processInputBuffer的一层封装
+
+redis支持两种协议，redis protocol，或者inline，按行读
+
+processInputBuffer在检查各种flag之后，根据字符串开头是不是array来判断是processMultibulkBuffer还是processInlineBuffer
+
+
+
+Client相关的帮助函数这里省略
 
 ---
 
@@ -619,6 +998,7 @@ void bytesToHuman(char *s, unsigned long long n) {
 - redis设计与实现试读内容，基本上一大半。还有源码注释做的不错。我基本上照着注释写的。<http://redisbook.com/> redisbook 讲的太详细了，huangz还给了个阅读建议。我重写主要是落实一下脑海中的概念，便于后续翻阅。redis代码走读的东西太多了，我的方向偏向于改动源码需要了解的东西。
 - huangz给的建议，如何阅读redis代码<http://blog.huangz.me/diary/2014/how-to-read-redis-source-code.html>
 - 大部分都抄自这里 http://www.zbdba.com/2018/06/23/深入浅出-redis-client-server交互流程/
+- https://ningyu1.github.io/site/post/34-redis-rdb/
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
 <details>

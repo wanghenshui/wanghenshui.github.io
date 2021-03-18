@@ -182,7 +182,7 @@ done
 
 附调用图一张。组件太多，确实找不到在哪。
 
-<img src="https://wanghenshui.github.io/assets/pika.svg" alt="" width="50%">
+<img src="https://wanghenshui.github.io/assets/pika.svg" alt="" width="100%">
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
 <details>
