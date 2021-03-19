@@ -84,6 +84,8 @@ hash信息构造出merkel tree，其实存储格式可以是数组（用数组�
 - wiki https://zh.wikipedia.org/wiki/%E5%93%88%E5%B8%8C%E6%A0%91
 - 这里有个很详细的介绍 https://blog.csdn.net/Ciellee/article/details/108004428
 - 比特币 https://howieliux1.gitbooks.io/mastering-bitcoin-2nd-edition/content/ch09.html
+- https://github.com/bitcoin/bitcoin/blob/master/src/uint256.h
+- https://www.cnblogs.com/fengzhiwu/p/5524324.html
 
 
 ---
