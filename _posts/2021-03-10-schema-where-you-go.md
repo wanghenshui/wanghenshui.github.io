@@ -81,6 +81,8 @@ chunk和表名的映射关系单独放在config server用来记录，方便mongo
 
 用Online Schema变更算法。lease+版本
 
+这里应该展开讲一下
+
 ### Q:  schema信息是如何同步的？
 
 所有的变动都是主动推给pd
@@ -94,6 +96,18 @@ chunk和表名的映射关系单独放在config server用来记录，方便mongo
 无中心，gossip通信
 
 保证最终一致性，时间窗内不保证DDL改动一致性
+
+### Q：DDL改动如何保证正确？
+
+用Online Schema变更算法。lease+版本
+
+这里应该展开讲一下
+
+### Q:  schema信息是如何同步的？
+
+gossip，变更中总有一个时间窗期间是不同步的
+
+这里应该展开讲一下
 
 
 
