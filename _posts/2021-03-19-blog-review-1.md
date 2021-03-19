@@ -1,8 +1,8 @@
 ---
 layout: post
-title: blog review #1
+title: blog review 第一期
 categories: [review]
-tags: [mysql]
+tags: [mysql, boost, template]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
@@ -39,7 +39,7 @@ tags: [mysql]
 
 ### [Variadic expansion in aggregate initialization](https://jgreitemann.github.io/2018/09/15/variadic-expansion-in-aggregate-initialization/)
 
-
+todo
 
 ### [4 Features of Boost HOF That Will Make Your Code Simpler](https://www.fluentcpp.com/2021/01/15/4-features-of-boost-hof-that-will-make-your-code-simpler/)
 
@@ -348,18 +348,6 @@ template <class T> INLINE size_t fast_upper_bound2(const vector<T>& vec, T value
 只有版本2快一些。循环展开帮助不大。在2015年的时候，编译器比较拉胯，没有很好的提升，改成gcc5.5 自己主动展开版本和循环版就一样快了，改成gcc7/10 编译器就给你优化了。
 
 clang版本，这个汇编我不知道怎么改，就没有继续深究
-
-
-
-
-
-### [Understanding the NVMe performance problem](https://searchstorage.techtarget.com/opinion/Understanding-the-NVMe-performance-problem)
-
-
-
-
-
-
 
 
 
