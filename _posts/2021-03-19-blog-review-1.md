@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第一期
 categories: [review]
-tags: [mysql, boost, template]
+tags: [mysql, boost, template, todo, asm, gdb, cpp]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
@@ -120,7 +120,7 @@ std::transform(begin(input), end(input), back_inserter(results), boost::hof::con
 - 映射
 
 ```c++
-d::sort(begin(circles), end(circles), [](Circle const& circle1, Circle const& circle2)
+std::sort(begin(circles), end(circles), [](Circle const& circle1, Circle const& circle2)
                                         {
                                             return circle1.radius() < circle2.radius();
                                         }); // 1
@@ -345,11 +345,65 @@ template <class T> INLINE size_t fast_upper_bound2(const vector<T>& vec, T value
 
 我用clang编不过，没去研究汇编。用gcc跑了一版本，[QB](https://quick-bench.com/q/AcGpgcinwrPcF45bprPFVW8aYJg)
 
-只有版本2快一些。循环展开帮助不大。在2015年的时候，编译器比较拉胯，没有很好的提升，改成gcc5.5 自己主动展开版本和循环版就一样快了，改成gcc7/10 编译器就给你优化了。
+只有版本2快一些。循环展开帮助不大。在2015年的时候，编译器比较拉胯，没有很好的提升，改成gcc5.5 自己主动展开版本和循环版就一样快了，改成gcc7/10 编译器就给你优化了。没必要自己去循环展开，性能反而很差
 
 clang版本，这个汇编我不知道怎么改，就没有继续深究
 
 
+
+### [Time Travel Debugging for C/C++](https://pspdfkit.com/blog/2021/time-travel-debugging-for-c/)
+
+讲GDB怎么重放
+
+```gdb
+ target record-full
+ continue
+```
+
+遇到错误，是gdb不兼容指令，使用下面的patch
+
+```bash
+ perl -0777 -pe 's/\x31\xc0.{0,32}?\K\x0f\xa2/\x66\x90/' \
+  < /lib64/ld-linux-x86-64.so.2 > ld-linux
+$ chmod u+rx ld-linux
+$ patchelf --set-interpreter `pwd`/ld-linux stack-smasher
+$ LD_BIND_NOW=1 gdb ./stack-smasher
+```
+
+继续gdb
+
+```gdb
+(gdb) reverse-stepi
+(gdb) layout asm
+0x55555555521d <main(int, char**)>       push   %rbp
+   0x55555555521e <main(int, char**)+1>     mov    %rsp,%rbp
+   0x555555555221 <main(int, char**)+4>     sub    $0x30,%rsp
+   0x555555555225 <main(int, char**)+8>     mov    %edi,-0x24(%rbp)
+   0x555555555228 <main(int, char**)+11>    mov    %rsi,-0x30(%rbp)
+B+ 0x55555555522c <main(int, char**)+15>    lea    -0x20(%rbp),%rax
+   0x555555555230 <main(int, char**)+19>    mov    %rax,%rdi
+   0x555555555233 <main(int, char**)+22>    callq  0x555555555277 <std::data<std::array<wchar_t, 8ul> >(std::array<wchar_t, 8ul>&)>
+   0x555555555238 <main(int, char**)+27>    mov    $0x20,%esi
+   0x55555555523d <main(int, char**)+32>    mov    %rax,%rdi
+   0x555555555240 <main(int, char**)+35>    callq  0x555555555175 <fill(wchar_t*, unsigned long)>
+   0x555555555245 <main(int, char**)+40>    mov    $0x0,%eax
+   0x55555555524a <main(int, char**)+45>    leaveq
+  >0x55555555524b <main(int, char**)+46>    retq
+(gdb) x $rsp
+0x7fffffffda48: 0x0000006c
+(gdb) set can-use-hw-watchpoints 0
+(gdb) watch *0x7fffffffda48
+Watchpoint 2: *0x7fffffffda48
+(gdb) reverse-continue
+Watchpoint 2: *0x7fffffffda48
+__memmove_sse2_unaligned_erms () at ../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:371
+(gdb) backtrace
+#0  __memmove_sse2_unaligned_erms () at ../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:371
+#1  0x000055555555521a in fill (dst=0x7fffffffda20 L"Hello, W\x555552c0啕\xf7a34e3b翿𑰀", sz=32) at stack-smasher.cc:9
+#2  0x0000555555555245 in main () at stack-smasher.cc:15
+```
+
+就找到问题了 
 
 
 ---
