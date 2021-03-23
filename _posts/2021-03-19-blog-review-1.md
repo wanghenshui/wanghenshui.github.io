@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第一期
 categories: [review]
-tags: [mysql, boost, template, todo, asm, gdb, cpp]
+tags: [mysql, bash, proc, iostat, boost, template, todo, gdb,bash, cpp]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
@@ -11,7 +11,7 @@ tags: [mysql, boost, template, todo, asm, gdb, cpp]
 
 <!-- more -->
 
-### [Memory saturated MySQL](https://blog.koehntopp.info/2021/02/28/memory-saturated-mysql.html)
+## [Memory saturated MySQL](https://blog.koehntopp.info/2021/02/28/memory-saturated-mysql.html)
 
 - cache都是ns级，磁盘是ms级别,尽可能的把working set都放到内存里
 - memory就是buffer pool，算下需要多少
@@ -22,7 +22,7 @@ tags: [mysql, boost, template, todo, asm, gdb, cpp]
 
 
 
-### [如何设计安全的用户登录功能](https://my.oschina.net/u/1269381/blog/852679)
+## [如何设计安全的用户登录功能](https://my.oschina.net/u/1269381/blog/852679)
 
 在cookie中，保存三个东西——用户名，登录序列，登录token。
  用户名：明文存放。
@@ -37,11 +37,11 @@ tags: [mysql, boost, template, todo, asm, gdb, cpp]
 
 
 
-### [Variadic expansion in aggregate initialization](https://jgreitemann.github.io/2018/09/15/variadic-expansion-in-aggregate-initialization/)
+## [Variadic expansion in aggregate initialization](https://jgreitemann.github.io/2018/09/15/variadic-expansion-in-aggregate-initialization/)
 
 todo
 
-### [4 Features of Boost HOF That Will Make Your Code Simpler](https://www.fluentcpp.com/2021/01/15/4-features-of-boost-hof-that-will-make-your-code-simpler/)
+## [4 Features of Boost HOF That Will Make Your Code Simpler](https://www.fluentcpp.com/2021/01/15/4-features-of-boost-hof-that-will-make-your-code-simpler/)
 
 介绍boost.hof库
 
@@ -170,7 +170,7 @@ boost::hof::apply_eval(g, [](){ return f1(); }, [](){ return f2(); });//保证�
 
 
 
-### [Two traps in iostat: %util and svctm](https://brooker.co.za/blog/2014/07/04/iostat-pct.html)
+## [Two traps in iostat: %util and svctm](https://brooker.co.za/blog/2014/07/04/iostat-pct.html)
 
 一个iostat -x输出 ,两个SSD
 
@@ -196,7 +196,7 @@ iostat有个备注
 
 由于ssd的并行化处理，吞吐很高响应很低，计算util可能会出现错误
 
-### [How We Beat C++ STL Binary Search](https://academy.realm.io/posts/how-we-beat-cpp-stl-binary-search/)
+## [How We Beat C++ STL Binary Search](https://academy.realm.io/posts/how-we-beat-cpp-stl-binary-search/)
 
 upper_bound长这样https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_algo.h
 
@@ -351,7 +351,7 @@ clang版本，这个汇编我不知道怎么改，就没有继续深究
 
 
 
-### [Time Travel Debugging for C/C++](https://pspdfkit.com/blog/2021/time-travel-debugging-for-c/)
+## [Time Travel Debugging for C/C++](https://pspdfkit.com/blog/2021/time-travel-debugging-for-c/)
 
 讲GDB怎么重放
 
@@ -404,6 +404,55 @@ __memmove_sse2_unaligned_erms () at ../sysdeps/x86_64/multiarch/memmove-vec-unal
 ```
 
 就找到问题了 
+
+
+
+## [优雅的写bash条件](https://timvisee.com/blog/elegant-bash-conditionals/)
+
+
+用[control operator](https://www.gnu.org/software/bash/manual/html_node/Definitions.html#Definitions)来改写，这里特指 && ||
+
+```bash
+if [ expression ]
+then
+    command
+fi
+if [ expression ]; then command; fi
+echo $?
+ls ~/            # exit code: 0
+ls ~/nonexistent # exit code: 2
+if [ -r ~/.profile ]; then
+    source ~/.profile
+fi
+#改写效果
+[ -r ~/.profile ] && . ~/.profile
+```
+
+
+
+
+
+## [To Cage a Dragon An obscure quirk of proc](https://offlinemark.com/2021/02/11/an-obscure-quirk-of-proc/)
+
+通过`/proc/pid/mem`这个文件可以访问进程的变量，这里也叫做 `“punch through” semantics`
+
+比如juliajit 也在用https://lkml.org/lkml/2017/5/29/541 类似的rr debuger也在用
+
+问题？怎么实现的？正常来说这应该是不可写的，怎么就写成功了，并且透传到用户层了？？
+
+硬件层来说，就是有pagefault，然后COW了
+
+看下`/proc/*/mem`[实现](https://elixir.bootlin.com/linux/v5.9-rc3/source/fs/proc/base.c)
+
+调用[mem_rw()](https://elixir.bootlin.com/linux/v5.9-rc3/source/fs/proc/base.c#L835)  -> 
+
+调用 [access_remote_vm()](https://elixir.bootlin.com/linux/v5.9-rc3/source/mm/memory.c#L4805)去写 -> 
+
+get_user_pages_remote找物理页 -> FOLL_FORCE flag, which mem_rw() passes.  [check_vma_flags](https://elixir.bootlin.com/linux/v5.9-rc3/source/mm/gup.c#L930) 不会校验是不是不可写
+
+kmap()标记写 -> 
+
+copy_to_user_page 写
 
 
 ---
