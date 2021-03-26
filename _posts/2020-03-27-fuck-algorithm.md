@@ -4,13 +4,66 @@ title: 算法4/手撕算法整理笔记
 categories: [algorithm]
 tags: [data structure, algorithm]
 ---
-  
+
 
 ---
 
 > https://github.com/labuladong/fucking-algorithm
 
 ---
+
+## 经典题型
+
+- Sliding window，**滑动窗口类型**
+
+- two points, **双指针类型**
+
+- Fast & Slow pointers, **快慢指针类型**
+
+  - 龟兔赛跑
+
+- Merge Intervals，**区间合并类型**
+
+  - 重叠区间，判断交集
+
+- Cyclic Sort，**循环排序**
+
+- In-place Reversal of a LinkedList，**链表翻转**
+
+- Tree Breadth First Search，**树上的BFS**
+
+  - 用队列处理遍历
+
+-  Tree Depth First Search，**树上的DFS**
+
+  - 模拟堆栈
+
+-  Two Heaps，**双堆类型** 最大最小堆求中位数
+
+  -  优先队列
+  - 找一组数中的最大最小中位数
+
+- Subsets，**子集类型，一般都是使用多重DFS**
+
+-  Modified Binary Search，**改造过的二分**
+
+- Top ‘K’ Elements，**前K个系列** 堆
+
+-  K-way merge，**多路归并**
+
+- DP
+
+  - **0/1背包类型**
+  - Unbounded Knapsack，无限背包
+  - 斐波那契数列
+  - Palindromic Subsequence回文子系列
+  - Longest Common Substring最长子字符串系列
+
+- Topological Sort (Graph)，**拓扑排序类型**
+
+  - hashmap邻接表
+
+  
 
 ## 基础
 

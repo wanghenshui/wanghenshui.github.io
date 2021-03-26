@@ -2,12 +2,14 @@
 layout: post
 title: blog review 第一期
 categories: [review]
-tags: [mysql, bash, proc, iostat, boost, template, todo, gdb,bash, cpp]
+tags: [mysql, bash, proc, iostat, boost, template, gdb,bash, cpp]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
 
 后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
+
+[toc]
 
 <!-- more -->
 
@@ -39,7 +41,78 @@ tags: [mysql, bash, proc, iostat, boost, template, todo, gdb,bash, cpp]
 
 ## [Variadic expansion in aggregate initialization](https://jgreitemann.github.io/2018/09/15/variadic-expansion-in-aggregate-initialization/)
 
-todo
+这里讨论如何给array初始化的同时填好值
+
+```c++
+struct foo {
+    foo(int i) : data(i) {}
+    friend inline std::ostream& operator<<(std::ostream& os,
+                                           foo const& f)
+    { return os << "foo(" << f.data << ")"; }
+private:
+    int data;
+};
+// 典型，笨拙
+std::array<foo, 10> arr;
+for (int i = 0; i < arr.size(); ++i)
+    arr[i] = foo(i);
+// 不能编译，因为有十个，你只提供了一个构造，推导不出init list。引入默认构造也不是一个好点子
+// 因为需要各种值
+std::array<foo, 10> arr {};
+
+//典型vector方案
+std::vector<foo> vec;
+vec.reserve(10);
+std::generate_n(std::back_inserter(vec), 10,
+                [i=0]() mutable -> foo { return i++; });
+
+```
+
+
+
+这里为了解决这个问题，引入标题描述的技术
+
+```c++
+template <typename Container, int... I>
+Container iota_impl(std::integer_sequence<int, I...>) {
+    return {I...};
+} 
+
+template <typename T, size_t N>
+auto iota_array() {
+    using Sequence = std::make_integer_sequence<int, N>;
+    return iota_impl<std::array<T, N>>(Sequence{});
+}
+
+auto arr = iota_array<foo, 10>();
+std::copy(arr.begin(), arr.end(),
+          std::ostream_iterator<foo>{std::cout, ", "});
+/* output: foo(0), foo(1), foo(2), foo(3), foo(4), ... */
+```
+
+上面的代码是从0开始，要是从任意位置开始呢
+
+```c++
+template <typename T, size_t N, size_t... I>
+auto subarray_impl(std::array<T, N> const& arr,
+                   size_t first,
+                   std::index_sequence<I...>)
+    -> std::array<T, sizeof...(I)>
+{
+    return {arr[first + I]...};
+}
+
+template <size_t S, typename T, size_t N>
+auto subarray(std::array<T, N> const& arr, size_t first) {
+    using Indices = std::make_index_sequence<S>;
+    return subarray_impl(arr, first, Indices{});
+}
+
+auto sub = subarray<4>(arr, 2);
+/* foo(2), foo(3), foo(4), foo(5) */
+```
+
+- sizeof ...算个数
 
 ## [4 Features of Boost HOF That Will Make Your Code Simpler](https://www.fluentcpp.com/2021/01/15/4-features-of-boost-hof-that-will-make-your-code-simpler/)
 

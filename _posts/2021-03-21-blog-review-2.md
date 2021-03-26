@@ -2,12 +2,14 @@
 layout: post
 title: blog review 第二期
 categories: [review]
-tags: [postgresql, sqlite, materialize, mysql, boost, template]
+tags: [postgresql, sqlite,todo, materialize, mysql, boost, template]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
 
 后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
+
+[toc]
 
 <!-- more -->
 
@@ -165,6 +167,128 @@ int64_t normSquared(Vec2 v) {
 ```
 
 为什么是24，多出来的8是什么？[frame pointer](https://en.wikipedia.org/wiki/Call_stack#FRAME-POINTER),可以通过-fno-omit-frame-pointer消除，但不建议，会丢调试信息
+
+
+
+## [Debugging production: the LIAR method](https://www.linux.it/~ema/posts/production-debugging-liar-method/)
+
+介绍bpftrace抓信息
+
+```bash
+#抓list信息
+sudo bpftrace -l '*tcp*send*'
+tracepoint:tcp:tcp_send_reset
+kprobe:__traceiter_tcp_send_reset
+kprobe:tcp_send_mss
+kprobe:do_tcp_sendpages
+kprobe:tcp_sendpage_locked
+kprobe:tcp_sendpage
+kprobe:tcp_sendmsg_locked
+kprobe:tcp_sendmsg
+[...]
+#	指令，抓具体字段
+sudo bpftrace -e 'kprobe:tcp_sendmsg {
+    printf("pid=%d: size=%d\n", pid, arg2)
+}'
+Attaching 1 probe...
+pid=764374: size=36
+pid=764374: size=36
+pid=633506: size=43
+pid=633506: size=566
+pid=633506: size=600
+pid=633506: size=58
+pid=633506: size=819
+^C
+#聚合
+sudo bpftrace -e 'kprobe:tcp_sendmsg {
+    @bytes[pid] = stats(arg2);
+    print(@bytes);
+}'
+Attaching 1 probe...
+@bytes[770234]: count 1, average 77, total 77
+
+@bytes[770234]: count 1, average 77, total 77
+@bytes[770237]: count 1, average 77, total 77
+# 报告
+ sudo bpftrace -e 'kprobe:tcp_sendmsg {
+    @bytes[pid] = stats(arg2);
+}'
+Attaching 1 probe...
+^C
+
+@bytes[769042]: count 1, average 75, total 75
+@bytes[769047]: count 1, average 75, total 75
+@bytes[769052]: count 1, average 75, total 75
+@bytes[769057]: count 1, average 75, total 75
+@bytes[633506]: count 13, average 378, total 4915
+
+#报告，十秒一抓
+sudo bpftrace -e 'kprobe:tcp_sendmsg {
+    @bytes[pid] = stats(arg2);
+}
+
+interval:s:10 {
+    exit();
+}'
+```
+
+
+
+## [系统设计](https://github.com/donnemartin/system-design-primer)
+
+这得猴年马月才能看完，这么多
+
+这里也有个系统面试 https://wizardforcel.gitbooks.io/gainlo-interview-guide/content/6.html
+
+## [It’s not always obvious when tail-call optimization is allowed](https://quuxplusone.github.io/blog/2021/01/09/tail-call-optimization/)
+
+讲尾递归调用优化(TCO)
+
+尾递归调用优化的汇编是直接jmp到函数上，普通的调用是callq，可以看这个[例子](https://godbolt.org/z/vcY3v9)
+
+为什么有时候会TCO有时候不会呢？
+
+首先 C++ guarantees that every variable (within its lifetime) has a unique address
+
+TCO是否优化取决于函数附近的变量用的栈能不能复用，变量能不能消除
+
+这里的escape不可见，所以不能确定变量能不能优化，如果替换成这个
+
+```c++
+const int *addr_of_i;
+void escape(const int& i) {
+    addr_of_i = &i;
+}
+void bar() {
+    int j;
+    assert(&j != addr_of_i);
+}
+```
+
+立刻全部优化掉。
+
+不要期待TCO，如果可以，自己手写
+
+```c++
+int gcd(int x, int y) {
+    if (x == 0) return y;
+    return gcd(y % x, x);
+}
+
+int gcd(int x, int y) {
+    while (x != 0) {
+        std::tie(x, y) = std::tuple(y % x, x);
+    }
+    return y;
+}
+```
+
+
+
+## TODO
+
+- https://steveire.wordpress.com/2019/04/30/the-future-of-ast-matching-refactoring-tools-eurollvm-and-accu/
+- https://steveire.wordpress.com/2021/02/14/ast-matchmaking-made-easy/
 
 
 
