@@ -9,7 +9,7 @@ tags: [hashtable, ttl,asm, gcc]
 
 后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
 
-[toc]
+
 
 <!-- more -->
 

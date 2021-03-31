@@ -9,7 +9,7 @@ lmdb是基于mmap的。还好是嵌入式的小kv，选择mmap可以理解，不
 
 boltdb是借鉴lmdb的思想用go重写的，boltdb的资料非常多。
 
-[toc]
+
 
 <!-- more -->
 

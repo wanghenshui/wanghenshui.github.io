@@ -9,7 +9,7 @@ tags: [mysql, bash, proc, iostat, boost, template, gdb,bash, cpp]
 
 后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
 
-[toc]
+
 
 <!-- more -->
 
