@@ -13,7 +13,7 @@ tags: [myrocks, rocksdb, tidb, cockroachdb]
 
 key value绑定
 
-<img src="https://wanghenshui.github.io/assets/myrocks-key.png" alt=""  width="80%">
+<img src="https://wanghenshui.github.io/assets/myrocks-key.png" alt=""  width="100%">
 
 Memcomparable
 

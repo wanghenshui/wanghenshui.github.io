@@ -13,7 +13,60 @@ tags: [hashtable, ttl,asm, gcc]
 
 <!-- more -->
 
+## [Avoiding instruction cache misses](https://paweldziepak.dev/2019/06/21/avoiding-icache-misses/)
 
+
+
+## linux存储一图流
+
+
+
+<img src="https://www.thomas-krenn.com/de/wikiDE/images/b/ba/Linux-storage-stack-diagram_v4.0.png" alt=""  width="100%">
+
+
+
+## [totally_safe_transmute, line-by-line](https://blog.yossarian.net/2021/03/16/totally_safe_transmute-line-by-line)
+
+rust是没有c++那样的reinterpret_cast的，本身自带的std::mem::transmute是类似的实现，unsafe的，这里介绍了一种safe的方案
+
+借用#[repr(C)]的enum的特点
+
+```rust
+#[repr(C)]
+enum E<SrcTy, DstTy> {
+    T(SrcTy),
+    #[allow(dead_code)] U(DstTy),
+}
+```
+
+类似
+
+```c
+struct E {
+  int discriminant;
+  union {
+    SrcTy T;
+    DstTy U;
+  } data;
+};
+```
+
+这样，通过修改discriminant来读union，safe union的做法
+
+如何修改discriminant呢？非常病态
+
+```rust
+    let mut f = fs::OpenOptions::new()
+        .write(true)
+        .open("/proc/self/mem").expect("welp");
+
+    f.seek(io::SeekFrom::Start(&v as *const _ as u64)).expect("oof");
+    f.write(&[1]).expect("darn");
+```
+
+通过proc来修改自身内存
+
+这一切值得吗？代码在这里 https://github.com/ben0x539/totally-safe-transmute/blob/e49ca4ea514b8d996a01f04697ccdd5940300312/src/lib.rs
 
 ## [How to implement a hash table (in C)](https://benhoyt.com/writings/hash-table-in-c/)
 

@@ -9,13 +9,9 @@ tags: [malloc]
 
 <!-- more -->
 
-[procps-ng](https://gitlab.com/procps-ng) 是探测/proc 的一系列软件，像top，ps之类的
-
-
-
-top 代码在这里 https://gitlab.com/procps-ng/procps/-/blob/0bf15c004db6a3342703a3c420a5692e376c457d/top/top.c 
-
 [SO](https://stackoverflow.com/questions/3941271/why-are-malloc-and-printf-said-as-non-reentrant)这个答案解释的很清楚
+
+
 
 > The `malloc` function could either be thread-safe or thread-unsafe.  Both are not reentrant:
 >
@@ -37,9 +33,15 @@ top 代码在这里 https://gitlab.com/procps-ng/procps/-/blob/0bf15c004db6a3342
 
 
 
-这个patch就是典型的malloc重入bug https://gitlab.com/procps-ng/procps/-/commit/0bf15c004db6a3342703a3c420a5692e376c457d 和上面描述一毛一样
+[procps-ng](https://gitlab.com/procps-ng) 是探测/proc 的一系列软件，像top，ps之类的
+
+top 代码在这里 https://gitlab.com/procps-ng/procps/-/blob/0bf15c004db6a3342703a3c420a5692e376c457d/top/top.c 
 
 
+
+这个patch就是典型的malloc重入bug https://gitlab.com/procps-ng/procps/-/commit/0bf15c004db6a3342703a3c420a5692e376c457d 
+
+和上面描述一毛一样
 
 ```c
        fputs(str, stderr);
