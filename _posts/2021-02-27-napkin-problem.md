@@ -48,6 +48,10 @@ tags: [redis]
 
 
 
+- https://www.youtube.com/watch?v=IxkSlnrRFqc
+
+
+
 
 ---
 

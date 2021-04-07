@@ -13,10 +13,6 @@ tags: [hashtable, ttl,asm, gcc]
 
 <!-- more -->
 
-## [Avoiding instruction cache misses](https://paweldziepak.dev/2019/06/21/avoiding-icache-misses/)
-
-
-
 ## linux存储一图流
 
 
