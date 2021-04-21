@@ -9,8 +9,30 @@ tags: [data structure, algorithm]
 ---
 
 > https://github.com/labuladong/fucking-algorithm
+>
+> https://vjudge.net/article/187
 
 ---
+
+## 抽象题型
+
+https://github.com/Strive-for-excellence/ACM-template
+
+https://github.com/atcoder/ac-library
+
+https://github.com/kth-competitive-programming/kactl/blob/master/content/graph/2sat.h
+
+https://github.com/ouuan/Tree-Generator
+
+https://github.com/BedirT/ACM-ICPC-Preparation/tree/master/Week01
+
+https://github.com/hanzohasashi33/Competetive_programming
+
+https://github.com/rachitiitr/DataStructures-Algorithms
+
+https://csacademy.com/app/graph_editor/
+
+
 
 ## 经典题型
 
