@@ -85,7 +85,22 @@ https://csacademy.com/app/graph_editor/
 
   - hashmap邻接表
 
-  
+
+博弈问题 https://zhuanlan.zhihu.com/p/50787280
+
+
+
+https://www.lintcode.com/ladder/47/
+
+https://www.lintcode.com/ladder/2/
+
+https://hrbust-acm-team.gitbooks.io/acm-book/content/chang_jian_ji_chu_cuo_wu.html
+
+https://github.com/lightyears1998/polymorphism
+
+https://github.com/menyf/acm-icpc-template
+
+https://github.com/nataliekung/leetcode/tree/master/amazon
 
 ## 基础
 

@@ -61,6 +61,22 @@ https://github.com/jhspetersson/fselect
 
 
 
+
+开源项目待读
+
+https://github.com/Tencent/phxqueue/blob/master/README.zh_cn.md
+
+https://github.com/Tencent/wwsearch/blob/master/doc/wwsearch-implement.md
+
+https://github.com/Tencent/paxosstore
+
+https://github.com/Tencent/phxpaxos
+
+https://github.com/Tencent/phxrpc
+
+
+
+
 ---
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！
