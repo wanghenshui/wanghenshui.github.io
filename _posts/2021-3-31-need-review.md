@@ -76,6 +76,16 @@ https://github.com/Tencent/phxrpc
 
 
 
+unix6
+
+https://ljrk.codeberg.page/unixv6-alloc.html
+
+https://doma.dev/blog/parsing-stuff-in-rust/
+
+
+
+https://book.tidb.io/session1/chapter7/tidb-schema-design.html
+
 
 ---
 
