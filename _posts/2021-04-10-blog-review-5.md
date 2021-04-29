@@ -146,6 +146,182 @@ stack指针SP维护，stack维护，一个数组
 
 
 
+## [异步schema变更](https://github.com/ngaut/builddatabase/blob/master/f1/schema-change.md)
+
+讲F1算法，把schema变成KV，在DDL过程中同步KV
+
+
+
+
+
+## [Tail Latency Might Matter More Than You Think](https://brooker.co.za/blog/2021/04/19/latency.html)
+
+
+
+ There are many causes of tail latency in the world, including  contention, garbage collection, packet loss, host failure, and weird  stuff operating systems do in the background. It's tempting to look at  the 99.9th percentile, and feel that it doesn't matter. After all, 999  of 1000 calls are seeing lower latency than that.
+
+讲了几个应用串联在了一起，导致延迟过高的问题。这没有什么好的解法。使用的时候注意
+
+
+
+
+
+## [How we scaled the GitHub API with a sharded, replicated rate limiter in Redis](https://github.blog/2021-04-05-how-we-scaled-github-api-sharded-replicated-rate-limiter-redis/)
+
+github使用redis做限流器的一个demo
+
+针对api做的限流
+
+```lua
+-- RATE_SCRIPT:
+--   count a request for a client
+--   and return the current state for the client
+-- rename the inputs for clarity below
+local rate_limit_key = KEYS[1]
+local increment_amount = tonumber(ARGV[1])
+local next_expires_at = tonumber(ARGV[2])
+local current_time = tonumber(ARGV[3])
+local expires_at_key = rate_limit_key .. ":exp"
+local expires_at = tonumber(redis.call("get", expires_at_key))
+if not expires_at or expires_at < current_time then
+  -- this is either a brand new window,
+  -- or this window has closed, but redis hasn't cleaned up the key yet
+  -- (redis will clean it up in one more second)
+  -- initialize a new rate limit window
+  redis.call("set", rate_limit_key, 0)
+  redis.call("set", expires_at_key, next_expires_at)
+  -- tell Redis to clean this up _one second after_ the expires-at time.
+  -- that way, clock differences between Ruby and Redis won't cause data to disappear.
+  -- (Redis will only clean up these keys "long after" the window has passed)
+  redis.call("expireat", rate_limit_key, next_expires_at + 1)
+  redis.call("expireat", expires_at_key, next_expires_at + 1)
+  -- since the database was updated, return the new value
+  expires_at = next_expires_at
+end
+-- Now that the window is either known to already exist _or_ be freshly initialized,
+-- increment the counter (`incrby` returns a number)
+local current = redis.call("incrby", rate_limit_key, increment_amount)
+return { current, expires_at }
+ 
+-- CHECK_SCRIPT:
+--   Getting both the value and the expiration
+--   of key as needed by our algorithm needs to be ran
+--   in an atomic way, hence the script.
+
+-- rename the inputs for clarity below
+local rate_limit_key = KEYS[1]
+local expires_at_key = rate_limit_key .. ":exp"
+local current_time = tonumber(ARGV[1])
+local tries = tonumber(redis.call("get", rate_limit_key))
+local expires_at = nil -- maybe overridden below
+if not tries then
+  -- this client hasn't initialized a window yet
+  -- let this fall through to returning {nil, nil},
+  -- where the application will provide defaults
+else
+  -- we found a number of tries, now check
+  -- if this window is actually expired
+  expires_at = tonumber(redis.call("get", expires_at_key))
+  if not expires_at or expires_at < current_time then
+    -- this window hasn't been cleaned up by Redis yet, but it has closed.
+    -- (maybe it was _partly_ cleaned up, if we found `tries` but not `expires_at`)
+    -- ignore the data in the database; return a fresh window instead
+    tries = nil
+    expires_at = nil
+  end
+end
+-- Maybe {nil, nil} if the window is brand new (or expired)
+return { tries, expires_at }
+```
+
+他们参考的的这个 https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d和这个https://redis.io/commands/incr#pattern-rate-limiter 意思都差不多
+
+原理很简单，就是在一个时间段对一个key进行incr，到了限制就停止，然后下个时间段换个key，原来的key过期淘汰掉
+
+## [What is unified function call syntax anyway?](https://brevzin.github.io/c++/2019/04/13/ufcs-history/)
+
+介绍一种扩展语法，统一类调用和函数传参数调用。不过至今没有通过
+
+```c++
+struct X {
+    void f(Y);
+};
+
+// ill-formed today, but with CS:FreeFindsMember would
+// be able to call x.f(y)
+f(x, y);
+
+struct X { };
+void g(X, Y);
+
+// ill-formed today, but with CS:MemberFindsFree would
+// be able to call g(x, y)
+x.g(y);
+
+```
+
+这两种语法的归一
+
+归一可能造成类的任意扩展行为。而且这种行为可能有害。目前不知道这个进展如何。偶尔发现，做个记录
+
+## [URL shortener Base-62 encoder / decoder C++ Proof-of-Concept](https://gist.github.com/jaytaylor/a11fadf61a869ade0dfe568606b216c8)
+
+一个url short原型，简单介绍一下
+
+首先，网址要能映射成一个hash或者整数，要保证唯一性，然后就是这个整数生成url，url反推出整数。然后整数持久化，就好了
+
+```c++
+string id_to_short_url(unsigned int n) {
+    // Mapping which defines the 62 possible output characters.
+    char map[] = "abcdefghijklmnopqrstuvwxyzABCDEF"
+                 "GHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    string short_url;
+
+    // Convert given ID to a base-62 number.
+    while (n) {
+        // Append each character mapped by the remainder.
+        short_url.push_back(map[n % 62]);
+        n /= 62;
+    }
+
+    // Reverse the string to complete the base conversion.
+    std::reverse(short_url.begin(), short_url.end());
+    return short_url;
+}
+
+/**
+ * short_url_to_id converts a short URL into the corresponding ID.
+ *
+ * Base-62 decodes the input string.
+ */
+unsigned int short_url_to_id(string short_url) {
+    unsigned int id = 0;
+
+    // Base decode conversion logic.
+    for (int i = 0; i < short_url.length(); ++i) {
+        if ('a' <= short_url[i] && short_url[i] <= 'z') {
+            id = id * 62 + short_url[i] - 'a';
+        }
+        if ('A' <= short_url[i] && short_url[i] <= 'Z') {
+            id = id * 62 + short_url[i] - 'A' + 26;
+        }
+        if ('0' <= short_url[i] && short_url[i] <= '9') {
+            id = id * 62 + short_url[i] - '0' + 52;
+        }
+    }
+    return id;
+}
+```
+
+
+
+## 其他
+
+一个不错的教程文档，写的很好，公众号运营 的https://ng-tech.icu/books/#infras
+
+这个博客整理了阿里数据库月报，很有意思 https://github.com/tangwz/db-monthly
+
 
 ---
 
@@ -155,4 +331,3 @@ stack指针SP维护，stack维护，一个数组
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
 </details>
-
