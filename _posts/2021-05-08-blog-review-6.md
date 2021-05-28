@@ -135,6 +135,80 @@ push-based DAG处理已经成为事实上的state of the art 新的数据系统�
 
 目前比较典型的就是naiad timely workflow了
 
+
+
+## Buffer
+
+基本的设计想法，就是循环缓冲了
+
+muduo中的buffer，其实libevent中差不多
+
+```c++
+  std::vector<char> buffer_;
+  size_t readerIndex_;
+  size_t writerIndex_;
+const char* peek() const
+ { return begin() + readerIndex_; }
+size_t writableBytes() const
+  { return buffer_.size() - writerIndex_; }
+size_t readableBytes() const
+  { return writerIndex_ - readerIndex_; }
+ size_t prependableBytes() const
+  { return readerIndex_; }
+```
+
+这里如果涉及到扩展还是需要拷贝的，如何zero-copy？iobuf设计，看brpr 的iobuf https://github.com/apache/incubator-brpc/blob/master/src/butil/iobuf.h
+
+
+
+## [Hosting SQLite databases on Github Pages](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) 
+
+​	把sqlite编译到wasm 妙啊
+
+这也提供了思路，想做一个二进制程序，可以编译到wasm然后放到github page上进行演示
+
+
+
+## [Dropping cache didn’t drop cache](https://blog.twitter.com/engineering/en_us/topics/open-source/2021/dropping-cache-didnt-drop-cache.html)
+
+这个是twitter公司找bug记录，顺便了解page cache的功能逻辑。twitter使用的内核是比较激进的，上面的 不稳定变动可能导致引入bug
+
+最终问题的解决的patch https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8199be001a470209f5c938570cc199abb012fe53
+
+```c
+diff --git a/mm/list_lru.c b/mm/list_lru.c
+index 8de5e37..1e61161 100644
+--- a/mm/list_lru.c
++++ b/mm/list_lru.c
+@@ -534,7 +534,6 @@ static void memcg_drain_list_lru_node(struct list_lru *lru, int nid,
+ 	struct list_lru_node *nlru = &lru->node[nid];
+ 	int dst_idx = dst_memcg->kmemcg_id;
+ 	struct list_lru_one *src, *dst;
+-	bool set;
+ 
+ 	/*
+ 	 * Since list_lru_{add,del} may be called under an IRQ-safe lock,
+@@ -546,11 +545,12 @@ static void memcg_drain_list_lru_node(struct list_lru *lru, int nid,
+ 	dst = list_lru_from_memcg_idx(nlru, dst_idx);
+ 
+ 	list_splice_init(&src->list, &dst->list);
+-	set = (!dst->nr_items && src->nr_items);
+-	dst->nr_items += src->nr_items;
+-	if (set)
++
++	if (src->nr_items) {
++		dst->nr_items += src->nr_items;
+ 		memcg_set_shrinker_bit(dst_memcg, nid, lru_shrinker_id(lru));
+-	src->nr_items = 0;
++		src->nr_items = 0;
++	}
+ 
+ 	spin_unlock_irq(&nlru->lock);
+ }
+```
+
+
+
 ## 最近的点子
 
 https://github.com/a8m/rql 改成c++的
