@@ -2,7 +2,7 @@
 layout: post
 title: (转)如何学习和阅读代码
 categories: [review]
-tags: [cache, pacificA]
+tags: [code review]
 ---
 
 > 转自极客时间-左耳听风-《高效学习》系列整理

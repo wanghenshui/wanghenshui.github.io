@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第六期
 categories: [review]
-tags: [cache, pacificA]
+tags: [shell, python,database, buffer, sqlite, cache]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
