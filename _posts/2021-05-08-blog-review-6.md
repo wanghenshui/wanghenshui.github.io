@@ -354,6 +354,8 @@ https://github.com/lj1208/binloglistener/tree/master/src
 
 oceanbase开源了 https://open.oceanbase.com/docs/community/oceanbase-database/V3.1.0/overall-architecture
 
+https://github.com/wangzzu/awesome/issues/31
+
 
 ---
 
