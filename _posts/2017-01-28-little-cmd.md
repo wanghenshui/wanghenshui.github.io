@@ -429,6 +429,8 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
   
     - 查看端口 **cat  /etc/sysconfig/iptables**
 
+- jq 格式化json文档 `jq . xx.json > xx.json.new` 注意不能原地覆盖，这里有bug直接文件就空了
+
 - tex 
 
   ```tex
@@ -459,7 +461,7 @@ git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tform
   git push <远程主机名> <本地分支名>:<远程分支名>
   git pull <远程主机名> <远程分支名>:<本地分支名> 
   ```
-分支丢了或者head detached了或者错误覆盖了，不要慌，`git reflog`能找回来
+  分支丢了或者head detached了或者错误覆盖了，不要慌，`git reflog`能找回来
 
   mac要装lfs brew install git-lfs
   
@@ -566,6 +568,14 @@ hardcore_varahamihira是docker名字
 
 ```bash
 docker login -u username -p password registry.xx.com
+```
+
+-v指定共享目录
+
+```bash
+docker run -it -v abs_dir_shared:abs_docker_work_dir centos /bin/bash
+#例子
+docker run -it --privileged -v /root/nosql/DTS:/dts -d  mirrors.dockerhub.com/xx/xximage:0.0.1
 ```
 
 

@@ -330,9 +330,41 @@ private:
 
 ## [ClickHouse使用姿势系列之分布式JOIN](https://zhuanlan.zhihu.com/p/377506070)
 
+join的几种写法
+
+> ##  **分布式JOIN最佳实践**
+>
+> 在清楚了ClickHouse 分布式JOIN查询实现后，我们总结一些实际经验。
+>
+> - **一、尽量减少JOIN右表数据量**
+>
+> ClickHouse根据JOIN的右表数据，构建HASH MAP，并将SQL中所需的列全部读入内存中。如果右表数据量过大，节点内存无法容纳后，无法完成计算。
+>
+> 在实际中，我们通常将较小的表作为右表，并尽可能增加过滤条件，降低进入JOIN计算的数据量。
+>
+> - **二、利用GLOBAL JOIN 避免查询放大带来性能损失**
+>
+> 如果右表或者子查询的数据量可控，可以使用GLOBAL JOIN来避免读放大。需要注意的是，GLOBAL JOIN 会触发数据在节点之间传播，占用部分网络流量。如果数据量较大，同样会带来性能损失。
+>
+> - **三、数据预分布实现Colocate JOIN**
+>
+> 当JOIN涉及的表数据量都非常大时，读放大，或网络广播都带来巨大性能损失时，我们就需要采取另外一种方式来完成JOIN计算了。
+>
+> 根据“相同JOIN KEY必定相同分片”原理，我们将涉及JOIN计算的表，按JOIN KEY在集群维度作分片。将分布式JOIN转为为节点的本地JOIN，极大减少了查询放大问题
+
+建议看看这个https://jiamaoxiang.top/2020/11/01/Spark%E7%9A%84%E4%BA%94%E7%A7%8DJOIN%E6%96%B9%E5%BC%8F%E8%A7%A3%E6%9E%90/ 
+
+## [A robust distributed locking algorithm based on Google Cloud Storage](https://www.joyfulbikeshedding.com/blog/2021-05-19-robust-distributed-locking-algorithm-based-on-google-cloud-storage.html)
+
+讲分布式锁的简单实现，以及经典问题，以及解决方案(ttl)
+
 ## 最近的点子
 
 https://github.com/a8m/rql 改成c++的
+
+https://github.com/stateright/stateright
+
+https://docs.rs/stateright/0.28.0/stateright/
 
 ## 待读
 

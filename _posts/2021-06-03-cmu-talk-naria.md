@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Noria Fast Materialized Views for Fast Websites
-categories: [review]
+categories: [database,review]
 tags: [cmu, noria, rust]
 ---
 
