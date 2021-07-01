@@ -519,6 +519,14 @@ docker system prune
 # -a 能把所有的都删掉，包括overlay里头的。太大了
 ```
 
+设置存储目录，docker默认放在/var/lib/docker，比较傻逼
+
+```bash
+ln -s /data/docker_root  /var/lib/docker
+```
+
+
+
 `pull`
 
 ```shell
