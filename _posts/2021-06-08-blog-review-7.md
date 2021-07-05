@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第七期
 categories: [review]
-tags: [shell, python,database, buffer, sqlite, cache, todo]
+tags: [shell, abi, tsdb, mrouter, reflect, rocksdb, todo]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
@@ -12,6 +12,53 @@ tags: [shell, python,database, buffer, sqlite, cache, todo]
 
 
 <!-- more -->
+
+一点私货：
+
+以前格局小了，服务的概念很单一
+
+上一次被启发是达哥的想法，rocksdb的compaction剥离出去由另一个服务去做。很印象深刻。这个想法的前提是文件底层是虚拟的文件系统(hdfs之类)，可以做这种hack
+
+最近看公司里的各种服务组件，发现和之前的做法不太一样
+
+比如备份，以前的服务非常简单，就是db进程/对象存储/管控平台三方面交互
+
+备份的速度，备份对当前服务的影响，都是不可观测的。完全不能动态可控的。db服务提供一个打快照的接口，文件准备好，随便管控平台来取，然后传到对象存储里
+
+公司里的设计是引入一个backup服务夹在管控平台和对象存储之间
+
+backup感知db服务的状态，另外无法拿磁盘的文件，需要复制，所以db服务提供拷贝接口，这也是没有用户态文件系统的缺陷吧
+
+
+
+之前做数据迁移，是有个部门专门转协议接入的。各种解析然后转然后重新写，这种效率是非常低下的。原来是做redis的毕竟大部分在内存，可能没有dump完整的rdb，所以迁移还是在线形式的
+
+现在做迁移工具不是一个部门，是一个组件，留管控面的接入之后，直接传二进制，一般来说，rocksdb的文件，直接覆盖就完事了。如果是别的文件，通过对象存储中转一下，改写成rocksdb的文件，然后再倒入。这样的效率要比转上层协议的导入要快的多，如果是同类集群的迁移，这个逻辑也能完美复用。原来的做法是做个全备，然后再加载。类似上面的backup服务
+
+
+
+brpc的bvar是个很有意思的东西，简单的采集metric信息
+
+---
+
+## [Write a time-series database engine from scratch](https://nakabonne.dev/posts/write-tsdb-from-scratch/)
+
+https://github.com/nakabonne/tstorage
+
+todo
+
+## [用 litmus 验证 x86 内存序](https://www.xargin.com/litmus-test/)
+
+简单安装[herdtools](https://github.com/herd/herdtools7/)
+
+```bash
+#brew install opam
+#opam init
+opam install herdtools7
+eval $(opam config env) #	执行这个加载到path不然找不到
+```
+
+具体操作看这里就行了http://diy.inria.fr/doc/litmus.html
 
 ## [高性能队列——Disruptor](https://tech.meituan.com/2016/11/18/disruptor.html)
 
@@ -291,8 +338,6 @@ memcache 客户端加上slide window 如果有大量的请求，超出的放到q
 引入Lease 解决过期以及惊群，这里的鲸群指的是大量请求请求冷key，对请求加上lease，超过期限直接失败，让客户端重试
 
 还有就是集群级别的管理了故障恢复之类的
-
-#
 
 ## [A Deep dive into (implicit) Thread Local Storage](https://chao-tic.github.io/blog/2018/12/25/tls)
 
