@@ -41,6 +41,18 @@ brpc的bvar是个很有意思的东西，简单的采集metric信息
 
 ---
 
+## [TCP Fast Open? Not so fast](https://blog.apnic.net/2021/07/05/tcp-fast-open-not-so-fast/)
+
+这有个很久很久的例子https://github.com/yuryu/tfoecho
+
+注意，这里客户端用的是sendto，没用connect，在后面的修改 中加了[TCP_FASTOPEN_CONNECT](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=19f6d3f3c8422d65b5e3d2162e30ef07c6e21ea2)
+
+所以说，上面这个tfoecho例子应该过时了。TODO:改写成新版
+
+除了一些基本的socket配置TCP_FAST_OPEN，以及系统配置 [net.ipv4.tcp.fastopen](https://www.kernel.org/doc/html/latest/networking/ip-sysctl.html) 之外
+
+linux对于TFO比较保守，会有超时判定，所以要把`net.ipv4.tcp_fastopen_blackhole_timeout_sec` sysctl 设置成 0.
+
 ## [minikeyvalue](https://github.com/geohot/minikeyvalue)
 
 用go实现的http kv todo:用c++重写
