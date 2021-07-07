@@ -350,6 +350,8 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
          
     - 遇到bazel错误先看看路径是不是错了，或者文件名是不是错了
 
+    - bazel设置cache目录，修改.bazelrc `build --disk_cache=/my/tmp/cache` 不过.cache的缓存不能通过这个改，只能通过命令行改`--output_user_root`，我没有实验过
+
 - MAC
     - 截图 command shift 4
     - 截图且复制到剪贴板 Shift+Control+Command+4

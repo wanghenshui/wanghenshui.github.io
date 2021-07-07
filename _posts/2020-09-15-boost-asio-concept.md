@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (转)boost.asio新框架的设计概念总结
-categories: [language]
+categories: [language, todo]
 tags: [c++, thread, boost, asio]
 
 ---
@@ -30,7 +30,6 @@ tags: [c++, thread, boost, asio]
 - 有一条op_queue执行队列
 - 所有***Service*** 的调度都最终依赖***Scheduler*** 调度
 - ***Scheduler*** 的dispatch()方法将任务调度到执行队列
-  
 
 **Service**:
 
@@ -61,6 +60,7 @@ tags: [c++, thread, boost, asio]
 - https://www.cnblogs.com/bbqzsl/p/11919502.html
 - asio使用样例，不错 https://github.com/franktea/network
 - 介绍实现的 https://zhuanlan.zhihu.com/p/55503053
+- http://spiritsaway.info/asio-implementation.html#f69817
 
 
 
@@ -71,6 +71,5 @@ tags: [c++, thread, boost, asio]
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
 </details>
-
 
 

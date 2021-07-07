@@ -41,11 +41,29 @@ brpc的bvar是个很有意思的东西，简单的采集metric信息
 
 ---
 
+## [minikeyvalue](https://github.com/geohot/minikeyvalue)
+
+用go实现的http kv todo:用c++重写
+
+### [The Cache Replacement Problem](http://alexandrutopliceanu.ro/post/cache-replacement-problem/)
+
+实现了各种cache并且压测，代码在[这里](https://github.com/topliceanu/cache/)，后面有机会用c++重写一下
+
+其实现代的cache主要是抗scan污染，比如arc
+
+[这里](https://github.com/anuj-rai-23/Adaptive-Replacement-Cache-ARC-Algorithm)有个arc cache的实现
+
 ## [Write a time-series database engine from scratch](https://nakabonne.dev/posts/write-tsdb-from-scratch/)
 
 https://github.com/nakabonne/tstorage
 
 todo
+
+## [Dropping cache didn’t drop cache](https://blog.twitter.com/engineering/en_us/topics/open-source/2021/dropping-cache-didnt-drop-cache)
+
+博主发现了内核最新的bug，一个多线程变量变动的问题，从cache释放入手，找到对应代码。挺细的
+
+
 
 ## [用 litmus 验证 x86 内存序](https://www.xargin.com/litmus-test/)
 
@@ -347,7 +365,9 @@ memcache 客户端加上slide window 如果有大量的请求，超出的放到q
 
 代码在这里https://github.com/oscarlab/betrfs
 
-## 待读
+## [Analyzing Optimistic Concurrency Control Anomalies and Solutions](https://wangziqi2013.github.io/article/2018/03/21/Analyzing-OCC-Anomalies-and-Solutions.html)
+
+##  待读
 
 https://danilafe.com/blog/00_compiler_intro/ 用c++写函数式语言
 
@@ -356,6 +376,12 @@ https://github.com/VictoriaMetrics/VictoriaMetrics 高性能的时序数据库�
 https://github.com/DigitalChinaOpenSource/TiDB-for-PostgreSQL
 
  https://github.com/kelindar/column column存储，go写的
+
+https://github.com/baidu/braft.git braft的文档值得读一下
+
+https://github.com/afiodorov/radixmmap 用c++实现一下
+
+https://github.com/stateright/stateright 一致性教研工具，原理是什么？
 
 
 ---
