@@ -1,14 +1,16 @@
 ---
 layout: post
-title: 常用快捷键/命令的整理/系统设定
+title: 常用快捷键/命令行/系统设定
 categories: tools
 tags: [linux, macos, windows, vscode, vim, shell, docker]
 ---
 
-整理一下常用的命令行，不分平台，
+
+
+[toc]
 
 ---
-遇到故障速查十个命令
+## 遇到故障速查十个命令
 
 ---
 
@@ -30,7 +32,7 @@ top
 
 以下各节通过生产系统中的示例总结了这些命令。有关这些工具更多的信息，请参见其手册页。
 
-## 1. uptime
+### uptime
 
 ```bash
 $ uptime 
@@ -43,7 +45,7 @@ $ uptime
 
 在上面的例子中，平均负载有所增加，因为1分钟的值30相对15分钟的值19来说大了一些。数字变大意味着很多种可能：有可能是CPU的需求变多了，使用3和4中提到的vmstat或mpstat命令将可以进一步确认问题。
 
-## 2. dmesg | tail
+### dmesg | tail
 
 ```bash
 $ dmesg | tail
@@ -58,7 +60,7 @@ $ dmesg | tail
 
 不能忘记这个步骤，`dmesg`通常对诊断问题很有价值。
 
-## 3. vmstat  1
+###  vmstat  1
 
 ```bash
 $ vmstat 1
@@ -89,7 +91,7 @@ IO处理需要占用CPU系统时间。一个较高的CPU系统时间（超过20%
 
 在上面的示例中，CPU时间基本全在用户时间，这说明应用程序本身在大量占用CPU时间。CPU的平均利用率也远远超过90%。这不一定是问题，可以使用`r`列来检查饱和度。
 
-## 4. mpstat -P ALL  1
+###  mpstat -P ALL  1
 
 ```bash
 $ mpstat -P ALL 1
@@ -106,7 +108,7 @@ Linux 3.13.0-49-generic (titanclusters-xxxxx)  07/14/2015  _x86_64_ (32 CPU)
 
 此命令显示每个CPU的CPU时间明细，可用于检查不平衡的情况。单个热CPU说明是单线程应用程序在大量占用CPU时间。
 
-## 5. pidstat 1
+###  pidstat 1
 
 ```bash
 $ pidstat 1
@@ -133,7 +135,7 @@ Linux 3.13.0-49-generic (titanclusters-xxxxx)  07/14/2015    _x86_64_    (32 CPU
 
 上面的示例显示两个Java进程要为消耗大量CPU负责。`%CPU`这一列是所有CPU核的总和，`1591%`说明Java进程差不多消耗了16个核的CPU。
 
-## 6. iostat -xz 1
+### iostat -xz 1
 
 ```bash
 $ iostat -xz 1
@@ -164,7 +166,7 @@ dm-2        0.00     0.00    0.09    0.07     1.35     0.36    22.50     0.00   
 
 请记住，性能不佳的磁盘IO不一定是应用问题，通常可以使用许多技术以执行异步IO，以便使应用程序不会被阻塞住而产生直接产生IO延迟（例如，预读和缓冲写入技术）
 
-## 7. free -m
+###  free -m
 
 ```bash
 $ free -m
@@ -185,7 +187,7 @@ Swap:            0          0          0
 
 如果在Linux上使用ZFS，就像我们对某些服务所做的那么，因为ZFS具有自己的文件系统缓存，它们并不会反映在`free -m`的列中，因此这种场景下这种混乱还将存在。所以会看到似乎系统的可用内存不足，而实际上可根据需要从ZFS缓存中申请到内存。
 
-## 8. sar -n DEV 1
+###  sar -n DEV 1
 
 ```bash
 $ sar -n DEV 1
@@ -207,7 +209,7 @@ Linux 3.13.0-49-generic (titanclusters-xxxxx)  07/14/2015     _x86_64_    (32 CP
 
 此版本还具有`%ifutil`用来指示设备利用率（全双工双向），这也是我们使用的Brendan的[nicstat工具](https://github.com/scotte/nicstat)测量出来的。就像nicstat一样，这个指标很难计算正确，而且在本例中好像不起作用（数据是0.00）。
 
-## 9. sar -n TCP,ETCP 1
+###  sar -n TCP,ETCP 1
 
 ```bash
 $ sar -n TCP,ETCP 1
@@ -237,7 +239,7 @@ Linux 3.13.0-49-generic (titanclusters-xxxxx)  07/14/2015    _x86_64_    (32 CPU
 
 重新传输是网络或服务器问题的迹象；它可能是不可靠的网络（例如，公共Internet），也可能是由于服务器过载并丢弃了数据包。上面的示例仅显示每秒一个新的TCP连接。
 
-## 10. top
+###  top
 
 ```bash
 $ top
@@ -265,6 +267,9 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 `top`命令不太好的地方是，随着时间的推移很难看到指标变化的模式，这在提供滚动输出的`vmstat`和`pidstat`之类的工具中可能更清楚一点。如果您没有足够快地暂停输出（Ctrl-S暂停，Ctrl-Q继续），在屏幕输出被`top`命令清除后，间歇性问题的证据也可能被丢失了。
 
+一图流
+
+<p><img src="https://wanghenshui.github.io/assets/top.png" alt="" width="100%"></p>
 
 
 ## VIM
@@ -293,10 +298,12 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 - 命令行 补全 ctrl l
 - 插入模式补全 ctrl p
 
-- grep
 
-  - grep取反 grep -v ”ect“”
-  
+
+## linux常用
+
+- grep取反 grep -v ”ect“”
+
 - Linux 
 
   - Ctrl + L清屏
@@ -306,7 +313,56 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
     - du -h --max-depth=1 常用，看一个目录
   - file libvswrtp.so 查询文件信息（查链接库版本一个小经验）ldd
   
-- win
+- gdb
+
+    - thread apply all bt
+    - pstack
+      - pstack在chroot下执行的进程，可能找不到符号，要到chroot下面的目录去执行pstack
+        - https://nanxiao.me/linux-pstack/
+
+- tar 
+
+    - 对于xz文件 **tar xvJf  \**\*.tar.xz**
+
+- mount
+
+    - mount /dev/vdb target_dir
+
+- scp 
+
+    - scp local_file root@xx.xx.xx.xx:/root
+
+- rpm -ivh xx.rpm
+
+- 特殊场景
+
+    - 查找体积较大的十个文件
+      - du -hsx * | sort -rh | head -10
+    - 端口占用 netstat|grep 11221
+      - lsof -i :11221抓到对应的进程
+
+- putty
+
+    - alt enter退出全屏 在window behaviour里，勾选最后一个
+      - [x] full screen on alt-enter
+    - 小键盘设置，在terminal features 勾选 
+      - [x] disable application keypad mode
+    - 记得保存设置
+
+- telnet 
+
+    - 退出 ctrl  ]
+
+- iptables
+
+    - 查看端口 **cat  /etc/sysconfig/iptables**
+
+- jq 格式化json文档 `jq . xx.json > xx.json.new` 注意不能原地覆盖，这里有bug直接文件就空了
+
+    
+
+    
+## win
 
   - wslconfig /l  wslconfig /s ubuntu-18.04
   - win shirl S win10 截图
@@ -326,155 +382,128 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
   - 磁盘格式转换 convert h: /fs:ntfs
   - windows查看端口占用 `netstat -aon|findstr 25340` 最后一行就是进程id
   - windows 杀死进程，在任务管理找不到的前提下 taskkill /f /pid 13656
-  
-- bazel
 
-    - 编译 bazel build //redis:* --copt="-g" --strip="never"
 
-        - ```bash
-            ## 参数项一次只能指定一个
-            bazel build --copt="-O3" --copt="-fpic" --cxxopt="-std=c++11"
-            ```
+## bazel
 
-        - http://zhulao.gitee.io/blog/2019/04/05/%E7%BC%96%E8%AF%91%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7-bazel/index.html 这个文档不错 什么时候用什么时候再看
 
-        - 换编译器 --repo_env=CC=clang
-        
-        - 编译所有 bazel build ...
-        
-    - 测试 bazel test ...
+- 编译 bazel build //redis:* --copt="-g" --strip="never"
+```bash
+## 参数项一次只能指定一个
+bazel build --copt="-O3" --copt="-fpic" --cxxopt="-std=c++11"
+```
 
-         * `--nocache_test_results` may be required if you are trying to re-run a test without changing
-           anything.
-         * `--test_filter=<TestName>` to run a specific test (when test splits are not already in use)
-         
-    - 遇到bazel错误先看看路径是不是错了，或者文件名是不是错了
+- http://zhulao.gitee.io/blog/2019/04/05/%E7%BC%96%E8%AF%91%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7-bazel/index.html 这个文档不错 什么时候用什么时候再看
 
-    - bazel设置cache目录，修改.bazelrc `build --disk_cache=/my/tmp/cache` 不过.cache的缓存不能通过这个改，只能通过命令行改`--output_user_root`，我没有实验过
+- 换编译器 --repo_env=CC=clang
 
-- MAC
-    - 截图 command shift 4
-    - 截图且复制到剪贴板 Shift+Control+Command+4
-    - 截屏command shift 3
-    - 截屏且复制到剪贴板 Shift+Control+Command+3
-    - 打开新终端 command + T
-    - 回到桌面 fn + f11 或者五个手指缩放(比较反人类，算了)
-      - 设置触发角，我设置到了右下角，这样和windows行为一致
-    - 终端分屏 cmd + d 取消 cmd + shift + d
-    - 终端切换标签页 command + shift  + 左右箭头
-    - 设置 /使用习惯
-      - 鼠标 滚轮 去掉自然
-      - sudo spctl --master-disable 设置信任
-      - 邮件要按住ctrl
-    - 解压zip 7z e xx.7z 
+- 编译所有 bazel build ...
+
+- 测试 bazel test ...
+
+* `--nocache_test_results` may be required if you are trying to re-run a test without changing
+anything.
+* `--test_filter=<TestName>` to run a specific test (when test splits are not already in use)
+
+- 遇到bazel错误先看看路径是不是错了，或者文件名是不是错了
+
+- bazel设置cache目录，修改.bazelrc `build --disk_cache=/my/tmp/cache` 不过.cache的缓存不能通过这个改，只能通过命令行改`--output_user_root`，我没有实验过
+
+
+
+
+## MAC
+
+- 截图 command shift 4
+
+- 截图且复制到剪贴板 Shift+Control+Command+4
+
+- 截屏command shift 3
+
+- 截屏且复制到剪贴板 Shift+Control+Command+3
+
+- 打开新终端 command + T
+
+- 回到桌面 fn + f11 或者五个手指缩放(比较反人类，算了)
+
+- 设置触发角，我设置到了右下角，这样和windows行为一致
+
+- 终端分屏 cmd + d 取消 cmd + shift + d
+
+- 终端切换标签页 command + shift  + 左右箭头
+
+- 设置 /使用习惯
+
+- 鼠标 滚轮 去掉自然
+
+- sudo spctl --master-disable 设置信任
+
+- 邮件要按住ctrl
+
+- 解压zip 7z e xx.7z 
+
     
-- VS
 
+    
+## 其他软件
+
+- VS
   - Ctrl+k Ctrl+f 对齐(format)
   - Ctrl+k Ctrl+c注释
   - Ctrl+k Ctrl+U 取消注释
   - F5 F9断点 F10 F11
-  
 - vscode 
 
-    - 格式化代码 shift + alt + f 
-    - 配置clang-format
-
-- EverNote 
-
-  - F10标签 F11笔记本列表 F9同步
-
-  - 结合enter esc与方向键使用
-  
+  - 格式化代码 shift + alt + f 
+  - 配置clang-format
 - cmder
 
   - cmder /register all
-  
-- gdb
-  - thread apply all bt
-  - pstack
-    - pstack在chroot下执行的进程，可能找不到符号，要到chroot下面的目录去执行pstack
-      - https://nanxiao.me/linux-pstack/
-  
-- tar 
-  
-  - 对于xz文件 **tar xvJf  \**\*.tar.xz**
-  
-- mount
-  
-  - mount /dev/vdb target_dir
-  
-- scp 
-  
-  - scp local_file root@xx.xx.xx.xx:/root
-  
-- rpm -ivh xx.rpm
-
-- 特殊场景
-  - 查找体积较大的十个文件
-    - du -hsx * | sort -rh | head -10
-  - 端口占用 netstat|grep 11221
-    - lsof -i :11221抓到对应的进程
-  
-- putty
-  - alt enter退出全屏 在window behaviour里，勾选最后一个
-    - [x] full screen on alt-enter
-  - 小键盘设置，在terminal features 勾选 
-    - [x] disable application keypad mode
-  - 记得保存设置
-  
-- telnet 
-  
-  - 退出 ctrl  ]
-  
-- iptables
-  
-    - 查看端口 **cat  /etc/sysconfig/iptables**
-
-- jq 格式化json文档 `jq . xx.json > xx.json.new` 注意不能原地覆盖，这里有bug直接文件就空了
-
 - tex 
 
-  ```tex
-  \tiny
-  \scriptsize
-  \footnotesize
-  \small
-  \normalsize
-  \large
-  \Large
-  \LARGE
-  \huge
-  \Huge
-  ```
+```tex
+\tiny
+\scriptsize
+\footnotesize
+\small
+\normalsize
+\large
+\Large
+\LARGE
+\huge
+\Huge
+```
 
-- git
-  
-  - git统计提交行数
+
+
+## git
+
+- git统计提交行数
 
 ```bash
 git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -  $2 } END { printf "added lines: %s, removed lines: %s, total lines:  %s\n", add, subs, loc }'
 ```
+
 -  整理commit git rebase -i HEAD~3
 
 - 修改提交人 git commit --amend --author="NewAuthor <NewEmail@address.com>"
 
-- ```shell
+```shell
   git push <远程主机名> <本地分支名>:<远程分支名>
   git pull <远程主机名> <远程分支名>:<本地分支名> 
-  ```
+```
   分支丢了或者head detached了或者错误覆盖了，不要慌，`git reflog`能找回来
 
   mac要装lfs brew install git-lfs
-  
+
   设置拉取为变基 git config pull.rebase true
-  
+
   git推送分支一定要设定 git config --global push.default current
-  
+
   git设置保存密码 git config credential.helper store
-  
+
   建议写个init脚本 https://github.com/wanghenshui/lazy-scripts/blob/master/scripts/git_config.sh
-  
+
   比较两个文件夹
 
 ```bash
@@ -498,9 +527,6 @@ cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后�
 
 
 
-## top命令 一图流
-
-<p><img src="https://wanghenshui.github.io/assets/top.png" alt="" width="60%"></p>
 
 
 
@@ -597,38 +623,32 @@ docker run -it --privileged -v /root/nosql/DTS:/dts -d  mirrors.dockerhub.com/xx
 
 - 图片压缩需求，网络限制，超过50k不让上传
 
-- jpg by `jpegtran`
+  - jpg by `jpegtran`
+  - png by  `optipng`
 
 ```bash
 apt install libjpeg-progs
 jpegtran -optimize image-20200402171439048.jpg
-```
-
-
-
-- png by  `optipng`
-
-```bash
 apt install optipng
-optipng -o3 image-20200402172644242.png
+optipng -o3 image-20200402172644242.png #o1 ~ o7 七个等级压缩
 ```
 
-o1 ~ o7 七个等级压缩
 
 
 
 
+## 软件安装清单
 
-软件安装清单
-
-|                | windows     | MacOS       | Ubuntu |
-| -------------- | ----------- | ----------- | ------ |
-| markdown       | typora      | typora      | typora |
-| sftp可视化工具 | winscp      | transmit    |        |
-| git管理工具    | tortoisegit | sourcetree  |        |
-| 终端           | putty       |             |        |
-| 画图           | drawio      | OmniGraffle |        |
-| 写代码         | vscode      | vscode      |        |
+|                | windows     | MacOS              | Ubuntu   |
+| -------------- | ----------- | ------------------ | -------- |
+| markdown       | typora      | typora             | typora   |
+| sftp可视化工具 | winscp      | transmit           |          |
+| git管理工具    | tortoisegit | sourcetree         |          |
+| 终端           | putty       |                    |          |
+| 画图           | drawio      | OmniGraffle/drawio |          |
+| 写代码         | vscode      | vscode             | vscode   |
+| 记录笔记       | 腾讯文档    | 腾讯文档           | 腾讯文档 |
+| 事项清单       | 滴答清单    | 滴答清单           |          |
 
 
 
@@ -870,7 +890,7 @@ run '~/.tmux/plugins/tpm/tpm'
 
 
 
-### 参考
+## 参考
 
 - mount <https://www.runoob.com/linux/linux-comm-mount.html>
 - tar <https://blog.csdn.net/silvervi/article/details/6325698>

@@ -353,6 +353,22 @@ printf "%s\n" "$(rando butter bubbles)"
 >
 > 因此创建coprocess时一定小心，只能使用那些不会缓存输出的命令。 也正因为此，coprocess的使用范围其实也很受限，真要用来跟其他进程做交互的话，还是推荐使用 `expert` 比较好。
 
+
+
+## [Safer Bash: no unset](https://cuddly-octo-palm-tree.com/posts/2021-01-24-bash-set-dash-u/)
+
+一个场景
+
+```bash
+set -e
+
+MY_APP_FILES=/tmp/my-app
+
+rm -rf $My_APP_FILES/
+```
+
+这里有个拼写错误，导致`rm -rf /` 了, `set -e`没用，`set -eu`能抓到这种错误提前退出，所以写脚本第二行放上`set -eu`是个好习惯
+
 ## [Scaling Memcache at Facebook](https://www.micahlerner.com/2021/05/31/scaling-memcache-at-facebook.html)
 
 facebook是如何管理memcache集群的
