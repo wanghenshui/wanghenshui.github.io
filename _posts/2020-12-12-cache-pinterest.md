@@ -14,7 +14,7 @@ tags: [cache, mcrouter, memcache]
 
 pinterest的业务架构图
 
-<img src="https://wanghenshui.github.io/assets/pinterest-cache.png" alt="" width="60%"> 
+<img src="https://wanghenshui.github.io/assets/pinterest-cache.png" alt="" width="100%"> 
 
 分布式缓存，使用mcrouter + memcache架构，facebook的方案，他们还发了[paper](https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf)
 
@@ -25,7 +25,7 @@ mcrouter的抽象能力非常好
 - 解藕数据面控制面
 - 提供上层更精细的控制 修改ttl之类
 
-<img src="https://wanghenshui.github.io/assets/pinterest-cache2.png" alt="" width="60%"> 
+<img src="https://wanghenshui.github.io/assets/pinterest-cache2.png" alt="" width="100%"> 
 
 这套方案mcrouter也高可用
 
@@ -59,8 +59,6 @@ mcrouter的抽象能力非常好
 一个db的列表 https://github.com/sdcuike/issueBlog/blob/master/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.md
 
 https://github.com/alibaba/tair
-
-https://github.com/Netflix/dynomite
 
 
 ---
