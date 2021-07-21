@@ -323,6 +323,8 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 - tar 
 
     - 对于xz文件 **tar xvJf  \**\*.tar.xz**
+    - 流  tar cf - xxfile | lz4  > xxfile2
+      - 也可以用snzip
 
 - mount
 
@@ -359,7 +361,9 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 - jq 格式化json文档 `jq . xx.json > xx.json.new` 注意不能原地覆盖，这里有bug直接文件就空了
 
-    
+- 查看磁盘是否是ssd `cat /sys/block/vdb/queue/rotational` 1是sata 0是ssd
+
+- `echo 1 > /proc/sys/vm/drop_caches ` 清除缓存
 
     
 ## win
@@ -411,8 +415,7 @@ anything.
 
 
 
-
-## MAC
+## MacOS
 
 - 截图 command shift 4
 
@@ -527,8 +530,21 @@ cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后�
 
 
 
+### k8s
 
+scg0-1-6是容器名字
 
+拷贝
+
+kubectl cp scg0-1-6:/data/  /disk0/temp/
+
+进入容器
+
+kubectl exec scg0-1-6 -it -- bash
+
+查看容器
+
+kubectl get pods -o wide
 
 ## docker
 
