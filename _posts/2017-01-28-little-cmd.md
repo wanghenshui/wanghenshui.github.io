@@ -302,6 +302,8 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 ## linux常用
 
+- Ctrl a 到命令行开头 ctrl e到命令行结尾
+
 - grep取反 grep -v ”ect“”
 
 - Linux 
