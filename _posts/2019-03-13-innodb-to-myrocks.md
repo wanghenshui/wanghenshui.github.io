@@ -2,7 +2,7 @@
 layout: post
 categories : database
 title: PPT笔记 InnoDB to MyRocks migration in main MySQL database at Facebook
-tags : [rocksdb, innodb, mysql]
+tags : [rocksdb, innodb, mysql, myrocks]
 ---
 
 
@@ -76,7 +76,9 @@ myrocks的特性
 
 选一个innodb备机，停，不影响整体服务，挂上myrocks，开始同步回恢复
 
-![1553741804550](https://wanghenshui.github.io/assets/1553741804550.png)
+
+
+<img src="https://wanghenshui.github.io/assets/1553741804550.png" alt=""  width="100%">
 
 
 
@@ -117,11 +119,11 @@ shadow traffic 测试<sup>4</sup>
 - 重写依赖范围锁的查询
   - gap_lock_raise_error=1, gap_lock_write_log=1
 
+<img src="https://wanghenshui.github.io/assets/1553744009375.png" alt=""  width="100%">
+
+<img src="https://wanghenshui.github.io/assets/1553744041879.png" alt=""  width="100%">
 
 
-![1553744009375](https://wanghenshui.github.io/assets/1553744009375.png)
-
-![1553744041879](https://wanghenshui.github.io/assets/1553744041879.png)
 
 
 
@@ -129,7 +131,7 @@ shadow traffic 测试<sup>4</sup>
 
 崩溃安全让操作更简单了，重启就行，反正数据都在 ppt列举了主机设置
 
-![1553744404585](https://wanghenshui.github.io/assets/1553744404585.png)
+<img src="https://wanghenshui.github.io/assets/1553744404585.png" alt=""  width="100%">
 
 
 
