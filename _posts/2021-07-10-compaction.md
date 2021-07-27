@@ -92,6 +92,10 @@ tags: [blobdb, titandb, fasterkv, rocksdb]
     - `CloseBlobFileIfNeeded` 文件超过设定大小就` CloseBlobFile`
     - `WriteBatchInternal::PutBlobIndex`构造writebatch，结束 kTypeBlobIndex
   - `db_->Write`
+    - `WriteLevel0Table` ->  `BuildTable` 
+      - `BlobFileBuilder -> CompactionIterator`
+        - `ExtractLargeValueIfNeededImpl`
+          - `blob_file_builder_->Add`
 
 
 
@@ -174,15 +178,21 @@ void BaseDbListener::OnCompactionCompleted(
 
 大概思路，遍历整个append log文件，把不变区的有效key，捞出来，放到最新的可变区，然后把地址对应的文件全truncate，根据文件来删，如果truncate恰好在文件中间，那这个文件还是会保留的
 
-faster的compact不够灵活，如果
+faster的compact不够灵活，如果支持compact range，相当于还要管理一个空洞地址，又复杂化了。这里需要做一点取舍
+
+
+
+## RAMCloud
 
 ---
 
 ### 参考
 
 1. https://zhuanlan.zhihu.com/p/369391792
-2. https://nxwz51a5wp.feishu.cn/docs/doccnIDJP4vnYZANQADawXCgaZd#F7rKpp
-3. 
+2. blobdb源码分析 https://zhuanlan.zhihu.com/p/385826245
+3. https://pingcap.com/blog-cn/titan-design-and-implementation
+4. https://nxwz51a5wp.feishu.cn/docs/doccnIDJP4vnYZANQADawXCgaZd#F7rKpp
+5. 
 
 
 ---
