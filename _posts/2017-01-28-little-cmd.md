@@ -9,7 +9,10 @@ tags: [linux, macos, windows, vscode, vim, shell, docker]
 
 [toc]
 
+<!-- more -->
+
 ---
+
 ## 遇到故障速查十个命令
 
 ---

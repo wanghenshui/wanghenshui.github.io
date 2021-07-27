@@ -2,10 +2,12 @@
 layout: post
 title: compaction到底怎么做？
 categories: [database]
-tags: [blobdb, titandb, fasterkv, rocksdb]
+tags: [blobdb, titandb, fasterkv, rocksdb, terarkDB, wisckey, badger, ramcloud]
 ---
 
+[toc]
 
+<!-- more -->
 
 ## blobdb
 
@@ -172,6 +174,8 @@ void BaseDbListener::OnCompactionCompleted(
 
 
 
+## TerarkDB
+
 ## 微软的 FASTER kv
 
 之前[整理过](https://wanghenshui.github.io/2021/03/15/fasterkv.html#compact)
@@ -184,9 +188,13 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 
 ## RAMCloud
 
+之前[整理过](https://wanghenshui.github.io/2021/06/30/ramcloud.html#compact)
+
+思路是总结访问记录，segmentManager记录访问，根据metric来做compact，支持内存/磁盘使用固定比率和删除key的比率两种方案
+
 ---
 
-### 参考
+## 参考
 
 1. https://zhuanlan.zhihu.com/p/369391792
 2. blobdb源码分析 https://zhuanlan.zhihu.com/p/385826245

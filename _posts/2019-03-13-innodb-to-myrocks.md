@@ -10,6 +10,8 @@ tags : [rocksdb, innodb, mysql, myrocks]
 
 这个ppt<sup>1</sup>十分有趣，决定做个阅读记录，作者是Yoshinori Matsunobu是mysql rocks工程师 ，rocksdb上见过他的pr
 
+<!-- more -->
+
 ---
 
 首先简单介绍了facebook使用mysql数据库的场景
