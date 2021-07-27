@@ -168,6 +168,23 @@ void BaseDbListener::OnCompactionCompleted(
     - LogFlush
   - MaybeScheduleGC
 
+> - - Titan 基于 KV 分离实现，此外，采用了多个小的 Blob Files 来代替大的只追加写的日志对 Value 进行管理，使用多线程来减小 GC 开销。
+>
+>   - 数据组织形式如下：
+>
+>   - - LSM-tree: Key - index(BlobFileID:offset:ValueSize)
+>
+>     - BlobFile: Value (Value 的存储类似于原本 SSTable 的结构)
+>
+>     - - 每条 BlobRecord 冗余存储了 Value 对应的 Key 以便反向索引，但也引入了写放大
+>       - KeyValue 有序存放，为了提升 scan 性能，甚至进行预取
+>       - 支持 BlobRecord 粒度的 compression，支持多种算法
+>
+> - - GC：
+>
+>   - - 监听 LSM-tree 的 compaction 来统计每个 BlobFile 的 discardable 数据大小，触发的 GC 则选择对应 discardable 最大的 File 来作为 candidate
+>     - GC 选择了一些 candidates，当 discardable size 达到一定比例之后再 GC。使用 Sample 算法，随机取  BlobFile 中的一段数据 A，计其大小为 a，然后遍历 A 中的 key，累加过期的 key 所在的 blob record 的 size 计为 d，最后计算得出 d 占 a 比值 为 r，如果 r >= discardable_ratio 则对该 BlobFile 进行  GC，否则不对其进行 GC。如果 discardable size 占整个 BlobFile 数据大小的比值已经大于或等于  discardable_ratio 则不需要对其进行 Sample
+
 ## Badger
 
 这里有个[文档可以参考](https://nxwz51a5wp.feishu.cn/docs/doccnIDJP4vnYZANQADawXCgaZd#F7rKpp)
@@ -175,6 +192,12 @@ void BaseDbListener::OnCompactionCompleted(
 
 
 ## TerarkDB
+
+其实也是wisckey的一个实现，但是做了很多魔改，比如调优compaction，给sst文件加了个额外的信息，叫amap
+
+然后针对amap以及其他数据增加了新的数据结构以及对应这个数据结构的快速压缩方法。加速了lz4?
+
+
 
 ## 微软的 FASTER kv
 
@@ -192,6 +215,10 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 
 思路是总结访问记录，segmentManager记录访问，根据metric来做compact，支持内存/磁盘使用固定比率和删除key的比率两种方案
 
+其实compact文件的过程也是把key捞出来重新放到hastable里，主要是有个挑选文件的过程，且，文件不是整体的，空洞也没关系，删掉就完了。针对挑选有很多种策略
+
+内存compact比较复杂
+
 ---
 
 ## 参考
@@ -200,7 +227,8 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 2. blobdb源码分析 https://zhuanlan.zhihu.com/p/385826245
 3. https://pingcap.com/blog-cn/titan-design-and-implementation
 4. https://nxwz51a5wp.feishu.cn/docs/doccnIDJP4vnYZANQADawXCgaZd#F7rKpp
-5. 
+5.  一文带你看透基于LSM-tree的NoSQL系统优化方向 https://zhuanlan.zhihu.com/p/351241814 写的非常完善
+6. https://zhuanlan.zhihu.com/p/381997271 这个有点乱单写的和5是差不多的
 
 
 ---

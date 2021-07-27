@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  cppcon review 第一期
-categories: [language]
+categories: [language,todo, review]
 tags: [cppcon,cppnow,meetingcpp]
 ---
 

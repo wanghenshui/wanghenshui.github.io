@@ -9,11 +9,17 @@ tags: [awk, futex, cmd, myrocks, mysql, rocksdb]
 
 后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
 
-
+[toc]
 
 <!-- more -->
 
-## [Random number generators for C++ performance tested]()
+## [Random number generators for C++ performance tested](https://thompsonsed.co.uk/random-number-generators-for-c-performance-tested)
+
+ Xorshift最快，不过推荐用PCG的https://www.pcg-random.org/
+
+看需求，没有严格要求随机数满足什么特征，那就xorshift
+
+测试代码在这里https://github.com/thompsonsed/RandomNumberGeneration/blob/master/main.cpp
 
 ## [Do Low-level Optimizations Matter?](https://cantrip.org/sortfast.html)
 
