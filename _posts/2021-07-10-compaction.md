@@ -185,11 +185,24 @@ void BaseDbListener::OnCompactionCompleted(
 >   - - 监听 LSM-tree 的 compaction 来统计每个 BlobFile 的 discardable 数据大小，触发的 GC 则选择对应 discardable 最大的 File 来作为 candidate
 >     - GC 选择了一些 candidates，当 discardable size 达到一定比例之后再 GC。使用 Sample 算法，随机取  BlobFile 中的一段数据 A，计其大小为 a，然后遍历 A 中的 key，累加过期的 key 所在的 blob record 的 size 计为 d，最后计算得出 d 占 a 比值 为 r，如果 r >= discardable_ratio 则对该 BlobFile 进行  GC，否则不对其进行 GC。如果 discardable size 占整个 BlobFile 数据大小的比值已经大于或等于  discardable_ratio 则不需要对其进行 Sample
 
-## Badger
+
+
+## [Badger](https://github.com/dgraph-io/badger)
 
 这里有个[文档可以参考](https://nxwz51a5wp.feishu.cn/docs/doccnIDJP4vnYZANQADawXCgaZd#F7rKpp)
 
+大部分资料都是介绍kv分离降低写放大 以及value压缩delta encoding之类的优点，没说过具体是怎么管理GC的。还是得自己看代码
 
+#### update
+
+- `func (db *DB) Update(fn func(txn *Txn) error) ` 这个update是入口，但具体的set要塞到txn里
+  - `txn.Set` `txn.SetEntry` 构造NewEntry，然后`func (txn *Txn) modify(e *Entry)` 塞到pendingWrites里
+  - func (txn *Txn) Commit()
+    - `func (txn *Txn) commitAndSend()`
+    - `func (db *DB) sendToWriteCh(entries []*Entry) (*request, error)`  发给db.writeCh
+    - `func (db *DB) doWrites(lc *z.Closer)`
+    - `func (db *DB) writeRequests(reqs []*request)`
+    - `func (db *DB) writeToLSM(b *request) `
 
 ## TerarkDB
 
@@ -205,7 +218,7 @@ void BaseDbListener::OnCompactionCompleted(
 
 大概思路，遍历整个append log文件，把不变区的有效key，捞出来，放到最新的可变区，然后把地址对应的文件全truncate，根据文件来删，如果truncate恰好在文件中间，那这个文件还是会保留的
 
-faster的compact不够灵活，如果支持compact range，相当于还要管理一个空洞地址，又复杂化了。这里需要做一点取舍
+faster的compact不够灵活，如果支持compact range，相当于还要管理一个空洞地址，且删掉文件。如果不删文件的话倒是比较简单，但是违背了compact的初衷
 
 
 
@@ -217,7 +230,15 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 
 其实compact文件的过程也是把key捞出来重新放到hastable里，主要是有个挑选文件的过程，且，文件不是整体的，空洞也没关系，删掉就完了。针对挑选有很多种策略
 
-内存compact比较复杂
+
+
+## 总结
+
+总的compact思路
+
+- 有信息metric，可以是文件访问次数指标get/delete，可以是记录的活key/死key数据，可以是内存key/磁盘key比率 通过指标来决定该文件做不做compact
+- 每个文件都compact还是compact一个，也有个指标，compact key总数，可以对文件选择来逼近这个数字，也可以文件排序一个一个加，两种算法
+- 文件的引用判定，比如和checkpoint有关系不能删之类的。(blobdb是最笨拙的有关联就不删，空洞就空洞，也不重写)
 
 ---
 
