@@ -10,6 +10,10 @@ https://github.com/couchbase/moss
 
 重写成c++版本
 
+https://github.com/couchbase/moss/blob/master/DESIGN.md
+
+
+
 <!-- more -->
 
 pacifica协议

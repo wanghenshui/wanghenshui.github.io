@@ -9,11 +9,7 @@ tags: [blobdb, titandb, fasterkv, rocksdb, terarkDB, wisckey, badger, ramcloud]
 
 <!-- more -->
 
-## blobdb
-
-6.22之后的rocksdb重新实现了blobdb，很有意思
-
-简单介绍blobdb的原理 wisckey<sup>1</sup>
+## wisckey<sup>1</sup>原理
 
 >WiscKey设计的4个idea:
 >
@@ -63,6 +59,10 @@ tags: [blobdb, titandb, fasterkv, rocksdb, terarkDB, wisckey, badger, ramcloud]
 >3. 在回收vlog旧的数据空间
 
 
+
+## blobdb
+
+6.22之后的rocksdb重新实现了blobdb，很有意思
 
 这里看代码，简单过一下读写/垃圾回收流程, 没有delete
 
@@ -129,6 +129,10 @@ tags: [blobdb, titandb, fasterkv, rocksdb, terarkDB, wisckey, badger, ramcloud]
 
 
 
+能看到这个GC仅仅是判断是否关联，有关联才会去真正的删除，也不会重写blob file
+
+
+
 ## [Titan](https://github.com/tikv/titan.git)
 
 官方有文档来[解释原理](https://pingcap.com/blog-cn/titan-design-and-implementation)
@@ -163,29 +167,21 @@ void BaseDbListener::OnCompactionCompleted(
       -  blob_file_set_->GetBlobStorage
       - blob_gc_picker->PickBlobGC(blob_storage.get())
       - blob_gc_job.Prepare();  blob_gc_job.Run();  blob_gc_job.Finish(); blob_gc->ReleaseGcFiles();
+        - BlobGCJob::DoRunGC()
       - blob_gc->trigger_next()...   -> AddToGCQueue(blob_gc->column_family_handle()->GetID());
     - log_buffer.FlushBufferToLog();
     - LogFlush
   - MaybeScheduleGC
 
-> - - Titan 基于 KV 分离实现，此外，采用了多个小的 Blob Files 来代替大的只追加写的日志对 Value 进行管理，使用多线程来减小 GC 开销。
->
->   - 数据组织形式如下：
->
->   - - LSM-tree: Key - index(BlobFileID:offset:ValueSize)
->
->     - BlobFile: Value (Value 的存储类似于原本 SSTable 的结构)
->
->     - - 每条 BlobRecord 冗余存储了 Value 对应的 Key 以便反向索引，但也引入了写放大
->       - KeyValue 有序存放，为了提升 scan 性能，甚至进行预取
->       - 支持 BlobRecord 粒度的 compression，支持多种算法
->
-> - - GC：
->
->   - - 监听 LSM-tree 的 compaction 来统计每个 BlobFile 的 discardable 数据大小，触发的 GC 则选择对应 discardable 最大的 File 来作为 candidate
->     - GC 选择了一些 candidates，当 discardable size 达到一定比例之后再 GC。使用 Sample 算法，随机取  BlobFile 中的一段数据 A，计其大小为 a，然后遍历 A 中的 key，累加过期的 key 所在的 blob record 的 size 计为 d，最后计算得出 d 占 a 比值 为 r，如果 r >= discardable_ratio 则对该 BlobFile 进行  GC，否则不对其进行 GC。如果 discardable size 占整个 BlobFile 数据大小的比值已经大于或等于  discardable_ratio 则不需要对其进行 Sample
 
 
+> - GC 选择了一些 candidates，当 discardable size 达到一定比例之后再 GC。使用 Sample 算法，随机取  BlobFile 中的一段数据 A，计其大小为 a，然后遍历 A 中的 key，累加过期的 key 所在的 blob record 的 size 计为 d，最后计算得出 d 占 a 比值 为 r，如果 r >= discardable_ratio 则对该 BlobFile 进行  GC，否则不对其进行 GC。如果 discardable size 占整个 BlobFile 数据大小的比值已经大于或等于  discardable_ratio 则不需要对其进行 Sample
+
+也是评估空洞率，和badger一个六层呢
+
+但是sample算法我没有看到，这个点子可以参考一下
+
+这里是否可以引入learned index来学习一下方便gc？
 
 ## [Badger](https://github.com/dgraph-io/badger)
 
@@ -202,7 +198,39 @@ void BaseDbListener::OnCompactionCompleted(
     - `func (db *DB) sendToWriteCh(entries []*Entry) (*request, error)`  发给db.writeCh
     - `func (db *DB) doWrites(lc *z.Closer)`
     - `func (db *DB) writeRequests(reqs []*request)`
-    - `func (db *DB) writeToLSM(b *request) `
+      - `db.vlog.write(reqs)`，这里已经把reqs的指针更新好，传给writeLSM
+        - curlf.doneWriting
+      - `func (db *DB) writeToLSM(b *request) `
+        - 根据valueThreshold来判定是否写value还是写value指针，走db.mt.Put
+
+### RunValueLogGC
+
+单独提供了ValueLogGC的API
+
+Size API会返回lsm的大小和Vlog的大小，可以根据这个数据比例来调用ValueLogGC(ratio)
+
+简单流程
+
+- func (vlog *valueLog) runGC(discardRatio float64)
+  - lf := vlog.pickLog(discardRatio) 这个会根据discardStatus信息来选一个文件做compact，discardstatus信息如何更新？doCompact
+    -  discardRatio * float64(fi.Size()) 和 discardStatus记录的discard 比较
+  - vlog.doRunGC(lf)
+    - func (vlog *valueLog) rewrite(f *logFile)
+      - 逻辑就是反查 lsm，根据valuepointer来判定这个value在不在这个vlog上，然后重写
+      - vlog.filesToBeDeleted或者 vlog.deleteLogFile(f)
+    - 更新discardStatus
+
+discardStatus更新
+
+- doCompact
+  - runCompactDef
+    - compactBuildTables
+      - func (s *levelsController) subcompact
+        - s.kv.vlog.updateDiscardStats(discardStats)
+
+
+
+badger的GC是根据空洞率来决定的，外部指定淘汰比例，然后算该空洞率是否满足，然后进行重写文件
 
 ## TerarkDB
 
@@ -236,6 +264,7 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 
 总的compact思路
 
+- 如果可以，多线程加快读取速度
 - 有信息metric，可以是文件访问次数指标get/delete，可以是记录的活key/死key数据，可以是内存key/磁盘key比率 通过指标来决定该文件做不做compact
 - 每个文件都compact还是compact一个，也有个指标，compact key总数，可以对文件选择来逼近这个数字，也可以文件排序一个一个加，两种算法
 - 文件的引用判定，比如和checkpoint有关系不能删之类的。(blobdb是最笨拙的有关联就不删，空洞就空洞，也不重写)
