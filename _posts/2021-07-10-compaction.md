@@ -1,8 +1,8 @@
 ---
 layout: post
-title: compaction到底怎么做？
+title: compaction GC 到底怎么做？
 categories: [database]
-tags: [blobdb, titandb, fasterkv, rocksdb, terarkDB, wisckey, badger, ramcloud]
+tags: [lsm,hashtable,blobdb, titandb, fasterkv, rocksdb, terarkdb, wisckey, Bourbon, badger, ramcloud]
 ---
 
 [toc]
@@ -177,7 +177,7 @@ void BaseDbListener::OnCompactionCompleted(
 
 > - GC 选择了一些 candidates，当 discardable size 达到一定比例之后再 GC。使用 Sample 算法，随机取  BlobFile 中的一段数据 A，计其大小为 a，然后遍历 A 中的 key，累加过期的 key 所在的 blob record 的 size 计为 d，最后计算得出 d 占 a 比值 为 r，如果 r >= discardable_ratio 则对该 BlobFile 进行  GC，否则不对其进行 GC。如果 discardable size 占整个 BlobFile 数据大小的比值已经大于或等于  discardable_ratio 则不需要对其进行 Sample
 
-也是评估空洞率，和badger一个六层呢
+也是评估空洞率，和badger一个思路
 
 但是sample算法我没有看到，这个点子可以参考一下
 
@@ -232,13 +232,63 @@ discardStatus更新
 
 badger的GC是根据空洞率来决定的，外部指定淘汰比例，然后算该空洞率是否满足，然后进行重写文件
 
-## TerarkDB
+我在[这里看到一个分析](https://shimingyah.github.io/2019/08/BadgerDB%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8Bvlog%E8%AF%A6%E8%A7%A3/) 已经比较老了，思路是random pick，有几个判定标准
+
+> - 遍历时间超过10S。
+> - 遍历entry数超过`ValueLogMaxEntries * 1%`。
+> - 遍历entry总大小超过vlog文件大小的`10%`。
+>
+> GC阈值：
+>
+> - 遍历entry数大于`ValueLogMaxEntries * 1%`。
+> - 遍历entry总大小超过vlog文件大小的`0.075`
+> - 删除比例超过设置的`discardRatio`。
+
+这里的遍历时长限制和遍历entry限制感觉算是个好点子。可以留作优化项。可能random还是过于玄乎了吧，不如实打实计算metric收益稳定
+
+我看commit消息 
+
+> Value log would now no longer grow indefinitely, because of the shift to MemTable WAL.
+
+貌似已经改回rocksdb那套方案了，而不是靠vlog保持崩溃一致性(猜的，没验证)
+
+## [TerarkDB](https://github.com/bytedance/terarkdb)
 
 其实也是wisckey的一个实现，但是做了很多魔改，比如调优compaction，给sst文件加了个额外的信息，叫amap
 
 然后针对amap以及其他数据增加了新的数据结构以及对应这个数据结构的快速压缩方法。加速了lz4?
 
+[这里有片博客介绍的不错，简单搬过来](https://cloud.tencent.com/developer/news/603133)
 
+compaction优化
+
+Adaptive Map，虚拟sst，评估compact程度
+
+- 大的 Compaction 策略上，继承了 RocksDB 的 Level Compaction（Universal Compaction 也可以支持，看场景需要，默认是 Level Compaction）
+- 当需要进行 Compaction 的时候，会首选构建 Adaptive Map，将候选的几个 SST 构成一个逻辑上的新 SST（如上图所示）
+- Amap 中会切分出多个不同的重叠段，R1、R2、R3、R4、R5，这些重叠段的重叠度会被追踪记录
+- 后台的 GC 线程会优先选择那些重叠度更好的层进行 GC，通过这种手段，我们可以让 GC 更有效率，即写放大远低于默认的情况
+
+这等于让sst多了一些信息，对于l0的compact来说，这个信息比较重要。其他层基本没有重叠信息，只有tombstone, 也有收益么？另外，这个想法好像有点类似FAST21-REMIX，那个是scan加速保存sst范围信息，这个信息，也可以用在compaction上
+
+对于wisckey实现程度，做了个简单对比，这个表[搬运自这里](https://bytedance.feishu.cn/docs/doccnZmYFqHBm06BbvYgjsHHcKc#)
+
+|                    | **WiscKey**                                                  | **TitanDB**                                                  | **TerarkDB **                                                |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 分离策略 | Always Seprate                                               | Value Size Ratio                                             | Value Size Ratio                                             |
+| value存储      | vLOG (rotation log)                                          | Blob File和vlog差不多                                        | Original SST Format                                          |
+| Get                | 1) Key → VLOG Position 2) VLOG Position → Value              | 1) Key → FileNumber + Handle  2) FileNumber → Blob  3) Blob + Handle → Value | 1) Key → FileNumber 2) FileNumber → SST 3) SST + Key → Value |
+| Scan 代价         | Slower than LevelDB Support Prefetch                         | prefetch支持     | 不确定 |
+| GC                 | 1) Pop out vLOG's oldest values and check if its valid 2) Re-write all valid data into LSM again | 1) Pick a blob and check if its kv pairs are valid. 2) Re-write all valid keys into LSM and generate a new blob. | 1) Pick Value SSTs and check its KV validation 2) Generate new KV SST, do not need to re-write old keys into LSM |
+| GC 效率      | Rotation could be very slow and WA is not so good.           | Always pick the most urgent blob, better but slow need to re-write LSM | Comparing with TItanDB, do not need to re-write LSM          |
+
+实现思路和titan基本一致，也是利用事件监听器
+
+这里有一点，提到了scan的效率问题，没有用到prefetch, 我看最新的rocksdb是用上了prefetch的
+
+另外，由于amap带来的收益，可以对真正的 GC 操作进行延迟到负载较低的时候进行，how？rocksdb的WriteController
+
+其他基本上和titan没差，这里不看了
 
 ## 微软的 FASTER kv
 
@@ -257,6 +307,29 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 思路是总结访问记录，segmentManager记录访问，根据metric来做compact，支持内存/磁盘使用固定比率和删除key的比率两种方案
 
 其实compact文件的过程也是把key捞出来重新放到hastable里，主要是有个挑选文件的过程，且，文件不是整体的，空洞也没关系，删掉就完了。针对挑选有很多种策略
+
+
+
+## Scan相关
+
+几个问题
+
+1. 上面提到了scan的优化策略，prefetch，如何做prefetch？
+
+简单列一下titan的prefetch，就是确定是否加载value，给个option指引，在scan的时候同时把value加载到缓存里，这样才比得过rocksdb
+
+- GetBlobValueImpl
+  -  storage_->NewPrefetcher
+    -  file_cache_->NewPrefetcher
+      - new BlobFilePrefetcher
+    - prefetcher->Get
+      - reader_->file_->Prefetch
+        - readahead
+
+2. FAST21-REMIX提到的scan优化方案，就是存sst的范围信息，能结合到wisckey上吗？把blob file的信息也索引上。感觉收益不大
+
+3. 根据[VLDB'17: Fast Scans on Key-Value Stores](https://zhuanlan.zhihu.com/p/393773578)的思路，在scan阶段可以做GC，考虑收益
+4. 根据[OSDI20 - Bourbon: Learned Index for LSM](https://zhuanlan.zhihu.com/p/277979207)learned index是否有助于GC？
 
 
 
