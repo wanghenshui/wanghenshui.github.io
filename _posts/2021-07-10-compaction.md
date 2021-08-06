@@ -331,6 +331,8 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 3. 根据[VLDB'17: Fast Scans on Key-Value Stores](https://zhuanlan.zhihu.com/p/393773578)的思路，在scan阶段可以做GC，考虑收益
 4. 根据[OSDI20 - Bourbon: Learned Index for LSM](https://zhuanlan.zhihu.com/p/277979207)learned index是否有助于GC？
 
+## 空洞信息持久化？
+
 
 
 ## 总结

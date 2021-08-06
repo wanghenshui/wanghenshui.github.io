@@ -492,7 +492,20 @@ anything.
 git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -  $2 } END { printf "added lines: %s, removed lines: %s, total lines:  %s\n", add, subs, loc }'
 ```
 
--  整理commit git rebase -i HEAD~3
+-  整理commit` git rebase -i HEAD~3`
+-  修改上次提交`git reset HEAD^` 
+-  提错分支，搬过来
+
+```bash
+git reset HEAD~ --soft
+git stash
+#切分支
+git checkout branchxx
+git stash pop
+#后续add操作，不举例了
+```
+
+
 
 - 修改提交人 git commit --amend --author="NewAuthor <NewEmail@address.com>"
 
@@ -535,7 +548,7 @@ cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后�
 
 
 
-### k8s
+## k8s
 
 scg0-1-6是容器名字
 
@@ -633,6 +646,13 @@ docker login -u username -p password registry.xx.com
 docker run -it -v abs_dir_shared:abs_docker_work_dir centos /bin/bash
 #例子
 docker run -it --privileged -v /root/nosql/DTS:/dts -d  mirrors.dockerhub.com/xx/xximage:0.0.1
+```
+
+`删除`
+
+```bash
+docker ps -a #查看所有镜像，包括退出的，深坑，不清理会一直占用着
+docker rm container_id 
 ```
 
 
@@ -927,6 +947,7 @@ run '~/.tmux/plugins/tpm/tpm'
 - https://www.zhihu.com/question/19779256  ytzong的答案不错。我在wsl上可以用上面的工具。对于压缩图片来说他那个cssgaga贼破，没法用
 - 转自这里<https://gist.github.com/ryerh/14b7c24dfd623ef8edc7>
 - 这里有个详细版教程<http://louiszhai.github.io/2017/09/30/tmux/>
+- 这有个git修改小操作 https://blog.csdn.net/sodaslay/article/details/72948722
 
 
 

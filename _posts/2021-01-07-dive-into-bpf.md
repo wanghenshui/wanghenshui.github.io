@@ -2,7 +2,7 @@
 layout: post
 title: (转)(译)深入理解 BPF：一个阅读清单
 categories: [translation]
-tags: [bpf, ebpf,]
+tags: [bpf, ebpf]
 ---
 
 > 英语原文链接 https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/ 作者：Quentin Monnet
@@ -748,4 +748,3 @@ via: https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
 </details>
-
