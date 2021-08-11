@@ -15,6 +15,10 @@ tags: [bpf, zip, c++,linux,memory, mutex, tco, disruptor,perf,flamegraph,gc,cons
 
 
 
+## [分布式全局唯一ID生成策略及算法](https://zhuanlan.zhihu.com/p/42065647)
+
+redis/mongo object id/snowflake
+
 ## [Writing a Simple Garbage Collector in C](http://maplant.com/gc.html)
 
 非常简单傲
@@ -22,7 +26,7 @@ tags: [bpf, zip, c++,linux,memory, mutex, tco, disruptor,perf,flamegraph,gc,cons
 ### 获取内存，freep维护
 
 ```c
-typedef struct header {
+typedef struct header {S
     unsigned int    size;
     struct header   *next;
 } header_t;

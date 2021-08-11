@@ -189,7 +189,7 @@ void BaseDbListener::OnCompactionCompleted(
 
 大部分资料都是介绍kv分离降低写放大 以及value压缩delta encoding之类的优点，没说过具体是怎么管理GC的。还是得自己看代码
 
-#### update
+### update
 
 - `func (db *DB) Update(fn func(txn *Txn) error) ` 这个update是入口，但具体的set要塞到txn里
   - `txn.Set` `txn.SetEntry` 构造NewEntry，然后`func (txn *Txn) modify(e *Entry)` 塞到pendingWrites里
@@ -333,7 +333,13 @@ faster的compact不够灵活，如果支持compact range，相当于还要管理
 
 ## 空洞信息持久化？
 
+bagder有discard信息
 
+terarkdb有amap来存
+
+其他的没有
+
+如果想要更灵活的compact，这个参数是要导出来的
 
 ## 总结
 
