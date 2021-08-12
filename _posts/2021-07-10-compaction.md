@@ -252,6 +252,131 @@ badger的GC是根据空洞率来决定的，外部指定淘汰比例，然后算
 
 貌似已经改回rocksdb那套方案了，而不是靠vlog保持崩溃一致性(猜的，没验证)
 
+### discard信息持久化
+
+承上，更新逻辑
+
+```go
+func (vlog *valueLog) updateDiscardStats(stats map[uint32]int64) {
+	if vlog.opt.InMemory {
+		return
+	}
+	for fid, discard := range stats {
+		vlog.discardStats.Update(fid, discard)
+	}
+}
+```
+
+这个更新，全局共用一个mmap文件，文件名就叫DISCARD 这是用mmap当成map/数组来用了，（数组也是一种map）
+
+
+
+```go
+func InitDiscardStats(opt Options) (*discardStats, error) {
+	fname := filepath.Join(opt.ValueDir, discardFname)
+
+	// 1GB file can store 67M discard entries. Each entry is 16 bytes. fid 8 + discard 8
+	mf, err := z.OpenMmapFile(fname, os.O_CREATE|os.O_RDWR, 1<<20)
+	lf := &discardStats{
+		MmapFile: mf,
+		opt:      opt,
+	}
+	if err == z.NewFile {
+		// We don't need to zero out the entire 1GB. 就前面两个entry清空了
+		lf.zeroOut()
+	} else if err != nil {
+		return nil, y.Wrapf(err, "while opening file: %s\n", discardFname)
+	}
+
+	for slot := 0; slot < lf.maxSlot(); slot++ {
+		if lf.get(16*slot) == 0 {
+			lf.nextEmptySlot = slot
+			break
+		}
+	}
+	sort.Sort(lf)
+	return lf, nil
+}
+```
+
+更新和查找就简单了
+
+```go
+// Update would update the discard stats for the given file id. If discard is
+// 0, it would return the current value of discard for the file. If discard is
+// < 0, it would set the current value of discard to zero for the file.
+func (lf *discardStats) Update(fidu uint32, discard int64) int64 {
+	fid := uint64(fidu)
+	lf.Lock()
+	defer lf.Unlock()
+
+	idx := sort.Search(lf.nextEmptySlot, func(slot int) bool {
+		return lf.get(slot*16) >= fid
+	})
+	if idx < lf.nextEmptySlot && lf.get(idx*16) == fid {
+		off := idx*16 + 8
+		curDisc := lf.get(off)
+		if discard == 0 {
+			return int64(curDisc)
+		}
+		if discard < 0 {
+			lf.set(off, 0)
+			return 0
+		}
+		lf.set(off, curDisc+uint64(discard))
+		return int64(curDisc + uint64(discard))
+	}
+	if discard <= 0 {
+		// No need to add a new entry.
+		return 0
+	}
+
+	// Could not find the fid. Add the entry.
+	idx = lf.nextEmptySlot
+	lf.set(idx*16, uint64(fid))
+	lf.set(idx*16+8, uint64(discard))
+
+	// Move to next slot.
+	lf.nextEmptySlot++
+	for lf.nextEmptySlot >= lf.maxSlot() {
+		y.Check(lf.Truncate(2 * int64(len(lf.Data))))
+	}
+	lf.zeroOut()
+
+	sort.Sort(lf)
+	return int64(discard)
+}
+
+func (lf *discardStats) Iterate(f func(fid, stats uint64)) {
+	for slot := 0; slot < lf.nextEmptySlot; slot++ {
+		idx := 16 * slot
+		f(lf.get(idx), lf.get(idx+8))
+	}
+}
+
+// MaxDiscard returns the file id with maximum discard bytes.
+func (lf *discardStats) MaxDiscard() (uint32, int64) {
+	lf.Lock()
+	defer lf.Unlock()
+
+	var maxFid, maxVal uint64
+	lf.Iterate(func(fid, val uint64) {
+		if maxVal < val {
+			maxVal = val
+			maxFid = fid
+		}
+	})
+	return uint32(maxFid), int64(maxVal)
+}
+```
+
+两个问题
+
+1. 大锁
+2. 全局一个对象
+
+
+
 ## [TerarkDB](https://github.com/bytedance/terarkdb)
 
 其实也是wisckey的一个实现，但是做了很多魔改，比如调优compaction，给sst文件加了个额外的信息，叫amap

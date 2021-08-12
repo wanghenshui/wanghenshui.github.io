@@ -13,6 +13,8 @@ tags: [hastable]
 
 里面的log概念类似操作记录，是内存的，基于page。但没有把page刷入磁盘的动作以及管理地址
 
+重点在内存管理，scan阶段优化
+
 <!-- more -->
 
 cmakelists.txt能看出来有三种存储
@@ -580,6 +582,7 @@ append也就是基础的链表加减操作
 
 # 参考
 
+- 论文地址 https://vldb.org/pvldb/vol10/p1526-bocksrocker.pdf
 - https://zhuanlan.zhihu.com/p/393773578 小伙文章不错
 
 
