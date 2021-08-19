@@ -2,7 +2,7 @@
 layout: post
 title: tellstore fast scan
 categories: [database]
-tags: [hastable]
+tags: [hastable,scan]
 ---
 
 [toc]
@@ -386,6 +386,8 @@ public:
 ```
 
 原理比较简单，把index 原子化，我记得无锁circle buffer也是类似的技巧
+
+这里不能用memory_order_relaxed 可能会有问题。默认就好
 
 ## buffer_reader/buffer_writer
 
