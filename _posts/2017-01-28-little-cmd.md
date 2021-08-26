@@ -505,6 +505,14 @@ git stash pop
 #后续add操作，不举例了
 ```
 
+- 查看被修改的文件
+
+```bash
+git diff --name-only
+git diff --name-only HEAD~ HEAD
+git diff --name-only <commit-id1> <commit-id2>
+```
+
 
 
 - 修改提交人 git commit --amend --author="NewAuthor <NewEmail@address.com>"

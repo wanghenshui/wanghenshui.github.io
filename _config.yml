@@ -13,7 +13,7 @@ kramdown:
 
 plugins:
   - jekyll-paginate
-paginate: 5
+paginate: 10
 paginate_path: "/pages:num/"
 mathjax: false
 excerpt_separator: <!-- more -->
