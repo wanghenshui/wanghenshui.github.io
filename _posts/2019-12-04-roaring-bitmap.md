@@ -1,8 +1,8 @@
 ---
 layout: post
 title: roaring bitmap aka RBM
-categories: [algorithm]
-tags: [bitmap]
+categories: [algorithm,todo]
+tags: [bitmap,tree]
 ---
 
 
@@ -72,6 +72,7 @@ O(logn)的查找性能：
   - https://github.com/apache/incubator-doris
   - 他这篇hbase rowkey设计也不错，基本覆盖了书里介绍的内容 https://blog.bcmeng.com/post/hbase-rowkey.html
 - 本文内容整理自 https://zhuanlan.zhihu.com/p/39828878和https://www.jianshu.com/p/818ac4e90daf
+- sigmod2021有一个新的设计 Tree-Encoded Bitmaps http://db.in.tum.de/~lang/papers/tebs.pdf 值得研究一下，这里留个坑
 
 
 ---

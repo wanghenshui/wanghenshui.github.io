@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (转)Lockfree Hashtable
-categories: [language]
+categories: [language,todo]
 tags: [hashtable]
 ---
 
@@ -391,7 +391,15 @@ newCount < (mainHash->capacity >> 1) + (mainHash->capacity >> 2)
 
 
 
+# todo
 
+这有几个hashtable实现，上亿qps，无锁
+
+-  https://github.com/PeterRK/fastCHD
+- https://github.com/PeterRK/SSHT
+- https://github.com/PeterRK/estuary
+
+这里挖个坑，后面分析一下 http://cmph.sourceforge.net/chd.html
 
 
 ---
