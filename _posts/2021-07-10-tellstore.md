@@ -500,7 +500,48 @@ void allocator::free(void* ptr, std::function<void()> destruct) {
 }
 ```
 
-[rdtsc](https://stackoverflow.com/questions/1273367/what-is-this-x86-inline-assembly-doing)拿到时间戳，然后去余数
+[rdtsc](https://stackoverflow.com/questions/1273367/what-is-this-x86-inline-assembly-doing)拿到时间戳
+
+> 题外话 不过现在拿都是直接用汇编, 比如[dpdk里的实现](https://cloud.tencent.com/developer/article/1198333)
+>
+> ```c++
+> static inline uint64_t
+> rte_rdtsc(void)
+> {
+> 	union {
+> 		uint64_t tsc_64;
+> 		struct {
+> 			uint32_t lo_32;
+> 			uint32_t hi_32;
+> 		};
+> 	} tsc;
+> 
+> 	asm volatile("rdtsc" :
+> 		     "=a" (tsc.lo_32),
+> 		     "=d" (tsc.hi_32));
+> 	return tsc.tsc_64;
+> }
+> ```
+> 比传统的写法快，和上面哪个.byte应该差不多
+> 传统写法
+> ```c++
+> static inline uint64_t
+> rte_rdtsc(void)
+> {
+>       uint32_t lo, hi;
+> 
+>       __asm__ __volatile__ (
+>                  "rdtsc" : "=a"(lo), "=d"(hi)
+>                  );
+> 
+>       return ((unsigned long long)lo) | (((unsigned long long)hi) << 32);
+> }
+> ```
+
+
+
+
+然后去余数
 
 ```c++
     void append(uint8_t* ptr, uint64_t mycnt, decltype(node::destruct) destruct) {
