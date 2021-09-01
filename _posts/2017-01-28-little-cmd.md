@@ -274,8 +274,7 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 <p><img src="https://wanghenshui.github.io/assets/top.png" alt="" width="100%"></p>
 
-
-## VIM
+## Vim
 
 - G 跳到最后
 - set foldmethod=indent "set default foldmethod
@@ -300,6 +299,7 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 - b w 前后走动
 - 命令行 补全 ctrl l
 - 插入模式补全 ctrl p
+- 在vim里执行命令 加感叹号就可以 !ls
 
 
 
