@@ -4,9 +4,11 @@ categories : database
 title: rocksdb perfix extrator
 tags : [rocksdb,c++]
 ---
-  
+
 
 这里实际上是涉及到一个prefix bloom filter的，参考链接2给出了很详细的介绍和使用说明，我就直接抄过来了
+
+[toc]
 
 # Prefix Seek
 
@@ -388,4 +390,3 @@ void MemTable::Add(SequenceNumber s, ValueType type,
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
 </details>
-

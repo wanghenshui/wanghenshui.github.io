@@ -7,6 +7,8 @@ tags: [redis, c]
 
 
 
+[toc]
+
 
 
 ## 数据结构
@@ -49,7 +51,7 @@ skiplist
 
 
 
-### list
+## list
 
 - 内部编码 quicklist，代替linkedlist，两者区别？
 - 编码的区别，api完全一致

@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: database
-title: rocksdb 初探 7：merge
+title: rocksdb 一些堆栈记录
 tags: [rocksdb, c++]
 ---
 
@@ -222,4 +222,3 @@ merge
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
 </details>或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
-
