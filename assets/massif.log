@@ -1,0 +1,458 @@
+--------------------------------------------------------------------------------
+Command:            ./load_test
+Massif arguments:   --pages-as-heap=yes --time-unit=B
+ms_print arguments: massif.out.5478
+--------------------------------------------------------------------------------
+
+
+    MB
+763.7^                                                                       @
+     |                                                                       @
+     |                                                                 ::::::@
+     |                                                                 :     @
+     |                                                           :::::::     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |                                                           :     :     @
+     |          ::::::::::::::::::::::::::::::::::::::::::::::::::     :     @
+     |       ::::                                                :     :     @
+     |   :#:::  :                                                :     :     @
+   0 +----------------------------------------------------------------------->MB
+     0                                                                   763.9
+
+Number of snapshots: 79
+ Detailed snapshots: [9, 13, 23, 33, 43, 53, 58, 68 (peak), 78]
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0      1,630,208        1,630,208        1,630,208             0            0
+  1      2,375,680        2,375,680        2,375,680             0            0
+  2      2,383,872        2,383,872        2,383,872             0            0
+  3      2,387,968        2,387,968        2,387,968             0            0
+  4      2,396,160        2,396,160        2,396,160             0            0
+  5      2,535,424        2,535,424        2,535,424             0            0
+  6      2,543,616        2,543,616        2,543,616             0            0
+  7      2,547,712        2,547,712        2,547,712             0            0
+  8      2,551,808        2,551,808        2,551,808             0            0
+  9      2,555,904        2,555,904        2,555,904             0            0
+100.00% (2,555,904B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->100.00% (2,555,904B) 0xFFFFFFFFFFFFFFFF: ???
+  
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 10      2,564,096        2,564,096        2,564,096             0            0
+ 11      2,568,192        2,568,192        2,568,192             0            0
+ 12      2,572,288        2,572,288        2,572,288             0            0
+ 13      2,572,288        2,572,288        2,572,288             0            0
+100.00% (2,572,288B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->99.84% (2,568,192B) 0xFFFFFFFFFFFFFFFF: ???
+| 
+->00.16% (4,096B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 14      2,576,384        2,568,192        2,568,192             0            0
+ 15      2,576,384        2,568,192        2,568,192             0            0
+ 16      2,580,480        2,572,288        2,572,288             0            0
+ 17      4,685,824        4,677,632        4,677,632             0            0
+ 18      4,694,016        4,685,824        4,685,824             0            0
+ 19      4,698,112        4,689,920        4,689,920             0            0
+ 20      5,771,264        5,763,072        5,763,072             0            0
+ 21      5,775,360        5,767,168        5,767,168             0            0
+ 22      5,783,552        5,775,360        5,775,360             0            0
+ 23      5,783,552        5,775,360        5,775,360             0            0
+100.00% (5,775,360B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->55.53% (3,207,168B) 0x40197D9: mmap (in /usr/lib64/ld-2.17.so)
+| ->55.04% (3,178,496B) 0x40064B5: _dl_map_object_from_fd (in /usr/lib64/ld-2.17.so)
+| | ->55.04% (3,178,496B) 0x4008668: _dl_map_object (in /usr/lib64/ld-2.17.so)
+| |   ->55.04% (3,178,496B) 0x400132C: map_doit (in /usr/lib64/ld-2.17.so)
+| |     ->55.04% (3,178,496B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |       ->36.45% (2,105,344B) 0x4001E08: handle_ld_preload (in /usr/lib64/ld-2.17.so)
+| |       | ->36.45% (2,105,344B) 0x40042D0: dl_main (in /usr/lib64/ld-2.17.so)
+| |       |   ->36.45% (2,105,344B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |       |     ->36.45% (2,105,344B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |       |       ->36.45% (2,105,344B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |       |         
+| |       ->18.58% (1,073,152B) 0x400180E: do_preload (in /usr/lib64/ld-2.17.so)
+| |         ->18.58% (1,073,152B) 0x4004E6D: dl_main (in /usr/lib64/ld-2.17.so)
+| |           ->18.58% (1,073,152B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |             ->18.58% (1,073,152B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |               ->18.58% (1,073,152B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |                 
+| ->00.50% (28,672B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->44.47% (2,568,192B) 0xFFFFFFFFFFFFFFFF: ???
+| 
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 24      5,787,648        5,771,264        5,771,264             0            0
+ 25      5,873,664        5,857,280        5,857,280             0            0
+ 26      7,991,296        7,974,912        7,974,912             0            0
+ 27      7,999,488        7,983,104        7,983,104             0            0
+ 28      8,003,584        7,987,200        7,987,200             0            0
+ 29     10,317,824       10,301,440       10,301,440             0            0
+ 30     10,334,208       10,317,824       10,317,824             0            0
+ 31     10,342,400       10,326,016       10,326,016             0            0
+ 32     12,640,256       12,623,872       12,623,872             0            0
+ 33     12,648,448       12,632,064       12,632,064             0            0
+100.00% (12,632,064B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->79.67% (10,063,872B) 0x40197D9: mmap (in /usr/lib64/ld-2.17.so)
+| ->78.44% (9,908,224B) 0x40064B5: _dl_map_object_from_fd (in /usr/lib64/ld-2.17.so)
+| | ->78.44% (9,908,224B) 0x4008668: _dl_map_object (in /usr/lib64/ld-2.17.so)
+| |   ->53.27% (6,729,728B) 0x400CC60: openaux (in /usr/lib64/ld-2.17.so)
+| |   | ->53.27% (6,729,728B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |   |   ->53.27% (6,729,728B) 0x400D46B: _dl_map_object_deps (in /usr/lib64/ld-2.17.so)
+| |   |     ->53.27% (6,729,728B) 0x4003691: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |       ->53.27% (6,729,728B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |         ->53.27% (6,729,728B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |           ->53.27% (6,729,728B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |             
+| |   ->25.16% (3,178,496B) 0x400132C: map_doit (in /usr/lib64/ld-2.17.so)
+| |     ->25.16% (3,178,496B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |       ->16.67% (2,105,344B) 0x4001E08: handle_ld_preload (in /usr/lib64/ld-2.17.so)
+| |       | ->16.67% (2,105,344B) 0x40042D0: dl_main (in /usr/lib64/ld-2.17.so)
+| |       |   ->16.67% (2,105,344B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |       |     ->16.67% (2,105,344B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |       |       ->16.67% (2,105,344B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |       |         
+| |       ->08.50% (1,073,152B) 0x400180E: do_preload (in /usr/lib64/ld-2.17.so)
+| |         ->08.50% (1,073,152B) 0x4004E6D: dl_main (in /usr/lib64/ld-2.17.so)
+| |           ->08.50% (1,073,152B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |             ->08.50% (1,073,152B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |               ->08.50% (1,073,152B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |                 
+| ->01.23% (155,648B) in 4 places, all below massif's threshold (1.00%)
+|   
+->20.33% (2,568,192B) 0xFFFFFFFFFFFFFFFF: ???
+| 
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 34     12,652,544       12,636,160       12,636,160             0            0
+ 35     16,367,616       16,351,232       16,351,232             0            0
+ 36     16,416,768       16,400,384       16,400,384             0            0
+ 37     16,433,152       16,416,768       16,416,768             0            0
+ 38     16,437,248       16,420,864       16,420,864             0            0
+ 39     18,649,088       18,632,704       18,632,704             0            0
+ 40     18,657,280       18,640,896       18,640,896             0            0
+ 41     18,673,664       18,657,280       18,657,280             0            0
+ 42     21,827,584       21,811,200       21,811,200             0            0
+ 43     21,835,776       21,819,392       21,819,392             0            0
+100.00% (21,819,392B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->88.23% (19,251,200B) 0x40197D9: mmap (in /usr/lib64/ld-2.17.so)
+| ->87.03% (18,989,056B) 0x40064B5: _dl_map_object_from_fd (in /usr/lib64/ld-2.17.so)
+| | ->87.03% (18,989,056B) 0x4008668: _dl_map_object (in /usr/lib64/ld-2.17.so)
+| |   ->72.46% (15,810,560B) 0x400CC60: openaux (in /usr/lib64/ld-2.17.so)
+| |   | ->72.46% (15,810,560B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |   |   ->72.46% (15,810,560B) 0x400D46B: _dl_map_object_deps (in /usr/lib64/ld-2.17.so)
+| |   |     ->72.46% (15,810,560B) 0x4003691: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |       ->72.46% (15,810,560B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |         ->72.46% (15,810,560B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |           ->72.46% (15,810,560B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |             
+| |   ->14.57% (3,178,496B) 0x400132C: map_doit (in /usr/lib64/ld-2.17.so)
+| |     ->14.57% (3,178,496B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |       ->09.65% (2,105,344B) 0x4001E08: handle_ld_preload (in /usr/lib64/ld-2.17.so)
+| |       | ->09.65% (2,105,344B) 0x40042D0: dl_main (in /usr/lib64/ld-2.17.so)
+| |       |   ->09.65% (2,105,344B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |       |     ->09.65% (2,105,344B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |       |       ->09.65% (2,105,344B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |       |         
+| |       ->04.92% (1,073,152B) 0x400180E: do_preload (in /usr/lib64/ld-2.17.so)
+| |         ->04.92% (1,073,152B) 0x4004E6D: dl_main (in /usr/lib64/ld-2.17.so)
+| |           ->04.92% (1,073,152B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |             ->04.92% (1,073,152B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |               ->04.92% (1,073,152B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |                 
+| ->01.20% (262,144B) in 4 places, all below massif's threshold (1.00%)
+|   
+->11.77% (2,568,192B) 0xFFFFFFFFFFFFFFFF: ???
+| 
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 44     24,027,136       24,010,752       24,010,752             0            0
+ 45     24,035,328       24,018,944       24,018,944             0            0
+ 46     24,039,424       24,023,040       24,023,040             0            0
+ 47     28,028,928       28,012,544       28,012,544             0            0
+ 48     28,053,504       28,037,120       28,037,120             0            0
+ 49     28,073,984       28,057,600       28,057,600             0            0
+ 50     30,187,520       30,171,136       30,171,136             0            0
+ 51     30,195,712       30,179,328       30,179,328             0            0
+ 52     32,325,632       32,309,248       32,309,248             0            0
+ 53     32,333,824       32,317,440       32,317,440             0            0
+100.00% (32,317,440B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->92.05% (29,749,248B) 0x40197D9: mmap (in /usr/lib64/ld-2.17.so)
+| ->91.01% (29,413,376B) 0x40064B5: _dl_map_object_from_fd (in /usr/lib64/ld-2.17.so)
+| | ->91.01% (29,413,376B) 0x4008668: _dl_map_object (in /usr/lib64/ld-2.17.so)
+| |   ->81.18% (26,234,880B) 0x400CC60: openaux (in /usr/lib64/ld-2.17.so)
+| |   | ->81.18% (26,234,880B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |   |   ->81.18% (26,234,880B) 0x400D46B: _dl_map_object_deps (in /usr/lib64/ld-2.17.so)
+| |   |     ->81.18% (26,234,880B) 0x4003691: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |       ->81.18% (26,234,880B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |         ->81.18% (26,234,880B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |           ->81.18% (26,234,880B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |             
+| |   ->09.84% (3,178,496B) 0x400132C: map_doit (in /usr/lib64/ld-2.17.so)
+| |     ->09.84% (3,178,496B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |       ->06.51% (2,105,344B) 0x4001E08: handle_ld_preload (in /usr/lib64/ld-2.17.so)
+| |       | ->06.51% (2,105,344B) 0x40042D0: dl_main (in /usr/lib64/ld-2.17.so)
+| |       |   ->06.51% (2,105,344B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |       |     ->06.51% (2,105,344B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |       |       ->06.51% (2,105,344B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |       |         
+| |       ->03.32% (1,073,152B) 0x400180E: do_preload (in /usr/lib64/ld-2.17.so)
+| |         ->03.32% (1,073,152B) 0x4004E6D: dl_main (in /usr/lib64/ld-2.17.so)
+| |           ->03.32% (1,073,152B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |             ->03.32% (1,073,152B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |               ->03.32% (1,073,152B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |                 
+| ->01.04% (335,872B) in 4 places, all below massif's threshold (1.00%)
+|   
+->07.95% (2,568,192B) 0xFFFFFFFFFFFFFFFF: ???
+| 
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 54     32,337,920       32,321,536       32,321,536             0            0
+ 55     32,342,016       32,325,632       32,325,632             0            0
+ 56     32,350,208       32,333,824       32,333,824             0            0
+ 57     32,354,304       32,337,920       32,337,920             0            0
+ 58     32,354,304       32,337,920       32,337,920             0            0
+100.00% (32,337,920B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->92.06% (29,769,728B) 0x40197D9: mmap (in /usr/lib64/ld-2.17.so)
+| ->90.96% (29,413,376B) 0x40064B5: _dl_map_object_from_fd (in /usr/lib64/ld-2.17.so)
+| | ->90.96% (29,413,376B) 0x4008668: _dl_map_object (in /usr/lib64/ld-2.17.so)
+| |   ->81.13% (26,234,880B) 0x400CC60: openaux (in /usr/lib64/ld-2.17.so)
+| |   | ->81.13% (26,234,880B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |   |   ->81.13% (26,234,880B) 0x400D46B: _dl_map_object_deps (in /usr/lib64/ld-2.17.so)
+| |   |     ->81.13% (26,234,880B) 0x4003691: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |       ->81.13% (26,234,880B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |         ->81.13% (26,234,880B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |           ->81.13% (26,234,880B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |             
+| |   ->09.83% (3,178,496B) 0x400132C: map_doit (in /usr/lib64/ld-2.17.so)
+| |     ->09.83% (3,178,496B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |       ->06.51% (2,105,344B) 0x4001E08: handle_ld_preload (in /usr/lib64/ld-2.17.so)
+| |       | ->06.51% (2,105,344B) 0x40042D0: dl_main (in /usr/lib64/ld-2.17.so)
+| |       |   ->06.51% (2,105,344B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |       |     ->06.51% (2,105,344B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |       |       ->06.51% (2,105,344B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |       |         
+| |       ->03.32% (1,073,152B) 0x400180E: do_preload (in /usr/lib64/ld-2.17.so)
+| |         ->03.32% (1,073,152B) 0x4004E6D: dl_main (in /usr/lib64/ld-2.17.so)
+| |           ->03.32% (1,073,152B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |             ->03.32% (1,073,152B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |               ->03.32% (1,073,152B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |                 
+| ->01.10% (356,352B) in 4 places, all below massif's threshold (1.00%)
+|   
+->07.94% (2,568,192B) 0xFFFFFFFFFFFFFFFF: ???
+| 
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 59     32,358,400       32,333,824       32,333,824             0            0
+ 60     32,645,120       32,456,704       32,456,704             0            0
+ 61     41,037,824       40,849,408       40,849,408             0            0
+ 62     43,368,448       43,180,032       43,180,032             0            0
+ 63     43,380,736       43,192,320       43,192,320             0            0
+ 64     43,511,808       43,323,392       43,323,392             0            0
+ 65     45,608,960       45,420,544       45,420,544             0            0
+ 66     45,740,032       45,551,616       45,551,616             0            0
+ 67     45,744,128       45,555,712       45,555,712             0            0
+ 68     45,744,128       45,555,712       45,555,712             0            0
+100.00% (45,555,712B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->70.59% (32,157,696B) 0x40197D9: mmap (in /usr/lib64/ld-2.17.so)
+| ->69.68% (31,744,000B) 0x40064B5: _dl_map_object_from_fd (in /usr/lib64/ld-2.17.so)
+| | ->69.68% (31,744,000B) 0x4008668: _dl_map_object (in /usr/lib64/ld-2.17.so)
+| |   ->57.59% (26,234,880B) 0x400CC60: openaux (in /usr/lib64/ld-2.17.so)
+| |   | ->57.59% (26,234,880B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |   |   ->57.59% (26,234,880B) 0x400D46B: _dl_map_object_deps (in /usr/lib64/ld-2.17.so)
+| |   |     ->57.59% (26,234,880B) 0x4003691: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |       ->57.59% (26,234,880B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |         ->57.59% (26,234,880B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |           ->57.59% (26,234,880B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |             
+| |   ->06.98% (3,178,496B) 0x400132C: map_doit (in /usr/lib64/ld-2.17.so)
+| |   | ->06.98% (3,178,496B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |   |   ->04.62% (2,105,344B) 0x4001E08: handle_ld_preload (in /usr/lib64/ld-2.17.so)
+| |   |   | ->04.62% (2,105,344B) 0x40042D0: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |   |   ->04.62% (2,105,344B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |   |     ->04.62% (2,105,344B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |   |       ->04.62% (2,105,344B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |   |         
+| |   |   ->02.36% (1,073,152B) 0x400180E: do_preload (in /usr/lib64/ld-2.17.so)
+| |   |     ->02.36% (1,073,152B) 0x4004E6D: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |       ->02.36% (1,073,152B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |         ->02.36% (1,073,152B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |           ->02.36% (1,073,152B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |             
+| |   ->05.12% (2,330,624B) 0x40142A2: dl_open_worker (in /usr/lib64/ld-2.17.so)
+| |     ->05.12% (2,330,624B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |       ->05.12% (2,330,624B) 0x4013B89: _dl_open (in /usr/lib64/ld-2.17.so)
+| |         ->05.12% (2,330,624B) 0x611FFA9: dlopen_doit (in /usr/lib64/libdl-2.17.so)
+| |           ->05.12% (2,330,624B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |             ->05.12% (2,330,624B) 0x61205AB: _dlerror_run (in /usr/lib64/libdl-2.17.so)
+| |               ->05.12% (2,330,624B) 0x612003F: dlopen@@GLIBC_2.2.5 (in /usr/lib64/libdl-2.17.so)
+| |                 ->05.12% (2,330,624B) 0x4E3BF99: ??? (in /usr/lib64/libtbb.so.2)
+| |                   ->05.12% (2,330,624B) 0x4E3C191: ??? (in /usr/lib64/libtbb.so.2)
+| |                     ->05.12% (2,330,624B) 0x4E3F392: ??? (in /usr/lib64/libtbb.so.2)
+| |                       ->05.12% (2,330,624B) 0x4E3F47A: ??? (in /usr/lib64/libtbb.so.2)
+| |                         ->05.12% (2,330,624B) 0x4E3F4BF: ??? (in /usr/lib64/libtbb.so.2)
+| |                           ->05.12% (2,330,624B) 0x4E3F55F: tbb::internal::NFS_Allocate(unsigned long, unsigned long, void*) (in /usr/lib64/libtbb.so.2)
+| |                             ->05.12% (2,330,624B) 0x3DFFB3: tbb::cache_aligned_allocator<tbb::strict_ppl::internal::concurrent_queue_rep<std::function<void ()> > >::allocate(unsigned long, void const*) (in /data/FASTER/cc/build/load_test)
+| |                               ->05.12% (2,330,624B) 0x3DFAF7: tbb::strict_ppl::internal::concurrent_queue_base_v3<std::function<void ()> >::concurrent_queue_base_v3() (in /data/FASTER/cc/build/load_test)
+| |                                 ->05.12% (2,330,624B) 0x3DF8A0: tbb::strict_ppl::concurrent_queue<std::function<void ()>, tbb::cache_aligned_allocator<std::function<void ()> > >::concurrent_queue(tbb::cache_aligned_allocator<std::function<void ()> > const&) (in /data/FASTER/cc/build/load_test)
+| |                                   ->05.12% (2,330,624B) 0x3DE129: FASTER::environment::QueueIoHandler::QueueIoHandler(unsigned long) (in /data/FASTER/cc/build/load_test)
+| |                                     ->05.12% (2,330,624B) 0x3A594D: FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul>::FileSystemDisk(std::string const&, FASTER::core::LightEpoch&, bool, bool, bool) (in /data/FASTER/cc/build/load_test)
+| |                                       ->05.12% (2,330,624B) 0x39F9F2: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| |                                         ->05.12% (2,330,624B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |                                           ->05.12% (2,330,624B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |                                             
+| ->00.91% (413,696B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->23.32% (10,625,024B) 0x5E49EB9: mmap (in /usr/lib64/libc-2.17.so)
+| ->18.42% (8,392,704B) 0x56247FB: pthread_create@@GLIBC_2.2.5 (in /usr/lib64/libpthread-2.17.so)
+| | ->18.42% (8,392,704B) 0x534DFD3: std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (in /usr/lib64/libstdc++.so.6.0.24)
+| |   ->18.42% (8,392,704B) 0x3D78B3: std::thread::thread<void (&)()>(void (&)()) (in /data/FASTER/cc/build/load_test)
+| |     ->18.42% (8,392,704B) 0x3D68D1: util::InitEnv() (in /data/FASTER/cc/build/load_test)
+| |       ->18.42% (8,392,704B) 0x39B567: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |         ->18.42% (8,392,704B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |           
+| ->04.89% (2,228,224B) 0x6D30AC3: ??? (in /usr/lib64/libtbbmalloc.so.2)
+| | ->04.60% (2,097,152B) 0x6D30D6B: ??? (in /usr/lib64/libtbbmalloc.so.2)
+| | | ->04.60% (2,097,152B) 0x6D32190: ??? (in /usr/lib64/libtbbmalloc.so.2)
+| | |   ->04.60% (2,097,152B) 0x6D384BD: ??? (in /usr/lib64/libtbbmalloc.so.2)
+| | |     ->04.60% (2,097,152B) 0x6D3A2F4: ??? (in /usr/lib64/libtbbmalloc.so.2)
+| | |       ->04.60% (2,097,152B) 0x6D3AD71: ??? (in /usr/lib64/libtbbmalloc.so.2)
+| | |         ->04.60% (2,097,152B) 0x6D3AF4D: scalable_aligned_malloc (in /usr/lib64/libtbbmalloc.so.2)
+| | |           ->04.60% (2,097,152B) 0x4E3F55F: tbb::internal::NFS_Allocate(unsigned long, unsigned long, void*) (in /usr/lib64/libtbb.so.2)
+| | |             ->04.60% (2,097,152B) 0x3DFFB3: tbb::cache_aligned_allocator<tbb::strict_ppl::internal::concurrent_queue_rep<std::function<void ()> > >::allocate(unsigned long, void const*) (in /data/FASTER/cc/build/load_test)
+| | |               ->04.60% (2,097,152B) 0x3DFAF7: tbb::strict_ppl::internal::concurrent_queue_base_v3<std::function<void ()> >::concurrent_queue_base_v3() (in /data/FASTER/cc/build/load_test)
+| | |                 ->04.60% (2,097,152B) 0x3DF8A0: tbb::strict_ppl::concurrent_queue<std::function<void ()>, tbb::cache_aligned_allocator<std::function<void ()> > >::concurrent_queue(tbb::cache_aligned_allocator<std::function<void ()> > const&) (in /data/FASTER/cc/build/load_test)
+| | |                   ->04.60% (2,097,152B) 0x3DE129: FASTER::environment::QueueIoHandler::QueueIoHandler(unsigned long) (in /data/FASTER/cc/build/load_test)
+| | |                     ->04.60% (2,097,152B) 0x3A594D: FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul>::FileSystemDisk(std::string const&, FASTER::core::LightEpoch&, bool, bool, bool) (in /data/FASTER/cc/build/load_test)
+| | |                       ->04.60% (2,097,152B) 0x39F9F2: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| | |                         ->04.60% (2,097,152B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| | |                           ->04.60% (2,097,152B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| | |                             
+| | ->00.29% (131,072B) in 1+ places, all below ms_print's threshold (01.00%)
+| | 
+| ->00.01% (4,096B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->05.64% (2,568,192B) 0xFFFFFFFFFFFFFFFF: ???
+| 
+->00.45% (204,800B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(B)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 69     45,748,224       45,551,616       45,551,616             0            0
+ 70     54,140,928       53,944,320       53,944,320             0            0
+ 71     87,699,456       87,502,848       87,502,848             0            0
+ 72    121,257,984      121,061,376      121,061,376             0            0
+ 73    121,393,152      121,196,544      121,196,544             0            0
+ 74    121,528,320      121,331,712      121,331,712             0            0
+ 75    658,403,328      658,206,720      658,206,720             0            0
+ 76    725,516,288      725,319,680      725,319,680             0            0
+ 77    792,629,248      792,432,640      792,432,640             0            0
+ 78    801,021,952      800,825,344      800,825,344             0            0
+100.00% (800,825,344B) (page allocation syscalls) mmap/mremap/brk, --alloc-fns, etc.
+->95.60% (765,624,320B) 0x5E49EB9: mmap (in /usr/lib64/libc-2.17.so)
+| ->92.18% (738,217,984B) 0x5DD2B40: sysmalloc (in /usr/lib64/libc-2.17.so)
+| | ->92.18% (738,217,984B) 0x5DD3958: _int_malloc (in /usr/lib64/libc-2.17.so)
+| |   ->92.18% (738,217,984B) 0x5DD4054: _int_memalign (in /usr/lib64/libc-2.17.so)
+| |     ->92.18% (738,217,984B) 0x5DD7073: memalign (in /usr/lib64/libc-2.17.so)
+| |       ->92.18% (738,217,984B) 0x390363: FASTER::core::aligned_alloc(unsigned long, unsigned long) (in /data/FASTER/cc/build/load_test)
+| |         ->67.04% (536,875,008B) 0x3A64D3: FASTER::core::InternalHashTable<FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::Initialize(unsigned long, unsigned long) (in /data/FASTER/cc/build/load_test)
+| |         | ->67.04% (536,875,008B) 0x39FD93: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| |         |   ->67.04% (536,875,008B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |         |     ->67.04% (536,875,008B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |         |       
+| |         ->16.76% (134,225,920B) 0x3B2632: FASTER::core::FixedPageArray<FASTER::core::HashBucket>::AddPage(unsigned long) (in /data/FASTER/cc/build/load_test)
+| |         | ->08.38% (67,112,960B) 0x3A676A: FASTER::core::MallocFixedPageSize<FASTER::core::HashBucket, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::Initialize(unsigned long, FASTER::core::LightEpoch&) (in /data/FASTER/cc/build/load_test)
+| |         | | ->08.38% (67,112,960B) 0x39FDD3: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| |         | |   ->08.38% (67,112,960B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |         | |     ->08.38% (67,112,960B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |         | |       
+| |         | ->08.38% (67,112,960B) 0x3B28A9: FASTER::core::MallocFixedPageSize<FASTER::core::HashBucket, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::Allocate() (in /data/FASTER/cc/build/load_test)
+| |         |   ->08.38% (67,112,960B) 0x3A6792: FASTER::core::MallocFixedPageSize<FASTER::core::HashBucket, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::Initialize(unsigned long, FASTER::core::LightEpoch&) (in /data/FASTER/cc/build/load_test)
+| |         |     ->08.38% (67,112,960B) 0x39FDD3: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| |         |       ->08.38% (67,112,960B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |         |         ->08.38% (67,112,960B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |         |           
+| |         ->08.38% (67,117,056B) 0x3BB05A: FASTER::core::PersistentMemoryMalloc<FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::AllocatePage(unsigned int) (in /data/FASTER/cc/build/load_test)
+| |           ->04.19% (33,558,528B) 0x3B2089: FASTER::core::PersistentMemoryMalloc<FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::PersistentMemoryMalloc(bool, unsigned long, FASTER::core::LightEpoch&, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul>&, FASTER::device::FileSystemSegmentedFile<FASTER::environment::QueueIoHandler, 1073741824ul>&, FASTER::core::Address, double, bool) (in /data/FASTER/cc/build/load_test)
+| |           | ->04.19% (33,558,528B) 0x3A5B4A: FASTER::core::PersistentMemoryMalloc<FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::PersistentMemoryMalloc(bool, unsigned long, FASTER::core::LightEpoch&, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul>&, FASTER::device::FileSystemSegmentedFile<FASTER::environment::QueueIoHandler, 1073741824ul>&, double, bool) (in /data/FASTER/cc/build/load_test)
+| |           |   ->04.19% (33,558,528B) 0x39FA7E: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| |           |     ->04.19% (33,558,528B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |           |       ->04.19% (33,558,528B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |           |         
+| |           ->04.19% (33,558,528B) 0x3B20A6: FASTER::core::PersistentMemoryMalloc<FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::PersistentMemoryMalloc(bool, unsigned long, FASTER::core::LightEpoch&, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul>&, FASTER::device::FileSystemSegmentedFile<FASTER::environment::QueueIoHandler, 1073741824ul>&, FASTER::core::Address, double, bool) (in /data/FASTER/cc/build/load_test)
+| |             ->04.19% (33,558,528B) 0x3A5B4A: FASTER::core::PersistentMemoryMalloc<FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::PersistentMemoryMalloc(bool, unsigned long, FASTER::core::LightEpoch&, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul>&, FASTER::device::FileSystemSegmentedFile<FASTER::environment::QueueIoHandler, 1073741824ul>&, double, bool) (in /data/FASTER/cc/build/load_test)
+| |               ->04.19% (33,558,528B) 0x39FA7E: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| |                 ->04.19% (33,558,528B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |                   ->04.19% (33,558,528B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |                     
+| ->03.14% (25,178,112B) 0x56247FB: pthread_create@@GLIBC_2.2.5 (in /usr/lib64/libpthread-2.17.so)
+| | ->03.14% (25,178,112B) 0x534DFD3: std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)()) (in /usr/lib64/libstdc++.so.6.0.24)
+| |   ->01.05% (8,392,704B) 0x3D78B3: std::thread::thread<void (&)()>(void (&)()) (in /data/FASTER/cc/build/load_test)
+| |   | ->01.05% (8,392,704B) 0x3D68D1: util::InitEnv() (in /data/FASTER/cc/build/load_test)
+| |   |   ->01.05% (8,392,704B) 0x39B567: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |   |     ->01.05% (8,392,704B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |   |       
+| |   ->01.05% (8,392,704B) 0x3DC9E7: std::thread::thread<util::TaskWorker::TaskWorker()::{lambda()
+| |   | ->01.05% (8,392,704B) 0x3DC53C: util::TaskWorker::TaskWorker() (in /data/FASTER/cc/build/load_test)
+| |   |   ->01.05% (8,392,704B) 0x39BA92: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |   |     ->01.05% (8,392,704B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |   |       
+| |   ->01.05% (8,392,704B) 0x3DEB67: std::thread::thread<FASTER::environment::QueueIoHandler::QueueIoHandler(unsigned long)::{lambda()
+| |     ->01.05% (8,392,704B) 0x3DE1FF: FASTER::environment::QueueIoHandler::QueueIoHandler(unsigned long) (in /data/FASTER/cc/build/load_test)
+| |       ->01.05% (8,392,704B) 0x3A594D: FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul>::FileSystemDisk(std::string const&, FASTER::core::LightEpoch&, bool, bool, bool) (in /data/FASTER/cc/build/load_test)
+| |         ->01.05% (8,392,704B) 0x39F9F2: FASTER::core::FasterKv<util::StringKey, util::StringValue, FASTER::device::FileSystemDisk<FASTER::environment::QueueIoHandler, 1073741824ul> >::FasterKv(unsigned long, unsigned long, std::string const&, double, bool, FASTER::core::ReadCacheSetting const&) (in /data/FASTER/cc/build/load_test)
+| |           ->01.05% (8,392,704B) 0x39B944: util::KVStore<util::Slice, util::Slice, true>::Init(util::KVStoreOptions const&) (in /data/FASTER/cc/build/load_test)
+| |             ->01.05% (8,392,704B) 0x38F33F: main (in /data/FASTER/cc/build/load_test)
+| |               
+| ->00.28% (2,228,224B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->04.02% (32,157,696B) 0x40197D9: mmap (in /usr/lib64/ld-2.17.so)
+| ->03.96% (31,744,000B) 0x40064B5: _dl_map_object_from_fd (in /usr/lib64/ld-2.17.so)
+| | ->03.96% (31,744,000B) 0x4008668: _dl_map_object (in /usr/lib64/ld-2.17.so)
+| |   ->03.28% (26,234,880B) 0x400CC60: openaux (in /usr/lib64/ld-2.17.so)
+| |   | ->03.28% (26,234,880B) 0x400F7D2: _dl_catch_error (in /usr/lib64/ld-2.17.so)
+| |   |   ->03.28% (26,234,880B) 0x400D46B: _dl_map_object_deps (in /usr/lib64/ld-2.17.so)
+| |   |     ->03.28% (26,234,880B) 0x4003691: dl_main (in /usr/lib64/ld-2.17.so)
+| |   |       ->03.28% (26,234,880B) 0x401800C: _dl_sysdep_start (in /usr/lib64/ld-2.17.so)
+| |   |         ->03.28% (26,234,880B) 0x4001BCF: _dl_start (in /usr/lib64/ld-2.17.so)
+| |   |           ->03.28% (26,234,880B) 0x4001146: ??? (in /usr/lib64/ld-2.17.so)
+| |   |             
+| |   ->00.69% (5,509,120B) in 1+ places, all below ms_print's threshold (01.00%)
+| |   
+| ->00.05% (413,696B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->00.38% (3,043,328B) in 1+ places, all below ms_print's threshold (01.00%)
+

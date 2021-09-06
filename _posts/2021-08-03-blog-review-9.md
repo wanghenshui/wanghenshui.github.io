@@ -571,9 +571,13 @@ static_assert(std::is_trivially_copyable_v<weird>); // (c)
 >
 > Zip does **NOT** do this. If you see an id and you don't know how that type of record's content is structured there is no way to know how many bytes to skip.
 
-<img src="https://wanghenshui.github.io/assets/quadraddnt.png" alt="" width="80%">
 
 
+## TODO
+
+https://github.com/abs-lang/abs 这个库的想法不错，不过是用go实现的 
+
+https://cachelib.org/docs/ 一个cache库。周末研究下原理
 
 
 
