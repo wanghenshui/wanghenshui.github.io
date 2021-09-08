@@ -4,11 +4,10 @@ title: LD_PRELOAD为何不能劫持printf
 categories: language
 tags: [linux, gcc, c]
 ---
-  
 
 
 
-# LD_PRELOAD为何不能劫持printf
+
 
 环境gcc linux
 
