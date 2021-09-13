@@ -551,6 +551,8 @@ git diff --name-only <commit-id1> <commit-id2>
 
   建议写个init脚本 https://github.com/wanghenshui/lazy-scripts/blob/master/scripts/git_config.sh
 
+- 选取别的分支的提交 切换到工作分支，然后git cherry-pick commitid就可以了
+
   比较两个文件夹
 
 ```bash
