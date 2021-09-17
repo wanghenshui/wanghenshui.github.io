@@ -388,6 +388,8 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 - `echo 1 > /proc/sys/vm/drop_caches ` 清除缓存
 
+- find / -name dts_converter -type f 指定只显示文件
+
     
 ## win
 
@@ -683,7 +685,11 @@ docker ps -a #查看所有镜像，包括退出的，深坑，不清理会一直
 docker rm container_id 
 ```
 
+## mongo
 
+- `db` 显示当前所在的db `show dbs` 显示所有的db `use dbname`切到所在的db
+- `show tables/collections`显示当前db所有的表
+- CURD直接用js接口就行 find/deleteMany等等
 
 ## 小工具 推荐
 
