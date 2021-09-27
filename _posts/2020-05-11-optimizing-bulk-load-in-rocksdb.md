@@ -2,7 +2,7 @@
 layout: post
 title: Optimizing Bulk Load in RocksDB
 categories: [database]
-tags: [rocksdb,tuning]
+tags: [rocksdb,tuning, rockset]
 ---
 
 

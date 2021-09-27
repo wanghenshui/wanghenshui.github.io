@@ -1,6 +1,6 @@
 ---
 layout: post
-title: pika 初探
+title: pika 简单分析
 categories: database
 tags: [redis,c++,pika, rocksdb, glog, callgrind]
 ---
