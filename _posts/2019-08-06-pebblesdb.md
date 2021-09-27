@@ -2,7 +2,7 @@
 layout: post
 categories: database
 title: pebblesdb
-tags: [c++,rocksdb,lsm]
+tags: [c++,rocksdb,lsm, pebblesdb]
 ---
 
   
