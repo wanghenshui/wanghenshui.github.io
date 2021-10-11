@@ -1,9 +1,7 @@
----
 layout: post
 title: 常用快捷键/命令行/系统设定
 categories: tools
 tags: [linux, macos, windows, vscode, vim, shell, docker]
----
 
 
 
@@ -390,7 +388,12 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 - find / -name dts_converter -type f 指定只显示文件
 
-    
+- ssh相关的命令失效，提示Failed to seed from getrandom: Function not implemented  ---->>>>>>装openssh-server，装上就好了
+
+  - git ssh clone可能失败也会提示这个
+  - 我遇到这个的场景是docker镜像，软件安装的不全
+  
+  
 ## win
 
   - wslconfig /l  wslconfig /s ubuntu-18.04
