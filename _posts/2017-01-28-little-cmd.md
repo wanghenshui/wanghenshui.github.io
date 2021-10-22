@@ -343,8 +343,9 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 - tar 
 
+    - tar -czf xx.tar.gz xx
     - 对于xz文件 **tar xvJf  \**\*.tar.xz**
-    - 流  tar cf - xxfile | lz4  > xxfile2
+    - 流  tar -cvf  xxfile | lz4  > xxfile2
       - 也可以用snzip
 
 - mount
@@ -425,12 +426,10 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 bazel build --copt="-O3" --copt="-fpic" --cxxopt="-std=c++11"
 ```
 
+- bazel -c opt == bazel --copt="O2" --copt="-DNDEBUG" [SO](https://stackoverflow.com/questions/50413978/what-is-the-difference-between-c-opt-and-copt-o3-in-bazel-build-or-gcc) 默认的--copt O2是不会优化-DNDEBUG的, 但是我比较了两者，编译出来的二进制大小不同，-c opt应该是所有相关的都同样优化吧
 - http://zhulao.gitee.io/blog/2019/04/05/%E7%BC%96%E8%AF%91%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7-bazel/index.html 这个文档不错 什么时候用什么时候再看
-
 - 换编译器 --repo_env=CC=clang
-
 - 编译所有 bazel build ...
-
 - 测试 bazel test ...
 
 * `--nocache_test_results` may be required if you are trying to re-run a test without changing
@@ -515,6 +514,7 @@ anything.
 git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -  $2 } END { printf "added lines: %s, removed lines: %s, total lines:  %s\n", add, subs, loc }'
 ```
 
+-  Cherry-pick	过滤提交人用git log --author="name"
 -  整理commit` git rebase -i HEAD~3`
 -  修改上次提交`git reset HEAD^` 
 -  提错分支，搬过来
@@ -693,6 +693,7 @@ docker rm container_id
 - `db` 显示当前所在的db `show dbs` 显示所有的db `use dbname`切到所在的db
 - `show tables/collections`显示当前db所有的表
 - CURD直接用js接口就行 find/deleteMany等等
+  - db.collection.find({"taskid": "042a33d3-c010-4723-8553-3204a0aec760"},{"blahblah":1 })前面的括号是条件，后面的大括号过滤结果
 
 ## 小工具 推荐
 

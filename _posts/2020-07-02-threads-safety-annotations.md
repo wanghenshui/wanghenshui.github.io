@@ -68,7 +68,7 @@ tags: [debug, thread]
 重点关注最小堆(优先队列) 来维护定时器组，以及时间轮 
 
 - https://www.zhihu.com/question/68451392 管理定时器，不一定需要timerqueue 暴力扫也不是不可以 只要timer不多
-- kafka中的事件轮 https://club.perfma.com/article/328984
+- kafka中的时间轮 https://club.perfma.com/article/328984
 - https://www.cnblogs.com/zhongwencool/p/timing_wheel.html 他这个博客做的不错。。。
 
 

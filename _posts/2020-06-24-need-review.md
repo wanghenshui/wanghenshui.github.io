@@ -4,7 +4,7 @@ title: 六月待读 need review
 categories: todo
 tags: [todo]
 ---
-  
+
 
 
 
@@ -185,14 +185,6 @@ https://danielmiessler.com/study/tcpdump/
 boltdb介绍
 
 https://lrita.github.io/2017/05/21/boltdb-overview-0/
-
-他这个博客很好看，想抄过来
-
-perf systemptap 抓pagefault
-
-https://lrita.github.io/2019/09/27/systemtap-profiling-pagefault/
-
-
 
 
 
