@@ -183,7 +183,7 @@ dm-2        0.00     0.00    0.09    0.07     1.35     0.36    22.50     0.00   
 
 如果存储设备是有许多后端磁盘组成的前端逻辑磁盘设备，则100%的利用率可能仅意味着100%的时间正在处理某些IO，但是后端磁盘可能远远没有饱和，并且可能还可以处理更多的工作。
 
-请记住，性能不佳的磁盘IO不一定是应用问题，通常可以使用许多技术以执行异步IO，以便使应用程序不会被阻塞住而产生直接产生IO延迟（例如，预读和缓冲写入技术）
+**请记住，性能不佳的磁盘IO不一定是应用问题，通常可以使用许多技术以执行异步IO，以便使应用程序不会被阻塞住而产生直接产生IO延迟（例如，预读和缓冲写入技术）**
 
 ###  free -m
 
@@ -377,6 +377,8 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
     - 退出 ctrl  ]
 
+- 目录权限问题 sudo chown -R $USER /path/to/folder
+
 - iptables
 
     - 查看端口 **cat  /etc/sysconfig/iptables**
@@ -388,6 +390,10 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 - `echo 1 > /proc/sys/vm/drop_caches ` 清除缓存
 
 - find / -name dts_converter -type f 指定只显示文件
+
+- find . \( -name "*.txt" -o -name "*.pdf" \) -print
+
+- find . -regex ".*\(\.txt|\.pdf\)$" iregex
 
 - ssh相关的命令失效，提示Failed to seed from getrandom: Function not implemented  ---->>>>>>装openssh-server，装上就好了
 
