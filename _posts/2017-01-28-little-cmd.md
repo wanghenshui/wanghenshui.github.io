@@ -480,7 +480,263 @@ anything.
 
     
 
-    
+## perf
+
+火焰图
+
+```bash
+perf record -a -g -v -p 17700
+git clone https://github.com/brendangregg/FlameGraph      # or download it from github
+mv perf.data FlameGraph/
+cd FlameGraph
+perf script | ./stackcollapse-perf.pl > out.perf-folded
+cat out.perf-folded | ./flamegraph.pl > perf-kernel.svg
+```
+
+延迟热力图
+
+```bash
+git clone https://github.com/brendangregg/HeatMap      # or download it from github
+mv perf.data HeatMap/
+cd HeatMap
+perf script | awk '{ gsub(/:/, "") } $5 ~ /issue/ { ts[$6, $10] = $4 }
+    $5 ~ /complete/ { if (l = ts[$6, $9]) { printf "%.f %.f\n", $4 * 1000000,
+    ($4 - l) * 1000000; ts[$6, $10] = 0 } }' > out.lat_us
+./trace2heatmap.pl --unitstime=us --unitslat=us --maxlat=50000 out.lat_us > out.svg
+```
+
+
+
+这个文档非常不错，这里直接复制粘贴下来命令
+
+counting事件
+
+```bash
+# CPU counter statistics for the specified command:
+perf stat command
+ 
+# CPU counter statistics for the specified PID, until Ctrl-C:
+perf stat -p PID
+ 
+# CPU counter statistics for the entire system, for 5 seconds:
+perf stat -a sleep 5
+ 
+# Various basic CPU statistics, system wide, for 10 seconds:
+perf stat -e cycles,instructions,cache-references,cache-misses,bus-cycles -a sleep 10
+ 
+# Various CPU level 1 data cache statistics for the specified command:
+perf stat -e L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores command
+ 
+# Various CPU data TLB statistics for the specified command:
+perf stat -e dTLB-loads,dTLB-load-misses,dTLB-prefetch-misses command
+ 
+# Various CPU last level cache statistics for the specified command:
+perf stat -e LLC-loads,LLC-load-misses,LLC-stores,LLC-prefetches command
+ 
+# Count syscalls per-second system-wide:
+perf stat -e raw_syscalls:sys_enter -I 1000 -a
+ 
+# Count system calls by type for the specified PID, until Ctrl-C:
+perf stat -e 'syscalls:sys_enter_*' -p PID
+ 
+# Count system calls by type for the entire system, for 5 seconds:
+perf stat -e 'syscalls:sys_enter_*' -a sleep 5
+ 
+# Count scheduler events for the specified PID, until Ctrl-C:
+perf stat -e 'sched:*' -p PID
+ 
+# Count scheduler events for the specified PID, for 10 seconds:
+perf stat -e 'sched:*' -p PID sleep 10
+ 
+# Count ext4 events for the entire system, for 10 seconds:
+perf stat -e 'ext4:*' -a sleep 10
+ 
+# Count block device I/O events for the entire system, for 10 seconds:
+perf stat -e 'block:*' -a sleep 10
+```
+
+
+
+profiling事件
+
+```bash
+# Sample on-CPU functions for the specified command, at 99 Hertz:
+perf record -F 99 command
+ 
+# Sample on-CPU functions for the specified PID, at 99 Hertz, until Ctrl-C:
+perf record -F 99 -p PID
+ 
+# Sample on-CPU functions for the specified PID, at 99 Hertz, for 10 seconds:
+perf record -F 99 -p PID sleep 10
+ 
+# Sample CPU stack traces (via frame pointers) for the specified PID, at 99 Hertz, for 10 seconds:
+perf record -F 99 -p PID -g -- sleep 10
+ 
+# Sample CPU stack traces for the entire system, at 99 Hertz, for 10 seconds (< Linux 4.11):
+perf record -F 99 -ag -- sleep 10
+ 
+# Sample CPU stack traces for the entire system, at 99 Hertz, for 10 seconds (>= Linux 4.11):
+perf record -F 99 -g -- sleep 10
+ 
+# If the previous command didn't work, try forcing perf to use the cpu-clock event:
+perf record -F 99 -e cpu-clock -ag -- sleep 10
+ 
+# Sample CPU stack traces, once every 10,000 Level 1 data cache misses, for 5 seconds:
+perf record -e L1-dcache-load-misses -c 10000 -ag -- sleep 5
+ 
+# Sample CPU stack traces, once every 100 last level cache misses, for 5 seconds:
+perf record -e LLC-load-misses -c 100 -ag -- sleep 5 
+ 
+# Sample on-CPU kernel instructions, for 5 seconds:
+perf record -e cycles:k -a -- sleep 5 
+ 
+# Sample on-CPU user instructions, for 5 seconds:
+perf record -e cycles:u -a -- sleep 5 
+ 
+```
+
+
+
+Static tracing
+
+```bash
+# Trace new processes, until Ctrl-C:
+perf record -e sched:sched_process_exec -a
+ 
+# Sample context-switches, until Ctrl-C:
+perf record -e context-switches -a
+ 
+# Trace all context-switches, until Ctrl-C:
+perf record -e context-switches -c 1 -a
+ 
+# Trace all context-switches via sched tracepoint, until Ctrl-C:
+perf record -e sched:sched_switch -a
+ 
+# Sample context-switches with stack traces, until Ctrl-C:
+perf record -e context-switches -ag
+ 
+# Sample context-switches with stack traces, for 10 seconds:
+perf record -e context-switches -ag -- sleep 10
+ 
+# Sample CS, stack traces, and with timestamps (< Linux 3.17, -T now default):
+perf record -e context-switches -ag -T
+ 
+# Sample CPU migrations, for 10 seconds:
+perf record -e migrations -a -- sleep 10
+ 
+# Trace all connect()s with stack traces (outbound connections), until Ctrl-C:
+perf record -e syscalls:sys_enter_connect -ag
+ 
+# Trace all accepts()s with stack traces (inbound connections), until Ctrl-C:
+perf record -e syscalls:sys_enter_accept* -ag
+ 
+# Trace all block device (disk I/O) requests with stack traces, until Ctrl-C:
+perf record -e block:block_rq_insert -ag
+ 
+# Trace all block device issues and completions (has timestamps), until Ctrl-C:
+perf record -e block:block_rq_issue -e block:block_rq_complete -a
+ 
+# Trace all block completions, of size at least 100 Kbytes, until Ctrl-C:
+perf record -e block:block_rq_complete --filter 'nr_sector > 200'
+ 
+# Trace all block completions, synchronous writes only, until Ctrl-C:
+perf record -e block:block_rq_complete --filter 'rwbs == "WS"'
+ 
+# Trace all block completions, all types of writes, until Ctrl-C:
+perf record -e block:block_rq_complete --filter 'rwbs ~ "*W*"'
+ 
+# Sample minor faults (RSS growth) with stack traces, until Ctrl-C:
+perf record -e minor-faults -ag
+ 
+# Trace all minor faults with stack traces, until Ctrl-C:
+perf record -e minor-faults -c 1 -ag
+ 
+# Sample page faults with stack traces, until Ctrl-C:
+perf record -e page-faults -ag
+ 
+# Trace all ext4 calls, and write to a non-ext4 location, until Ctrl-C:
+perf record -e 'ext4:*' -o /tmp/perf.data -a 
+ 
+# Trace kswapd wakeup events, until Ctrl-C:
+perf record -e vmscan:mm_vmscan_wakeup_kswapd -ag
+ 
+# Add Node.js USDT probes (Linux 4.10+):
+perf buildid-cache --add `which node`
+ 
+# Trace the node http__server__request USDT event (Linux 4.10+):
+perf record -e sdt_node:http__server__request -a
+```
+
+Dynamic Tracing
+
+```bash
+# Add a tracepoint for the kernel tcp_sendmsg() function entry ("--add" is optional):
+perf probe --add tcp_sendmsg
+ 
+# Remove the tcp_sendmsg() tracepoint (or use "--del"):
+perf probe -d tcp_sendmsg
+ 
+# Add a tracepoint for the kernel tcp_sendmsg() function return:
+perf probe 'tcp_sendmsg%return'
+ 
+# Show available variables for the kernel tcp_sendmsg() function (needs debuginfo):
+perf probe -V tcp_sendmsg
+ 
+# Show available variables for the kernel tcp_sendmsg() function, plus external vars (needs debuginfo):
+perf probe -V tcp_sendmsg --externs
+ 
+# Show available line probes for tcp_sendmsg() (needs debuginfo):
+perf probe -L tcp_sendmsg
+ 
+# Show available variables for tcp_sendmsg() at line number 81 (needs debuginfo):
+perf probe -V tcp_sendmsg:81
+ 
+# Add a tracepoint for tcp_sendmsg(), with three entry argument registers (platform specific):
+perf probe 'tcp_sendmsg %ax %dx %cx'
+ 
+# Add a tracepoint for tcp_sendmsg(), with an alias ("bytes") for the %cx register (platform specific):
+perf probe 'tcp_sendmsg bytes=%cx'
+ 
+# Trace previously created probe when the bytes (alias) variable is greater than 100:
+perf record -e probe:tcp_sendmsg --filter 'bytes > 100'
+ 
+# Add a tracepoint for tcp_sendmsg() return, and capture the return value:
+perf probe 'tcp_sendmsg%return $retval'
+ 
+# Add a tracepoint for tcp_sendmsg(), and "size" entry argument (reliable, but needs debuginfo):
+perf probe 'tcp_sendmsg size'
+ 
+# Add a tracepoint for tcp_sendmsg(), with size and socket state (needs debuginfo):
+perf probe 'tcp_sendmsg size sk->__sk_common.skc_state'
+ 
+# Tell me how on Earth you would do this, but don't actually do it (needs debuginfo):
+perf probe -nv 'tcp_sendmsg size sk->__sk_common.skc_state'
+ 
+# Trace previous probe when size is non-zero, and state is not TCP_ESTABLISHED(1) (needs debuginfo):
+perf record -e probe:tcp_sendmsg --filter 'size > 0 && skc_state != 1' -a
+ 
+# Add a tracepoint for tcp_sendmsg() line 81 with local variable seglen (needs debuginfo):
+perf probe 'tcp_sendmsg:81 seglen'
+ 
+# Add a tracepoint for do_sys_open() with the filename as a string (needs debuginfo):
+perf probe 'do_sys_open filename:string'
+ 
+# Add a tracepoint for myfunc() return, and include the retval as a string:
+perf probe 'myfunc%return +0($retval):string'
+ 
+# Add a tracepoint for the user-level malloc() function from libc:
+perf probe -x /lib64/libc.so.6 malloc
+ 
+# Add a tracepoint for this user-level static probe (USDT, aka SDT event):
+perf probe -x /usr/lib64/libpthread-2.24.so %sdt_libpthread:mutex_entry
+ 
+# List currently available dynamic probes:
+perf probe -l
+ 
+```
+
+
+
 ## 其他软件
 
 - VS
