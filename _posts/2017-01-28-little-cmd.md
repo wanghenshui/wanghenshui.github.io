@@ -777,6 +777,15 @@ git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tform
 ```
 
 -  Cherry-pick	过滤提交人用git log --author="name"
+-  打tag 
+
+```bash
+git tag -a "comment sth."
+git push --tags
+```
+
+
+
 -  整理commit` git rebase -i HEAD~3`
 -  修改上次提交`git reset HEAD^` 
 -  提错分支，搬过来
