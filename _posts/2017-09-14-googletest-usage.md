@@ -1,14 +1,15 @@
 ---
 layout: post
 categories: language
-title: googletest使用记录/常用工具快速查找/以及遇到的一个奇怪的问题
+title: googletest使用记录/checklist/以及遇到的一个奇怪的问题
 tags : [gtest, gmock ,c++]
 ---
 
-
-
+[toc]
 
 有一个玩转GoogleTest的文章讲的不错，值得花点时间看下
+
+## 一些使用方法
 
 最近使用googletest，新加了单元测试，就需要判定开关单元测试对原来测试的影响，做个记录
 
@@ -50,7 +51,7 @@ virtual void TearDown() {}
 
 
 
-gmock
+## gmock
 
 常用
 
@@ -59,9 +60,19 @@ using ::testing::Return;
 using ::testing::_;
 ```
 
+**InSequence**实现DAG菱形结构，拆分成一条一条的拼起来就行
+
+```c++
+InSequence s1, s2;
+EXPECT_CALL(_,  A()).InSequence(s1, s2);
+EXPECT_CALL(_, B1()).InSequence(s1    );
+EXPECT_CALL(_, B2()).InSequence(    s2);
+EXPECT_CALL(_,  C()).InSequence(s1, s2);
+```
 
 
-gdb调试googletest 
+
+## gdb调试googletest
 
 ```c++
  gdb --args  db_iterator_test --gtest_filter=-DBIteratorTestInstance/DBIteratorTest.IterSeekBeforePrevWithTimestamp/1
@@ -70,7 +81,7 @@ gdb调试googletest
 
 打断点有点麻烦，得nm抓符号名，一般都是类名/单元测试类名字_TestBody
 
-测试案例集合
+## gtest命令行
 
 | **命令行参数**                  | **说明**                                                     |
 | ------------------------------- | ------------------------------------------------------------ |
@@ -280,6 +291,8 @@ std::string random_string(size_t length = 10) {
 
 
 
+INSTANTIATE_TEST_CASE_P 生成参数组合用例
+
 
 
 另外，单元测试太多，写了个小脚本，抓出失败的
@@ -297,9 +310,19 @@ done
 
 ```
 
----
 
-### Ref
+
+
+
+事件监听器？testing::TestEventListener 没用过
+
+
+
+执行原理，一图流
+
+<p><img src="https://wanghenshui.github.io/assets/gtest.png" alt="" width="100%"></p>
+
+## 参考
 
 - <https://stackoverflow.com/questions/14018434/how-to-specify-multiple-exclusion-filters-in-gtest-filter/14619685>
 - <http://www.cnblogs.com/coderzh/archive/2009/04/10/1432789.html>
