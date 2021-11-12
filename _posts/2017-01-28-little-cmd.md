@@ -878,6 +878,14 @@ https://www.docker.com/sites/default/files/d8/2019-09/docker-cheat-sheet.pdf
 
 我经常用的就几个
 
+dockerd启动
+
+```bash
+ systemctl start docker
+```
+
+
+
 `清理`
 
 ```bash
@@ -989,16 +997,28 @@ optipng -o3 image-20200402172644242.png #o1 ~ o7 七个等级压缩
 
 ## 软件安装清单
 
-|                | windows     | MacOS              | Ubuntu   |
-| -------------- | ----------- | ------------------ | -------- |
-| markdown       | typora      | typora             | typora   |
-| sftp可视化工具 | winscp      | transmit           |          |
-| git管理工具    | tortoisegit | sourcetree         |          |
-| 终端           | putty       |                    |          |
-| 画图           | drawio      | OmniGraffle/drawio |          |
-| 写代码         | vscode      | vscode             | vscode   |
-| 记录笔记       | 腾讯文档    | 腾讯文档           | 腾讯文档 |
-| 事项清单       | 滴答清单    | 滴答清单           |          |
+|                | windows        | MacOS              | Ubuntu   | 手机     |
+| -------------- | -------------- | ------------------ | -------- | -------- |
+| markdown       | typora         | typora             | typora   |          |
+| sftp可视化工具 | winscp         | transmit           |          |          |
+| git管理工具    | tortoisegit    | sourcetree         |          |          |
+| 终端           | putty/terminal | 默认终端           | 默认终端 |          |
+| 画图           | drawio         | OmniGraffle/drawio |          |          |
+| 写代码         | vscode         | vscode             | vscode   |          |
+| 记录笔记       | 腾讯文档       | 腾讯文档           | 腾讯文档 | 腾讯文档 |
+| 事项清单       | 滴答清单       | 滴答清单           |          | 滴答清单 |
+
+## vscode
+
+
+
+无法远程(WebSocket close with status code 1006), 更改sshd_config
+
+```
+# vim /etc/ssh/sshd_config
+AllowTcpForwarding yes
+AllowAgentForwarding yes
+```
 
 
 
