@@ -401,7 +401,7 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
   - 我遇到这个的场景是docker镜像，软件安装的不全
   
   
-## win
+## windows
 
   - wslconfig /l  wslconfig /s ubuntu-18.04
   - win shirl S win10 截图
@@ -421,6 +421,8 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
   - 磁盘格式转换 convert h: /fs:ntfs
   - windows查看端口占用 `netstat -aon|findstr 25340` 最后一行就是进程id
   - windows 杀死进程，在任务管理找不到的前提下 taskkill /f /pid 13656
+  - **硬盘格式转换** convert h: /fs:ntfs 
+  - cmder /register all
 
 
 ## bazel
@@ -1258,7 +1260,19 @@ run '~/.tmux/plugins/tpm/tpm'
 
 ---
 
+## ibkc键盘
 
+键盘设置
+
+fn ~设置 fn s保存
+
+alt win键切换了困扰了我好久，还以为键盘进水坏掉了
+
+并不是按住fn之后连按PrtSc键
+
+而是一起按，他会循环的，如果是正常键位，你的空格灯是会灭的，再按一次空格灯亮了，那说明win键与alt已经互换，再按一次进入Dvoark键位，再按一次进入Colemak键位，后三种键位的空格灯都是亮的，这时再按一次，空格灯就灭了，又进入普通的pc键位
+
+如果有mac需求的人，只需要调换win与alt，你键盘上的键位就跟mac一样了，还是很实用的
 
 ## 参考
 
