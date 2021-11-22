@@ -445,8 +445,12 @@ anything.
 * `--test_filter=<TestName>` to run a specific test (when test splits are not already in use)
 
 - 遇到bazel错误先看看路径是不是错了，或者文件名是不是错了
-
 - bazel设置cache目录，修改.bazelrc `build --disk_cache=/my/tmp/cache` 不过.cache的缓存不能通过这个改，只能通过命令行改`--output_user_root`，我没有实验过
+- bazel默认会走ccache，但是ccache总有傻逼问题。我这里用export CC来强制走系统内部的gcc，跳过ccache
+
+ccache: error: Failed to create temporary file for /root/.ccache/tmp/version.stdout: Read-only file system
+
+我也找了一堆解决办法，说实话，没啥帮助。我切换bazel 6也有这个问题，跳过不用ccache直接用系统内部gcc才解决（不能光卸载，还会找，得export CC CXX，具体不赘述）
 
 
 
