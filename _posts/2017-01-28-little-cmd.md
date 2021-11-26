@@ -1013,6 +1013,7 @@ optipng -o3 image-20200402172644242.png #o1 ~ o7 七个等级压缩
 | 写代码         | vscode         | vscode             | vscode   |          |
 | 记录笔记       | 腾讯文档       | 腾讯文档           | 腾讯文档 | 腾讯文档 |
 | 事项清单       | 滴答清单       | 滴答清单           |          | 滴答清单 |
+| PDF            | Sumatra PDF    |                    |          | 微信读书 |
 
 ## vscode
 
@@ -1027,6 +1028,8 @@ AllowAgentForwarding yes
 ```
 
 
+
+- 注释 ctrl k + ctrl  C 取消注释 ctrl k + ctrl U 可以选中批量注释/取消
 
 
 
