@@ -10,6 +10,10 @@ tags: [rocksdb,tuning]
 
  
 
+> 20211210 他们的rocksdb开源了。有时间看看 https://github.com/rockset/rocksdb-cloud
+
+
+
 rockset 是一个db服务提供商，他们用rocksdb来实现converged indexing 我也不明白是什么意思，在参考链接2有介绍，大概就是有一个文档，保存成行，成列，成index，他们大量采用的rocksdb
 
 <img src="https://images.ctfassets.net/1d31s1aajogl/2K2s3gSMdck0X9PV609AMs/19c99442086f6e2ee4a1819b3e3a2800/rocksdb1.png" width="60%" />
