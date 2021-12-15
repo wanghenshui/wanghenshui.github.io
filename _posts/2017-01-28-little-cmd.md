@@ -874,6 +874,16 @@ kubectl exec scg0-1-6 -it -- bash
 
 kubectl get pods -o wide
 
+查看pod
+
+```shell
+kubectl describe pods ${POD_NAME}
+```
+
+发镜像
+
+kubectl apply -f config.yaml  配置里写好自己的镜像之类的
+
 ## docker
 
 官网做好了图，挺好
