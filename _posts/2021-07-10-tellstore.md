@@ -1,8 +1,8 @@
 ---
 layout: post
-title: tellstore fast scan
+title: tellstore fast scan 代码走读
 categories: [database]
-tags: [hastable,scan]
+tags: [hastable,scan,tellstore]
 ---
 
 [toc]
