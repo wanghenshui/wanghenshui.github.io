@@ -1,6 +1,6 @@
 ---
 layout: post
-title: compaction GC 到底怎么做？
+title: KV分离 compaction GC 到底怎么做？
 categories: [database]
 tags: [lsm,hashtable,blobdb, titandb, fasterkv, rocksdb, terarkdb, wisckey, Bourbon, badger, ramcloud]
 ---

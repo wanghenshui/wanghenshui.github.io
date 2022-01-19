@@ -8,7 +8,7 @@ tags: [c++, mongodb]
 
 ---
 
-> [ppt地址](https://wanghenshui.github.io/mongo-ppt-cn/) ，资料都是整理
+> [ppt地址](https://wanghenshui.github.io/my-slides/mongo) ，资料都是整理
 
 macos上安装和演示
 
@@ -79,4 +79,3 @@ mongo 和sql对应概念 区分
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
 </details>
-
