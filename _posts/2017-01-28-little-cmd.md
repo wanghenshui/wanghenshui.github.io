@@ -177,7 +177,7 @@ dm-2        0.00     0.00    0.09    0.07     1.35     0.36    22.50     0.00   
 这是了解块设备（磁盘），应用的工作负载和产生的性能影响的绝佳工具。重点关注下面的指标：
 
 - `r/s`、`w/s`、 `rkB/s`、 `wkB/s`：这些是设备每秒交付的读取、写入、读取千字节和写入千字节。使用这些来表征块设备的工作负载。性能问题可能是由于向块设备施加了过多的工作负载。
-- `await`：IO的平均时间，以毫秒为单位。这是应用程序所感受到的时间，它包括IO排队时间和IO服务时间。大于预期的平均时间可能表示块设备饱和或设备出现问题了。
+- `await`：IO的平均时间，以毫秒为单位。这是应用程序所感受到的时间，它包括IO排队时间和IO服务时间。大于预期的平均时间可能表示块设备饱和或设备出现问题了。https://haydenjames.io/what-is-iowait-and-linux-performance/
 - `avgqu-sz`：发给设备的平均请求数。值大于1可以表明已达到饱和状态（尽管设备通常可以并行处理请求，尤其是在多个后端磁盘所组成的前端虚拟设备的情况下）。
 - `%util`：设备利用率。这是一个表征繁忙度的百分比，它表示设备每秒工作的时间。尽管它的值取决于设备，但值大于60%通常会导致性能不佳（也会通过await的值观察到）。接近100%的值通常表示饱和。
 
@@ -319,52 +319,48 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 
 
+## cmake
+
+```shell
+cmake -DCMAKE_BUILD_TYPE=Release
+```
+
 ## linux常用
 
 - Ctrl a 到命令行开头 ctrl e到命令行结尾
-
 - grep取反 grep -v ”ect“”
-
 - Linux 
 
   - Ctrl + L清屏
   - mv filename(/*) -t directory 也有重命名功能
-  
 - du -a du -h
     - du -h --max-depth=1 常用，看一个目录
   - file libvswrtp.so 查询文件信息（查链接库版本一个小经验）ldd
-  
 - gdb
 
     - thread apply all bt
     - pstack
       - pstack在chroot下执行的进程，可能找不到符号，要到chroot下面的目录去执行pstack
         - https://nanxiao.me/linux-pstack/
-
 - tar 
 
     - tar -czf xx.tar.gz xx
     - 对于xz文件 **tar xvJf  \**\*.tar.xz**
     - 流  tar -cvf  xxfile | lz4  > xxfile2
       - 也可以用snzip
-
 - mount
 
     - mount /dev/vdb target_dir
-
 - scp 
 
     - scp local_file root@xx.xx.xx.xx:/root
-
 - rpm -ivh xx.rpm
-
 - 特殊场景
 
     - 查找体积较大的十个文件
       - du -hsx * | sort -rh | head -10
     - 端口占用 netstat|grep 11221
       - lsof -i :11221抓到对应的进程
-
 - putty
 
     - alt enter退出全屏 在window behaviour里，勾选最后一个
@@ -372,35 +368,28 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
     - 小键盘设置，在terminal features 勾选 
       - [x] disable application keypad mode
     - 记得保存设置
-
 - telnet 
 
     - 退出 ctrl  ]
-
 - 目录权限问题 sudo chown -R $USER /path/to/folder
-
 - iptables
 
     - 查看端口 **cat  /etc/sysconfig/iptables**
-
 - jq 格式化json文档 `jq . xx.json > xx.json.new` 注意不能原地覆盖，这里有bug直接文件就空了
-
 - 查看磁盘是否是ssd `cat /sys/block/vdb/queue/rotational` 1是sata 0是ssd
-
 - `echo 1 > /proc/sys/vm/drop_caches ` 清除缓存
-
 - find / -name dts_converter -type f 指定只显示文件
-
 - find . \( -name "*.txt" -o -name "*.pdf" \) -print
-
 - find . -regex ".*\(\.txt|\.pdf\)$" iregex
-
 - ssh相关的命令失效，提示Failed to seed from getrandom: Function not implemented  ---->>>>>>装openssh-server，装上就好了
 
   - git ssh clone可能失败也会提示这个
   - 我遇到这个的场景是docker镜像，软件安装的不全
   
-  
+-  dd if=/dev/zero bs=4k count=4k of=/data/1Gb.file conv=fsync
+
+**注意dd的目录，别指定错了，我直接重装系统了。吐了**
+
 ## windows
 
   - wslconfig /l  wslconfig /s ubuntu-18.04

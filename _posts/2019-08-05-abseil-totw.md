@@ -231,6 +231,61 @@ Prefer `=default` over writing an equivalent implementation by hand, even if tha
 
 bool转换的问题。属于老生常谈了。特定类型就需要实现safe bool，一般类型用`option<T>`包装一层 `absl::optional<T>::has_value()`判断
 
+**Tote #144** : Heterogeneous Lookup in Associative Containers
+
+看代码
+
+```c++
+struct StringCmp {
+  using is_transparent = void;
+  bool operator()(absl::string_view a, absl::string_view b) const {
+    return a < b;
+  }
+};
+
+std::map<std::string, int, StringCmp> m = ...;
+absl::string_view some_key = ...;
+// The comparator `StringCmp` will accept any type that is implicitly
+// convertible to `absl::string_view` and says so by declaring the
+// `is_transparent` tag.
+// We can pass `some_key` to `find()` without converting it first to
+// `std::string`. In this case, that avoids the unnecessary memory allocation
+// required to construct the `std::string` instance.
+auto it = m.find(some_key);
+```
+
+省一个拷贝
+
+再比如
+
+```c++
+struct ThreadCmp {
+  using is_transparent = void;
+  // Regular overload.
+  bool operator()(const std::thread& a, const std::thread& b) const {
+    return a.get_id() < b.get_id();
+  }
+  // Transparent overloads
+  bool operator()(const std::thread& a, std::thread::id b) const {
+    return a.get_id() < b;
+  }
+  bool operator()(std::thread::id a, const std::thread& b) const {
+    return a < b.get_id();
+  }
+  bool operator()(std::thread::id a, std::thread::id b) const {
+    return a < b;
+  }
+};
+
+std::set<std::thread, ThreadCmp> threads = ...;
+// Can't construct an instance of `std::thread` with the same id, just to do the lookup.
+// But we can look up by id instead.
+std::thread::id id = ...;
+auto it = threads.find(id);
+```
+
+
+
 ##### totw #149 Object Lifetimes vs. `=delete`
 
 不只是构造函数析构函数可以标记为delete，普通成员函数也可以标记delete。这就引入了复杂性问题，是让类更完备还是更复杂
@@ -274,6 +329,93 @@ void SetContext(Context&& context) = delete;
 这个场景是上面的反面，假如只接受右值，不接受拷贝，这样所有调用的时候都得显式加上std::move，显然更麻烦
 
 这样做实际上是复杂化了，totw不建议使用，keep it simple
+
+
+
+**Tip of the Week #152** : `AbslHashValue` and You
+
+把内部用的hash算法暴露出来了，可以这么用
+
+```c++
+struct Song {
+  std::string name;
+  std::string artist;
+  absl::Duration duration;
+
+  template <typename H>
+  friend H AbslHashValue(H h, const Song& s) {
+    return H::combine(std::move(h), s.name, s.artist, s.duration);
+  }
+
+  // operator == and != omitted for brevity.
+};
+```
+
+**Tip of the Week #161**: Good Locals and Bad Locals
+
+Good
+
+```c++
+auto& subsubmessage = *myproto.mutable_submessage()->mutable_subsubmessage();
+subsubmessage.set_foo(21);
+subsubmessage.set_bar(42);
+subsubmessage.set_baz(63);
+```
+
+Bad
+
+```c++
+MyType value = SomeExpression(args);
+return value;
+```
+
+**Tip of the Week #171**: Avoid Sentinel Values
+
+返回值不清晰，建议用optional或者status
+
+**Tip of the Week #173**: Wrapping Arguments in Option Structs
+
+多参数构造抽象成option，不然难维护，构造指定不合理
+
+**Tip of the Week #175**: Changes to Literal Constants in C++14 and C++17.
+
+尽可能用1'000'000'000
+
+以及chrono的ms min
+
+**Tip of the Week #176**: Prefer Return Values to Output Parameters
+
+尽可能用返回值。如果出参需要非常灵活，返回值控制不了，就用出参
+
+**Tip of the Week #181**: Accessing the value of a `StatusOr<T>`
+
+就是rocksdb status那种东西
+
+```c++
+// The same pattern used when handling a unique_ptr...
+std::unique_ptr<Foo> foo = TryAllocateFoo();
+if (foo != nullptr) {
+  foo->DoBar();  // use the value object
+}
+
+// ...or an optional value...
+absl::optional<Foo> foo = MaybeFindFoo();
+if (foo.has_value()) {
+  foo->DoBar();
+}
+
+// ...is also ideal for handling a StatusOr.
+absl::StatusOr<Foo> foo = TryCreateFoo();
+if (foo.ok()) {
+  foo->DoBar();
+}
+```
+
+表达能力比option和expect要好一些
+
+
+
+此外，abseil还支持解析参数，支持gflags，可以说是把gflags迁移到这个库了，header only更友好一些
 
 ----
 
