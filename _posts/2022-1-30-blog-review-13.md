@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第十三期
 categories: [review]
-tags: [ebs, cache, redis, hash,grpc,protobuf]
+tags: [alloctor,pg,linux,atomic,dpdk,rocksdb,atomic,trie, hash,raft, tao,glibc]
 ---
 
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
