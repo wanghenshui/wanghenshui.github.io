@@ -385,8 +385,18 @@ cmake -DCMAKE_BUILD_TYPE=Release
 
   - git ssh clone可能失败也会提示这个
   - 我遇到这个的场景是docker镜像，软件安装的不全
-  
--  dd if=/dev/zero bs=4k count=4k of=/data/1Gb.file conv=fsync
+- uniq
+
+> - `-c` 在每一行前打印行出现的次数
+> - `-d` 只打印重复的行，重复的行只打印一次
+> - `-D` 打印出所有重复的行
+> - `-f` 在比较时跳过前 N 个 fields
+> - `-i` 在比较重复行时忽略大小写
+> - `-s` 在比较时忽略前 N 字符
+> - `-u` 只打印唯一的行
+> - `-w` 比较时只比较每一行的前 N 个字符
+
+- dd if=/dev/zero bs=4k count=4k of=/data/1Gb.file conv=fsync
 
 **注意dd的目录，别指定错了，我直接重装系统了。吐了**
 
@@ -997,6 +1007,38 @@ optipng -o3 image-20200402172644242.png #o1 ~ o7 七个等级压缩
 ```
 
 
+
+## shell常用脚本
+
+遍历行
+
+```bash
+cat aaa | while read -r a; do sed -in-place -e "/${a}/d" bbb ; done
+```
+
+sed用双引号
+
+```bash
+grep -v -f a b  从b中剔除a中有的
+```
+
+容易内存不够
+
+
+
+Sort 按照列来sort
+
+```sh
+sort -k 2 file.txt
+```
+
+
+
+批量导入redis
+
+```bash
+awk -F ',' 'FNR>1 { if(!$1){$1="NA"}; if(!$2){$2="NA"}; printf("SET %s %s\n",$1,$2)}'  data.csv | redis-cli --pipe
+```
 
 
 
