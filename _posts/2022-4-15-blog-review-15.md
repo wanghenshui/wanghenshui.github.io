@@ -11,7 +11,196 @@ tags: [aio,io,SplinterDB,b-tree]
 
 <!-- more -->
 
+## Anna
 
+总结了一下
+
+核心思想是shared nothing + lattice /vector clock解决因果一致性 最终一致性
+
+不是线性的。这种就是欺负人了属于是
+
+### lattice
+
+所有的数据都是内存硬抗的，用unordered_map 接口简单，所有的KV编成lattice，这个数据结构也处理冲突问题
+
+- 如何处理冲突？
+  - actor也就是独立的线程处理具体的key，整体是个hash环，一个线程负责一段CURD信息，各个线程互相通过gossip来沟通信息，收到客户端请求，交流具体的状态信息，判定版本这不是又退化成单线程模式了，为啥比redis快呢？
+
+### Vector lock
+
+可以搜SingleKeyCausalLattice和MultiKeyCausalLattice在代码里的用法
+
+LWW更简单，这里直接贴代码
+
+```c++
+template <typename T>
+struct TimestampValuePair {
+  unsigned long long timestamp{0};
+  T value;
+
+  TimestampValuePair<T>() {
+    timestamp = 0;
+    value = T();
+  }
+
+  // need this because of static cast
+  TimestampValuePair<T>(const unsigned long long& a) {
+    timestamp = 0;
+    value = T();
+  }
+
+  TimestampValuePair<T>(const unsigned long long& ts, const T& v) {
+    timestamp = ts;
+    value = v;
+  }
+  unsigned size() { return value.size() + sizeof(unsigned long long); }
+};
+
+template <typename T>
+class LWWPairLattice : public Lattice<TimestampValuePair<T>> {
+ protected:
+  void do_merge(const TimestampValuePair<T>& p) {
+    if (p.timestamp >= this->element.timestamp) {
+      this->element.timestamp = p.timestamp;
+      this->element.value = p.value;
+    }
+  }
+
+ public:
+  LWWPairLattice() : Lattice<TimestampValuePair<T>>(TimestampValuePair<T>()) {}
+  LWWPairLattice(const TimestampValuePair<T>& p) :
+      Lattice<TimestampValuePair<T>>(p) {}
+  MaxLattice<unsigned> size() { return {this->element.size()}; }
+};
+```
+
+就是个带时间戳的value
+
+对于这个概念，可以看这个博客https://www.inlighting.org/archives/lamport-timestamp-vector-clock 说的非常好
+
+简单说就是合并对一个key的修改
+
+
+
+这里说下bayou和dynamo，都是类似场景，弱一致性，最终一致性，购物车/在线文档修改场景。
+
+bayou https://zhuanlan.zhihu.com/p/401743420
+
+这种同步CRDT数据的代价很大，如果数据规模很大会有通讯风暴，gossip拉胯，dynamo亚马逊只是说一嘴，最终线上用的是paxos改
+
+需要最终一致性的场景也不多
+
+这里能学习的思路也就是各种内存merge动作
+
+序列化反序列化完全依赖RPC框架来做
+
+如何落盘？
+
+本身是分层的，内存层和磁盘层，也有缓存层
+
+```c++
+  if (kSelfTier == Tier::MEMORY) {
+    MemoryLWWKVS *lww_kvs = new MemoryLWWKVS();
+    lww_serializer = new MemoryLWWSerializer(lww_kvs);
+
+    MemorySetKVS *set_kvs = new MemorySetKVS();
+    set_serializer = new MemorySetSerializer(set_kvs);
+
+    MemoryOrderedSetKVS *ordered_set_kvs = new MemoryOrderedSetKVS();
+    ordered_set_serializer = new MemoryOrderedSetSerializer(ordered_set_kvs);
+
+    MemorySingleKeyCausalKVS *causal_kvs = new MemorySingleKeyCausalKVS();
+    sk_causal_serializer = new MemorySingleKeyCausalSerializer(causal_kvs);
+
+    MemoryMultiKeyCausalKVS *multi_key_causal_kvs =
+        new MemoryMultiKeyCausalKVS();
+    mk_causal_serializer =
+        new MemoryMultiKeyCausalSerializer(multi_key_causal_kvs);
+
+    MemoryPriorityKVS *priority_kvs = new MemoryPriorityKVS();
+    priority_serializer = new MemoryPrioritySerializer(priority_kvs);
+  } else if (kSelfTier == Tier::DISK) {
+    lww_serializer = new DiskLWWSerializer(thread_id);
+    set_serializer = new DiskSetSerializer(thread_id);
+    ordered_set_serializer = new DiskOrderedSetSerializer(thread_id);
+    sk_causal_serializer = new DiskSingleKeyCausalSerializer(thread_id);
+    mk_causal_serializer = new DiskMultiKeyCausalSerializer(thread_id);
+    priority_serializer = new DiskPrioritySerializer(thread_id);
+  } else {
+```
+
+内存层就是用unordered map硬抗，disk层如何实现？基于EBS
+
+大开眼界一下
+
+```c++
+  string get(const Key &key, AnnaError &error) {
+    string res;
+    LWWValue value;
+
+    // open a new filestream for reading in a binary
+    string fname = ebs_root_ + "ebs_" + std::to_string(tid_) + "/" + key;
+    std::fstream input(fname, std::ios::in | std::ios::binary);
+
+    if (!input) {
+      error = AnnaError::KEY_DNE;
+    } else if (!value.ParseFromIstream(&input)) {
+      std::cerr << "Failed to parse payload." << std::endl;
+      error = AnnaError::KEY_DNE;
+    } else {
+      if (value.value() == "") {
+        error = AnnaError::KEY_DNE;
+      } else {
+        value.SerializeToString(&res);
+      }
+    }
+    return res;
+  }
+
+  unsigned put(const Key &key, const string &serialized) {
+    LWWValue input_value;
+    input_value.ParseFromString(serialized);
+
+    LWWValue original_value;
+
+    string fname = ebs_root_ + "ebs_" + std::to_string(tid_) + "/" + key;
+    std::fstream input(fname, std::ios::in | std::ios::binary);
+
+    if (!input) { // in this case, this key has never been seen before, so we
+                  // attempt to create a new file for it
+
+      // ios::trunc means that we overwrite the existing file
+      std::fstream output(fname,
+                          std::ios::out | std::ios::trunc | std::ios::binary);
+      if (!input_value.SerializeToOstream(&output)) {
+        std::cerr << "Failed to write payload." << std::endl;
+      }
+      return output.tellp();
+    } else if (!original_value.ParseFromIstream(
+                   &input)) { // if we have seen the key before, attempt to
+                              // parse what was there before
+      std::cerr << "Failed to parse payload." << std::endl;
+      return 0;
+    } else {
+      if (input_value.timestamp() >= original_value.timestamp()) {
+        std::fstream output(fname,
+                            std::ios::out | std::ios::trunc | std::ios::binary);
+        if (!input_value.SerializeToOstream(&output)) {
+          std::cerr << "Failed to write payload" << std::endl;
+        }
+        return output.tellp();
+      } else {
+        return input.tellp();
+      }
+    }
+  }
+```
+
+没错，一个key是一个文件。天才。什么文件整理什么有序无序，我就一个文件爱咋咋地
+
+
+
+看数据库代码，我首先会搜fsync和write。这个代码没搜到我还纳闷难道不支持落盘，原来是这么落盘的，佩服
 
 ## SplinterDB
 
