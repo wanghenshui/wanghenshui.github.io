@@ -11,6 +11,22 @@ tags: [aio,io,SplinterDB,b-tree]
 
 <!-- more -->
 
+## [Identity Crisis: Sequence v. UUID as Primary Key](https://brandur.org/nanoglyphs/026-ids)
+
+
+
+## [Introducing Husky, Datadog's Third-Generation Event Store](https://www.datadoghq.com/blog/engineering/introducing-husky/#storage)
+
+把compact模块单独抠出来了
+
+![](https://imgix.datadoghq.com/img/blog/engineering/introducing-husky/arch3.png?auto=format&fit=max&w=847)
+
+
+
+
+
+metadata用的[FoundationDB](https://www.foundationdb.org/)
+
 ## Anna
 
 总结了一下
@@ -451,7 +467,25 @@ ethtool -K <网卡名称> lro on
 ethtool -k <网卡名称> | grep large-receive-offload
 ```
 
+
+
+## TODO
+
+- https://oceanbase-partner.github.io/lectures-on-dbms-implementation/lecture-1 教程不错
+- https://github.com/flower-corp/lotusdb 有点意思
+- https://github.com/hse-project/hse 有点意思
+
+- https://github.com/rizkg/BBHash/tree/alltypes 有点意思
+- https://medium.com/indeed-engineering/indeed-mph-fast-and-compact-immutable-key-value-stores-302a1cf2eef0
+- https://github.com/indeedeng/mph-table/tree/master/src/main/java/com/indeed/mph 考虑写个c++的
+- https://github.com/facebookarchive/LogDevice/blob/main/logdevice/server/storage_tasks/ReadStorageTask.h 有点意思
+- [Let's build a distributed Postgres proof of concept](https://notes.eatonphil.com/distributed-postgres.html)很有意思 完全可以用c++胡一个 https://github.com/eatonphil/waterbugdb
+
+
+
 ---
+
+
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！
 <details>
