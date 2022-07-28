@@ -3,8 +3,6 @@ title: 常用快捷键/命令行/系统设定
 categories: tools
 tags: [linux, macos, windows, vscode, vim, shell, docker]
 
-
-
 [toc]
 
 <!-- more -->
@@ -14,7 +12,6 @@ tags: [linux, macos, windows, vscode, vim, shell, docker]
 ## 遇到故障速查十个命令
 
 ---
-
 
 ```
 uptime
@@ -57,29 +54,29 @@ $ dmesg | tail
 [2320864.954447] TCP: Possible SYN flooding on port 7001. Dropping request.  Check SNMP counters.
 ```
 
-该命令展示最近 10条系统消息。在这些系统消息中查找有可能引起性能问题的报错。上面的例子包括`oom-killer`和TCP丢弃了一个请求。
+该命令展示最近 10条系统消息。在这些系统消息中查找有可能引起性能问题的报错。上面的例子包括 `oom-killer`和TCP丢弃了一个请求。
 
 不能忘记这个步骤，`dmesg`通常对诊断问题很有价值。
 
 dmesg常见问题
 
-| **keyname**                                 | **解决办法**                                                 |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| I/O erro                                    | 更换硬盘                                                     |
-| table full, dropping packet                 | iptable跟踪表满了，临时规避，调高，和业务没啥关系<br>https://morganwu277.github.io/2018/05/26/Solve-production-issue-of-nf-conntrack-table-full-dropping-packet/ |
-| Out of socket memory                        | socket内存太低/socket太多<br>https://blog.tsunanet.net/2011/03/out-of-socket-memory.html |
-| neighbour table overflow                    | arp表超了，调高<br>https://www.server24.eu/private-cloud/solve-neighbor-table-overflow-messages/ <br>也有可能是网络设置有问题，一个例子https://blog.csdn.net/reyleon/article/details/24981581 |
-| time wait bucket table overflow             | tcp_max_tw_buckets超了，TIME_WAIT多了就会报错，可以调高      |
-| Temperature above threshold                 | 机器过热                                                     |
-| mce                                         | 看mcelog                                                     |
-| Running in modulated clock mode             | 机器过热，CPU启动自锁保护了                                  |
-| Out of Memory                               | OOM-Killer，关注应用内存使用                                 |
-| Failed to alloc kernel SGL buffer for IOCTL | 内核态用户态内存拷贝出现问题？ <br>https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=703356 |
-| Uhhuh. NMI received                         | 更换内存                                                     |
-| page allocation failure                     | 页分不出来了，临时规避可以调小页的大小。还是要关注内存使用<br>https://unix.stackexchange.com/questions/593335/why-does-page-allocation-failure-occur-whereas-there-are-still-enough-memoryi |
-| tsc unstable                                | 没看懂啥意思 https://access.redhat.com/solutions/434883      |
+| **keyname**                           | **解决办法**                                                                                                                                                                                    |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| I/O erro                                    | 更换硬盘                                                                                                                                                                                              |
+| table full, dropping packet                 | iptable跟踪表满了，临时规避，调高，和业务没啥关系`<br>`https://morganwu277.github.io/2018/05/26/Solve-production-issue-of-nf-conntrack-table-full-dropping-packet/                                  |
+| Out of socket memory                        | socket内存太低/socket太多`<br>`https://blog.tsunanet.net/2011/03/out-of-socket-memory.html                                                                                                          |
+| neighbour table overflow                    | arp表超了，调高`<br>`https://www.server24.eu/private-cloud/solve-neighbor-table-overflow-messages/ `<br>`也有可能是网络设置有问题，一个例子https://blog.csdn.net/reyleon/article/details/24981581 |
+| time wait bucket table overflow             | tcp_max_tw_buckets超了，TIME_WAIT多了就会报错，可以调高                                                                                                                                               |
+| Temperature above threshold                 | 机器过热                                                                                                                                                                                              |
+| mce                                         | 看mcelog                                                                                                                                                                                              |
+| Running in modulated clock mode             | 机器过热，CPU启动自锁保护了                                                                                                                                                                           |
+| Out of Memory                               | OOM-Killer，关注应用内存使用                                                                                                                                                                          |
+| Failed to alloc kernel SGL buffer for IOCTL | 内核态用户态内存拷贝出现问题？`<br>`https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=703356                                                                                                        |
+| Uhhuh. NMI received                         | 更换内存                                                                                                                                                                                              |
+| page allocation failure                     | 页分不出来了，临时规避可以调小页的大小。还是要关注内存使用`<br>`https://unix.stackexchange.com/questions/593335/why-does-page-allocation-failure-occur-whereas-there-are-still-enough-memoryi       |
+| tsc unstable                                | 没看懂啥意思 https://access.redhat.com/solutions/434883                                                                                                                                               |
 
-###  vmstat  1
+### vmstat  1
 
 ```bash
 $ vmstat 1
@@ -99,7 +96,7 @@ vmstat使用参数1运行，意味着每1秒打印打印一次概览。命令输
 
 要检查的列：
 
-- `r`：在CPU上运行并等待回合的进程数。由于它不包含IO，因此它比指示CPU饱和的平均负载提供了更多的信息。一个大于CPU核数的`r`值就是饱和的。
+- `r`：在CPU上运行并等待回合的进程数。由于它不包含IO，因此它比指示CPU饱和的平均负载提供了更多的信息。一个大于CPU核数的 `r`值就是饱和的。
 - `free`：空闲的内存（单位的KB）。如果计数很大，说明服务器有足够的内存，`free -m`命令将对空闲内存的状态有更好的说明。
 - `si`、`so`：交换置入和交换置出。如果这两个值是非空，说明物理内存用完了，现在在使用交换内存了。
 - `us`、`sy`、`id`、`wa`、`st`：这些是CPU时间的分类，其是所有CPU的平均值。它们是用户时间、系统时间(内核)、空闲时间、等待IO和被偷窃时间（被其它宾客系统进行使用，或宾客系统隔离的驱动程序域Xen）
@@ -108,9 +105,9 @@ vmstat使用参数1运行，意味着每1秒打印打印一次概览。命令输
 
 IO处理需要占用CPU系统时间。一个较高的CPU系统时间（超过20%）可能会很有趣，有必要进一步研究：也许内核在很低效地处理IO。
 
-在上面的示例中，CPU时间基本全在用户时间，这说明应用程序本身在大量占用CPU时间。CPU的平均利用率也远远超过90%。这不一定是问题，可以使用`r`列来检查饱和度。
+在上面的示例中，CPU时间基本全在用户时间，这说明应用程序本身在大量占用CPU时间。CPU的平均利用率也远远超过90%。这不一定是问题，可以使用 `r`列来检查饱和度。
 
-###  mpstat -P ALL  1
+### mpstat -P ALL  1
 
 ```bash
 $ mpstat -P ALL 1
@@ -127,7 +124,7 @@ Linux 3.13.0-49-generic (titanclusters-xxxxx)  07/14/2015  _x86_64_ (32 CPU)
 
 此命令显示每个CPU的CPU时间明细，可用于检查不平衡的情况。单个热CPU说明是单线程应用程序在大量占用CPU时间。
 
-###  pidstat 1
+### pidstat 1
 
 ```bash
 $ pidstat 1
@@ -185,7 +182,7 @@ dm-2        0.00     0.00    0.09    0.07     1.35     0.36    22.50     0.00   
 
 **请记住，性能不佳的磁盘IO不一定是应用问题，通常可以使用许多技术以执行异步IO，以便使应用程序不会被阻塞住而产生直接产生IO延迟（例如，预读和缓冲写入技术）**
 
-###  free -m
+### free -m
 
 ```bash
 $ free -m
@@ -202,11 +199,11 @@ Swap:            0          0          0
 
 我们只需要检查下它们的大小是否接近零。如果接近零的话，这可能导致较高的磁盘IO（可以使用iostat进行确认）和较差的性能。上面的示例看起来不错，每列都有较大的数据。
 
-`-/+ buffers/cache`为已用和空闲内存提供较少让人产生混乱的值。Linux将可用内存用于高速缓存，但是如果应用程序需要，它们可以快速被回收。因此应以某种方式将缓存的内存包括在`free`列中，这也就是这一行的所做的。甚至还有一个[网站](http://www.linuxatemyram.com/)专门讨论了这种混乱。
+`-/+ buffers/cache`为已用和空闲内存提供较少让人产生混乱的值。Linux将可用内存用于高速缓存，但是如果应用程序需要，它们可以快速被回收。因此应以某种方式将缓存的内存包括在 `free`列中，这也就是这一行的所做的。甚至还有一个[网站](http://www.linuxatemyram.com/)专门讨论了这种混乱。
 
-如果在Linux上使用ZFS，就像我们对某些服务所做的那么，因为ZFS具有自己的文件系统缓存，它们并不会反映在`free -m`的列中，因此这种场景下这种混乱还将存在。所以会看到似乎系统的可用内存不足，而实际上可根据需要从ZFS缓存中申请到内存。
+如果在Linux上使用ZFS，就像我们对某些服务所做的那么，因为ZFS具有自己的文件系统缓存，它们并不会反映在 `free -m`的列中，因此这种场景下这种混乱还将存在。所以会看到似乎系统的可用内存不足，而实际上可根据需要从ZFS缓存中申请到内存。
 
-###  sar -n DEV 1
+### sar -n DEV 1
 
 ```bash
 $ sar -n DEV 1
@@ -224,11 +221,11 @@ Linux 3.13.0-49-generic (titanclusters-xxxxx)  07/14/2015     _x86_64_    (32 CP
 ^C
 ```
 
-此工具可以检查网络接口的吞吐量：`rxkB/s`和`txkB/s`，作为工作负载的度量，还可以检查是否已达到网络接口的限制。在上面的示例中，eth0接收速率达到22MB/s，即176Mbit/s（远低于1Gbit/s的网络接口限制，假设是千兆网卡）。
+此工具可以检查网络接口的吞吐量：`rxkB/s`和 `txkB/s`，作为工作负载的度量，还可以检查是否已达到网络接口的限制。在上面的示例中，eth0接收速率达到22MB/s，即176Mbit/s（远低于1Gbit/s的网络接口限制，假设是千兆网卡）。
 
-此版本还具有`%ifutil`用来指示设备利用率（全双工双向），这也是我们使用的Brendan的[nicstat工具](https://github.com/scotte/nicstat)测量出来的。就像nicstat一样，这个指标很难计算正确，而且在本例中好像不起作用（数据是0.00）。
+此版本还具有 `%ifutil`用来指示设备利用率（全双工双向），这也是我们使用的Brendan的[nicstat工具](https://github.com/scotte/nicstat)测量出来的。就像nicstat一样，这个指标很难计算正确，而且在本例中好像不起作用（数据是0.00）。
 
-###  sar -n TCP,ETCP 1
+### sar -n TCP,ETCP 1
 
 ```bash
 $ sar -n TCP,ETCP 1
@@ -258,7 +255,7 @@ Linux 3.13.0-49-generic (titanclusters-xxxxx)  07/14/2015    _x86_64_    (32 CPU
 
 重新传输是网络或服务器问题的迹象；它可能是不可靠的网络（例如，公共Internet），也可能是由于服务器过载并丢弃了数据包。上面的示例仅显示每秒一个新的TCP连接。
 
-###  top
+### top
 
 ```bash
 $ top
@@ -284,7 +281,7 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
 
 `top`命令包括我们之前检查的许多指标。运行它可以很方便地查看是否有任何东西与以前的命令有很大不同，这表明负载是可变的。
 
-`top`命令不太好的地方是，随着时间的推移很难看到指标变化的模式，这在提供滚动输出的`vmstat`和`pidstat`之类的工具中可能更清楚一点。如果您没有足够快地暂停输出（Ctrl-S暂停，Ctrl-Q继续），在屏幕输出被`top`命令清除后，间歇性问题的证据也可能被丢失了。
+`top`命令不太好的地方是，随着时间的推移很难看到指标变化的模式，这在提供滚动输出的 `vmstat`和 `pidstat`之类的工具中可能更清楚一点。如果您没有足够快地暂停输出（Ctrl-S暂停，Ctrl-Q继续），在屏幕输出被 `top`命令清除后，间歇性问题的证据也可能被丢失了。
 
 一图流
 
@@ -311,13 +308,11 @@ KiB Swap:        0 total,        0 used,        0 free.   554208 cached Mem
     - c表示需要确认，例如全局查找"foo"替换为"bar"并且需要确 :%s/foo/bar/gc
     - 参考： [Vim中如何快速进行光标移](http://harttle.com/2015/11/07/vim-cursor.html)
 - 1y lh 粘贴
-- v模式 e选中 
+- v模式 e选中
 - b w 前后走动
 - 命令行 补全 ctrl l
 - 插入模式补全 ctrl p
 - 在vim里执行命令 加感叹号就可以 !ls
-
-
 
 ## cmake
 
@@ -329,52 +324,53 @@ cmake -DCMAKE_BUILD_TYPE=Release
 
 - Ctrl a 到命令行开头 ctrl e到命令行结尾
 - grep取反 grep -v ”ect“”
-- Linux 
+- Linux
 
   - Ctrl + L清屏
   - mv filename(/*) -t directory 也有重命名功能
 - du -a du -h
-    - du -h --max-depth=1 常用，看一个目录
+
+  - du -h --max-depth=1 常用，看一个目录
   - file libvswrtp.so 查询文件信息（查链接库版本一个小经验）ldd
 - gdb
 
-    - thread apply all bt
-    - pstack
-      - pstack在chroot下执行的进程，可能找不到符号，要到chroot下面的目录去执行pstack
-        - https://nanxiao.me/linux-pstack/
-- tar 
+  - thread apply all bt
+  - pstack
+    - pstack在chroot下执行的进程，可能找不到符号，要到chroot下面的目录去执行pstack
+      - https://nanxiao.me/linux-pstack/
+- tar
 
-    - tar -czf xx.tar.gz xx
-    - 对于xz文件 **tar xvJf  \**\*.tar.xz**
-    - 流  tar -cvf  xxfile | lz4  > xxfile2
-      - 也可以用snzip
+  - tar -czf xx.tar.gz xx
+  - 对于xz文件 **tar xvJf  \**\*.tar.xz**
+  - 流  tar -cvf  xxfile | lz4  > xxfile2
+    - 也可以用snzip
 - mount
 
-    - mount /dev/vdb target_dir
-- scp 
+  - mount /dev/vdb target_dir
+- scp
 
-    - scp local_file root@xx.xx.xx.xx:/root
+  - scp local_file root@xx.xx.xx.xx:/root
 - rpm -ivh xx.rpm
 - 特殊场景
 
-    - 查找体积较大的十个文件
-      - du -hsx * | sort -rh | head -10
-    - 端口占用 netstat|grep 11221
-      - lsof -i :11221抓到对应的进程
+  - 查找体积较大的十个文件
+    - du -hsx * | sort -rh | head -10
+  - 端口占用 netstat|grep 11221
+    - lsof -i :11221抓到对应的进程
 - putty
 
-    - alt enter退出全屏 在window behaviour里，勾选最后一个
-      - [x] full screen on alt-enter
-    - 小键盘设置，在terminal features 勾选 
-      - [x] disable application keypad mode
-    - 记得保存设置
-- telnet 
+  - alt enter退出全屏 在window behaviour里，勾选最后一个
+    - [X] full screen on alt-enter
+  - 小键盘设置，在terminal features 勾选
+    - [X] disable application keypad mode
+  - 记得保存设置
+- telnet
 
-    - 退出 ctrl  ]
+  - 退出 ctrl  ]
 - 目录权限问题 sudo chown -R $USER /path/to/folder
 - iptables
 
-    - 查看端口 **cat  /etc/sysconfig/iptables**
+  - 查看端口 **cat  /etc/sysconfig/iptables**
 - jq 格式化json文档 `jq . xx.json > xx.json.new` 注意不能原地覆盖，这里有bug直接文件就空了
 - 查看磁盘是否是ssd `cat /sys/block/vdb/queue/rotational` 1是sata 0是ssd
 - `echo 1 > /proc/sys/vm/drop_caches ` 清除缓存
@@ -402,32 +398,31 @@ cmake -DCMAKE_BUILD_TYPE=Release
 
 ## windows
 
-  - wslconfig /l  wslconfig /s ubuntu-18.04
-  - win shirl S win10 截图
-  - compmgmt.msc 计算机 管理
-  - devmgmt.msc 设备管理器
-  - win + break 直接调出系统设置
-  - eventvwr
-  - ie 卸载程序
-  - Ctrl + Shift + Esc 任务管理器
-  - alt space n
-  - alt f4/alt space c
-  - snipingtool
-  - mspaint
-  - ctrl + win +d /F4 虚拟桌面
-  - ctrl + win + →
-  - win + L 锁屏
-  - 磁盘格式转换 convert h: /fs:ntfs
-  - windows查看端口占用 `netstat -aon|findstr 25340` 最后一行就是进程id
-  - windows 杀死进程，在任务管理找不到的前提下 taskkill /f /pid 13656
-  - **硬盘格式转换** convert h: /fs:ntfs 
-  - cmder /register all
-
+- wslconfig /l  wslconfig /s ubuntu-18.04
+- win shirl S win10 截图
+- compmgmt.msc 计算机 管理
+- devmgmt.msc 设备管理器
+- win + break 直接调出系统设置
+- eventvwr
+- ie 卸载程序
+- Ctrl + Shift + Esc 任务管理器
+- alt space n
+- alt f4/alt space c
+- snipingtool
+- mspaint
+- ctrl + win +d /F4 虚拟桌面
+- ctrl + win + →
+- win + L 锁屏
+- 磁盘格式转换 convert h: /fs:ntfs
+- windows查看端口占用 `netstat -aon|findstr 25340` 最后一行就是进程id
+- windows 杀死进程，在任务管理找不到的前提下 taskkill /f /pid 13656
+- **硬盘格式转换** convert h: /fs:ntfs
+- cmder /register all
 
 ## bazel
 
-
 - 编译 bazel build //redis:* --copt="-g" --strip="never"
+
 ```bash
 ## 参数项一次只能指定一个
 bazel build --copt="-O3" --copt="-fpic" --cxxopt="-std=c++11"
@@ -440,50 +435,33 @@ bazel build --copt="-O3" --copt="-fpic" --cxxopt="-std=c++11"
 - 测试 bazel test ...
 
 * `--nocache_test_results` may be required if you are trying to re-run a test without changing
-anything.
+  anything.
 * `--test_filter=<TestName>` to run a specific test (when test splits are not already in use)
 
 - 遇到bazel错误先看看路径是不是错了，或者文件名是不是错了
-- bazel设置cache目录，修改.bazelrc `build --disk_cache=/my/tmp/cache` 不过.cache的缓存不能通过这个改，只能通过命令行改`--output_user_root`，我没有实验过
+- bazel设置cache目录，修改.bazelrc `build --disk_cache=/my/tmp/cache` 不过.cache的缓存不能通过这个改，只能通过命令行改 `--output_user_root`，我没有实验过
 - bazel默认会走ccache，但是ccache总有傻逼问题。我这里用export CC来强制走系统内部的gcc，跳过ccache
 
 ccache: error: Failed to create temporary file for /root/.ccache/tmp/version.stdout: Read-only file system
 
 我也找了一堆解决办法，说实话，没啥帮助。我切换bazel 6也有这个问题，跳过不用ccache直接用系统内部gcc才解决（不能光卸载，还会找，得export CC CXX，具体不赘述）
 
-
-
 ## MacOS
 
 - 截图 command shift 4
-
 - 截图且复制到剪贴板 Shift+Control+Command+4
-
 - 截屏command shift 3
-
 - 截屏且复制到剪贴板 Shift+Control+Command+3
-
 - 打开新终端 command + T
-
 - 回到桌面 fn + f11 或者五个手指缩放(比较反人类，算了)
-
 - 设置触发角，我设置到了右下角，这样和windows行为一致
-
 - 终端分屏 cmd + d 取消 cmd + shift + d
-
 - 终端切换标签页 command + shift  + 左右箭头
-
 - 设置 /使用习惯
-
 - 鼠标 滚轮 去掉自然
-
 - sudo spctl --master-disable 设置信任
-
 - 邮件要按住ctrl
-
-- 解压zip 7z e xx.7z 
-
-    
+- 解压zip 7z e xx.7z
 
 ## perf
 
@@ -509,8 +487,6 @@ perf script | awk '{ gsub(/:/, "") } $5 ~ /issue/ { ts[$6, $10] = $4 }
     ($4 - l) * 1000000; ts[$6, $10] = 0 } }' > out.lat_us
 ./trace2heatmap.pl --unitstime=us --unitslat=us --maxlat=50000 out.lat_us > out.svg
 ```
-
-
 
 这个文档非常不错，这里直接复制粘贴下来命令
 
@@ -560,8 +536,6 @@ perf stat -e 'ext4:*' -a sleep 10
 perf stat -e 'block:*' -a sleep 10
 ```
 
-
-
 profiling事件
 
 ```bash
@@ -599,8 +573,6 @@ perf record -e cycles:k -a -- sleep 5
 perf record -e cycles:u -a -- sleep 5 
  
 ```
-
-
 
 Static tracing
 
@@ -740,23 +712,22 @@ perf probe -l
  
 ```
 
-
-
 ## 其他软件
 
 - VS
+
   - Ctrl+k Ctrl+f 对齐(format)
   - Ctrl+k Ctrl+c注释
   - Ctrl+k Ctrl+U 取消注释
   - F5 F9断点 F10 F11
-- vscode 
+- vscode
 
-  - 格式化代码 shift + alt + f 
+  - 格式化代码 shift + alt + f
   - 配置clang-format
 - cmder
 
   - cmder /register all
-- tex 
+- tex
 
 ```tex
 \tiny
@@ -771,8 +742,6 @@ perf probe -l
 \Huge
 ```
 
-
-
 ## git
 
 - git统计提交行数
@@ -781,19 +750,17 @@ perf probe -l
 git log --author="name"  --since=2019–01-01 --until=2020-01-01  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -  $2 } END { printf "added lines: %s, removed lines: %s, total lines:  %s\n", add, subs, loc }'
 ```
 
--  Cherry-pick	过滤提交人用git log --author="name"
--  打tag 
+- Cherry-pick	过滤提交人用git log --author="name"
+- 打tag
 
 ```bash
 git tag -a "comment sth."
 git push --tags
 ```
 
-
-
--  整理commit` git rebase -i HEAD~3`
--  修改上次提交`git reset HEAD^` 
--  提错分支，搬过来
+- 整理commit ` git rebase -i HEAD~3`
+- 修改上次提交 `git reset HEAD^`
+- 提错分支，搬过来
 
 ```bash
 git reset HEAD~ --soft
@@ -804,6 +771,16 @@ git stash pop
 #后续add操作，不举例了
 ```
 
+- 看上次提交修改了啥
+
+```bash
+git log --name-status #每次修改的文件列表, 显示状态
+git log --name-only #每次修改的文件列表
+git log --stat #每次修改的文件列表, 及文件修改的统计
+git whatchanged #每次修改的文件列表
+git whatchanged --stat #每次修改的文件列表, 及文件修改的统计 
+```
+
 - 查看被修改的文件
 
 ```bash
@@ -812,14 +789,13 @@ git diff --name-only HEAD~ HEAD
 git diff --name-only <commit-id1> <commit-id2>
 ```
 
-
-
 - 修改提交人 git commit --amend --author="NewAuthor <NewEmail@address.com>"
 
 ```shell
   git push <远程主机名> <本地分支名>:<远程分支名>
   git pull <远程主机名> <远程分支名>:<本地分支名> 
 ```
+
   分支丢了或者head detached了或者错误覆盖了，不要慌，`git reflog`能找回来
 
   mac要装lfs brew install git-lfs
@@ -834,13 +810,15 @@ git diff --name-only <commit-id1> <commit-id2>
 
 - 选取别的分支的提交 切换到工作分支，然后git cherry-pick commitid就可以了
 
-  比较两个文件夹
+- 针对文件进行clang-format
+```bash
+随便一个命令列出需要改的文件 ｜xargs clang-format --files=.clang-format -i  
+```
+比较两个文件夹
 
 ```bash
  diff -Nrq a b
 ```
-
-
 
 列出目录几层的文件
 
@@ -854,8 +832,6 @@ tree -L 1
 split -b 10M data
 cat x* > data & #加个&是因为输出可能把tmux标签污染，干脆就后台运行
 ```
-
-
 
 ## k8s
 
@@ -889,8 +865,6 @@ kubectl apply -f config.yaml  配置里写好自己的镜像之类的
 
 https://www.docker.com/sites/default/files/d8/2019-09/docker-cheat-sheet.pdf
 
-
-
 我经常用的就几个
 
 dockerd启动
@@ -898,8 +872,6 @@ dockerd启动
 ```bash
  systemctl start docker
 ```
-
-
 
 `清理`
 
@@ -913,8 +885,6 @@ docker system prune
 ```bash
 ln -s /data/docker_root  /var/lib/docker
 ```
-
-
 
 `pull`
 
@@ -933,7 +903,7 @@ docker run -it --privileged -d  _linkxx_ /bin/bash #run + exec
 
 > docker: Error response from daemon: OCI runtime create failed: container_linux.go:345: starting container process caused "exec: \"nginx\": executable file not found in $PATH": unknown.
 
-如果不能使用gdb,  命令行要加上`--cap-add=SYS_PTRACE --security-opt seccomp=unconfined` 
+如果不能使用gdb,  命令行要加上 `--cap-add=SYS_PTRACE --security-opt seccomp=unconfined`
 
 `exec`
 
@@ -993,7 +963,6 @@ docker rm container_id
 
 - 同步github gitee仓库 https://github.com/ShixiangWang/sync2gitee
 - git diff工具，delta https://github.com/dandavison/delta 非常好用！为啥没有rust的时候没人做这个工具呢，是因为用c++写太麻烦吗？我要写一个！
-
 - 图片压缩需求，网络限制，超过50k不让上传
 
   - jpg by `jpegtran`
@@ -1005,8 +974,6 @@ jpegtran -optimize image-20200402171439048.jpg
 apt install optipng
 optipng -o3 image-20200402172644242.png #o1 ~ o7 七个等级压缩
 ```
-
-
 
 ## shell常用脚本
 
@@ -1024,23 +991,17 @@ grep -v -f a b  从b中剔除a中有的
 
 容易内存不够
 
-
-
 Sort 按照列来sort
 
 ```sh
 sort -k 2 file.txt
 ```
 
-
-
 批量导入redis
 
 ```bash
 awk -F ',' 'FNR>1 { if(!$1){$1="NA"}; if(!$2){$2="NA"}; printf("SET %s %s\n",$1,$2)}'  data.csv | redis-cli --pipe
 ```
-
-
 
 ## 软件安装清单
 
@@ -1058,8 +1019,6 @@ awk -F ',' 'FNR>1 { if(!$1){$1="NA"}; if(!$2){$2="NA"}; printf("SET %s %s\n",$1,
 
 ## vscode
 
-
-
 无法远程(WebSocket close with status code 1006), 更改sshd_config
 
 ```
@@ -1068,11 +1027,7 @@ AllowTcpForwarding yes
 AllowAgentForwarding yes
 ```
 
-
-
 - 注释 ctrl k + ctrl  C 取消注释 ctrl k + ctrl U 可以选中批量注释/取消
-
-
 
 ## Tmux 快捷键 & 速查表
 
@@ -1117,7 +1072,7 @@ tmux a #恢复上一个回话
     p  前一个窗口
     f  查找窗口
     ,  重命名当前窗口
-    &  关闭当前窗口 **这个真的太难记了**
+    &  关闭当前窗口**这个真的太难记了**
 
 ### 调整窗口排序
 
@@ -1163,7 +1118,6 @@ tmux a #恢复上一个回话
     PREFIX : resize-pane -t 2 -L 20  编号为 2 的窗格向左扩大 20 格
 
 
-​    
 ### 文本复制模式：
 
 按下 `PREFIX-[` 进入文本复制模式。可以使用方向键在屏幕中移动光标。默认情况下，方向键是启用的。在配置文件中启用 Vim 键盘布局来切换窗口、调整窗格大小。Tmux 也支持 Vi 模式。要是想启用 Vi 模式，只需要把下面这一行添加到 .tmux.conf 中：
@@ -1212,14 +1166,10 @@ tmux a #恢复上一个回话
 
 滚屏
 
-``` 
+```
 C-b PageUp/PageDown
 q退出滚屏
 ```
-
-
-
-
 
 ### 杂项：
 
@@ -1232,19 +1182,19 @@ q退出滚屏
 
     # 鼠标支持 - 设置为 on 来启用鼠标(与 2.1 之前的版本有区别，请自行查阅 man page)
     * set -g mouse on
-    
+
     # 设置默认终端模式为 256color
     set -g default-terminal "screen-256color"
-    
+
     # 启用活动警告
     setw -g monitor-activity on
     set -g visual-activity on
-    
+
     # 居中窗口列表
     set -g status-justify centre
-    
+
     # 最大化/恢复窗格
-    unbind Up bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp
+    unbind Up bind Up new-window -d -n tmp\; swap-pane -s tmp.1 \; select-window -t tmp
     unbind Down
     bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp
 
@@ -1305,7 +1255,6 @@ run '~/.tmux/plugins/tpm/tpm'
 
 ```
 
-
 ---
 
 ## ibkc键盘
@@ -1324,30 +1273,26 @@ alt win键切换了困扰了我好久，还以为键盘进水坏掉了
 
 ## 参考
 
-- mount <https://www.runoob.com/linux/linux-comm-mount.html>
-- tar <https://blog.csdn.net/silvervi/article/details/6325698>
-- <https://my.oschina.net/huxuanhui/blog/58119>
-- scp <https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html>
-- putty 保存设置<https://blog.csdn.net/tianlesoftware/article/details/5831605>
+- mount [https://www.runoob.com/linux/linux-comm-mount.html](https://www.runoob.com/linux/linux-comm-mount.html)
+- tar [https://blog.csdn.net/silvervi/article/details/6325698](https://blog.csdn.net/silvervi/article/details/6325698)
+- [https://my.oschina.net/huxuanhui/blog/58119](https://my.oschina.net/huxuanhui/blog/58119)
+- scp [https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html](https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html)
+- putty 保存设置[https://blog.csdn.net/tianlesoftware/article/details/5831605](https://blog.csdn.net/tianlesoftware/article/details/5831605)
 - tree https://www.jianshu.com/p/f117be185c6f
   - tree在markdown中格式会乱的解决办法，用 https://stackoverflow.com/questions/19699059/representing-directory-file-structure-in-markdown-syntax
 - diff https://blog.csdn.net/longxj04/article/details/7033744
-- Docker 
+- Docker
   - https://blog.csdn.net/fandroid/article/details/46817567
   - https://www.cnblogs.com/sparkdev/p/9177283.html
 - https://www.zhihu.com/question/19779256  ytzong的答案不错。我在wsl上可以用上面的工具。对于压缩图片来说他那个cssgaga贼破，没法用
-- 转自这里<https://gist.github.com/ryerh/14b7c24dfd623ef8edc7>
-- 这里有个详细版教程<http://louiszhai.github.io/2017/09/30/tmux/>
+- 转自这里[https://gist.github.com/ryerh/14b7c24dfd623ef8edc7](https://gist.github.com/ryerh/14b7c24dfd623ef8edc7)
+- 这里有个详细版教程[http://louiszhai.github.io/2017/09/30/tmux/](http://louiszhai.github.io/2017/09/30/tmux/)
 - 这有个git修改小操作 https://blog.csdn.net/sodaslay/article/details/72948722
-
-
-
-
-
 
 ---
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!
+
 <details>
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
