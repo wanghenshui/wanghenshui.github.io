@@ -820,6 +820,8 @@ git diff --name-only <commit-id1> <commit-id2>
  diff -Nrq a b
 ```
 
+比较文件 diff -u file1 file2
+
 列出目录几层的文件
 
 ```bash

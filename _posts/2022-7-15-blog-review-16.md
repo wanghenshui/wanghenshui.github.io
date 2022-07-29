@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第十六期
 categories: [review]
-tags: [aio,io,SplinterDB,b-tree]
+tags: [fork,Monarch,rocksdb,epoch, postgresql,DuckDB,art]
 ---
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
 
@@ -36,11 +36,9 @@ PK  选对类型，bigserial，bigint等等。考虑清楚
 
 ![](https://whyjava.files.wordpress.com/2022/06/pk_types.png)
 
-
-
 使用两套id ，避免数据被猜到？
 
-```sql	
+```sql
 CREATE TABLE issues (
     id integer NOT NULL,
     title character varying,
@@ -57,6 +55,7 @@ create table text_exp (id bigint primary key,
 s text default gen_random_uuid() not null,
 CONSTRAINT check_15e644d856 CHECK ((char_length(s) <= 200)));
 ```
+
 命名尽可能小写下划线，类别用前缀来搞定
 
 时间戳加不加zone信息？create_at可以不加，但close_at得加。区别在用这个时间戳谁用，系统内部meta的话无所谓，但是外部用户可见的话可能得考虑用户体验
@@ -87,7 +86,6 @@ hash没啥说的
 
 代码在这里 https://github.com/duckdb/duckdb/tree/2c623978d700443665d519282ee52891e4573a3d/src/include/duckdb/execution/index/art
 
-
 ## [小红书自研KV存储架构如何实现万亿量级存储与跨云多活](https://zhuanlan.zhihu.com/p/537691368)
 
 proxy压缩网络包，挺有意思
@@ -97,6 +95,17 @@ proxy压缩网络包，挺有意思
 欺诈者和普通用户通常具有不同的图结构和邻居特征, 有意思
 
 很多数据能说明问题，比如联系人多，比如使用共同的联系人/默认值等等。数据可以挖掘的点有很多。不过这种指向型怎么挖掘出来呢
+
+## [服务器内存故障预测居然可以这样做！](https://mp.weixin.qq.com/s?__biz=MzI4NjY4MTU5Nw==&mid=2247494145&idx=2&sn=4b462c9fc4d9bb1ef2db3fded0a955bb)
+
+edac使用 https://github.com/grondo/edac-utils/
+
+
+## [使用tcmalloc抓内存泄漏](https://gperftools.github.io/gperftools/heap_checker.html)
+
+ env HEAPPROFILE binxx
+
+会生成调用图，啥都看得清清楚楚
 
 ## TODO
 
