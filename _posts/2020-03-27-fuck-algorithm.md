@@ -1,11 +1,9 @@
 ---
 layout: post
-title: 算法4/手撕算法整理笔记
+title: 手撕算法整理笔记
 categories: [algorithm]
 tags: [data structure, algorithm]
 ---
-
-
 ---
 
 > https://github.com/labuladong/fucking-algorithm
@@ -13,6 +11,8 @@ tags: [data structure, algorithm]
 > https://vjudge.net/article/187
 >
 > https://github.com/youngyangyang04/leetcode-master
+>
+> https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution
 
 ---
 
@@ -34,47 +34,30 @@ https://github.com/rachitiitr/DataStructures-Algorithms
 
 https://csacademy.com/app/graph_editor/
 
-
-
 ## 经典题型
 
 - Sliding window，**滑动窗口类型**
-
 - two points, **双指针类型**
-
 - Fast & Slow pointers, **快慢指针类型**
 
   - 龟兔赛跑
-
 - Merge Intervals，**区间合并类型**
 
   - 重叠区间，判断交集
-
 - Cyclic Sort，**循环排序**
-
 - In-place Reversal of a LinkedList，**链表翻转**
-
 - Tree Breadth First Search，**树上的BFS**
 
   - 用队列处理遍历
-
--  Tree Depth First Search，**树上的DFS**
-
-  - 模拟堆栈
-
--  Two Heaps，**双堆类型** 最大最小堆求中位数
-
-  -  优先队列
-  - 找一组数中的最大最小中位数
-
+- Tree Depth First Search，**树上的DFS**
+- 模拟堆栈
+- Two Heaps，**双堆类型** 最大最小堆求中位数
+- 优先队列
+- 找一组数中的最大最小中位数
 - Subsets，**子集类型，一般都是使用多重DFS**
-
--  Modified Binary Search，**改造过的二分**
-
+- Modified Binary Search，**改造过的二分**
 - Top ‘K’ Elements，**前K个系列** 堆
-
--  K-way merge，**多路归并**
-
+- K-way merge，**多路归并**
 - DP
 
   - **0/1背包类型**
@@ -82,15 +65,11 @@ https://csacademy.com/app/graph_editor/
   - 斐波那契数列
   - Palindromic Subsequence回文子系列
   - Longest Common Substring最长子字符串系列
-
 - Topological Sort (Graph)，**拓扑排序类型**
 
   - hashmap邻接表
 
-
 博弈问题 https://zhuanlan.zhihu.com/p/50787280
-
-
 
 https://www.lintcode.com/ladder/47/
 
@@ -120,7 +99,7 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
 
 **初级排序**
 
-- 选择排序 
+- 选择排序
   - 运行时间和输入无关，并不能保留信息，有记忆信息更高效
 - 插入排序
   - 如果有序，更友好
@@ -181,7 +160,7 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
 
 在插入场景下保证二叉查找树的完美平衡难度过大
 
-- 2-3查找树，插入能尽可能的保持平衡 
+- 2-3查找树，插入能尽可能的保持平衡
 
   - 如果插入终点是2节点，就转换成3节点
   - 如果终点是3节点
@@ -189,11 +168,9 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
       - 父2节点，子3节点，同理，抽出子树，把子树父节点塞到父节点
       - 父3节点，子3节点，同理，抽出子树，把子树父节点塞到父节点，父节点再抽出子树，重复
       - 全是3节点 树高 +1
-
 - 红黑二叉查找树描述2-3树？？
 
   - 替换3节点 抽出子树 左连接子树要标红 有图
-
   - 红连接放平，就是2-3树了
 
     ![image-20200827165325062](https://wanghenshui.github.io/assets/image-20200827165325062.png)
@@ -203,10 +180,9 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
   - 红连接均为左连接
   - 没有任何一个节点同时和两条红连接相连
   - 完美黑色平衡，任意空连接到根节点的路径上的黑连接相同
-
 - 旋转 就是单纯的改变方向
-
 - 插入
+
   - 2节点插入
     - 单个2节点插入 一个元素就是单个2节点，左边就变红，如果右边 变红+旋转 最终都是3节点
     - 树底2节点插入，右边，那就旋转（交换位置）
@@ -216,6 +192,7 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
     - 之间，放左边右子节点，旋转，在旋转，变黑
 - 删除
 - 红黑树性质
+
   - 高度
   - 到任意节点的路径平均长度
 
@@ -238,11 +215,11 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
 
 顶点名字不重要，用数字描述方便数组描述
 
-特殊的图 `自环` /`平行边` 含有平行边的叫`多重图` 没有平行边/自环的是`简单图`
+特殊的图 `自环` /`平行边` 含有平行边的叫 `多重图` 没有平行边/自环的是 `简单图`
 
-两个顶点通过一条边相连 `相邻` 这条边`依附于`这两个顶点
+两个顶点通过一条边相连 `相邻` 这条边 `依附于`这两个顶点
 
-`依附于`顶点的边的总数称为顶点的`度数`
+`依附于`顶点的边的总数称为顶点的 `度数`
 
 `子图` 一幅图的所有变的一个子集以及所依附的顶点构成的图 许多问题要识别各种类型的子图
 
@@ -252,9 +229,9 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
 
 `环` 至少包含一条边，起点终点相同的路径 u-v-w-x-u
 
-`简单环` 不包含重复顶点和重复边的`环`  
+`简单环` 不包含重复顶点和重复边的 `环`
 
-如果从任意一个顶点都存在一条路径到达另一个顶点，我们称这幅图是`连通图`
+如果从任意一个顶点都存在一条路径到达另一个顶点，我们称这幅图是 `连通图`
 
 一幅非连通的图由若干连通部分组成，它们都是极大连通子图
 
@@ -276,11 +253,9 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
 - G是无环图，添加任意一条边会产生一条换
 - G中任意一对顶点之间仅存在一条简单路径
 
-图的`密度` 已经连接的顶点对栈所有可能被连接的顶点对的比例 `稀疏图` 被连接的顶点对很少，`稠密图` 只有很少的抵抗点对之间没有边连接 如果一幅图中不同的边的数量在顶点总数的一个很小的常数倍之内就是稀疏的
+图的 `密度` 已经连接的顶点对栈所有可能被连接的顶点对的比例 `稀疏图` 被连接的顶点对很少，`稠密图` 只有很少的抵抗点对之间没有边连接 如果一幅图中不同的边的数量在顶点总数的一个很小的常数倍之内就是稀疏的
 
 `二分图` 能够将所所有节点分成两部分的图
-
-
 
 图的表达方式
 
@@ -317,8 +292,6 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
   - 构成有向环
   - 自反/对称/传递
 
-
-
 **最小生成树 MST**
 
 加权图 权值最小的生成树
@@ -337,8 +310,6 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
   - 这些算法都是一种贪心算法
     - V个顶点的任意加权连通图中属于最小生成树的边标记成黑色，初始为灰色，找到一种切分，横切边均不为黑色，将它权重最小的横切边标记为黑色，反复，直到标记了V-1条黑色边为止 ？？
 
-
-
 ---
 
 ## 动态规划
@@ -355,17 +326,12 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
     - **遍历的过程中，所需的状态必须是已经计算出来的**。
     - **遍历的终点必须是存储结果的那个位置**。
 
- 
-
-
-
-
-
 https://github.com/xtaci/algorithms
 
 ---
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!
+
 <details>
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
