@@ -960,7 +960,7 @@ docker rm container_id
 - `show tables/collections`显示当前db所有的表
 - CURD直接用js接口就行 find/deleteMany等等
   - db.collection.find({"taskid": "042a33d3-c010-4723-8553-3204a0aec760"},{"blahblah":1 })前面的括号是条件，后面的大括号过滤结果
-
+- 整数可以通过NumberLong("1")构造
 ## 小工具 推荐
 
 - 同步github gitee仓库 https://github.com/ShixiangWang/sync2gitee
