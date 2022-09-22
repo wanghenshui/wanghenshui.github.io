@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第十七期
 categories: [review]
-tags: [lru， slot, rocksdb, filter, fio,cache]
+tags: [lru， slot, rocksdb, filter, fio,cache,cpp,leanstore,sigmod,memq,Socrates,Hekaton]
 ---
 准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
 
