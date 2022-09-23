@@ -1,12 +1,9 @@
 ---
 layout: post
 title: (转)可扩展服务设计原则checklist
-categories: [todo]
+categories: [review]
 tags: [checklist]
 ---
-
-
-
 > 转自 http://sunisdown.me/ke-kuo-zhan-fu-wu-she-ji-yuan-ze-checklist.html
 >
 > 考虑一下
@@ -20,7 +17,6 @@ tags: [checklist]
 ## 整体设计
 
 - [ ] 发生故障的时候，系统能否在没有人工干预的情况下自动恢复
-
 - [ ] 故障恢复的路径需要经常被测试
 - [ ] 把各个不同的组件都文档化，而不是每次了解某一个部分都需要看代码
 - [ ] 是否只提供一个版本给用户（单一版本迭代成本更低
@@ -117,7 +113,6 @@ tags: [checklist]
 
 - [ ] 客户自行配置可以降低成本，并提高满意度，支持客户自助也相对重要。
 
-​                
 
 ---
 

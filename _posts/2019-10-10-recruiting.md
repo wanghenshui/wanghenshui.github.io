@@ -1,14 +1,10 @@
 ---
 layout: post
 title: 招人啦
-categories: [todo]
+categories: []
 tags: []
 ---
-  
-
 ---
-
-
 
 华为云NoSQL团队招聘C/C++开发（3到5年工作经验最好
 
@@ -17,29 +13,25 @@ tags: []
 - 熟悉一款nosql产品是加分项，包括但不限于rocksdb/redis/mongodb...
 - 如果对事务，一致性，扩展性，高可用等领域有自己的见解可再加一分
 
-
-
 补充一下，3-5年经验，定级16左右。待遇的话，应该是从优的，具体要跟HR谈。
 
 工作地点深圳，西安，杭州皆可。CloudBU NoSQL部门 空间很大，nosql的产品基本都做，机会不错。
 组内项目挺多，缺人，氛围偏互联网，组内成员不乏大厂过来的大小牛。
 有意的朋友，欢迎站内垂询，或发简历到huda@huawei.com
 
-
-
 #### ps
 
 已经走了，给老东家留着这个招聘吧，长期有效，发简历到时候可以提我的这个博客，说不定有友情分
 
+pps
 
+老领导也退休了。新的领导是yuwenlong4@huawei.com 友情转发。到时候提我名字，保证不挨打
 
 ---
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
+看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!
+
 <details>
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
 </details>
-
-
-

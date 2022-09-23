@@ -1,12 +1,9 @@
 ---
 layout: post
 title: roaring bitmap aka RBM
-categories: [algorithm,todo]
+categories: [algorithm]
 tags: [bitmap,tree]
 ---
-
-
-
 首先，redis的bitmap占用空间是很恐怖的，512M，就算用的很少也是512M
 
 但是使用概率型数据结构，比如hyperloglog，省空间，但是有误差，且只能增不能删
@@ -19,10 +16,6 @@ tags: [bitmap,tree]
 2. 利用SIMD加速位图操作
 
 ![image-20201214204833017](https://wanghenshui.github.io/assets/image-20201214204833017.png)
-
-
-
-
 
 32位无符号整数按照高16位分桶，即最多可能有216=65536个桶，论文内称为container。存储数据时，按照数据的高16位找到container（找不到就会新建一个），再将低16位放入container中。也就是说，一个RBM就是很多container的集合
 
@@ -55,13 +48,9 @@ AAAAAAbbbXXXXXt
 O(logn)的查找性能：
 
 - 首先二分查找key值的高16位是否在分片（chunk）中
-
 - 如果分片存在，则查找分片对应的Container是否存
-
 - - 如果Bitmap Container，查找性能是O(1)
   - 其它两种Container，需要进行二分查找
-
-
 
 ### 参考链接
 
@@ -72,12 +61,12 @@ O(logn)的查找性能：
   - https://github.com/apache/incubator-doris
   - 他这篇hbase rowkey设计也不错，基本覆盖了书里介绍的内容 https://blog.bcmeng.com/post/hbase-rowkey.html
 - 本文内容整理自 https://zhuanlan.zhihu.com/p/39828878和https://www.jianshu.com/p/818ac4e90daf
-- sigmod2021有一个新的设计 Tree-Encoded Bitmaps http://db.in.tum.de/~lang/papers/tebs.pdf 值得研究一下，这里留个坑
-
+- sigmod2021有一个新的设计 Tree-Encoded Bitmaps http://db.in.tum.de/~lang/papers/tebs.pdf 值得研究一下，这里留个坑 TODO
 
 ---
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！
+
 <details>
 <summary>觉得写的不错可以点开扫码赞助几毛</summary>
 <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
