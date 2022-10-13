@@ -1,6 +1,6 @@
 ---
 layout: post
-title: system design interview
+title: 系统设计面试汇总
 categories: [system, database]
 tags: [cache,redis]
 ---
@@ -27,36 +27,50 @@ CDN cache。不多说。无状态。拉数据。尽可能的扩
 大小
 
 2 ** 10 -> 1KB
+
 2 ** 20 -> 1MB
+
 2 ** 30 -> 1GB
+
 2 ** 40 -> 1TB
+
 2 ** 50 -> 1PB
 
 延迟 2020-ver
 
 L1 cache reference 1ns
+
 branch mispredict 3ns
+
 L2 cache reference 4ns
+
 mutex lock/unlock 17ns
 
 main memory reference 100ns
+
 compress 1k 2000ns - 2us
 
-
 send 2KB 44ns
+
 SSD 随机读 16us
+
 SSD 顺序读 3us
+
 Data center round trip 500us
 
 硬盘随机读 seek 2ms
+
 硬盘顺序读 800us
 
 
 SLA
 
 99% 一天15分钟不可用，一年3.65天不可用
+
 99.9% 一天1.5分钟不可用，一年9小时不可用
+
 99.99% 一天8.6秒不可用，一年53分钟不可用
+
 99.999% 一天866毫秒不可用，一年五分钟不可用
 
 
@@ -224,6 +238,7 @@ cache。很多很多cache，要cache内容，要cache id对应关系，多种kv�
 一千万DAU，每个人搜十次，也就是一个亿，每次搜20个字节的ascii
 
 简单算一下qps
+
 10 000 000 * 10 * 20 / 24 / 36000 两万四，顶天48000
 
 假设20%的搜索是新的，那也就是说每天增加 10 000 000 * 10 * 20 * 20% = 0.4G
@@ -245,24 +260,37 @@ cache。很多很多cache，要cache内容，要cache id对应关系，多种kv�
 ## youtube？netflix？
 
 youtube为例子
+
 简单估计
+
 两亿月活
+
 五亿日播放量
+
 五千万创作者
+
 2019年广告收入15亿万美元
 
 咱们退化一下
+
 5百万日活 DAU
+
 每个用户看五个视频
+
 10%的用户每天传一个视频
+
 每个文件300MB，也就是说每天数据增长150T
+
 考虑CDN成本
+
 美国的CDN，CF，每GB 2美分
+
 看视频，5百万 * 5个 * 0.3G * 0.02 每天15万美元。这么玩不得亏死？
 
 视频上传相关技术？编解码？优化上传？好多技术细节。数据DRM？
 
 错误处理也有很多细节
+
 上传失败？编码失败？
 
 其他推流相关，上面有些重复了
@@ -286,6 +314,7 @@ youtube为例子
 上传也可以走视频网站上传那个方案的优化，拆分
 
 实际上存储大概率是S3这种磁盘，问题就退化成S3设计？
+
 ---
 
 看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！

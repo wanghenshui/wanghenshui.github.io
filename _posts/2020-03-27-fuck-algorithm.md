@@ -16,7 +16,51 @@ tags: [data structure, algorithm]
 
 ---
 
-## 抽象题型
+## [思考](https://sites.google.com/site/mostafasibrahim/programming-competitions/thinking-techniques)
+### 写在纸上
+
+- 熟悉难度就去研究更难的。suffer
+- 写纸上是个大纲，是更多的点子，在电脑上写有可能局限住，边想边写很容易遗漏
+
+### 头脑风暴，想法和实现方法
+
+- 有些时候会卡在思考上，想了半天，一行没写，没法破解成小问题
+- 有时候想法对，但是后续的算法知识你不会，卡住了，或者没有足够的信息往下走了
+- 有时候你后面的解决方法没问题，但想法本身是错误的。换个角度
+- 问题的解决想法很多，可能你得挨个试试，拍个优先级
+    - 比如求最小值？DP，贪心？最小割？分支界限法
+    - 简单分析，重新尝试
+- 哪怕是最垃圾的想法，也比没有想法要强，试一试呗
+
+### 举例/抽象/具象
+
+先用简单例子验证，然后归纳总结通项，然后分析各个元素之间的关系
+
+### 限制
+
+条件能够判定规模，限制大小
+
+| N           |  复杂度    |  可能的算法/技巧   |
+| ------------| --------- | ---------------- |
+| 10^18       | O(log(N)) | 二分/快速幂/ Cycle Tricks / Big Simulation Steps / Values ReRank  | 
+| 100 000 000 | O(N)      | 贪心？线性算法一般来说 | 
+| 40 000 000  | O(N log N)| 二分/Pre-processing & Querying/分治 | 
+| 10 000      | O(N^2)    | DP/贪心/B&B(分支定界)/D&C(分治)  | 
+| 500         | O(N^3)    | DP/贪心/... | 
+| 90          | O(N^4)    | DP/贪心/... | 
+| 30-50       | O(N^5)    | Search with pruning/分支定界| 
+| 40          | O(2^(N/2))| Meet in Middle| 
+| 20          | O(2^(N))  | 回溯/ Generating 2^N Subsets| 
+| 11          | O(N!)     | Factorial / Permutations / Combination Algorithm| 
+
+有些限制也可能是假的/误导人的。注意区别。限制条件是非常重要的
+
+### 抽象题型，归纳成小问题
+### 抽象题型，归纳通用场景
+### 抽象题型，简化成子问题
+
+### 一步一步来
+### 抽象题型，转化成别的领域的问题
 
 https://github.com/Strive-for-excellence/ACM-template
 
