@@ -4,9 +4,7 @@ title: blog review 第十六期
 categories: [review]
 tags: [fork,Monarch,rocksdb,epoch, postgresql,DuckDB,art]
 ---
-准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
-
-后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
+看tag知内容
 
 <!-- more -->
 
@@ -16,7 +14,8 @@ tags: [fork,Monarch,rocksdb,epoch, postgresql,DuckDB,art]
 
 ## [Monarch: Google’s Planet-Scale In-Memory Time Series Database](https://www.micahlerner.com/2022/04/24/monarch-googles-planet-scale-in-memory-time-series-database.html)
 
-![](https://www.micahlerner.com/assets/monarch/fig1.png)
+
+<img src="https://www.micahlerner.com/assets/monarch/fig1.png" alt=""  width="100%">
 
 很有意思，有点map-reduce的感觉。mixer无限扩，index负责一部分数据拉取
 
@@ -34,7 +33,9 @@ tags: [fork,Monarch,rocksdb,epoch, postgresql,DuckDB,art]
 
 PK  选对类型，bigserial，bigint等等。考虑清楚
 
-![](https://whyjava.files.wordpress.com/2022/06/pk_types.png)
+
+
+<img src="https://whyjava.files.wordpress.com/2022/06/pk_types.png" alt=""  width="100%">
 
 使用两套id ，避免数据被猜到？
 
@@ -108,7 +109,9 @@ edac使用 https://github.com/grondo/edac-utils/
 
 ## [Cache made consistent: Meta’s cache invalidation solution](https://engineering.fb.com/2022/06/08/core-data/cache-invalidation/)
 
-![](https://engineering.fb.com/wp-content/uploads/2022/06/Cache-made-consisent-image-8.png)
+
+
+<img src="https://engineering.fb.com/wp-content/uploads/2022/06/Cache-made-consisent-image-8.png" alt=""  width="100%">
 
 写了一个库来跟踪CURD的时间窗。太复杂了
 

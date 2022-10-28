@@ -5,9 +5,7 @@ categories: [review]
 tags: [aio,io,SplinterDB,b-tree]
 ---
 
-准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
-
-后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
+看tag知内容
 
 <!-- more -->
 
@@ -19,9 +17,9 @@ tags: [aio,io,SplinterDB,b-tree]
 
 把compact模块单独抠出来了
 
-![](https://imgix.datadoghq.com/img/blog/engineering/introducing-husky/arch3.png?auto=format&fit=max&w=847)
 
 
+<img src="https://imgix.datadoghq.com/img/blog/engineering/introducing-husky/arch3.png?auto=format&fit=max&w=847" alt=""  width="100%">
 
 
 

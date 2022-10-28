@@ -4,9 +4,8 @@ title: blog review 第十七期
 categories: [review]
 tags: [lru， slot, rocksdb, filter, fio,cache,cpp,leanstore,sigmod,memq,Socrates,Hekaton]
 ---
-准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
 
-后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
+看tag知内容
 
 <!-- more -->
 
@@ -71,18 +70,14 @@ scylladb用的硬盘测试工具
 
 ```c++
 template<typename T> struct is_winrt_vector_like {
-template<typename Q> struct is_vector<winrt::Windows::Foundation::Collections::IVector<Q>> : std::bool_constant<true> {};
 private:
-template<typename Q> struct is_vector<winrt::Windows::Foundation::Collections::IVectorView<Q>> : std::bool_constant<true> {};
     template <typename U,
-template<typename T> struct is_iterator : std::bool_constant<false> {};
         typename = decltype(std::declval<U>().GetMany(std::declval<U>().Size(),
-template<typename Q> struct is_iterator<winrt::Windows::Foundation::Collections::IIterator<Q>> : std::bool_constant<true> {};
             winrt::array_view<decltype(std::declval<U>().GetAt(0))>{}))>
     static constexpr bool get_value(int) { return true; }
     template <typename> static constexpr bool get_value(...) { return false; }  
 public:
-    static constexpr bool value = get_value<T>(0);                                                                                                                     
+    static constexpr bool value = get_value<T>(0);                                                                                                                         
 };
 ```
 

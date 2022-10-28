@@ -5,9 +5,7 @@ categories: [review]
 tags: [cmu,kv,hash,redis,RavenDB,cosmosdb,rqlite,graph,TileDB,Fluree,ApertureDB]
 ---
 
-准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
-
-后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
+看tag知内容
 
 <!-- more -->
 
@@ -55,69 +53,82 @@ aerospike宣传他们的服务特点 支持持久化性能还不差，维护性�
 
 ## HTAP with Azure Cosmos DB: Hybrid Transaction & Analytical Processing (Hari Sudan S)
 
-![图片](https://user-images.githubusercontent.com/8872493/155947808-6c904dbd-6188-45b4-a2ad-a8da31d6ca14.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/155947808-6c904dbd-6188-45b4-a2ad-a8da31d6ca14.png" alt=""  width="100%">
 
 
 一个root维护，可能是b树什么的，然后底层数据用parquet存
 
 写流程
 
-![图片](https://user-images.githubusercontent.com/8872493/155961404-bb1b52f5-15e0-460a-84c4-a56962a7f390.png)
+<img src="https://user-images.githubusercontent.com/8872493/155961404-bb1b52f5-15e0-460a-84c4-a56962a7f390.png" alt=""  width="100%">
 
-具体事务怎么实现？完全没体
+具体事务怎么实现？完全没提
 
 
 
 ## RavenDB: Practical Considerations for ACID/MVCC Storage Engines (Oren Eini)
 
-![图片](https://user-images.githubusercontent.com/8872493/156001304-9c53b92c-69a8-4de2-830d-41f0a1a37ebe.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156001304-9c53b92c-69a8-4de2-830d-41f0a1a37ebe.png" alt=""  width="100%">
 
 解决方法比较简单
 
-![图片](https://user-images.githubusercontent.com/8872493/156002007-1ac91171-3356-4cab-9d38-21be21f0f50c.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156002007-1ac91171-3356-4cab-9d38-21be21f0f50c.png" alt=""  width="100%">
 
 
 单写，实现MVCC就靠COW就可以了，不阻塞
 
-![图片](https://user-images.githubusercontent.com/8872493/156005031-c164bda1-9d59-464b-a16f-0e0f664af80f.png)
 
+<img src="https://user-images.githubusercontent.com/8872493/156005031-c164bda1-9d59-464b-a16f-0e0f664af80f.png" alt=""  width="100%">
 
 不写磁盘，磁盘太慢了。写buffer往下刷
 
 
 WAL设计取舍
 
-![图片](https://user-images.githubusercontent.com/8872493/156006268-3b19fd41-f9f6-4313-902c-c49676ffbf62.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156006268-3b19fd41-f9f6-4313-902c-c49676ffbf62.png" alt=""  width="100%">
 
 
 
+<img src="https://user-images.githubusercontent.com/8872493/156006413-7dd75bf5-aa4c-4fea-a10e-4916b6cae62d.png" alt=""  width="100%">
 
-![图片](https://user-images.githubusercontent.com/8872493/156006413-7dd75bf5-aa4c-4fea-a10e-4916b6cae62d.png)
 
 
 
 WAL优化点
 
-![图片](https://user-images.githubusercontent.com/8872493/156006925-3794d1bd-8e3f-44ab-b000-f0f7c68e7848.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156006925-3794d1bd-8e3f-44ab-b000-f0f7c68e7848.png" alt=""  width="100%">
+
 
 
 写优化
 
-![图片](https://user-images.githubusercontent.com/8872493/156007759-e2cdd6c0-faf1-4289-8e23-2b666eaed930.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156007759-e2cdd6c0-faf1-4289-8e23-2b666eaed930.png" alt=""  width="100%">
 
 
 感觉利用c# 的协程能力，把写抽象成任务，搞成batch，而不是直接死板的lock write commit
 
 什么时候更新文件？
 
-![图片](https://user-images.githubusercontent.com/8872493/156010781-4a27fd96-5615-4374-a258-7def48a8c4db.png)
+
+
+<img src="https://user-images.githubusercontent.com/8872493/156010781-4a27fd96-5615-4374-a258-7def48a8c4db.png" alt=""  width="100%">
+
 
 
 这种搞法，缓存的数据不能保证落地，丢最近的record是否可以接受？
 
 
 其他场景
-![图片](https://user-images.githubusercontent.com/8872493/156011175-2818bcc4-a922-479f-a29a-c175696d0058.png)
+
+
+<img src="https://user-images.githubusercontent.com/8872493/156011175-2818bcc4-a922-479f-a29a-c175696d0058.png" alt=""  width="100%">
+
 
 这个做个参考
 
@@ -127,7 +138,10 @@ WAL优化点
 
 ## rqlite: The Distributed Database Built on Raft and SQLite (Philip O'Toole)
 
-![图片](https://user-images.githubusercontent.com/8872493/156096676-f5ecef89-d6ba-4368-ab35-d311986df013.png)
+
+
+<img src="https://user-images.githubusercontent.com/8872493/156096676-f5ecef89-d6ba-4368-ab35-d311986df013.png" alt=""  width="100%">
+
 
 其实主要工作就是如何把raft的接口用sqlite实现好，怎么抽象log entry
 
@@ -135,26 +149,39 @@ WAL优化点
 
 ## The TileDB Universal Database (Stavros Papadopoulos)
 
-![图片](https://user-images.githubusercontent.com/8872493/156117355-cef4fe74-f5a7-491a-986c-fa21ee7ba625.png)
+
+
+<img src="https://user-images.githubusercontent.com/8872493/156117355-cef4fe74-f5a7-491a-986c-fa21ee7ba625.png" alt=""  width="100%">
+
 
 这个想法挺有意思，但是数组怎么抽象成具体的kv呢，感觉和parquet有点像，又有点不像
 
-![图片](https://user-images.githubusercontent.com/8872493/156118038-3ef08656-061f-4e17-82b3-c5b1bdc16127.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156118038-3ef08656-061f-4e17-82b3-c5b1bdc16127.png" alt=""  width="100%">
+
 
 维度信息，快速
 
 
-![图片](https://user-images.githubusercontent.com/8872493/156118498-1df1a0ef-b21e-4aa0-ab62-5d39eaebab03.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156118498-1df1a0ef-b21e-4aa0-ab62-5d39eaebab03.png" alt=""  width="100%">
+
 
 果然，两种形态
 本质还是列存
 
-![图片](https://user-images.githubusercontent.com/8872493/156119722-4ec8bc5e-0a3b-419c-a4e6-3d3ec2ca1730.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156119722-4ec8bc5e-0a3b-419c-a4e6-3d3ec2ca1730.png" alt=""  width="100%">
+
 
 如何文件描述
-![图片](https://user-images.githubusercontent.com/8872493/156120289-06b97cb5-1735-4a3b-9f98-cac791f19c85.png)
 
-![图片](https://user-images.githubusercontent.com/8872493/156120098-189bb481-8045-4ed5-96be-4a8aa42d5279.png)
+<img src="https://user-images.githubusercontent.com/8872493/156120289-06b97cb5-1735-4a3b-9f98-cac791f19c85.png" alt=""  width="100%">
+
+
+
+<img src="https://user-images.githubusercontent.com/8872493/156120098-189bb481-8045-4ed5-96be-4a8aa42d5279.png" alt=""  width="100%">
+
 
 
 index
@@ -162,7 +189,9 @@ index
 
 把一个数组的几个部分分别索引
 
-![图片](https://user-images.githubusercontent.com/8872493/156128686-90d59e61-7304-4bc2-abab-79674cf44e29.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156128686-90d59e61-7304-4bc2-abab-79674cf44e29.png" alt=""  width="100%">
+
 
 整体貌似是api接口形式的，也提供了各种数据库的插件
 
@@ -172,17 +201,26 @@ index
 
 ## Fluree - Cloud-Native Ledger Graph Database (Brian Platz)
 
-![图片](https://user-images.githubusercontent.com/8872493/156148617-822e28cc-abe6-4e2b-815d-0bcc10334bdd.png)
 
-![图片](https://user-images.githubusercontent.com/8872493/156149491-7d12fe5d-c6e6-4ca2-a103-5ec5a1f8e935.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156148617-822e28cc-abe6-4e2b-815d-0bcc10334bdd.png" alt=""  width="100%">
+
+
+
+
+<img src="https://user-images.githubusercontent.com/8872493/156149491-7d12fe5d-c6e6-4ca2-a103-5ec5a1f8e935.png" alt=""  width="100%">
+
+
 直接把关系谓语都存了？？？？？
 ？？？？
 
-![图片](https://user-images.githubusercontent.com/8872493/156149901-248270e8-580d-413a-bee7-73c3b1f5f32c.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156149901-248270e8-580d-413a-bee7-73c3b1f5f32c.png" alt=""  width="100%">
 
 
 
-![图片](https://user-images.githubusercontent.com/8872493/156151114-c4ca56b4-3df8-4868-9ae8-00d9792b70a5.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/156151114-c4ca56b4-3df8-4868-9ae8-00d9792b70a5.png" alt=""  width="100%">
 
 
 各种index分别存，用btree组织。最终还是回到了btree
@@ -195,19 +233,28 @@ mysql 图版？
 
 用的新硬件 傲腾。没开源。部署在azure上
 
-![图片](https://user-images.githubusercontent.com/8872493/157667915-7081be05-74f4-40d3-abe3-34b4dce35511.png)
 
-![图片](https://user-images.githubusercontent.com/8872493/157668870-e2674140-d2a3-4f41-9164-c256d1561cee.png)
+<img src="https://user-images.githubusercontent.com/8872493/157667915-7081be05-74f4-40d3-abe3-34b4dce35511.png" alt=""  width="100%">
+
+
+
+<img src="https://user-images.githubusercontent.com/8872493/157668870-e2674140-d2a3-4f41-9164-c256d1561cee.png" alt=""  width="100%">
+
 
 性能数据就不贴了。和neo4j比 没意思
 
 
-![图片](https://user-images.githubusercontent.com/8872493/157669771-e04469ec-db5c-4ebc-b9e9-76ebc359c16c.png)
+
+<img src="https://user-images.githubusercontent.com/8872493/157669771-e04469ec-db5c-4ebc-b9e9-76ebc359c16c.png" alt=""  width="100%">
+
 
 看着工作量挺麻烦
 
 计划
-![图片](https://user-images.githubusercontent.com/8872493/157673389-fadfea2b-21d2-4f0b-9d91-befabf61e867.png)
+
+
+<img src="https://user-images.githubusercontent.com/8872493/157673389-fadfea2b-21d2-4f0b-9d91-befabf61e867.png" alt=""  width="100%">
+
 
 ---
 

@@ -5,9 +5,7 @@ categories: [review, todo]
 tags: [bpf, zip, c++,linux,memory, mutex, tco, disruptor,perf,flamegraph,gc,consistency,memory model]
 ---
 
-准备把blog阅读和paper阅读都归一，而不是看一篇翻译一篇，效率太低了
-
-后面写博客按照 paper review，blog review，cppcon review之类的集合形式来写，不一篇一片写了。太水了
+看tag知内容
 
 <!-- more -->
 

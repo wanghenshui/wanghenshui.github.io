@@ -20,8 +20,7 @@ service start sshd
 
 设置端口转发
 
-![vmportfoward](https://wanghenshui.github.io/assets/vmportfoward.png)
-
+<img src="https://wanghenshui.github.io/assets/vmportfoward.png" alt=""  width="100%">
 
 
 使用ssh  -p 12345 root@localhost 访问即可
