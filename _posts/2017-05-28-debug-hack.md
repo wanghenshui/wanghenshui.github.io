@@ -33,6 +33,57 @@ document li
 end
 ```
 
+```gdb
+断点
+b core.h:41
+b test.cpp:48 if(aiTest == 18 && biTest == 19)
+条件断点，if (xxx),其中 if 与(最好有空格)
+b 'helloworld::hellofunction' 对函数进行设定地址
+b 0x222222243 对指令地址进行设断点
+
+断点操作
+info b
+del 1/2/3
+
+反汇编
+disassemble
+disassemble 'MyProcessor::ActijonHelper'
+x /10i $pc 显示10条当前反汇编
+
+变量
+p infoPtr
+p $rsi
+p info
+p &aiTest
+p global::GetTest()
+p /x (unsigned long long)0x7fffec8ed320 按16进制的ulong long查看0x7fffec8ed320内存里面的值
+
+信息查看
+info args
+info registers
+p $rsi
+
+监视
+rwatch (long long)0x7fffff22f 读
+watch (long long)0x7fffff22f 写
+awatch (long long)0x7fffff22f 读写
+rwatch i if i == 5
+watch (int)0x7fffff22f if (int)0x7fffff22f == 109999
+
+栈帧
+bt
+bt full 3 全量
+f 2
+f 0
+
+操作
+s单指令
+si 单指令入
+n不进入
+si 5 执行5次单指令
+```
+
+
 - intel架构只是
   - 字节序
   - 寄存器
