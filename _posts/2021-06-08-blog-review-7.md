@@ -370,6 +370,33 @@ rm -rf $My_APP_FILES/
 
 facebook是如何管理memcache集群的
 
+cache的优化策略
+
+客户端角度
+
+- 客户端路由
+- 数据DAG，无依赖
+- UDP
+- 滑动窗口发送请求，进程级别，降低压力
+
+服务端角度
+
+- lease，降低热 key被反复修改造成cache失效压力
+- cache不立即失效，存一回失效key，扛住nosuchkey压力
+- cache池，区分频繁的和不频繁但重要的。LRU/LFU并不能代表业务的请求特征，不同的cache策略划分不同的组
+- 压力太大就扩容，复制读副本，降低压力
+- cache备机，提高抗压能力，及时剔除挂掉的节点
+- cache集群，分组，提高抗压能力
+  - 如何整组的更新过期key，引入同步服务
+    - 聚合，效果更好 消息服务了属于是
+    - 没有版本很容易数据不对劲
+  - 集群间的一致性问题？
+- 如何快速升热？
+  - cache组之间复制
+  - 单机，共享内存
+
+https://fuzhe1989.github.io/2022/09/26/scaling-memcache-at-facebook/
+
 ### 降低延迟
 
 mrouter接入+udp转发到memcache 降低tcp cost
