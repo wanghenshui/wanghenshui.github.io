@@ -18,6 +18,9 @@ folly 集成在这里 https://github.com/facebook/rocksdb/wiki/RocksDB-Contribut
 ```bash
 make checkout_folly
 make build_folly
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DWITH_LIBURING=1 -DFAIL_ON_WARNINGS=0 -DWITH_SNAPPY=1 -DWITH_LZ4=1 -DWITH_ZSTD=1 -DUSE_COROUTINES=1 -DWITH_GFLAGS=1 -DROCKSDB_BUILD_SHARED=0 .. && make -j16  db_bench
+make -j32
+
 ```
 缺少什么依赖自己补充，有一点坑爹的地方就是这个folly生成的库的位置在/tmp ，所以说机器重启就没啦，还得重编，编译完记得保留一份文件
 
@@ -196,8 +199,81 @@ ops_sec	mb_sec	lsm_sz	blob_sz	c_wgb	w_amp	c_mbps	c_wsecs	c_csecs	b_rgb	b_wgb	use
 
 没有使用folly的db_bench我还没测。有空我再补充
 
+---
+
+2023-02-20
+
+重新测了一组数据
+
+```bash
+ASYNC_IO=1 NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh multireadrandom
+NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh multireadrandom
 
 
+ASYNC_IO=1 NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh readrandom
+NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh readrandom
+
+
+ASYNC_IO=1 NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh multireadrandom
+NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh multireadrandom
+
+
+ASYNC_IO=1 NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh readrandom
+NUM_THREADS=32 NUM_KEYS=100000000 DB_DIR=/data/tmp/ben WAL_DIR=/data/tmp/wal ./benchmark.sh readrandom
+```
+
+结果
+
+```txt
+# ops_sec - operations per second
+# mb_sec - ops_sec * size-of-operation-in-MB
+# lsm_sz - size of LSM tree
+# blob_sz - size of BlobDB logs
+# c_wgb - GB written by compaction
+# w_amp - Write-amplification as (bytes written by compaction / bytes written by memtable flush)
+# c_mbps - Average write rate for compaction
+# c_wsecs - Wall clock seconds doing compaction
+# c_csecs - CPU seconds doing compaction
+# b_rgb - Blob compaction read GB
+# b_wgb - Blob compaction write GB
+# usec_op - Microseconds per operation
+# p50, p99, p99.9, p99.99 - 50th, 99th, 99.9th, 99.99th percentile response time in usecs
+# pmax - max response time in usecs
+# uptime - RocksDB uptime in seconds
+# stall% - Percentage of time writes are stalled
+# Nstall - Number of stalls
+# u_cpu - #seconds/1000 of user CPU
+# s_cpu - #seconds/1000 of system CPU
+# rss - max RSS in GB for db_bench process
+# test - Name of test
+# date - Date/time of test
+# version - RocksDB version
+# job_id - User-provided job ID
+# githash - git hash at which db_bench was compiled
+ops_sec	mb_sec	lsm_sz	blob_sz	c_wgb	w_amp	c_mbps	c_wsecs	c_csecs	b_rgb	b_wgb	usec_op	p50	p99	p99.9	p99.99	pmax	uptime	stall%	Nstall	u_cpu	s_cpu	rss	test	date	version	job_id	githash
+4325990	1095.4	107GB	0GB	0.0	NA	0.0	0	0	0	0	7.2	62.5	253	613	1257	337223	740	0.0	0	17.3	2.3	23.6	multireadrandom.t32	2023-02-19T21:15:01	8.0.0		a72f591825
+4309570	1091.2	107GB	0GB	0.0	NA	0.0	0	0	0	0	7.3	62.3	263	536	1133	46141	743	0.0	0	17.2	2.3	24.2	multireadrandom.t32	2023-02-19T20:35:12	8.0.0		a72f591825
+
+
+4425381	1120.5	107GB	0GB	0.0	NA	0.0	0	0	0	0	7.1	4.4	28	170	453	427580	724	0.0	0	17.3	2.3	24.1	readrandom.t32	2023-02-19T21:29:13	8.0.0		a72f591825
+4391332	1111.9	107GB	0GB	0.0	NA	0.0	0	0	0	0	7.1	4.4	29	169	368	431012	729	0.0	0	17.3	2.3	24.4	readrandom.t32	2023-02-19T22:04:38	8.0.0		a72f591825
+
+4103189	1039.0	107GB	0GB	0.0	NA	0.0	0	0	0	0	7.7	59.1	342	776	3829	418001	780	0.0	0	16.4	2.1	17.9	multireadrandom.t32	2023-02-19T23:03:14	8.0.0		a72f591825
+4143277	1049.1	107GB	0GB	0.0	NA	0.0	0	0	0	0	7.7	59.0	322	564	4243	19460	773	0.0	0	16.3	2.2	21.4	multireadrandom.t32	2023-02-19T23:30:45	8.0.0		a72f591825
+
+
+4291820	1086.7	107GB	0GB	0.0	NA	0.0	0	0	0	0	7.4	4.1	112	198	368	25312	746	0.0	0	16.7	2.0	21.9	readrandom.t32	2023-02-19T22:48:11	8.0.0		a72f591825
+4004245	1013.9	107GB	0GB	0.0	NA	0.0	0	0	0	0	8.0	3.9	130	235	581	248845	800	0.0	0	16.3	2.3	17.8	readrandom.t32	2023-02-19T22:32:36	8.0.0		a72f591825
+```
+
+
+不用folly的 db_bench 开asyncio要比不开快一丢丢
+
+folly 版本开asyncio也要比不开快一丢丢
+
+用folly反而比不用folly更慢了
+
+感觉是folly用的不对
 
 ---
 
