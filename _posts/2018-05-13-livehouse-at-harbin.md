@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 聊聊永动机乐队演出 
-categories: [review]
+categories: [private]
 tags: []
 ---
 

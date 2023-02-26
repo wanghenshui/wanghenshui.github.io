@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (转)如何学习和阅读代码
-categories: [review]
+categories: [todo]
 tags: [code review]
 ---
 

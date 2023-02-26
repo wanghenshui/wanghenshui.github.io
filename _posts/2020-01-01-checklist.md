@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (转)可扩展服务设计原则checklist
-categories: [review]
+categories: [todo]
 tags: [checklist]
 ---
 > 转自 http://sunisdown.me/ke-kuo-zhan-fu-wu-she-ji-yuan-ze-checklist.html

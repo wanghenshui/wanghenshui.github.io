@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Design Doc Template
-categories: [review]
+categories: [todo]
 tags: []
 ---
 
