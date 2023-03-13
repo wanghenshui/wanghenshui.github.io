@@ -111,14 +111,7 @@ inline BENCHMARK_ALWAYS_INLINE void DoNotOptimize(Tp const& value) {
 - 防优化 https://github.com/google/benchmark/blob/5e66248b44747fcfbbc096fa2428680358892f73/include/benchmark/benchmark.h#L299)
 
 
----
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！
-
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>
 
 
 

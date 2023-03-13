@@ -92,8 +92,3 @@ void handle_client_connection(int client_socket_fd,
 3. 代码仓库 https://github.com/gpjt/rsp
 4. 这有个haproxy的代码解析。https://illx10000.github.io/2018/09/03/16.html
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>

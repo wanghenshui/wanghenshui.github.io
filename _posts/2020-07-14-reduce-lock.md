@@ -56,8 +56,3 @@ pika单机版，用的是同一个db，同一个db是很难去掉key锁的。要
 
 ---
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>

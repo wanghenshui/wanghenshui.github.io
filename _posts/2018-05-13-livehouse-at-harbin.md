@@ -34,7 +34,4 @@ tags: []
 
 
 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>
+

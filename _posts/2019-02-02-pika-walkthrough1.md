@@ -742,8 +742,3 @@ echo "core-%e-%p-%t" > /proc/sys/kernel/core_pattern
 - 一个源码分析，已经有人做了。https://scottzzq.gitbooks.io/pika/content/
 - 项目wiki https://github.com/Qihoo360/pika/wiki
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>

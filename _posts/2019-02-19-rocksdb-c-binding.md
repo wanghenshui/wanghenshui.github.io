@@ -174,8 +174,3 @@ collect2: error: ld returned 1 exit status
 - 注意p.h中需要有__cplusplus marco guard, 因为extern "C" 不是c的内容，会报错 https://stackoverflow.com/questions/10307762/error-expected-before-string-constant
 - https://arne-mertz.de/2018/10/calling-cpp-code-from-c-with-extern-c/ 这个链接说了extern "C"在c++中的风格干净的用法，注意，在c中还是用不了。
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>

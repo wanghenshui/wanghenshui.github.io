@@ -237,11 +237,7 @@ mysql直接热备innodb还原到myrocks 5.7应该是无解的
 
 不过percona的xbackup支持8.0版本。
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>
+
 
 ### reference
 

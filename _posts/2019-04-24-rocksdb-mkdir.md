@@ -44,9 +44,5 @@ mkdir(1)命令是有-p指令的(p for parent) 而mkdir(3)函数接口没有这�
 2.  mkdir linux实现 <https://github.com/coreutils/coreutils/blob/master/src/mkdir.c
 3.   mkdir api https://linux.die.net/man/3/mkdir
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
+或者到博客上提[issue](https://github.com/wanghenshui/wanghenshui.github.io/issues/new) 我能收到邮件提醒。
 

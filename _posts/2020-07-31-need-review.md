@@ -53,8 +53,3 @@ C＋＋ 中把 lambda 优雅地转化为函数指针 · Terark/terarkdb Wiki
 https://github.com/Terark/terarkdb/wiki/C%EF%BC%8B%EF%BC%8B-%E4%B8%AD%E6%8A%8A-lambda-%E4%BC%98%E9%9B%85%E5%9C%B0%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88
 
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>

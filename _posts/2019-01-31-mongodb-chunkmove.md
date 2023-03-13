@@ -36,8 +36,3 @@ tags: [mongodb]
 再考虑oplog一直增长的情形 -> 插入。如果是顺序插入应该很快。如果是删除之类的操作可能会耗时过长，但是也不至于很慢，
 再考虑什么会导致插入过慢 ->  索引过多，引用我老大的一句话，“索引过多导致插入变慢是数据库常识”，只要有索引，以前索引优化以及影响的那套理论还是成立的。
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>

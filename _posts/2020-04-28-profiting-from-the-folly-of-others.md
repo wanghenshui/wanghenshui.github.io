@@ -224,8 +224,3 @@ template class HijackImpl<
 -  Johannes Schaub ‘Access to private members: Safer nastiness’, posted 30 December 2011:   http://bloglitb.blogspot.com/2011/12/access-to-private-members-safer.html
 - https://dfrib.github.io/a-foliage-of-folly/ 这个文章更进一步，接下来翻译这个
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>

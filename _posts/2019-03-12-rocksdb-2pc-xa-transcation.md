@@ -329,11 +329,7 @@ markdown 不能调格间距，真破
 
 另外，有个2pc的bug 值得关注一下 pr <https://github.com/facebook/rocksdb/pull/1768>
 
-看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢! 
-<details>
-<summary>觉得写的不错可以点开扫码赞助几毛</summary>
-<img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
-</details>
+
 ### reference
 
 1. 分布式事务，2pc 3pc <https://www.hollischuang.com/archives/681>
