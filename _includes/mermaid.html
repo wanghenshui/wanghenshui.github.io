@@ -1,8 +1,5 @@
 <script src="/lib/mermaid/mermaid.min.js"></script>
-<script>
-    mermaid.initialize({
-        startOnLoad:true,
-        theme: 'default'
-    });
-    window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
- </script>
+<small>
+  Source file: <a href="{{ site.github.repository_url }}/blob/master/{{ include.source }}">{{ include.source }}</a>:
+</small>
+<div class="mermaid">{% include_relative {{ include.source }} %}</div>
