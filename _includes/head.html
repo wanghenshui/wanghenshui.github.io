@@ -38,6 +38,21 @@
     type="text/javascript"></script>
   {% endif %}
 
+  {% if page.mermaid %}
+  <script src="/lib/mermaid/mermaid.min.js"></script>
+  <script>
+  var config = {
+      startOnLoad:true,
+      theme: 'forest',
+      flowchart:{
+              useMaxWidth:false,
+              htmlLabels:true
+          }
+  };
+  mermaid.initialize(config);
+  window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+  </script>
+  {% endif %}
   <!-- code highlighting-->
   <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
   <script src="/lib/highlight/highlight.pack.js"></script>
