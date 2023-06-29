@@ -32,7 +32,21 @@ layout: default
         </div>
         <br><br>
       </article>
-
+      {% if content contains 'mermaid' %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0/mermaid.min.js"></script>
+      <script>
+      var config = {
+          startOnLoad:true,
+          theme: 'forest',
+          flowchart:{
+                  useMaxWidth:false,
+                  htmlLabels:true
+              }
+      };
+      mermaid.initialize(config);
+      window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+      </script>
+      {% endif %}
       <summary>看到这里或许你有建议或者疑问或者指出我的错误，请留言评论或者邮件mailto:wanghenshui@qq.com, 多谢!  你的评论非常重要！</summary>
       <summary>觉得写的不错那就给点吧，快失业了T_T</summary>
       <img src="https://wanghenshui.github.io/assets/wepay.png" alt="微信转账">
