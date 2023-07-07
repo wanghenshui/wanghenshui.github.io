@@ -87,9 +87,6 @@ https://csacademy.com/app/graph_editor/
 
 ## 经典题型
 
-- Sliding window，**滑动窗口类型**
-- two points, **双指针类型**
-- Fast & Slow pointers, **快慢指针类型**
 
   - 龟兔赛跑
 - Merge Intervals，**区间合并类型**
@@ -153,16 +150,64 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
 - 选择排序
   - 运行时间和输入无关，并不能保留信息，有记忆信息更高效
 - 插入排序
+
+```cpp
+void insertion_sort(vector<int> &nums, int n) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = i; j > 0 && nums[j] < nums[j-1]; --j) {
+            swap(nums[j], nums[j-1]);
+        } 
+    }
+}
+```
   - 如果有序，更友好
   - 进阶，希尔排序，分组插入排序
     - 分组怎么确定？
 
 **归并排序**
 
+左闭右闭 `[l,r]`
+```cpp
+void merge_sort(vector<int> &nums, int l, int r, vector<int> &temp) {
+    if (l + 1>= r) return;
+    // divide
+    int m = l + (r - l) / 2;
+    merge_sort(nums, l, m, temp);
+    merge_sort(nums, m, r, temp);
+    // conquer
+    int p = l, q = m, i = l;
+    while (p < m || q < r) {
+       if (q >= r || (p < m && nums[p] <= nums[q])) {
+           temp[i++] = nums[p++];
+       } else {
+           temp[i++] = nums[q++];
+       }
+    }
+    for (i = l; i < r; ++i) {
+       nums[i] = temp[i];
+    }
+}
+```
 - 难在原地归并
 - 递归归并
 
 **快速排序**
+
+左闭右开 `[l,r)`
+```cpp
+void quick_sort(int q[], int l, int r){
+    if (l >= r) return;
+    int i = l - 1, j = r + 1, x = q[l + r >> 1];
+    while (i < j) {
+        do i ++ ; while (q[i] < x);
+        do j -- ; while (q[j] > x);
+        if (i < j) swap(q[i], q[j]);
+    }
+    quick_sort(q, l, j), quick_sort(q, j + 1, r);
+}
+```
+
+yxc这个模版还是比较干净利落的  https://www.acwing.com/blog/content/277/
 
 - 如何选位置？
 - 改进方案
@@ -379,6 +424,96 @@ https://github.com/nataliekung/leetcode/tree/master/amazon
 
 https://github.com/xtaci/algorithms
 
+
+## 贪心
+
+策略，局部最优解是什么，扩大化
+
+说实话，很少有应用，更像智力题
+
+## 双指针
+
+- Sliding window，**滑动窗口类型**
+- two points, **双指针类型**
+- Fast & Slow pointers, **快慢指针类型**
+
+可以快慢，也可以左右，也可以滑动，总之是一次遍历收集两种信息
+   - (1) 对于一个序列，用两个指针维护一段区间
+   - (2) 对于两个序列，维护某种次序，比如归并排序中合并两个有序序列的操
+
+合并数组，判断链表是否有环(Floyd判定)，链表第K个，链表中间，给你两个字符串，判断包含的最短字符串
+
+双指针有时候只是算法题的一小步，相当于数学压轴提的第一小题，铺垫用，他妈的，算法题为啥这么难
+
+
+```cpp
+for (int i = 0, j = 0; i < n; i ++ ) {
+    while (j < i && check(i, j)) j ++ ;
+
+    // 具体问题的逻辑
+}
+
+```
+## 二分
+
+yxc的模版
+
+```cpp
+bool check(int x) {/* ... */} // 检查x是否满足某种性质
+
+// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用：
+int bsearch_1(int l, int r) {
+    while (l < r)
+    {
+        int mid = l + r >> 1;
+        if (check(mid)) r = mid;    // check()判断mid是否满足性质
+        else l = mid + 1;
+    }
+    return l;
+}
+// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用：
+int bsearch_2(int l, int r) {
+    while (l < r)
+    {
+        int mid = l + r + 1 >> 1;
+        if (check(mid)) l = mid;
+        else r = mid - 1;
+    }
+    return l;
+}
+
+bool check(double x) {/* ... */} // 检查x是否满足某种性质
+
+double bsearch_3(double l, double r) {
+    const double eps = 1e-6;   // eps 表示精度，取决于题目对精度的要求
+    while (r - l > eps)
+    {
+        double mid = (l + r) / 2;
+        if (check(mid)) r = mid;
+        else l = mid;
+    }
+    return l;
+}
+```
+
+实现lower_bound/upper_bound, 求平方根
+
+```cpp
+int lower_bound(vector<int> &nums, int target) {
+    int l = 0, r = nums.size(), mid;
+    while (l < r) {
+        mid = l + (r - l) / 2;
+        if (nums[mid] >= target) { // upper_bound，改下这个条件就行
+            r = mid;
+        } else {
+            l = mid + 1;
+        }
+    }
+    return l; 
+}
+```
+
+旋转数组找数组，局部二分
 ---
 
 

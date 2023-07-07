@@ -3,6 +3,7 @@ exclude:
   - index.md
   - README.md
   - _posts/1970-01-01-draft.md
+  - _posts/*.notyet
 
 highlighter: rouge
 markdown: kramdown

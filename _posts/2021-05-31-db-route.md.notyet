@@ -1,0 +1,31 @@
+---
+layout: post
+title: 调研分布式数据库的路由划分方案
+categories: [database]
+tags: [mongo，route]
+---
+
+
+---
+
+### 问题
+
+1. 划分方案
+2. 如何传播
+3. 如何管理
+
+### MongoDB Sharded Cluster 路由策略
+
+分片
+
+
+
+### cassandra
+
+### 参考链接
+
+- https://developer.aliyun.com/article/58689
+
+---
+
+

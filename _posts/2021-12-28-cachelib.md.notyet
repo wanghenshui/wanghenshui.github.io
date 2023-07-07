@@ -1,0 +1,72 @@
+---
+layout: post
+title: cachelib代码走读
+categories: [database]
+tags: [2q, cache, cachelib, hash]
+---
+
+
+
+之前简单介绍过，资料在这里
+
+视频 https://www.youtube.com/watch?v=wp_X-Zg9WEo
+
+视频ppt https://www.usenix.org/sites/default/files/conference/protected-files/osdi20_slides_berg.pdf
+
+论文 https://www.usenix.org/system/files/osdi20-berg.pdf
+
+文档https://cachelib.org
+
+https://zhuanlan.zhihu.com/p/430451374 这篇文章列举的非常细致，总结了论文内容
+
+这里走读一下代码
+
+<!-- more -->
+
+[toc]
+
+基本cache类型
+
+```c++
+// Declare templates ahead of use to reduce compilation time
+extern template class CacheAllocator<LruCacheTrait>;
+extern template class CacheAllocator<LruCacheWithSpinBucketsTrait>;
+extern template class CacheAllocator<Lru2QCacheTrait>;
+extern template class CacheAllocator<TinyLFUCacheTrait>;
+
+// CacheAllocator with an LRU eviction policy
+// LRU policy can be configured to act as a segmented LRU as well
+using LruAllocator = CacheAllocator<LruCacheTrait>;
+using LruAllocatorSpinBuckets = CacheAllocator<LruCacheWithSpinBucketsTrait>;
+// CacheAllocator with 2Q eviction policy
+// Hot, Warm, Cold queues are maintained
+// Item Life Time:
+//  0. On access, each item is promoted to the head of its current
+//  queue
+//  1. first enter Hot queue
+//  2. if accessed while in Hot, item will qualify entry to Warm queue
+//     otherwise, item will enter cold queue
+//  3. items in cold queue are evicted to make room for new items
+using Lru2QAllocator = CacheAllocator<Lru2QCacheTrait>;
+
+// CacheAllocator with Tiny LFU eviction policy
+// It has a window initially to gauage the frequency of accesses of newly
+// inserted items. And eventually it will onl admit items that are accessed
+// beyond a threshold into the warm cache.
+using TinyLFUAllocator = CacheAllocator<TinyLFUCacheTrait>;
+```
+
+所有的cache类型都是 allocator 
+
+这个设计是`ClassImpl<PolicyImpl>`
+
+之前也见到过这种设计的存储，tellstore的`DeltaMainRewriteStore<deltamain::RowStoreContext>`,`DeltaMainRewriteStore<deltamain::ColumnMapContext>`
+
+看这个类型就知道各种淘汰策略的，2Q这个也是mysql的buffer pool 淘汰策略
+
+先看CacheAllocator实现
+
+
+
+---
+
