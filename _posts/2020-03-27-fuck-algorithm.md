@@ -1,24 +1,22 @@
 ---
 layout: post
-title: 手撕算法整理笔记
+title: 数据结构算法相关查缺补漏
 categories: [algorithm]
 tags: [data structure, algorithm]
 ---
----
 
-> https://github.com/labuladong/fucking-algorithm
->
-> https://vjudge.net/article/187
->
-> https://github.com/youngyangyang04/leetcode-master
->
-> https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution
->
->
-> https://github.com/SharingSource/LogicStack-LeetCode/tree/main/LeetCode
+刷题单
 
----
+https://www.lintcode.com/ladder/47/
 
+https://www.lintcode.com/ladder/2/
+
+kuangbin这个太难了。面试不考虑 https://vjudge.net/article/187
+
+https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution 这个题解可以看一遍
+
+https://github.com/SharingSource/LogicStack-LeetCode/wiki 这个分类很牛，搜索到这里的同学，看这个wiki就行了。我基本也炒这个
+<!-- more -->
 ## [思考](https://sites.google.com/site/mostafasibrahim/programming-competitions/thinking-techniques)
 
 ### 写在纸上
@@ -57,79 +55,35 @@ tags: [data structure, algorithm]
 | 20          | O(2^(N))   | 回溯/ Generating 2^N Subsets                                     |
 | 11          | O(N!)      | Factorial / Permutations / Combination Algorithm                 |
 
-有些限制也可能是假的/误导人的。注意区别。限制条件是非常重要的
-
-### 抽象题型，归纳成小问题
-
-### 抽象题型，归纳通用场景
-
-### 抽象题型，简化成子问题
-
-### 一步一步来
-
-### 抽象题型，转化成别的领域的问题
-
-https://github.com/Strive-for-excellence/ACM-template
-
-https://github.com/atcoder/ac-library
-
-https://github.com/kth-competitive-programming/kactl/blob/master/content/graph/2sat.h
-
-https://github.com/ouuan/Tree-Generator
-
-https://github.com/BedirT/ACM-ICPC-Preparation/tree/master/Week01
-
-https://github.com/hanzohasashi33/Competetive_programming
-
-https://github.com/rachitiitr/DataStructures-Algorithms
-
-https://csacademy.com/app/graph_editor/
+有些限制也可能是假的/误导人的。注意区别。限制条件非常重要
 
 ## 经典题型
 
-
-  - 龟兔赛跑
+- 龟兔赛跑
 - Merge Intervals，**区间合并类型**
-
-  - 重叠区间，判断交集
+- 重叠区间，判断交集
 - Cyclic Sort，**循环排序**
 - In-place Reversal of a LinkedList，**链表翻转**
 - Tree Breadth First Search，**树上的BFS**
 
-  - 用队列处理遍历
+- 用队列处理遍历
 - Tree Depth First Search，**树上的DFS**
 - 模拟堆栈
 - Two Heaps，**双堆类型** 最大最小堆求中位数
 - 优先队列
 - 找一组数中的最大最小中位数
 - Subsets，**子集类型，一般都是使用多重DFS**
-- Modified Binary Search，**改造过的二分**
+- Modified Binary Search，**改造过的二分**，旋转数组，找子数组最大值
 - Top ‘K’ Elements，**前K个系列** 堆
 - K-way merge，**多路归并**
 - DP
-
   - **0/1背包类型**
   - Unbounded Knapsack，无限背包
-  - 斐波那契数列
+  - 斐波那契数列 走台阶
   - Palindromic Subsequence回文子系列
   - Longest Common Substring最长子字符串系列
-- Topological Sort (Graph)，**拓扑排序类型**
-
-  - hashmap邻接表
-
-博弈问题 https://zhuanlan.zhihu.com/p/50787280
-
-https://www.lintcode.com/ladder/47/
-
-https://www.lintcode.com/ladder/2/
-
-https://hrbust-acm-team.gitbooks.io/acm-book/content/chang_jian_ji_chu_cuo_wu.html
-
-https://github.com/lightyears1998/polymorphism
-
-https://github.com/menyf/acm-icpc-template
-
-https://github.com/nataliekung/leetcode/tree/master/amazon
+  - Topological Sort (Graph)，**拓扑排序类型**
+- hashmap邻接表
 
 ## 基础
 
@@ -207,7 +161,7 @@ void quick_sort(int q[], int l, int r){
 }
 ```
 
-yxc这个模版还是比较干净利落的  https://www.acwing.com/blog/content/277/
+大雪菜这个模版还是比较干净利落的  https://www.acwing.com/blog/content/277/
 
 - 如何选位置？
 - 改进方案
@@ -227,7 +181,6 @@ yxc这个模版还是比较干净利落的  https://www.acwing.com/blog/content/
 
 堆排序
 
----
 
 ## 查找
 
@@ -237,6 +190,219 @@ yxc这个模版还是比较干净利落的  https://www.acwing.com/blog/content/
 - 插入和查找能不能都快
   - 插入块不考虑查找，链表，插入慢查找快，哈希表？
   - 二叉查找树，插入对数查找对数（二分）
+
+
+**散列表**
+
+- 拉链法，也就是每个表项对应一个链表，有冲突就放到链表里
+- 线性探测，放在下一个？？？长键簇会很多很难受
+
+**应用**
+
+- 查找表
+- 索引，反向索引
+- 稀疏矩阵 哈希表表达
+
+### DFS/BFS
+
+
+
+**最小生成树 MST**
+
+加权图 权值最小的生成树
+
+- Prim/Kruskal
+  - Prim 贪心 + 优先队列
+- 几个简化
+  - 权重不同，路径唯一
+  - 只考虑连通
+  - 权重可以是负数，意义不一定是距离
+- 树的特点
+  - 任意两个顶点都会产生一个新的环
+  - 树删掉一条边就会得到两个独立的树
+- 切分定理
+  - 给定任意的切分，它的横切边中权重最小的必然是图的最小生成树 ？？
+  - 这些算法都是一种贪心算法
+    - V个顶点的任意加权连通图中属于最小生成树的边标记成黑色，初始为灰色，找到一种切分，横切边均不为黑色，将它权重最小的横切边标记为黑色，反复，直到标记了V-1条黑色边为止 ？？
+
+---
+
+## 动态规划
+
+- 求最值的，通常要穷举，聪明的穷举(dp table)
+- 重叠子问题以及最优子结构
+  - 如果没有最优子结构，改造转换
+- 正确的状态转移方程
+  - 数学归纳
+  - dp[i]代表了什么？
+    - 最长上升子序列问题，**dp[i] 表示以 nums[i] 这个数结尾的最长递增子序列的长度**
+  - 公式条件？
+  - dp的遍历方向问题
+    - **遍历的过程中，所需的状态必须是已经计算出来的**。
+    - **遍历的终点必须是存储结果的那个位置**。
+
+https://github.com/xtaci/algorithms
+
+## 字符串
+vector<int> counts(26, 0);
+
+字符串匹配 （KMP）
+
+## 贪心
+
+策略，局部最优解是什么，扩大化
+
+说实话，很少有应用，更像智力题
+
+## 双指针
+
+- **滑动窗口类型**
+- **双指针类型**
+- **快慢指针类型**
+
+可以快慢，也可以左右，也可以滑动，总之是一次遍历收集两种信息
+   - (1) 对于一个序列，用两个指针维护一段区间
+   - (2) 对于两个序列，维护某种次序，比如归并排序中合并两个有序序列的操
+
+合并数组，判断链表是否有环(Floyd判定)，链表第K个，链表中间，给你两个字符串，判断包含的最短字符串
+
+双指针有时候只是算法题的一小步，相当于数学压轴提的第一小题，铺垫用，他妈的，算法题为啥这么难
+
+
+```cpp
+for (int i = 0, j = 0; i < n; i ++ ) {
+    while (j < i && check(i, j)) j ++ ;
+
+    // 具体问题的逻辑
+}
+
+```
+## 二分
+
+大雪菜的模版
+
+```cpp
+bool check(int x) {/* ... */} // 检查x是否满足某种性质
+
+// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用：
+int bsearch_1(int l, int r) {
+    while (l < r)
+    {
+        int mid = l + r >> 1;
+        if (check(mid)) r = mid;    // check()判断mid是否满足性质
+        else l = mid + 1;
+    }
+    return l;
+}
+// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用：
+int bsearch_2(int l, int r) {
+    while (l < r)
+    {
+        int mid = l + r + 1 >> 1;
+        if (check(mid)) l = mid;
+        else r = mid - 1;
+    }
+    return l;
+}
+
+bool check(double x) {/* ... */} // 检查x是否满足某种性质
+
+double bsearch_3(double l, double r) {
+    const double eps = 1e-6;   // eps 表示精度，取决于题目对精度的要求
+    while (r - l > eps)
+    {
+        double mid = (l + r) / 2;
+        if (check(mid)) r = mid;
+        else l = mid;
+    }
+    return l;
+}
+```
+
+实现lower_bound/upper_bound, 求平方根
+
+```cpp
+int lower_bound(vector<int> &nums, int target) {
+    int l = 0, r = nums.size(), mid;
+    while (l < r) {
+        mid = l + (r - l) / 2;
+        if (nums[mid] >= target) { // upper_bound，改下这个条件就行
+            r = mid;
+        } else {
+            l = mid + 1;
+        }
+    }
+    return l; 
+}
+```
+
+旋转数组找数组，局部二分
+
+有时候可能target不确定，通过二分来处理target的可能范围，寻找target
+
+---
+
+## 位运算
+```c
+x ^ 0 = x
+x & 0 = 0 
+x | 0 = x
+
+x ^ 1 = ~x 
+x & 1 = x 
+x | 1 = 1
+
+x ^ x = 0
+x & x = x 
+x | x = x
+
+n & (n - 1)  //清空低位, 如果为0，说明是2的次方
+n & (-n) // 得到低位
+```
+
+## 数据结构题
+
+最小栈，匹配括号，桶排序，单调栈，优先队列（堆）
+
+```cpp
+vector<int> heap;
+// 获得最大值 
+void top() {
+    return heap[0];
+}
+// 插入任意值:把新的数字放在最后一位，然后上浮 void push(int k) {
+    heap.push_back(k);
+    swim(heap.size() - 1);
+}
+// 删除最大值:把最后一个数字挪到开头，然后下沉 void pop() {
+    heap[0] = heap.back();
+    heap.pop_back();
+    sink(0);
+}
+// 上浮
+void swim(int pos) {
+    while (pos > 1 && heap[pos/2] < heap[pos])) {
+       swap(heap[pos/2], heap[pos]);
+       pos /= 2;
+} }
+// 下沉
+void sink(int pos) {
+    while (2 * pos <= N) {
+       int i = 2 * pos;
+       if (i < N && heap[i] < heap[i+1]) ++i;
+       if (heap[pos] >= heap[i]) break;
+       swap(heap[pos], heap[i]);
+       pos = i;
+} }
+```
+
+hashmap, deque(当滑动窗口用)
+
+前缀和，积分图？
+
+## 链表
+
+## 树
 
 **二叉查找树**
 
@@ -292,19 +458,51 @@ yxc这个模版还是比较干净利落的  https://www.acwing.com/blog/content/
   - 高度
   - 到任意节点的路径平均长度
 
-**散列表**
+###
 
-- 拉链法，也就是每个表项对应一个链表，有冲突就放到链表里
-- 线性探测，放在下一个？？？长键簇会很多很难受
+Trie
 
-**应用**
-
-- 查找表
-- 索引，反向索引
-- 稀疏矩阵 哈希表表达
-
----
-
+```cpp
+class TrieNode {
+public:
+    TrieNode* childNode[26] = {nullptr};
+    bool isVal = false;
+};
+class Trie {
+    TrieNode* root;
+public:
+    Trie(): root(new TrieNode()) {}
+    // 向字典树插入一个词
+    void insert(string word) {
+       TrieNode* temp = root;
+       for (int i = 0; i < word.size(); ++i) {
+           if (!temp->childNode[word[i]-’a’]) {
+              temp->childNode[word[i]-’a’] = new TrieNode();
+            }
+           temp = temp->childNode[word[i]-’a’];
+       }
+       temp->isVal = true;
+    }
+      // 判断字典树里是否有一个词 
+    bool search(string word) {
+       TrieNode* temp = root;
+       for (int i = 0; i < word.size(); ++i) {
+           if (!temp) break;
+           temp = temp->childNode[word[i]-’a’];
+       }
+       return temp? temp->isVal: false;
+    }
+    // 判断字典树是否有一个以词开始的前缀 
+    bool startsWith(string prefix) {
+       TrieNode* temp = root;
+       for (int i = 0; i < prefix.size(); ++i) {
+            if (!temp) break;
+            temp = temp->childNode[prefix[i]-’a’];
+       }
+       return temp;
+    }
+};
+```
 ## 图
 
 `无向图` `边(edge)` `顶点(vertex) `
@@ -388,132 +586,26 @@ yxc这个模版还是比较干净利落的  https://www.acwing.com/blog/content/
   - 构成有向环
   - 自反/对称/传递
 
-**最小生成树 MST**
+https://github.com/ouuan/Tree-Generator
 
-加权图 权值最小的生成树
+https://csacademy.com/app/graph_editor/
 
-- Prim/Kruskal
-  - Prim 贪心 + 优先队列
-- 几个简化
-  - 权重不同，路径唯一
-  - 只考虑连通
-  - 权重可以是负数，意义不一定是距离
-- 树的特点
-  - 任意两个顶点都会产生一个新的环
-  - 树删掉一条边就会得到两个独立的树
-- 切分定理
-  - 给定任意的切分，它的横切边中权重最小的必然是图的最小生成树 ？？
-  - 这些算法都是一种贪心算法
-    - V个顶点的任意加权连通图中属于最小生成树的边标记成黑色，初始为灰色，找到一种切分，横切边均不为黑色，将它权重最小的横切边标记为黑色，反复，直到标记了V-1条黑色边为止 ？？
-
----
-
-## 动态规划
-
-- 求最值的，通常要穷举，聪明的穷举(dp table)
-- 重叠子问题以及最优子结构
-  - 如果没有最优子结构，改造转换
-- 正确的状态转移方程
-  - 数学归纳
-  - dp[i]代表了什么？
-    - 最长上升子序列问题，**dp[i] 表示以 nums[i] 这个数结尾的最长递增子序列的长度**
-  - 公式条件？
-  - dp的遍历方向问题
-    - **遍历的过程中，所需的状态必须是已经计算出来的**。
-    - **遍历的终点必须是存储结果的那个位置**。
-
-https://github.com/xtaci/algorithms
+画图工具
+## 一些模版
 
 
-## 贪心
 
-策略，局部最优解是什么，扩大化
+https://github.com/Strive-for-excellence/ACM-template
 
-说实话，很少有应用，更像智力题
+https://github.com/atcoder/ac-library
 
-## 双指针
+https://github.com/kth-competitive-programming/
 
-- Sliding window，**滑动窗口类型**
-- two points, **双指针类型**
-- Fast & Slow pointers, **快慢指针类型**
+https://github.com/hanzohasashi33/Competetive_programming
 
-可以快慢，也可以左右，也可以滑动，总之是一次遍历收集两种信息
-   - (1) 对于一个序列，用两个指针维护一段区间
-   - (2) 对于两个序列，维护某种次序，比如归并排序中合并两个有序序列的操
+博弈问题 https://zhuanlan.zhihu.com/p/50787280
 
-合并数组，判断链表是否有环(Floyd判定)，链表第K个，链表中间，给你两个字符串，判断包含的最短字符串
+https://hrbust-acm-team.gitbooks.io/acm-book/content/ 面试不用搞这么难
 
-双指针有时候只是算法题的一小步，相当于数学压轴提的第一小题，铺垫用，他妈的，算法题为啥这么难
-
-
-```cpp
-for (int i = 0, j = 0; i < n; i ++ ) {
-    while (j < i && check(i, j)) j ++ ;
-
-    // 具体问题的逻辑
-}
-
-```
-## 二分
-
-yxc的模版
-
-```cpp
-bool check(int x) {/* ... */} // 检查x是否满足某种性质
-
-// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用：
-int bsearch_1(int l, int r) {
-    while (l < r)
-    {
-        int mid = l + r >> 1;
-        if (check(mid)) r = mid;    // check()判断mid是否满足性质
-        else l = mid + 1;
-    }
-    return l;
-}
-// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用：
-int bsearch_2(int l, int r) {
-    while (l < r)
-    {
-        int mid = l + r + 1 >> 1;
-        if (check(mid)) l = mid;
-        else r = mid - 1;
-    }
-    return l;
-}
-
-bool check(double x) {/* ... */} // 检查x是否满足某种性质
-
-double bsearch_3(double l, double r) {
-    const double eps = 1e-6;   // eps 表示精度，取决于题目对精度的要求
-    while (r - l > eps)
-    {
-        double mid = (l + r) / 2;
-        if (check(mid)) r = mid;
-        else l = mid;
-    }
-    return l;
-}
-```
-
-实现lower_bound/upper_bound, 求平方根
-
-```cpp
-int lower_bound(vector<int> &nums, int target) {
-    int l = 0, r = nums.size(), mid;
-    while (l < r) {
-        mid = l + (r - l) / 2;
-        if (nums[mid] >= target) { // upper_bound，改下这个条件就行
-            r = mid;
-        } else {
-            l = mid + 1;
-        }
-    }
-    return l; 
-}
-```
-
-旋转数组找数组，局部二分
----
-
+https://github.com/menyf/acm-icpc-template
 
