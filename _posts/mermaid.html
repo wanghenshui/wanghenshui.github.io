@@ -3,3 +3,6 @@
   Source file: <a href="{{ site.github.repository_url }}/tree/master/_posts/{{ include.source }}">{{ include.source }}</a>:
 </small>
 <div class="mermaid">{% include_relative {{ include.source }} %}</div>
+<script>
+  mermaid.initialize({ sequence: { showSequenceNumbers: true } });
+</script>
