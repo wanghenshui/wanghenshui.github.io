@@ -1,0 +1,15 @@
+sequenceDiagram
+    recover->>+primary: 通知其他节点我挂了:<br>{recover-no,self-no}<br>{ 自身id/recover请求id(要有区分)
+    recover->>+backupN: 通知其他节点我挂了:<br>{recover-no,self-no}<br>{ 自身id/recover请求id(要有区分)
+    primary->>+recover: recoveryResponse{view-no, recover-no}<br>{log-no, op-no,commit-no}
+    backupN-->>+backupN: 检查自身是否normal<br>决定是否回复响应
+    backupN->>+recover: recoveryResponse{view-no, recover-no}
+    loop 
+        recover-->recover: 收集recoveryResponse<br>如果recover-no不匹配要拒绝<br>如果期间viewChange直接失败<br>更新log
+    end
+    client->>+primary: 请求
+    client-->>+client: 挂了重启
+    client->>+backupN: 拉取request-no
+    client->>+primary: 拉取request-no
+    client-->>+client: request-no+=2
+    note over client:+2是因为可能存在一个宕机前<br>发送的request还未到达<br>且这样的请求至多有一个。 

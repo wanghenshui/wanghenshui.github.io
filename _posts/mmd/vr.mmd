@@ -1,0 +1,21 @@
+sequenceDiagram
+    client->>+primary: 发送Request:{client-id,req-no}
+    loop 检查重复
+        primary->>+primary: 根据id req-no检查重复
+    end
+    primary->>+primary: op-no++, AppendLog
+    primary->>+backup: 发送Prepare:<br>{Request,view-no,op-no, commit-no}
+    loop 检查 Prepare Ok:
+        backup->>+backup: {WaitLog,AppendLog}PrepareOK
+    end
+    backup->>+primary: 回复 PrepareOK <br>commit-no++
+    loop 检查Prepare响应
+        primary->>+primary: 回收backup节点的 PrepareOK
+    end
+    primary->>+primary: commit-no++
+    primary->>+client: 回复{commit-no, result}
+    loop 周期性发送Commit
+        primary->>+backup: {commit-no} 心跳/消费通知
+        backup->>+backup: 检查 commit-op对应的Log是否落地:<br>更新状态 commit-no++
+        backup->>+primary: 回复 CommitOk <br>commit-no++   
+    end  

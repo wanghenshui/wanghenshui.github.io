@@ -1,0 +1,15 @@
+sequenceDiagram
+    client1->>+innodb: T1
+    innodb->>+innodb: [min-txn-id,max-txn-id) <br> 没有其他事务{}
+    client2->>+innodb: T2
+    innodb->>+innodb: [min-txn-id,max-txn-id) <br> {txn-t1}
+    client3->>+innodb: T3
+    innodb->>+innodb: [min-txn-id,max-txn-id) <br> {txn-t1,txn-t2}
+    innodb-->>+innodb: T1，T3 commit
+    client4->>+innodb: T4
+    innodb->>+innodb: [min-txn-id,max-txn-id) <br> {txn-t2,txn-t3}<br>能看到T1结果
+    innodb-->>+client1: T1 成功
+    innodb-->>+client3: T3 成功
+    innodb-->>+innodb: T4 commit
+    innodb-->>+client4: T4 成功
+    innodb-->>+client2: T2 成功

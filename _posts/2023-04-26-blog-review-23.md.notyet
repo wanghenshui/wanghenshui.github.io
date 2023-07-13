@@ -241,10 +241,121 @@ void my_sort(std::vector<big_class>& v) {
 
 整的挺好，我画个图联系一下mermaid
 
+正常流程
+
 {% include_relative mermaid.html source="mmd/vr.mmd" %}
 
+选举
+
+{% include_relative mermaid.html source="mmd/vr-vc.mmd" %}
+
+故障恢复
+
+{% include_relative mermaid.html source="mmd/vr-rc.mmd" %}
+
+需要优化的点
+
+- 文件同步根据log会很慢，-> 根据checkpoint同步
+- 增加witness
+- 批量提交batching
+- 引入lease，主读
+- 忽略读到旧数据，可以读备
+
+重新上下架的流程我没写
+
+## innodb ReadView https://zhuanlan.zhihu.com/p/642981673
+
+这周看到两次了，画个图
+
+{% include_relative mermaid.html source="mmd/inno-readview.mmd" %}
+
+本质是基于窗口的检查，而不是实际commit的时间戳
+
+引自seven
+
+>
+> （1）当记录的 txn_id 等于当前事务id（txn_id = creator_txn_id）时，说明版本链中的这个版本是当前事务修改的，所以该记录对当前事务可见；
+> 
+> （2）txn_id < min_txn_id，说明版本链中的这条记录已经提交了，所以该快照记录对当前事务可见；
+> 
+> （3）txn_id > max_txn_id，说明这条记录是当前事务启动后启动的新事务，该记录对当前事务不可见。
+> 
+> （4）min_txn_id <= txn_id < max_txn_id，首先比较txn_id是否在m_ids 数组中，如果不在说明当前事务开启之前，txn_id对应的事务就将数据修改并提交，所以该记录行的修改对当前事务可见。其次，如果txn_id在m_ids中，说明txn_id对应的事务是和当前事务同时启动的，所以该记录行的修改对当前事务不可见。
+> 
+> RR和RC的区别在于，对于RR在事务启动的时候即生产了可见性视图（ReadView），同一事物中的select都复用事务开启时的可见性视图。而对于RC隔离级别来说，每次select都会生成一个新的ReadView来进行可见性判断。
+>
+
+分布式mysql需要做的就是把txn-id和全局GTS时序绑定
+
+不过其他DB的实现已经脱离txn-id直接用timestamp了。也得有个时间窗吧？
 ## libgavran
 
 写的挺好，数据库学习入门
 
-https://github.com/ayende/libgavran/blob/master/ch02/ch02.adoc
+这里标记个TODO
+
+https://github.com/ayende/libgavran
+
+
+## [Modeling Polymorphic Associations in a Relational Database](https://hashrocket.com/blog/posts/modeling-polymorphic-associations-in-a-relational-database)
+
+原来的表
+
+```sql
+create table acl(
+  id serial primary key,
+  resource_type varchar not null,
+  resource_id integer not null,
+  -- other fields omitted
+  unique(resource_id, resource_type)
+);
+select *
+from acl
+where resource_type='document'
+  and resource_id=42;
+```
+
+问题，resource_type没有限制。给个星星设计，加限制
+
+```sql
+
+create table acl_document(
+  acl_id integer not null unique references acl,
+  document_id integer not unique null references document
+);
+
+create table acl_image(
+  acl_id integer not null unique references acl,
+  image_id integer not null unique references image
+);
+
+select acl.*
+from acl
+  join acl_document on acl_document.acl_id=acl.id
+where document_id=42;
+
+
+create table acl(
+  id serial primary key,
+  document_id integer references document,
+  image_id integer references image,
+  file_id integer references file,
+  report_id integer references report,
+  -- other fields omitted
+  check(
+    (
+      (document_id is not null)::integer +
+      (image_id is not null)::integer +
+      (file_id is not null)::integer +
+      (report_id is not null)::integer 
+    ) = 1
+  )
+);
+
+create unique index on acl (document_id) where document_id is not null;
+create unique index on acl (image_id) where image_id is not null;
+create unique index on acl (file_id) where file_id is not null;
+create unique index on acl (report_id) where report_id is not null;
+```
+
+清晰，就是麻烦

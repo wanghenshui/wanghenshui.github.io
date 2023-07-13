@@ -1,0 +1,19 @@
+sequenceDiagram
+    primary->>+backup1: 周期性发送Commit:<br>{commit-no} 心跳/消费通知
+    primary->>+backupN: 周期性发送Commit:<br>{commit-no} 心跳/消费通知
+    backup1->>+backup1: 检查 commit-op对应的Log是否落地:<br>更新状态 commit-no++
+    backup1-->>+primary: 回复 CommitOk commit-no++ 
+    backupN->>+backupN: 检查 commit-op对应的Log是否落地<br>更新状态 commit-no++
+    backupN-->>+primary: 回复 CommitOk commit-no++ 
+    primary->>+primary: 挂了
+    backup1->>+backup1: 没有收到primary Commit心跳<br>超时发起view change
+    backup1->>+backupN: startViewChange
+    alt 
+        backup1-->backupN: 收集startViewChange<br>判断view-no，确认自己是否可以切primary
+    end
+    backupN-->>+backup1: DoViewChange
+    backup1->>+backup1: 根据响应更新本地的view-no<br>组织已经决定了，由你当primary
+    backup1->>+backupN: ViewChange Finish
+    client->>+backup1: startView on new primary
+    backup1->>+backupN: startView
+    backupN->>+backupN: truncate log <br> 后面就是正常的流程了
