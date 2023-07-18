@@ -1,0 +1,8 @@
+flowchart LR
+    setting--> with
+    with--> join
+    join --> where
+    where["where谓词下推到prewhere"] --> check{"是否有优化空间?"}
+    check-->|"是"|setting
+    check-->|"否"|store["检查store层权限"]
+    store --> End["拿到结果"]
