@@ -10,3 +10,15 @@ tags: [clickhouse,zk]
 
 <!-- more -->
 
+https://presentations.clickhouse.com/
+
+https://maksimkita.com/blog/jit_in_clickhouse.html
+
+这哥们博客很不错
+
+
+查询优化极简描述
+
+{% include_relative mermaid.html source="mmd/ck-q.mmd" %}
+
+读 ClickHouse 源码解析: MergeTree Read Path https://zhuanlan.zhihu.com/p/465063751

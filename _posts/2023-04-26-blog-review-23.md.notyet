@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第二十三期
 categories: [review]
-tags: [doris,scd,sql,mq,vsr]
+tags: [doris,scd,sql,mq,vsr,starrock,neon,epoll,bpf,perf,scylladb,tum,innodb]
 ---
 最近感悟
 
@@ -382,6 +382,81 @@ statc_assert(std::is_same< std::string, decltype( loophole(tag<0>{}) ) >::value,
 
 这玩意属于缺陷，说不定以后就修了
 
+## [StarRocks 源码解析](https://www.zhihu.com/column/c_1595736761170358272)
+
+挺不错
+
+https://blog.bcmeng.com/post/starrocks-source-code-1.html
+
+这哥们总结的很好 https://blog.bcmeng.com/post/starrocks-source-code-1.html
+
+还有这个 https://blog.bcmeng.com/post/dpa.html
+
+https://blog.bcmeng.com/post/dpa.html
+https://blog.bcmeng.com/post/starrocks-look-up.html
+
+## BPF工具分析
+
+系统调用分析
+
+```bash
+./syscount -t xxx -i 1 -L
+perf trace -t xxx -e syscalls:sys_enter_* -- sleep 600 > perf_trace.txt
+bpftrace -e 't:syscalls:sys_enter_epoll_wait /comm == "spp_call_center"/ { @[comm, pid, tid] = hist(args->timeout); } i:s:1 { time(); print(@); clear(@); }'
+
+bpftrace -e 't:syscalls:sys_enter_epoll_wait /tid == xxx/ { @ = hist(args->timeout); } i:s:1 { time(); print(@); clear(@); } i:s:600 { exit(); }'
+```
+
+epoll_wait timeout 参数动态优化 是一个关注点，根据业务的经验值来调整
+- 如何统计？每次加一个时间点，同时排序 -> 堆排
+- 根据每个任务index保存自己的时间（需要有个时间标准，这玩意不能太慢，不然成瓶颈了），然后计算这个超时时间，最大10ms，每次epoll_wait设置一次
+
+哪个好？第一个通用，第二个具体，但可能涉及时间调用gettimeofday？
+得缓存一下，比如一个后台线程周期更新存tls里，epoll_wait设置这个时间点时候直接读tls对象，加一层避免直接系统调用
 ## [Comparing Queuing Strategies in Distributed Systems](https://fsck.ai/labs/queuing)
 
 这个图挺直观
+
+## [Linux删除文件过程解析](https://www.cnblogs.com/lwyeric/p/13603959.html)
+
+删除文件可能有大量inode操作，如果删除的大文件影响更严重，如何缓慢删除？看这个9SO](https://serverfault.com/questions/814029/how-can-i-slowly-delete-a-large-directory-hiearachy-to-reduce-disk-i-o-load)
+
+```bash
+ionice -c3 rm -rf $NAME
+```
+
+但是程序里用的是fs::remove接口，这种有办法放慢吗？只能手写遍历，删一个sleep一下？
+
+## [Kudu: Storage for Fast Analytics on Fast Data](https://zhuanlan.zhihu.com/p/492151665)
+
+列存+行存
+
+## gap buffer
+
+就是长一点的buffer，文本编辑器用
+
+一个实现 https://github.com/lazyhacker/gapbuffer/blob/master/gap_buffer.h
+
+
+## FSST: Fast Random Access String Compression
+
+也是字典压缩～ https://raw.githubusercontent.com/cwida/fsst/master/fsstcompression.pdf
+
+优点在于构造的字典，是根据数据来构造的，不是全局的，能更优秀
+
+针对单条压缩，非二进制数据（json xml网址邮箱）有优势。值得测一测。这个玩意是TUM的论文
+
+chatgpt老师 的总结
+
+> FSST是一种字符串压缩算法，它利用列中经常出现的子字符串进行压缩。该算法的关键实现细节包括： 1. 基本思想：FSST通过将长度为1-8的子字符串替换为1字节的编码来实现快速而有效的字符串压缩。 2. 符号表构建：FSST使用一种基于遗传算法的自底向上的方法来构建符号表。该算法能够根据给定的数据集找到一个好的符号表。 3. 压缩速度优化：为了使压缩过程更快速，FSST利用了AVX512 SIMD指令集等技术。 4. 解压缩速度：FSST提供快速的解压缩算法，平均每字节2个周期（或每核心1 GB/秒）的解压缩速度。 5. 随机访问能力：与LZ4相比，FSST支持有效的随机访问，即能够在不解压缩数据块的情况下访问个别字符串。这使得FSST在数据库系统等应用中特别有用。 总之，FSST通过优化符号表构建、压缩速度和解压缩速度等方面的实现细节，实现了快速、高效的字符串压缩，并能够支持随机访问能力。
+>
+>
+## [How ScyllaDB Distributed Aggregates Reduce Query Execution Time up to 20](https://www.scylladb.com/2023/06/20/how-scylladb-distributed-aggregates-reduce-query-execution-time-up-to-20x/)
+
+就是计算均摊，类似count minmax这种，可以MPP。感觉就是OLAP的技术拿过来用一用，一个协调者调度节点计算收集数据
+## neondb
+
+怎么share log？
+
+
+## openai老师 https://openaikey.xyz/
