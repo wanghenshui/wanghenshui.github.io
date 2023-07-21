@@ -1,6 +1,6 @@
 ---
 layout: post
-title: paxosstore 简单走读
+title: paxos
 categories: [database]
 tags: [paxos]
 ---
@@ -8,6 +8,10 @@ tags: [paxos]
 [toc]
 
 <!-- more -->
+
+## [Flexible Paxos](https://fpaxos.github.io/)
+
+## [Flexible Paxos-Quorum intersection revisited](https://zhuanlan.zhihu.com/p/32757145)
 
 ## 基本架构
 

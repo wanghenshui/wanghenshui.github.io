@@ -7,9 +7,26 @@ tags: []
 
 最近感悟
 
-原来业务逻辑写在配置文件中，就是低代码，我悟了
+
 
 <!-- more -->
 
+https://decentralizedthoughts.github.io/2020-12-12-raft-liveness-full-omission/
 
 
+https://quickwit.io/blog/compressed-indexable-bitset
+
+
+https://justinjaffray.com/joins-13-ways/
+
+
+## HLC
+
+Physical Time Logical Clock PT组成作为逻辑时钟的高位， LC作为低位。
+
+比如我们可以采用一个64bit的整数来存储一个HLC timestamp，那么这里简单定义，高32bit存储PT，低32bit存储LC。
+
+每一个节点除了有一个HLC Clock，还有一个物理时钟（physical clock），这个物理时钟可以假设是任何的物理时钟，比如ntp协议，或者google的true time协议，这里对于物理时钟没有任何要求，物理时钟可以跳变，也可以回退，允许存在误差。
+
+
+一个HLC Timestamp比较大小，也是先比较 physical time，如果physical time相等，再比较logical time

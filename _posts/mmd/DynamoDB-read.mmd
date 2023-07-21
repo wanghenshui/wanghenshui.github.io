@@ -1,0 +1,13 @@
+sequenceDiagram
+    client->>+coordinator: Read,timestamp
+    coordinator->>+coordinator: 读写冲突检测,如果有写入请求取消
+    coordinator->>+datanodeN: 读取所有datanode节点 2PC step1 Prepare
+    datanodeN->>+datanodeN: 拿到数据和LSN
+    datanodeN-->>-coordinator: 2PC Prepare Ok  Accept/Reject Ok
+    coordinator->>+coordinator:检查所有节点Prepare OK<br>失败取消Txn，否则开始发起确认
+    coordinator->>+datanodeN: 再次读取所有datanode节点 <br>2PC step2 Execute
+    datanodeN->>+datanodeN: 拿到数据和LSN
+    datanodeN->>+coordinator: 2PC Execute Ok
+    coordinator->>+coordinator:检查所有节点Execute OK，失败取消Txn<br>检查LSN是否变化，变化则取消txn
+    coordinator-->>-client: 读取成功
+            

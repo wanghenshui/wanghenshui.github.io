@@ -1,0 +1,12 @@
+sequenceDiagram
+    client->>+coordinator: Write,timestamp
+    coordinator->>+coordinator: 写写冲突检测,如果有写入请求取消
+    coordinator->>+datanodeN: 写入所有datanode节点 2PC step1 Prepare
+    datanodeN->>+datanodeN: 写入冲突判断，<br>判断当前key的上次更新ts > 写入ts<br>决定是否写入/拒绝
+    datanodeN-->>-coordinator: 2PC Prepare Ok  Accept/Reject Ok
+    coordinator->>+coordinator:检查所有节点Prepare OK<br>失败取消Txn，否则开始发起确认
+    coordinator->>+datanodeN: 写入所有datanode节点 <br>2PC step2 Execute
+    datanodeN->>+datanodeN:  写入数据,LSN++
+    datanodeN->>+coordinator: 2PC Execute Ok
+    coordinator->>+coordinator:检查所有节点Execute OK，失败取消Txn
+    coordinator-->>-client: 写入成功
