@@ -34,3 +34,21 @@ Physical Time Logical Clock PT组成作为逻辑时钟的高位， LC作为低�
 
 
 一个HLC Timestamp比较大小，也是先比较 physical time，如果physical time相等，再比较logical time
+
+## [深入理解 Linux 内核--jemalloc 引起的 TLB shootdown 及优化](https://juejin.cn/post/6844904084957315086)
+
+如果有IPI，需要关注一下是不是jemalloc帮倒忙了
+
+```bash
+watch -d -n 1 "cat /proc/interrupts | grep TLB" #观察数量
+perf top #smp_call_function_many
+ls /proc/*/maps | xargs grep jemalloc #观察jemalloc
+strace -f -p 1510 2>&1 | grep madvise #观察有没有 MADV_DONTNEED
+
+```
+
+解决办法 
+
+```bash
+MALLOC_CONF=dirty_decay_ms:-1,muzzy_decay_ms:-1
+```

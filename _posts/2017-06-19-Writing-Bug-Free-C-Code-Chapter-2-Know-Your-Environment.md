@@ -4,13 +4,20 @@ title: (译)Writing Bug Free C Code Chapter 2 Know Your Environment
 categories: [language, translation]
 tags : [c, gcc]
 ---
-                                                                                                                                                                                                                                                                                  
+
+
+
+
+垃圾文章，不值得看
+
+<!-- more -->
+
 
 \##### 这已经不是翻译了，这就是笔记了。
 
 \##chapter 2： 了解你的工作环境
 //blahblahblah(具体内容是了解你工作环境中的功能，特性)
-​    在你的工作范围内尽可能成为专家
+    在你的工作范围内尽可能成为专家
  接下来讨论所有工作环境中遇到的问题
 
 \###2.1 C语言
@@ -18,23 +25,23 @@ tags : [c, gcc]
 
 \#####2.1.1 数组操作符[]
 //blahblahblahblah具体内容是数组操作符的功能，和指针的关系，咱认为是个陋习但是掌握还是不难的，随便翻一本C语言书都有的
-// K&R §A7.3.1 
+// K&R §A7.3.1
 
 \#####2.1.2 结构体指针操作符 ->
-//  K&R §A7.3.3 
+//  K&R §A7.3.3
 
 \#####2.1.3 编译警告等级调高
 // 这里具体指vs编译器，涉及到gcc就是-Wall 不多言
 
 \#####2.1.4 编译时断言设计 ComplierAssert()
-​    能放在编译期检测出来的bug就不要放在运行时
+    能放在编译期检测出来的bug就不要放在运行时
 
 \#####2.1.5 变量声明
 cdecl
 
 \#####2.1.6 typedef
 
-\#####2.1.7 命名空间 
+\#####2.1.7 命名空间
 
 \#####2.1.8 代码段变量
 //与编译器实现有关，没什么意义。只是个访问权限的区别
@@ -123,7 +130,7 @@ do {}while(0)
 就是著名的坑跌异或异或异或。没有意义。会溢出（当然用三个变量也有溢出的可能）
 
 \#####2.3.4 异或抵消锯齿？没看懂这部分
-<http://www.duckware.com/bugfreec/chapter2.html#windows>
+[http://www.duckware.com/bugfreec/chapter2.html#windows](http://www.duckware.com/bugfreec/chapter2.html#windows)
 
 \#####2.3.5 ~0 可移植性强于0xffff
 
@@ -143,9 +150,4 @@ Two’s complement negation as a macro
 宏的几个trick
 还有2.3.4没看懂
 
-
-
-
-
 ---
-

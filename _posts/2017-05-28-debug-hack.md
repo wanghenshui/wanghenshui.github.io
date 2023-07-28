@@ -4,23 +4,27 @@ title: debug hack读书笔记
 categories: review
 tags: [debug,c,linux]
 ---
-  
-
 ---
 
 非常粗糙
+
+
+
+<!-- more -->
+
 
 ---
 
 **调试前的必知必会**
 
 - coredump获取
+
   - ulimit -c确认是否开启 ulimit -c unlimited开启
   - gdb -c core_file bin_file
   - 指定目录生成core dump
   - coredump 过大导致磁盘压力 -> coredump_filter设置，排除共享内存
-
 - 基本的gdb命令，打断点看堆栈查变量看寄存器看汇编等等
+
   - gdb attach/查看历史值 show value
 - 初始化文件 .gdbinit 放在home下/也可以source
 
@@ -83,7 +87,6 @@ n不进入
 si 5 执行5次单指令
 ```
 
-
 - intel架构只是
   - 字节序
   - 寄存器
@@ -117,7 +120,7 @@ crash命令
 - kmem
 - mod
 
-特殊汇编 
+特殊汇编
 
 - u2d 异常挂掉
 - sti/cli 禁止/允许中断
@@ -164,8 +167,6 @@ malloc /free引入的错误
 
 - oprofile
 
-
-
 **进阶工具**
 
 strace抓调用
@@ -181,21 +182,13 @@ systemtap调试 抓系统调用
 /proc/meminfo
 
 - MemFree空闲内存总量
-
 - Buffers缓存总量
-
 - Cached页面缓存 不在Buffer和SwapCached中
-
 - SwapCache被换出的仍在交换区的页面大小
-
 - Active/Inactive LRU链表中的大小
-
 - Mapped映射到文件上的页面总大小
-
 - Slab 分配器内存使用量
-
 - PageTable 也秒使用内存
-
 - Commited_As提交内存/内存泄漏的大体数值估计点
 
 /proc/<PID\>/mem快速读取内容
@@ -215,4 +208,3 @@ OOM killer评分方法
 failslab
 
 ---
-

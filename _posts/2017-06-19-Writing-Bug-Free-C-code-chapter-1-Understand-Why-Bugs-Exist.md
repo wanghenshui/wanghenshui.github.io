@@ -4,10 +4,12 @@ title: (译)Writing Bug Free C code chapter 1 Understand Why Bugs Exist
 categories: [language, translation]
 tags : [c, gcc]
 ---
+\本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文
 
+垃圾文章，不值得看
 
+<!-- more -->
 
-\######本翻译仅供参考/博客凑数/多数翻译是意译,拿不准的部分会加英语原文
 
 # Chapter 1: Understand Why Bugs Exist/理解为什么有bug
 
@@ -119,7 +121,4 @@ tags : [c, gcc]
 7. Strive to write code that is straightforward and easily understandable by others. Avoid writing code that pulls a lot of tricks.
 8. Finally, make sure that you use the Windows debug kernel all the  time. It contains extra error checking that can automatically detect  certain types of bugs that go undetected in the retail release of  Windows
 
-
-
 ---
-

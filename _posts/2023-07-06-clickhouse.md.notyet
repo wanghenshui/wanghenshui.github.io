@@ -32,6 +32,6 @@ ClickHouse 源码解析: MergeTree Merge 算法 https://zhuanlan.zhihu.com/p/539
 
 改merge tree，自定义merge tree  ReplacingMergeTree 是merge on read 可以改成 实时compact
 
-存算分离，落分布式文件系统或者对象存储
+存算分离，落分布式文件系统或者对象存储  byconity 快手也这么玩的
 
 读写分离，计算节点拆分读写路径，利用计算节点尽可能并行
