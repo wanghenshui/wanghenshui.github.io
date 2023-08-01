@@ -1,0 +1,6 @@
+flowchart LR
+    Follower -->|超时参与选举| Candidate
+    Candidate --> |超时重新选举| Candidate
+    Candidate --> |收到大多数投票成为|Leader
+    Leader --> |发现更高的term|Follower
+    Candidate --> |发现新的term<br>发现新的leaderleader|Follower

@@ -7,7 +7,7 @@ tags: []
 
 最近感悟
 
-
+划水太严重要被开了
 
 <!-- more -->
 
@@ -52,3 +52,32 @@ strace -f -p 1510 2>&1 | grep madvise #观察有没有 MADV_DONTNEED
 ```bash
 MALLOC_CONF=dirty_decay_ms:-1,muzzy_decay_ms:-1
 ```
+
+## [why this is bad to use XFS file-system without d_type support , regarding to docker](https://superuser.com/questions/1576757/why-this-is-bad-to-use-xfs-file-system-without-d-type-support-regarding-to-doc)
+
+```bash
+mkfs.xfs -f -n ftype=1 /dev/sda4
+```
+
+## [I/O Acceleration with Pattern Detection](https://www.cs.cmu.edu/~garth/papers/he-hpdc13.pdf)
+
+## 快速估算
+
+访问密度
+
+T = (QPS + TPS*N) / TotolStorageG
+
+数据规模
+
+一亿条x4KB = 400G数据 一亿八个零，去掉九个0是G，0.1 x 4000 = 400G
+
+云上机器SSD是 PM9A3，查了一下资料，国产固态新品基本上都比这个盘效果好。比如致态Tiplus 7100。我得买点这个
+
+
+信息来自 techpowerup 以及这个 https://www.zhihu.com/tardis/zm/art/580123162?source_id=1003
+
+
+| 磁盘型号 | 顺序读带宽 | 顺序写带宽 |随机读IOPS |随机写IOPS |
+| --- | --- | --- | --- | --- |
+| PM9A3 |6800 MB/s  | 4000MB/s|1000k IOPS|180k IOPS|
+| 致态TiPlus7000 |  7000 MB/s| 6100 MB/s |970k IOPS |770k  IOPS|
