@@ -61,7 +61,7 @@ mkfs.xfs -f -n ftype=1 /dev/sda4
 
 ## [I/O Acceleration with Pattern Detection](https://www.cs.cmu.edu/~garth/papers/he-hpdc13.pdf)
 
-## 快速估算
+## 一些设计的快速估算
 
 访问密度
 
@@ -81,3 +81,63 @@ T = (QPS + TPS*N) / TotolStorageG
 | --- | --- | --- | --- | --- |
 | PM9A3 |6800 MB/s  | 4000MB/s|1000k IOPS|180k IOPS|
 | 致态TiPlus7000 |  7000 MB/s| 6100 MB/s |970k IOPS |770k  IOPS|
+
+有群友反应消费级磁盘会降速。需要重新测试一下，我怀疑是随机读写导致的碎片降速
+
+一个盘2T， 每个分片10G，保留25%容量用来compact，也就还剩150个db，假设每个都是一个副本的一个分片（避免多个分片落在同一个盘上一崩崩俩）也就是150个副本
+
+元数据信息，假设一个副本的所有分片信息，都存，一条2K，2K * 150 一个节点的量。节点和磁盘数字正相关，元数据节点要考虑数据路由管理的限制
+
+什么时候会修改元数据
+
+- 主动迁移，腾空机器，均衡机器
+
+- 被动迁移，坏盘
+
+- 副本元数据变动
+    - 更改kv引擎的配置参数，更改表结构schema，复制组角色变化（这个可能频繁）
+
+copyset设定
+
+> copyset原理，划分了不同的隔离域，例如标准集群中，选取3个满足可用区标准的27台机器为一个管理单元，
+> 并且保证同一个AZ内的9台机器属于3个不同的机架，并根据机架关系，27台机器划分出9个升级域
+> 同一个Partition的不同副本一定分散在不同的升级域内，
+> 以此来保证在坏盘、死机、机架掉电以及机房故障等场景下，依然可以保证服务高可靠和高可用
+
+
+如何全局中心来调度？
+
+- 还是主动迁移被动迁移，raft副本坏了可以快速分配log复制模块，只保证日志正确就行，witness，可以不成为主，只要保证复制就行，节点恢复正常自动退出
+
+- 采集信息，根据访问密度分出几档，然后调度迁移/切主
+
+k8s信息 https://www.huweihuang.com/kubernetes-notes/code-analysis/kube-controller-manager/sharedIndexInformer.html
+
+
+## [Measuring Memory Subsystem Performance](https://johnnysswlab.com/measuring-memory-subsystem-performance/)
+
+介绍几种测量cache使用的工具
+
+代码在这 https://github.com/ibogosavljevic/johnysswlab/blob/master/2023-07-metrics/multithreading.cpp#L60
+
+工具是这个 https://github.com/RRZE-HPC/likwid
+
+## 重新考虑编码问题
+
+常规的kv编码就是TLV格式
+
+总长度 + key 长度 + key + value1长度 + value1 + value2长度 + value2
+
+
+对于kv引擎来说，key单独抠出来，value加上一些属性，比如version/ttl/子keysize 等等，也可以不需要size
+
+多个value怎么存？
+
+- 拆成hash模式，key链，穿起来，pika的编码层就是这样的
+    - metakey fieldkey -> value 类似TLV 是length value 模式  -> 放在后面也可以？更方便comparetor？不然compare得跳过开头的长度, 其实理论上差不多
+    - 兼容问题，是否需要编进去一个encode_type
+    - 是否需要分片hash？
+        - 是否需要slot级别的scan？这种scan其实对全局scan影响很大。我觉得不是很有必要，如果需要，编码里还得加个hashkey(int32)
+        - 更细粒度的分裂/合并，不过你理论上已经有了这个信息(路由)了，编到key里有点多此一举，除非你需要特别精细的力度，抓到热key然后把这个key对应的hashkey范围撕出来
+        - 对于range路由，完全没用
+- 编成巨长的一行，protobuf/fbs
