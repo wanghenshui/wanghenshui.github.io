@@ -13,5 +13,6 @@ sequenceDiagram
     Note over follower: 检查上一个log的term对应的index是否存在<br>如果存住但term不同，丢弃，不存在直接失败<br> 丢弃日志不应该放在RPC里，可以异步
     Note over follower: 比较/更新commitIndex
     follower-->>+leader: Response:<br>{term,success}
-    Note over leader: 只要大多数OK就可以返回<br>不用等所有follower
+    Note over leader: 只要大多数OK就可以返回<br>更新commitindex
+    Note over leader,follower: 更新applyindex<br>commitindex>=applyindex<br>apply可以是异步
     leader-->>+client: OP ok

@@ -1,31 +1,44 @@
 sequenceDiagram
+    leader->>+follower(s): HeartBeat
     leader->>+follower1: HeartBeat
-    leader->>+follower2: HeartBeat
     destroy leader
+    follower(s)-->>+leader: ok
     follower1-->>+leader: ok
-    follower2-->>+leader: ok
     Note over leader: 挂了
-    create participant candidate2
-    follower2->>+candidate2: 角色转换为candidate2
-    destroy follower2
-    candidate2-->>+follower2: ok
+    Note over follower1,follower(s): 心跳超时
     create participant candidate1
-    follower1->>+candidate1: 角色转换为candidate1
+    follower1->>+candidate1: 角色转换
     destroy follower1
-
     candidate1-->>+follower1: ok
-    candidate2->>+candidate1: PreVote
-    candidate1-->>+candidate2: ok
-    candidate2->>+candidate1: RequestVote:<br>{term,id,<br>lastlogterm,lastlogindex}
-    Note over candidate1: 检查term>currentTerm
-    Note over candidate1: 检查log的term是不是最新的
+    create participant candidate(s)
+    follower(s)->>+candidate(s): 角色转换
+    destroy follower(s)
+    candidate(s)-->>+follower(s): ok
+    alt 正常流程，先来后到
+        candidate1->>+candidate(s): PreVote
+        candidate(s)-->>+candidate1: ok
+        candidate1->>+candidate(s): RequestVote:<br>{term,id,<br>lastlogterm,lastlogindex}
+        Note over candidate(s): 检查term>currentTerm
+        Note over candidate(s): 检查log的term是不是最新的
+        candidate(s)-->>+candidate1: Response:<br>{term,voteGranted}
+    else 如果已经有节点成为了leader
+        candidate1->>+candidate1: 收到AppendEntity，判断term
+        alt term不大于当前term
+           Note over candidate1: 拒绝，继续选举
+        else term大于当前term
+            Note over candidate1: 成为follower
+        end
+    else 选举超时
+        candidate1->>+candidate1: 随机选择超时时间(2RTT),term++，重新发起选举
+    end
 
-    candidate1-->>+candidate2: Response:<br>{term,voteGranted}
     create participant newLeader as leader
-    candidate2->>+newLeader: 角色转换为新leader
-        create participant newFollower as follower1
-    candidate1->>+newFollower: 角色转换为follower1
-    destroy candidate2
-    newLeader-->>+candidate2: ok
+    candidate1->>+newLeader: 角色转换
+    create participant newFollower as follower(s)
+    candidate(s)->>+newFollower: 角色转换
     destroy candidate1
-    newFollower-->>+candidate1: ok
+    newLeader-->>+candidate1: ok
+    destroy candidate(s)
+    newFollower-->>+candidate(s): ok
+    newLeader->>+newFollower: HeartBeat
+    newFollower-->>+newLeader: ok
