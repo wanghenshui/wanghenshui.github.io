@@ -1,7 +1,31 @@
 sequenceDiagram
-    candidate->>+follower: PreVote
-    follower-->>+candidate: ok
-    candidate->>+follower: RequestVote:<br>{term,id,<br>lastlogterm,lastlogindex}
-    Note over candidate,follower: 检查term>currentTerm
-    Note over candidate,follower: 检查log的term是不是最新的
-    follower-->>+candidate: Response:<br>{term,voteGranted}
+    leader->>+follower1: HeartBeat
+    leader->>+follower2: HeartBeat
+    destroy leader
+    follower1-->>+leader: ok
+    follower2-->>+leader: ok
+    Note over leader: 挂了
+    create participant candidate2
+    follower2->>+candidate2: 角色转换为candidate2
+    destroy follower2
+    candidate2-->>+follower2: ok
+    create participant candidate1
+    follower1->>+candidate1: 角色转换为candidate1
+    destroy follower1
+
+    candidate1-->>+follower1: ok
+    candidate2->>+candidate1: PreVote
+    candidate1-->>+candidate2: ok
+    candidate2->>+candidate1: RequestVote:<br>{term,id,<br>lastlogterm,lastlogindex}
+    Note over candidate1: 检查term>currentTerm
+    Note over candidate1: 检查log的term是不是最新的
+
+    candidate1-->>+candidate2: Response:<br>{term,voteGranted}
+    create participant newLeader as leader
+    candidate2->>+newLeader: 角色转换为新leader
+        create participant newFollower as follower1
+    candidate1->>+newFollower: 角色转换为follower1
+    destroy candidate2
+    newLeader-->>+candidate2: ok
+    destroy candidate1
+    newFollower-->>+candidate1: ok
