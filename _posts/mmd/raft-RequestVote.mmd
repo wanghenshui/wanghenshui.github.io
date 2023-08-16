@@ -1,0 +1,7 @@
+sequenceDiagram
+    candidate->>+follower: PreVote
+    follower-->>+candidate: ok
+    candidate->>+follower: RequestVote:<br>{term,id,<br>lastlogterm,lastlogindex}
+    Note over candidate,follower: 检查term>currentTerm
+    Note over candidate,follower: 检查log的term是不是最新的
+    follower-->>+candidate: Response:<br>{term,voteGranted}

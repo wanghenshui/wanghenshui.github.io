@@ -1,0 +1,11 @@
+stateDiagram-v2
+    [*] --> Normal : transfer from other role to secondary
+    Normal -->  Error: set error
+    Error -->  Normal: reset
+    Normal -->  Recovery:load snapshot
+    Recovery -->  Normal:snapshot done
+    Recovery -->  Error: set error
+    Normal -->  Shutdown: shutdown
+    Error -->  Shutdown: shutdown
+    Uninitialized -->  Normal: startup
+    Shutdown -->  Uninitialized: cleanup

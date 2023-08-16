@@ -2,9 +2,124 @@
 layout: post
 title: blog review 第二十四期
 categories: [review]
-tags: [cos,juicefs,hlc,jemalloc,tlb,runbook,sql]
+tags: [B-Tree,scylladb]
 ---
 
 划水太严重要被开了
 
 <!-- more -->
+
+
+## [The Taming of the B-Trees](https://www.scylladb.com/2021/11/23/the-taming-of-the-b-trees/)
+
+https://github.com/scylladb/scylladb/blob/master/docs/dev/row_cache.md
+
+用std::map 来MVCC，二分快一些，但没有btree缓存友好，介绍了一些背景
+
+branch-free 二分  https://algorithmica.org/en/eytzinger 话说这个博客我一直没看完
+
+## [Cachelines and Striped Locks](https://packetlost.dev/blog/cachelines-and-striped-locks/)
+
+写了个分片锁，然后发现得加cachelinepad 避免false sharing
+
+## 内存使用高 磁盘IO延迟高
+
+page cache = /proc/meminfo Active(file) + Inactive(file) + Shmem + SwapCached 
+
+观察Active(file) + Inactive(file)占用，占用低说明内存不够用了，文件没法缓存，会发生内存驱逐
+
+cat /proc/vmstat |grep allocstall 观察数字
+
+##  网络流定位 https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf
+
+文档有点旧但是指引思路没啥问题
+
+- NIC网卡buffer  -> 硬中断 -> 软中断 -> app socket queue <- app
+
+cat /proc/interrupts 看硬件断，可以grep网卡 关注中断分布是否均匀  -> irqbalance?也可以自己控制亲和性
+
+cat /proc/softirqs 看软中断 可以grap TX RX看网卡   -> CPU负？是否快速处理了中断  sysctl -w net.core.netdev_budget=600 默认300
+
+cat /proc/net/softnet_stat 看第三列的数字
+
+- 常用工具
+
+netstat/ip/ethtool/ss/dropwatch
+
+netstat -s // 看错误
+
+ethtool -S eth1 // 看错误
+
+- setsockopt(SO_RCVBUF) 会覆盖系统socket buffer策略
+
+- 网卡流控暂停帧？没这个必要吧改动较大
+
+- 硬件中断合并
+
+ethtool -C eth1 延迟敏感的可以调小
+
+- 关闭自适应中断 
+
+```bash
+ethtool -C eth3 adaptive-rx off rx-usecs 0 rx-frames 0
+```
+
+- 协议栈前队列满 调整参数 
+
+```bash
+sysctl -w net.core.netdev_max_backlog=X
+```
+
+- RXTX Buffer 
+
+```bash
+ethtool -G eth1 rx 8192 tx 8192
+```
+
+- 传输队列调整 
+
+```bash
+ip link set dev eth1 txqueuelen 2000
+```
+
+- TCP CPU算力转移到网卡，比如TSO之类的
+
+```bash
+ethtool -K ethi
+```
+
+- TCP时间戳 
+
+```bash
+sysctl -w net.ipv4.tcp_timestamps = 1
+```
+
+- TCP SACK 可能有多余计算，取决于集群网络环境 
+
+```bash
+sysctl -w net.ipv4.tcp_sack=0
+```
+
+- TCP窗口缩放 
+
+```bash
+sysctl -w net.ipv4.tcp_window_scaling = 1 
+```
+
+- TCP rmem 
+
+```bash
+sysctl -w net.ipv4.tcp_rmem=“16384 349520 16777216”
+sysctl -w net.core.rmem_max=16777216
+```
+
+- TCP listen backlog
+
+```bash
+sysctl -w net.core.somaxconn = 128 
+sysctl -w net.core.somaxconn = 2048 
+sysctl -w net.core.somaxconn = 2048
+```
+
+- 改善 socket buffer溢出
+sysctl -w net.ipv4.tcp_adv_win_scale=1
