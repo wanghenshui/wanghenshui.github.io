@@ -1,0 +1,21 @@
+sequenceDiagram
+    client->>+leader: ChangeConfig
+    Note over leader: 当前配置C_old<br>新配置 C_new
+    leader-->>+follower: ChangeConfig C_{old,new}
+    opt leader 挂了
+        Note over follower: 当前配置 C_old <br>不会出现分裂情况
+    end
+    follower-->>+leader: ok
+    opt leader 挂了
+        Note over follower: 当前配置 C_{old,new}，C_old <br>不会出现分裂情况
+    end
+    leader-->>+follower: ChangeConfig C_new
+    opt leader 挂了
+        Note over follower: 当前配置 C_{old,new}，C_new <br>不会出现分裂情况
+    end
+    alt follower 不在 C_new
+        follower-->>+leader: ok
+        follower-->>+follower: shutdown
+    else 
+        follower-->>+leader: ok
+    end
