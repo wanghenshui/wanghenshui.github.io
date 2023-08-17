@@ -1,0 +1,28 @@
+sequenceDiagram
+    client->>+leader: Read
+    Note over leader: 当前term是否有commit<br>需要检查自己是leader<br>得等Noop落地
+    leader-->>+follower: Heartbeat
+    follower-->>+leader: ok
+    alt applyIndex >= ReadIndex
+        leader-->>+client: Read ok
+    else 需要等待apply
+        leader-->>+leader: apply 直到 applyIndex >= ReadIndex(commit index)
+    end
+    opt follower read
+        follower->>+leader: ReadIndex
+        leader-->>+follower:  ok
+        Note over follower: 同Leader <br>满足applyIndex >= ReadIndex(commit index)<br>就可以提供读
+        client->>+follower: Read
+        follower-->>+client: ok
+    end
+    opt quorum read
+        client->>+follower: 发起多个Read
+        alt 当前commit index已经更新
+            follower-->>+client: Read ok
+        else 需要等待commit index更新
+            leader-->>+follower: AppendEntries
+            follower-->>+leader: ok
+            follower-->>+client: ok
+        end
+        Note over client: 比较各个value，选最大的版本<br>有点像backup request/ensurecode?<br>避免readindex，通过多试几次来容错
+    end

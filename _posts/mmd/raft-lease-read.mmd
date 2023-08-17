@@ -1,0 +1,22 @@
+sequenceDiagram
+    client->>+leader: Read
+    Note over leader: 当前term是否有commit<br>需要检查自己是leader<br>得等Noop落地
+    loop heartbeat timeout
+        leader-->>+follower: Heartbeat
+        follower-->>+leader: ok
+    end
+    Note over leader: 根据心跳响应生成lease
+    alt lease没过期
+        alt applyIndex >= ReadIndex
+            leader-->>+client: Read ok
+        else 需要等待apply
+            leader-->>+leader: apply 直到 applyIndex >= ReadIndex(commit index)
+        end
+    else lease过期
+        loop heartbeat timeout
+            leader-->>+follower: Heartbeat
+            follower-->>+leader: ok
+        end
+        Note over leader: 根据心跳响应生成lease
+    end
+    leader-->>+client: Read ok
