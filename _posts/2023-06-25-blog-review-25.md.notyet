@@ -123,3 +123,51 @@ sysctl -w net.core.somaxconn = 2048
 
 - 改善 socket buffer溢出
 sysctl -w net.ipv4.tcp_adv_win_scale=1
+
+
+## [赌你看不懂：分布式存储系统的数据强一致性挑战 ](https://mp.weixin.qq.com/s?__biz=MzkwOTIxNDQ3OA==&mid=2247559920&idx=1&sn=3bb2ce818f7f31436c432b9bc1c6f827&chksm=c13dbc91f64a358779308d33f8d0a8f45b8fd14410fb6d614317a650d66ac29ed956704d3fc5&mpshare=1&scene=1&srcid=0930TF5nYGoLFMEzH2p4jD0g&sharer_sharetime=1633745034490&sharer_shareid=a3fe81261e7356e2d1292827f45ee833&version=3.1.16.5505&platform=win#rd)
+
+
+- 你是否遇到过数据越删越多或者已经删除了很多数据但是空间长时间不能释放的问题呢？
+
+我们知道 RocksDB 的删除操作其实只是写入了一个 tombstone 标记，而这个标记往往只有被 compact 到最底层才能被丢掉的。
+所以这里的问题很可能是由于层数过多或者每一层之间的放大系数不合理导致上面的层的 tombstone 不能被推到最底层。
+这时候大家可以考虑开启 level_compaction_dynamic_level_bytes这个参数来解决。
+
+
+- 你是否遇到过 iterator 的抖动导致的长尾问题呢？
+
+这个可能是因为 iterator 在释放的时候需要做一些清理工作的原因，尝试开启 avoid_unnecessary_blocking_io 来解决。
+
+- 你是否遇到过 ingest file 导致的抖动问题？
+
+在 ingest file 的过程中，RocksDB 会阻塞写入，所以如果 ingest file 的某些步骤耗时很长就会带来明显的抖动。
+
+例如如果 ingest 的 SST 文件跟 memtable 有重叠，则需要先把 memtable flush 下来，而这个过程中都是不能写入的。
+
+所以为了避免这个抖动问题，我们会先判断需要 ingest 的文件是否跟 memtable 有重叠，
+
+如果有的话会在 ingest 之前先 flush，等 flush 完了再执行 ingest。而这个时候 ingest 之前的 flush 并不会阻塞写，所以也就避免了抖动问题。
+
+- 你是否遇到过某一层的一个文件跟下一层的一万个文件进行 compaction 的情况呢？
+
+RocksDB 在 compaction 生成文件的时候会预先判断这个文件跟下一层有多少重叠，
+
+来避免后续会产生过大的 compaction 的问题。然而，这个判断对 range deletion 是不生效的，
+
+所以有可能会生成一个范围非常广但是实际数据很少的文件，那么这个文件再跟下一层 compact 的时候就会涉及到非常多的文件，
+
+这种 compaction 可能需要持续几个小时，期间所有文件都不能被释放，磁盘很容易就满了。由于我们需要 delete range 的场景很有限，
+
+所以目前我们通过 delete files in range + scan + delete 的方式来替换 delete range。虽然这种方式比 delete range 开销更大，但是更加可控。
+
+虽然也可以通过 compaction filter 来进一步优化，但是实现比较复杂，我们暂时没有考虑
+
+
+## [从 perftune.py 说起 ](https://blog.k3fu.xyz/seastar/2022/09/03/seastar-perftune.html)
+
+介绍网卡绑定亲和性的，有点意思
+
+## [io_uring + Seastar](https://blog.k3fu.xyz/seastar/2022/10/03/iouring-seastar.html)
+
+这哥们对seastar io_uring理解挺深的

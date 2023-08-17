@@ -1,5 +1,6 @@
 sequenceDiagram
     client->>+leader: ChangeConfig
+    Note over leader: 需要保证变更是唯一的
     Note over leader: 当前配置C_old<br>新配置 C_new
     leader-->>+follower: ChangeConfig C_{old,new}
     opt leader 挂了

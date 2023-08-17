@@ -8,4 +8,6 @@ flowchart LR
     Leader --> |发现更高的term|Follower
     Candidate --> |发现新的term<br>发现新的leader|Follower
     Leader --- |读写扩散|Learner
+    Follower --- |读写扩散|Learner
+    Learner --- |读写扩散|Learner
     Learner <--> |角色转换|Follower
