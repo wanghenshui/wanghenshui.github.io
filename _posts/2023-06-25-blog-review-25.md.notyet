@@ -171,3 +171,7 @@ RocksDB 在 compaction 生成文件的时候会预先判断这个文件跟下一
 ## [io_uring + Seastar](https://blog.k3fu.xyz/seastar/2022/10/03/iouring-seastar.html)
 
 这哥们对seastar io_uring理解挺深的
+
+## [Evaluating SIMD Compiler-Intrinsics for Database Systems](https://lawben.com/publication/autovec-db/)
+
+编译器帮忙优化SIMD，而不是自己手写SIMD
