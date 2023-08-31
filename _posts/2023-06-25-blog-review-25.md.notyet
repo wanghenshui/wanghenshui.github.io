@@ -175,3 +175,9 @@ RocksDB 在 compaction 生成文件的时候会预先判断这个文件跟下一
 ## [Evaluating SIMD Compiler-Intrinsics for Database Systems](https://lawben.com/publication/autovec-db/)
 
 编译器帮忙优化SIMD，而不是自己手写SIMD
+
+## [Alex Gallego — Co-designing Raft + thread-per-core execution model for the Kafka-API](https://www.youtube.com/watch?v=JPTt1ny67x4&ab_channel=Hydra)
+
+ppt https://assets.ctfassets.net/oxjq45e8ilak/4tsyJRt4PCecrG78b0wESv/a623a848945e878f4a385eb9ce8c4ec7/hydraconf_-_alex_gallego_-_2021.pdf
+
+很有意思。fdatasync tls，各种设计省share/拷贝
