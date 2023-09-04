@@ -181,3 +181,15 @@ RocksDB 在 compaction 生成文件的时候会预先判断这个文件跟下一
 ppt https://assets.ctfassets.net/oxjq45e8ilak/4tsyJRt4PCecrG78b0wESv/a623a848945e878f4a385eb9ce8c4ec7/hydraconf_-_alex_gallego_-_2021.pdf
 
 很有意思。fdatasync tls，各种设计省share/拷贝
+
+## [PolygonStore，一款“业务驱动”而生的 NoSQL 多模数据库产品 ](https://mp.weixin.qq.com/s/gmB1ZFyQcYa3eKDwf3HQlg?version=4.1.9.6012&platform=win)
+
+真多模，我脑子里想的多模就这样的
+
+
+## [The Hallucinated Rows Incident](https://medium.com/epsio-blog/the-hallucinated-rows-incident-c42e2f4bb71f)
+
+他们实现了一个differentflow的玩意，然后底层数据库是rocksdb。 rocksdb存的都是string，来排序
+
+上层的数据rocksdb没捞出来，排序模式不同导致
+
