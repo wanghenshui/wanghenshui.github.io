@@ -1,0 +1,22 @@
+---
+layout: post
+title: blog review 第二十六期
+categories: [review]
+tags: [B-Tree,scylladb,rocksdb]
+---
+
+整理印象笔记，印象笔记的数据得搬走了。
+
+唉，整理印象笔记中剪藏的网页，发现有些已经变成黄网了
+
+<!-- more -->
+
+
+## [又见CLOSE_WAIT ](https://mp.weixin.qq.com/s?__biz=MzI4MjA4ODU0Ng==&mid=402163560&idx=1&sn=5269044286ce1d142cca1b5fed3efab1&3rd=MzA3MDU4NTYzMw==&scene=6#rd)
+
+## [一种能高速查找的自适应哈希表](https://zhuanlan.zhihu.com/p/55829473)
+
+感觉见过这个点子 SIMD加速
+
+这个场景主要面向的是key有特征的
+
