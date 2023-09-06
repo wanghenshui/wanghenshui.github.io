@@ -1,0 +1,20 @@
+sequenceDiagram
+    client->>+server: syn
+    Note over client: SYN_SENT
+    server->>+client: syn+ack
+    Note over server: SYN_RCVD
+    Note over client: Established
+    client->>+server: ack
+    Note over server: Established
+    Note over client,server: Session
+    client->>+server: fin
+    Note over client: FIN_WAIT_1
+    server->>+client: ack
+
+    Note over server: CLOSE_WAIT
+    Note over client: FIN_WAIT_2
+    server->>+client: fin
+    Note over server: LAST_ACK
+    Note over client: TIME_WAIT
+    client->>+server: ack
+    Note over client,server: Closed

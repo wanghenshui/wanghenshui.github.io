@@ -66,6 +66,8 @@ tags: [lsm,hashtable,blobdb, titandb, fasterkv, rocksdb, terarkdb, wisckey, Bour
 
 这里看代码，简单过一下读写/垃圾回收流程, 没有delete
 
+注意这是6.22版本，新版本应该实现了根据空洞率重写log
+
 ### 写
 
 - `BlobDBImpl::Put`/`BlobDBImpl::PutUntil`

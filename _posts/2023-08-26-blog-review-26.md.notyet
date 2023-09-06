@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第二十六期
 categories: [review]
-tags: [B-Tree,scylladb,rocksdb]
+tags: [hashtable,tcp,rocksdb,pg,redis,fsync]
 ---
 
 整理印象笔记，印象笔记的数据得搬走了。
@@ -12,11 +12,75 @@ tags: [B-Tree,scylladb,rocksdb]
 <!-- more -->
 
 
-## [又见CLOSE_WAIT ](https://mp.weixin.qq.com/s?__biz=MzI4MjA4ODU0Ng==&mid=402163560&idx=1&sn=5269044286ce1d142cca1b5fed3efab1&3rd=MzA3MDU4NTYzMw==&scene=6#rd)
-
 ## [一种能高速查找的自适应哈希表](https://zhuanlan.zhihu.com/p/55829473)
 
 感觉见过这个点子 SIMD加速
 
 这个场景主要面向的是key有特征的
 
+## [Redis 高负载下的中断优化](https://tech.meituan.com/2018/03/16/redis-high-concurrency-optimization.html)
+
+防止跨numa 亲和性绑定/中断划分
+
+## [页错误引发的 Redis 延迟](https://www.xgugeng.com/zh/post/redis-anomalous-latency-because-of-page-fault/)
+
+pagecache不够？pagecache没用上？IO影响pagecache？
+
+## FloatInfo在线演示
+
+https://mserdarsanli.github.io/FloatInfo/
+
+
+## [Explaining The Postgres Meme](https://www.avestura.dev/blog/explaining-the-postgres-meme)
+
+fsync使用错误这个比较经典 https://www.postgresql.org/message-id/flat/CAMsr%2BYHh%2B5Oq4xziwwoEfhoTZgr07vdGG%2Bhu%3D1adXx59aTeaoQ%40mail.gmail.com
+
+fsync失败就应该退出，不能重试，重试不代表上次失败的fsync是成功的
+
+当然后面其他数据库也正确的处理了  https://github.com/wiredtiger/wiredtiger/commit/ae8bccce3d8a8248afa0e4e0cf67674a43dede96
+
+
+## [MySQL · 引擎特性 · B+树并发控制机制的前世今生 ](http://mysql.taobao.org/monthly/2018/09/01/)
+
+写的真好
+
+## [又见CLOSE_WAIT ](https://mp.weixin.qq.com/s?__biz=MzI4MjA4ODU0Ng==&mid=402163560&idx=1&sn=5269044286ce1d142cca1b5fed3efab1&3rd=MzA3MDU4NTYzMw==&scene=6#rd)
+
+简单说就是业务写的有问题，请求使用的连接没及时释放，都卡在close wait了。
+
+
+回忆一下
+
+{% include_relative mermaid.html source="mmd/tcp-flow.mmd" %}
+
+{% include_relative mermaid.html source="mmd/tcp-flow2.mmd" %}
+
+这种是对端主动关闭，对端挂了，对端超时主动断开
+
+但close wait是转瞬即逝的，只要主调调用close，为什么能剩这么多？
+
+大批量的连接被断开，但是主调卡住了，没close，现象就是一堆close_wait
+
+
+## [FoundationDB论文解读 A Distributed Unbundled Transactional Key Value Store](https://developer.aliyun.com/article/789942)
+
+- 总体的架构是松耦合的，分为control plane + data plane
+    - control plane负责系统的管理和监控，使用active disk paxos 来存储系统metadata。
+    - data plane负责用户+系统数据的存储，其中事务管理系统负责写路径，storage系统负责读路径，是解耦的，可以各自独立扩展。
+- 利用OCC + MVCC的策略来实现串行化事务。
+- 使用failure -> restart -> recovery的策略来处理failure，即快速失败快速恢复。
+- 采用了类似Aurora的log is database的思路，对log进行多副本同步复制，是一种特例的quorum，所有副本都同步落盘，才认为提交成功，才能返回客户端！因此f+1个副本，最多可允许f个失效。
+
+
+## [打造千亿文件量级的大规模分布式文件系统](https://zhuanlan.zhihu.com/p/653098255)
+
+看看取舍
+
+感觉cephfs还是利用不好
+
+## [Google Percolator事务](https://zhuanlan.zhihu.com/p/53197633)
+
+
+看起来不难
+
+{% include_relative mermaid.html source="mmd/precolater.mmd" %}

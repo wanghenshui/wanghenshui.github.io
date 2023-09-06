@@ -1,0 +1,45 @@
+sequenceDiagram
+    client->>+timer: get start_ts
+    timer-->>+client: ok
+    Note over client: 从提交的key中选取pk sk
+    client->>+servers: prewrite
+    alt 写写冲突检查 key的commit_ts < start_ts 
+    servers-->>+client: WriteConflict
+    else key已经锁上了
+    servers-->>+client: KeyIsLock
+    else
+    Note over servers: 锁key 写lock cf{start_ts,key,pk_ref}<br>pk_ref pk存pk sk存pk的指向信息
+    Note over servers: 写data {key,start_ts,value}
+    servers-->>+client: ok
+    end
+
+    client->>+timer: get commit_ts
+    timer-->>+client: ok
+    client->>+servers: commit 先发给pk节点
+    alt 检查keylock合法性
+    servers-->>+client: KeyLockError
+    else
+    Note over servers: 写 write cf {key,commit_ts,start_ts}<br> 写写冲突使用
+    Note over servers: 释放锁, 删除lock cf
+    servers-->>+client: ok
+    end
+    client->>+servers: commit 异步发给其他sk节点
+
+    client->>+servers: read key
+    Note over servers: 从 write cf拿到最近的start_ts<br> 拼成新key去data cf里捞
+    opt 冲突事务的锁是否存在？
+        alt 当前节点是冲突事务的pk节点
+            Note over servers: 冲突事务的锁存在<br>冲突事务已经失败则清理锁<br>不存在就不冲突
+        else
+            Note over servers: 找到冲突事务的pk节点，判断锁是否存在
+            alt 冲突事务的pk锁不存在
+            Note over servers: 说明事务已经成功<br>需要在当前节点继续事务<br>写data cf {key,start_ts,value}
+            else 冲突事务的pk锁存在
+            Note over servers: 说明事务已经失败<br>清理锁
+            end
+        end
+    end
+    alt 检查key在start_ts之前是否有锁
+    Note over client: 等待
+    end
+    servers-->>+client: key + start_ts => value
