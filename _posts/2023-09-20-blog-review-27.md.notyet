@@ -2,7 +2,7 @@
 layout: post
 title: blog review 第二十七期
 categories: [review]
-tags: []
+tags: [cache]
 ---
 
 面向离职编程，把你每一行代码，每个文档，都当做离职交接文档。配置文件的详细描述，代码的打包，部署，
@@ -14,3 +14,24 @@ https://www.zhihu.com/question/68611994/answer/298467553
 
 <!-- more -->
 
+## [FIFO queues are all you need for cache eviction](https://blog.jasony.me/system/cache/2023/08/01/s3fifo)
+
+
+感觉就是2Q的一种变种 代码在这 https://github.com/Thesys-lab/sosp23-s3fifo/blob/main/libCacheSim/libCacheSim/cache/eviction/S3FIFO.c
+
+
+
+
+
+## [Omid Transaction Processing](https://zhuanlan.zhihu.com/p/34764376)
+
+TODO
+
+## [Integrate YugabyteDB Logs into Splunk for Comprehensive Monitoring and Analysis](https://www.yugabyte.com/blog/get-data-in-splunk/)
+
+TODO
+
+
+## [Data Replication in YugabyteDB](https://www.yugabyte.com/blog/data-replication/)
+
+TODO
