@@ -1,0 +1,15 @@
+sequenceDiagram
+    NOte over Pi: Initiating a snapshot
+    Pi->>Pi: 创建snapshot
+    Pi->>Pj: 发送marker
+    Pi->>Pi: 记录收到的信息
+
+    Pj-->>Pi: 收到marker
+    alt Pj还没创建snapshot
+        NOte over Pj: 创建snapshot<br>清空接收channel的信息<br>已经保存了
+        Pj-->>Pi: 发送marker
+    else
+        NOte over Pj: 记录收到marker前信息<br>便于崩溃回放
+        Pj-->>Pi: ok
+    end
+    NOte over Pi,Pj: Terminating a snapshot <br> 所有节点都收到了marker<br>且记录好了信息

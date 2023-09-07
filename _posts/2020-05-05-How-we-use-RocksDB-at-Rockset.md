@@ -4,15 +4,9 @@ title: rockset是如何使用rocksdb的
 categories: [database]
 tags: [rocksdb,tuning]
 ---
-
-
 ---
 
- 
-
 > 20211210 他们的rocksdb开源了。有时间看看 https://github.com/rockset/rocksdb-cloud
-
-
 
 rockset 是一个db服务提供商，他们用rocksdb来实现converged indexing 我也不明白是什么意思，在参考链接2有介绍，大概就是有一个文档，保存成行，成列，成index，他们大量采用的rocksdb
 
@@ -22,13 +16,11 @@ rockset 是一个db服务提供商，他们用rocksdb来实现converged indexing
 
 用户创建一个表会分成N个分片，每个分片有两个以上副本，每个分片副本放在一个rocksdb 叶节点上，每个叶节点有很多表的众多副本（他们的线上环境有一百多个），一个叶节点的一个分片副本有一个rocksdb实例，更多细节看参考链接34
 
-
-
 下面是他们的优化手段
 
 ##### rocksdb-cloud
 
-rocksdb本身是嵌入式数据存储，本身不高可用，Rocksset做了rocksdb-cloud，基于S3来实现高可用
+rocksdb本身是嵌入式数据存储，本身不高可用，Rockset做了rocksdb-cloud，基于S3来实现高可用
 
 ##### 禁止WAL
 
@@ -52,8 +44,6 @@ rocksdb本身是嵌入式数据存储，本身不高可用，Rocksset做了rocks
 AdvancedColumnFamilyOptions::level_compaction_dynamic_level_bytes = true
 ```
 
-
-
 ##### Shared Block Cache
 
 这个是经验了，一个应用内，共用同一个blockcache，这样内存利用更可观
@@ -62,29 +52,19 @@ rockset使用25% 的内存来做block cache，故意留给系统page cache一部
 
 参考链接6的论文也有介绍
 
-
-
 ##### L0 L1层不压缩
 
 L0 L1层文件compact带来的优势不大，并且 L0 compact到L1层需要访问L1的文件，范围扫描也利用用不上L0的bloom filter 压缩白白浪费cpu
 
 rocksdb 团队也推荐L0 L1不压缩，剩下的用LZ4压缩
 
-
-
 ##### bloom filter on key prefix
 
-这和rockset的设计有关， 每个文档的每个字段都保存了三种方式（行，列，索引），这就是三种范围，所以查询也得三种查法，不用点查，用前缀范围查询，所以`BlockBasedTableOptions::whole_key_filtering` to false，这样bloomfilter也会有问题，所以定制了ColumnFamilyOptions::prefix_extractor，针对特定的前缀来构造bloom filter
-
-
+这和rockset的设计有关， 每个文档的每个字段都保存了三种方式（行，列，索引），这就是三种范围，所以查询也得三种查法，不用点查，用前缀范围查询，所以 `BlockBasedTableOptions::whole_key_filtering` to false，这样bloomfilter也会有问题，所以定制了ColumnFamilyOptions::prefix_extractor，针对特定的前缀来构造bloom filter
 
 ##### iterator freepool 迭代器池子
 
 大量的范围查询创建大量的iterator，这是很花费性能的，所以有iterator 池，尽可能复用
-
-
-
-
 
 综上，配置如下
 
@@ -109,8 +89,6 @@ ColumnFamilyOptions.prefix_extractor: CustomPrefixExtractor
 ColumnFamilyOptions.compression_opts.max_dict_bytes: 32768
 ```
 
-
-
 ### ref
 
 1. https://rockset.com/blog/how-we-use-rocksdb-at-rockset/
@@ -120,7 +98,4 @@ ColumnFamilyOptions.compression_opts.max_dict_bytes: 32768
 5. https://rocksdb.org/blog/2015/07/23/dynamic-level.html
 6. http://cidrdb.org/cidr2017/papers/p82-dong-cidr17.pdf
 
-
-
 ---
-
