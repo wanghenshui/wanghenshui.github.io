@@ -1,9 +1,9 @@
 stateDiagram-v2
     Closed --> Listen
-    Closed --> SYN_SENT
-    SYN_SENT --> Established
     Listen --> SYN_RCVD
     SYN_RCVD --> Established
+    Closed --> SYN_SENT
+    SYN_SENT --> Established
     Established --> FIN_WAIT_1
     FIN_WAIT_1 --> FIN_WAIT_2
     FIN_WAIT_2 --> TIME_WAIT
