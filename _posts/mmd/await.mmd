@@ -1,0 +1,9 @@
+flowchart TD
+
+    aw{await_ready?}
+
+    aw ---->|true| ar[await_resume]
+
+    aw -->|false| as[await_suspend]
+
+    as -->|Resume| ar
