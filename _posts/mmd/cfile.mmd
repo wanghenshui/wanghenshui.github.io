@@ -1,0 +1,16 @@
+flowchart LR
+    A[Table] -->B(Tablet)
+    A--> B1(Tablet)
+    A--> B2(Tablet)    
+    B --> C(RowSet)
+    B --> C1(RowSet)
+    B --> C2(RowSet)
+    C --> D[MemRowSet]
+    D --> E0[CFile]
+    C --> E1[DiskRowSet]
+    C --> E[DiskRowSet]
+    E --> F[Adhoc Index]
+    E --> G[Filter]
+    E --> H[Base]
+    E --> I[Undo]
+    E --> J[Redo]
