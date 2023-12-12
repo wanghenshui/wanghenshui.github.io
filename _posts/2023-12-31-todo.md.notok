@@ -28,7 +28,9 @@ todo
 
 ## [50 years later, is Two-Phase Locking the best we can do? ](http://concurrencyfreaks.blogspot.com/2023/09/50-years-later-is-two-phase-locking.html)
 
+给2pl加了个wait-free转移，叫2plsf 代码 https://github.com/pramalhe/2PLSF/blob/main/stms/2PLSF.hpp
 
+这哥们博客有点东西
 
 ## [Paper Reading: TRIAD, a Key-Value Store](https://zhuanlan.zhihu.com/p/54686913)
 
