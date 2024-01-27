@@ -130,9 +130,10 @@ sudo systemctl suspend
 ```
 
 
-唤醒触发机器 mac，装一个wakeonlan，ip 192.168.3.2 （需要在同一个内网）
+唤醒触发机器，ip 192.168.3.2 （需要在同一个内网）需要装一个wakeonlan
 
-执行唤醒，以下两个命令均可以
+执行唤醒，以下两个命令均可以，注意mac ip填前面自己查到的信息
+
 ```bash
 wakeonlan -i 192.168.3.22  70:70:fc:01:02:24
 #wakeonlan  70:70:fc:01:02:24
@@ -143,3 +144,7 @@ wakeonlan -i 192.168.3.22  70:70:fc:01:02:24
 时间感觉长以前是按按钮，开机，现在是唤醒，开机，等待登陆，开机时间给人一种唤醒很慢的错觉
 
 挺好用的，懒狗可以不点开机按钮了
+
+### 参考文档
+
+- https://necromuralist.github.io/posts/enabling-wake-on-lan/
