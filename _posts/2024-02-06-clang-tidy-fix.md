@@ -2,7 +2,7 @@
 layout: post
 title: clang-tidy auto fix 折腾记录
 categories: [language]
-tags: []
+tags: [clang]
 ---
 
 
