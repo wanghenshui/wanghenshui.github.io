@@ -33,14 +33,23 @@ block checksum mismatch
 - rocksdb的论文 https://blog.mwish.me/2023/01/22/Fast21-RocksDB/ 还是备份。数据损坏是一种必然
 
 > RocksDB 面临着下面的错误：
+> 
 >    SSD 盘故障  由于性能原因，用户可能不会开启 DIF/DIX 等校验方式
+> 
 >    内存 / CPU 故障：发现原因较少，不过我姑且也碰到过几次
+> 
 >    软件故障
+> 
 >    网络传输的时候产生的问题（网卡等）
+> 
 > 根据 RocksDB 的统计
+> 
 >     在 FB，每 100PB 数据，一个月会出现三次 corrupt
+> 
 >     40% 的情况下，这些 Corrupt 已经扩散到了别的机器上
+> 
 >     网络系统可能会有每 PB 17次 checksum mismatch
+> 
 > 基于以上的情况，FB 认为，需要尽早找到 Corrupt，来减少因为 Corrupt 产生的 Downtime。在分布式系统中，还是能够用正确副本代替错误副本来修正数据的
 
 注意这个数据，在公有云场景下，概率还得翻倍吧
