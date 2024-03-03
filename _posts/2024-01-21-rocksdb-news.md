@@ -1,16 +1,14 @@
 ---
 layout: post
-title: 2024-0101-0121 rocksdb 社区新闻
+title: 2024一月rocksdb动态
 categories: [database]
 tags: [rocksdb]
 ---
-最近搞了个rocksdb每周动态更新！网址在这里 https://wanghenshui.github.io/rocksdb-doc-cn/
+最近搞了个rocksdb每周(也许是每月)动态更新！网址在这里 https://wanghenshui.github.io/rocksdb-doc-cn/
 
 每周的新改动也放博客一份 https://wanghenshui.github.io/rocksdb-doc-cn/commit/2024-01-21.html
 
-
-
-`<!-- more -->`
+<!-- more -->
 
 一些java api增强/工具增强/代码cleanup就不列举了
 
