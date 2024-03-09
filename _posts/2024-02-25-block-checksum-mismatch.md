@@ -70,5 +70,6 @@ block checksum mismatch
 
 
 其他挽救方案 
+- ldb --repair 扫除故障文件
 - https://github.com/facebook/rocksdb/pull/6955 重建sst，没合入
 - ajkr说有unsafe_remove_sst_file可以用，需要测试，这里标记TODO
