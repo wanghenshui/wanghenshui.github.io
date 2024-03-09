@@ -71,7 +71,7 @@ PPT在这里 https://asktug.com/t/topic/1022494/37?replies_to_post_number=1
 
 数据同步
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup5.png">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup5.png" width="100%">
 
 问题
 - 卡顿检测不到
@@ -79,7 +79,7 @@ PPT在这里 https://asktug.com/t/topic/1022494/37?replies_to_post_number=1
 - 空间异常GC不及时 时间分区表 定期删
 - leader频繁抖动，region太多了 监控region个数
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup6.png">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup6.png" width="100%">
 
 raft-engine是bitcask，可能顶不住大量热点写吧，批量写没有rocksdb好
 
@@ -89,11 +89,11 @@ raft-engine是bitcask，可能顶不住大量热点写吧，批量写没有rocks
 
 介绍多租户设计，都在抄CosmosDB
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup7.png">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup7.png" width="100%">
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup8.png">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup8.png" width="100%">
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup9.png">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup9.png" width="100%">
 
 隔离/细分，削峰填谷
 
@@ -106,7 +106,7 @@ raft-engine是bitcask，可能顶不住大量热点写吧，批量写没有rocks
 
 ## 彩蛋
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup4.jpg">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup4.jpg" width="100%">
 
 这哥们比较幽默
 
@@ -124,8 +124,8 @@ raft-engine是bitcask，可能顶不住大量热点写吧，批量写没有rocks
 
 吃得很饱，下回还来
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup1.jpg">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup1.jpg" width="50%">
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup2.jpg">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup2.jpg" width="50%">
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup3.jpg">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup3.jpg" width="50%">
