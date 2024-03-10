@@ -124,8 +124,4 @@ raft-engine是bitcask，可能顶不住大量热点写吧，批量写没有rocks
 
 吃得很饱，下回还来
 
-<img src="https://wanghenshui.github.io/assets/tidb-meetup1.jpg" width="50%">
-
-<img src="https://wanghenshui.github.io/assets/tidb-meetup2.jpg" width="50%">
-
-<img src="https://wanghenshui.github.io/assets/tidb-meetup3.jpg" width="50%">
+<img src="https://wanghenshui.github.io/assets/tidb-meetup1.jpg" width="30%"><img src="https://wanghenshui.github.io/assets/tidb-meetup2.jpg" width="30%"><img src="https://wanghenshui.github.io/assets/tidb-meetup3.jpg" width="30%">
