@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [译]Debugging a futex crash
+title: 译-Debugging a futex crash
 categories: [languages]
 tags: [asm,c++]
 ---
