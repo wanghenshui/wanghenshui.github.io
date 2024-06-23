@@ -4,6 +4,9 @@ title: popcnt也能向量化？
 categories: [language]
 tags: []
 ---
+
+本文由群友共同头脑风暴提供灵感，感谢mwish等群友
+
 <!-- more -->
 
 popcnt指令本身也支持sse向量化了，但如果序列非常大 popcnt只能处理8B，怎么办
