@@ -45,7 +45,9 @@ void avx512_popcnt_epi64(const uint64_t *input, uint64_t *output, size_t size) {
 
 但很多硬件是不支持avx512的~~(比如arm)~~, 怎么办？模拟，只需要avx2就行
 
-## [Faster Population Counts Using AVX2 Instructions](https://arxiv.org/pdf/1611.07612)
+但数字大于512呢，怎么拆分呢？
+
+## Harley-Seal算法 和 [Faster Population Counts Using AVX2 Instructions](https://arxiv.org/pdf/1611.07612)
 
 如果没有avx512也可以avx2的话类似_mm256_shuffle_epi8也可以利用上
 
@@ -95,12 +97,9 @@ uint64_t harley_seal ( uint64_t * d , size_t size ) {
 }
 ```
 
-当然如果是avx2
-
-就是这样
 这个算法可以三个数驱动，那自然可以pipeline话 另外这个CSA也可以用avx2或者avx512重写
 
-比如
+比如 avx2
 
 ```cpp
 #include <immintrin.h>
