@@ -2,9 +2,8 @@
 layout: post
 title: popcnt也能向量化？
 categories: [language]
-tags: []
+tags: [asm,popcnt]
 ---
-
 本文由群友共同头脑风暴提供灵感，感谢mwish等群友
 
 [之前聊过一篇](https://wanghenshui.github.io/2024/02/03/popcnt.html) 这是补充
@@ -27,6 +26,7 @@ int count ( uint64_t x) {
     return v;
 }
 ```
+
 当然编译器会优化成popcnt
 
 ## 考虑avx512，这个足够大了吧
