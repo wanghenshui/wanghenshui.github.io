@@ -10,7 +10,7 @@ popcnt指令本身也支持sse向量化了，但如果序列非常大 popcnt只�
 
 直观的方法就是把序列按照8B拆开，分段popcnt，或者，向量化？大块？
 
-回忆一下上一篇，把count放在这里
+回忆一下popcnt实现
 
 ```cpp
 int count ( uint64_t x) {
