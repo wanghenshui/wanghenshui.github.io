@@ -1,7 +1,7 @@
 ---
 layout: post
 title: cache warm一例
-categories:[language]
+categories: [language]
 tags: [cache,mm]
 ---
 原文
