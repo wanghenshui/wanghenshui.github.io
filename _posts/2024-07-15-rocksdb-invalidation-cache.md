@@ -36,4 +36,12 @@ rocksdb本身没有这种信息输入接口，只能根据blockcache存在过这
 显然是业务驱动
 
 
-###
+### AC-Key: Adaptive Caching for LSM-based Key-Value Stores
+
+blockcache改成cache key/cache adderss并且2Q策略维护
+
+有个公式判定，较复杂
+
+实现难度也比较大
+
+如果考虑单独做一个2Q cache放在业务上层，外部数据导入就扫一遍 cache上，实现更简单
