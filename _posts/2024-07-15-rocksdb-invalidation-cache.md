@@ -12,13 +12,25 @@ tags: [rocksdb]
 
 结论:上层加row cache绕过
 
-rocksdb本身不好解决这个问题，rocksdb rowcache有兼容性问题(deleterange breaking ,v9)，不能用
+rocksdb本身不好解决这个问题，太业务了
+
+另外 rocksdb rowcache有兼容性问题(deleterange breaking ,v9)，不能用
 
 
 <!-- more -->
 
+### LSbM-tree: Re-enabling Buffer Caching in Data Management for Mixed Reads and Writes
 
-结论 本身rocksdb信息不足以感知这些。这种太业务了，应该业务来搞
+维护一个compaction buffer https://nan01ab.github.io/2018/07/FD-tree-and-LSbM-tree.html
+
+
+###  X-Engine: An Optimized Storage Engine for Large-scale E-commerce Transaction Processing
+
+改进LSM Row Cache缓存热点行
+
+减少Compaction的粒度；减少Compaction过程中改动的数据；Compaction过程中针对已有的缓存数据做定点更新（增量替换）
+
+
 
 ### Leaper: a learned prefetcher for cache invalidation in LSM-tree based storage engines
 
@@ -40,8 +52,24 @@ rocksdb本身没有这种信息输入接口，只能根据blockcache存在过这
 
 blockcache改成cache key/cache adderss并且2Q策略维护
 
-有个公式判定，较复杂
+有个公式判定，较复杂 https://linqy71.github.io/2020/12/22/AC-Key/
 
 实现难度也比较大
 
 如果考虑单独做一个2Q cache放在业务上层，外部数据导入就扫一遍 cache上，实现更简单
+
+## 特殊的cache设计
+
+### FrozenHot Cache: Rethinking Cache Management for Modern Hardware
+
+我之前有个类似想法 FastCHD + 动态hashmap 定期重构
+
+感觉内存不可控
+
+另外cache的其他问题就不展开了，另一个话题
+
+## 加兜底
+
+### SAS-Cache: A Semantic-Aware Secondary Cache for LSM-based Key-Value Stores
+
+blockcache miss了，磁盘swap再撑一下，最后查FS/S3
