@@ -1,16 +1,38 @@
 ---
 layout: post
-title: coroutine
-categories: [language]
-tags: [coroutine]
+title: 15445
+categories: [database]
+tags: [cmu]
 ---
 
-https://gist.github.com/MattPD/9b55db49537a90545a90447392ad3aeb?permalink_comment_id=3530302#talks
-
-汇总了一些资料。整体看一遍。加深理解
 
 <!-- more -->
 
-## 
+## page
+
+### 管理page
+
+- Heap File Organization
+    - 链表
+- Sequential/Sorted File Organization
+- Hashing File Organization
+
+### page布局
+
+Header + data
+
+Header
+
+- pagesize
+- checksum
+- version
+- txn？
+- compression
+
+data
+
+- append？
+    - slot array + tuple 反向汇集
+    - LSM op + log
 
 
