@@ -431,6 +431,39 @@ https://github.com/DigitalChinaOpenSource/TiDB-for-PostgreSQL
 
 https://github.com/baidu/braft.git braft的文档值得读一下
 
+
+braft todo
+
+braft
+
+https://wine93.gitbook.io/learn-raft/ch06/change_leader
+
+curve https://my.oschina.net/u/4565392/blog/5519430
+https://zhuanlan.zhihu.com/p/333884273
+https://zhuanlan.zhihu.com/p/505366980
+https://zhuanlan.zhihu.com/p/336674195
+https://yriuns.github.io/2022/01/08/braft-in-action/
+
+https://zhuanlan.zhihu.com/p/169840204
+
+https://zhuanlan.zhihu.com/p/169904153
+
+把braft 知乎文章看一遍
+
+https://github.sheincorp.cn/baidu/braft/issues/ 332 有bug？
+
+https://steinslab.io/archives/2605 metric
+https://luobuda.github.io/2023/01/07/Work-Review/
+https://luobuda.github.io/2022/02/15/braft-snapshot%E5%AE%9E%E7%8E%B0/
+https://blog.csdn.net/qq_35102066/article/details/122832550
+问题，如果关闭周期性snapshot，什么时候truncate日志呢？无限膨胀？
+
+https://zhuanlan.zhihu.com/p/690232462
+https://zhuanlan.zhihu.com/p/639480562
+https://github.com//kasshu/braft-docs/blob/master/cn/Braft%20detailed%20explanation.md
+
+https://illx10000.github.io/2018/12/29/6.html brpc iobuf
+
 https://github.com/afiodorov/radixmmap 用c++实现一下
 
 https://github.com/stateright/stateright 一致性教研工具，原理是什么？

@@ -9,6 +9,18 @@ tags : [gtest, gmock ,c++]
 
 有一个玩转GoogleTest的文章讲的不错，值得花点时间看下
 
+
+<!-- more -->
+
+## 指定测试捕获catch
+
+```gdb
+gdb /path/to/test
+catch throw
+r --gtest_filter='Test.Testcase' --gmock_verbose=info
+bt
+```
+
 ## 一些使用方法
 
 最近使用googletest，新加了单元测试，就需要判定开关单元测试对原来测试的影响，做个记录
