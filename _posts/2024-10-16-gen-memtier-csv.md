@@ -12,6 +12,18 @@ tags: [python, memtier,redis]
 生成的格式在这里
 https://github.com/RedisLabs/memtier_benchmark/blob/master/README.import
 
+```txt
+Note: 
+  To avoid unnecessary error while passing file.
+    1. Add extra 4 bytes in nbytes
+    2. Add extra 2 bytes in nkey
+    
+  Example:
+    dumpflags, time, exptime, nbytes, nsuffix, it_flags, clsid, nkey, key, data
+    0, 0, 60, 19, 200, 0, 1, 11, 'doxrpshny', 'asdfghjklqwerty'
+```
+
+主要是格式，以及多特殊预留位，以及引号
 
 直接贴代码了
 
