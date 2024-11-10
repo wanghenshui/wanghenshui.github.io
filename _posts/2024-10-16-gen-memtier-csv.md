@@ -9,6 +9,10 @@ tags: [python, memtier,redis]
 
 <!-- more -->
 
+生成的格式在这里
+https://github.com/RedisLabs/memtier_benchmark/blob/master/README.import
+
+
 直接贴代码了
 
 ```python
