@@ -10,7 +10,7 @@ tags: [rocksdb]
 <!-- more -->
 
 
-rocksdb 论坛看到的帖子，发现进程关闭很慢
+[rocksdb 论坛看到的帖子，发现进程关闭很慢](https://groups.google.com/g/rocksdb/c/xQ_o9jWoFqg)
 
 他们的配置
 
