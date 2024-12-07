@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: 给spdlog增加打印宏
